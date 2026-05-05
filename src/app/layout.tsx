@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
-import ChatWidget from "@/components/ChatWidget";
-import CommandPalette from "@/components/CommandPalette";
 import { ToastProvider } from "@/contexts/ToastContext";
 import "./globals.css";
 
-const GA_ID = 'G-WT6X97C78G'
+const GA_ID = 'G-ADDEE123456'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,32 +19,31 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bloggy — AI Blog Automation for Agencies',
+    default: 'Addee — AI Ad Creatives & Social Content Generator',
     template: '%s',
   },
-  description: 'AI blog automation software for digital marketing agencies. Generate, optimize, and publish SEO blog posts to WordPress for all your clients in minutes.',
-  keywords: ['AI blog automation', 'agency blog software', 'autoblogging software', 'WordPress content automation', 'AI content generation for agencies', 'SEO blog generator'],
-  metadataBase: new URL('https://bloggy.online'),
-  alternates: { canonical: 'https://bloggy.online' },
+  description: 'Generate AI-powered ad creatives and social media posts in your brand\'s voice. Ready to publish across Instagram, LinkedIn, TikTok, Google Ads, and more.',
+  keywords: ['AI ad generator', 'social media content', 'ad creative tools', 'Instagram ads', 'LinkedIn ads', 'TikTok ads', 'Google Ads generator'],
+  metadataBase: new URL('https://addee.online'),
+  alternates: { canonical: 'https://addee.online' },
   icons: {
-    icon: '/bloggy-icon.png',
-    apple: '/bloggy-icon.png',
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'Bloggy — AI Blog Automation for Agencies',
-    description: 'Generate, optimize, and publish SEO blog posts to WordPress for all your clients in minutes.',
-    url: 'https://bloggy.online',
-    siteName: 'Bloggy',
-    images: [{ url: 'https://bloggy.online/og-image.png', width: 1200, height: 630, alt: 'Bloggy — AI Blog Automation for Agencies' }],
+    title: 'Addee — AI Ad Creatives & Social Content Generator',
+    description: 'Generate AI-powered ad creatives and social media posts in your brand\'s voice.',
+    url: 'https://addee.online',
+    siteName: 'Addee',
+    images: [{ url: 'https://addee.online/og-image.png', width: 1200, height: 630, alt: 'Addee — AI Ad Creatives' }],
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bloggy — AI Blog Automation for Agencies',
-    description: 'Generate, optimize, and publish SEO blog posts to WordPress for all your clients in minutes.',
-    images: ['https://bloggy.online/og-image.png'],
-    site: '@GetBloggy',
+    title: 'Addee — AI Ad Creatives & Social Content Generator',
+    description: 'Generate AI-powered ad creatives and social media posts in your brand\'s voice.',
+    site: '@AddeeAI',
   },
 };
 
@@ -64,56 +61,25 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'SoftwareApplication',
-          name: 'Bloggy',
+          name: 'Addee',
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'Web',
-          url: 'https://bloggy.online',
-          logo: 'https://bloggy.online/og-image.png',
-          description: 'AI blog automation software for digital marketing agencies. Generate, optimize, and publish SEO blog posts to WordPress for all your clients in minutes.',
-          offers: {
-            '@type': 'AggregateOffer',
-            lowPrice: '49',
-            highPrice: '299',
-            priceCurrency: 'USD',
-            offerCount: 4,
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.9',
-            reviewCount: '47',
-          },
+          url: 'https://addee.online',
+          description: 'AI ad creatives and social media post generation tool. Generate ready-to-publish ads in your brand\'s voice.',
         })}} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Organization',
           name: 'Boom Media',
-          url: 'https://bloggy.online',
-          logo: { '@type': 'ImageObject', url: 'https://bloggy.online/og-image.png' },
-          sameAs: [
-            'https://www.youtube.com/@GetBloggy',
-            'https://discord.gg/9avYXden',
-          ],
+          url: 'https://addee.online',
           contactPoint: {
             '@type': 'ContactPoint',
             email: 'eric@boommedia.us',
             contactType: 'customer support',
           },
         })}} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: 'Bloggy',
-          url: 'https://bloggy.online',
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: { '@type': 'EntryPoint', urlTemplate: 'https://bloggy.online/support#guides' },
-            'query-input': 'required name=search_term_string',
-          },
-        })}} />
         <ToastProvider>
           {children}
-          <ChatWidget />
-          <CommandPalette />
         </ToastProvider>
         <Analytics />
         {GA_ID && (
