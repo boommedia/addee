@@ -1,8 +1,5 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
 import { Check, Clock, Zap, Globe, Image, Share2, Sparkles, TrendingUp, Lock, Users, RefreshCw, ArrowRight } from 'lucide-react'
-
-export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Addee — AI Ad Creatives & Social Content by Boom Media',
@@ -118,11 +115,7 @@ const FAQS = [
 // bg-base: #060d1a   card: #0b1628   border: #162040   muted: #2a3a5a
 // accent-primary: #ef4444 (red)  accent-2: #fb923c (orange)  accent-3: #f97316 (orange-600)
 
-export default async function HomePage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (user) return <AuthenticatedDashboard />
-
+export default function HomePage() {
   return (
     <div className="min-h-screen text-[#dde4f0]" style={{ background: '#060d1a', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
 
@@ -598,57 +591,3 @@ export default async function HomePage() {
   )
 }
 
-function AuthenticatedDashboard() {
-  return (
-    <div className="min-h-screen text-[#dde4f0]" style={{ background: '#060d1a' }}>
-      <header className="border-b" style={{ borderColor: '#162040' }}>
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded flex items-center justify-center font-black text-sm text-white"
-              style={{ background: 'linear-gradient(135deg, #ef4444, #fb923c)' }}>A</div>
-            <span className="font-black text-white">Addee</span>
-          </Link>
-          <nav className="flex gap-6 text-sm">
-            <Link href="/campaigns" className="hover:text-white transition" style={{ color: '#7a90b8' }}>Campaigns</Link>
-            <Link href="/brands" className="hover:text-white transition" style={{ color: '#7a90b8' }}>Brands</Link>
-            <form action="/auth/signout" method="post">
-              <button type="submit" className="hover:text-white transition" style={{ color: '#7a90b8' }}>Sign Out</button>
-            </form>
-          </nav>
-        </div>
-      </header>
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="space-y-8">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-black text-white">Welcome back</h1>
-              <p className="mt-1 text-sm" style={{ color: '#7a90b8' }}>Generate your next round of killer ads.</p>
-            </div>
-            <div className="flex gap-3">
-              <Link href="/brands/new"
-                className="px-4 py-2 rounded-lg text-sm font-semibold border transition"
-                style={{ borderColor: 'rgba(239,68,68,0.5)', color: '#fb923c', background: 'rgba(239,68,68,0.06)' }}>
-                New Brand
-              </Link>
-              <Link href="/campaigns/new"
-                className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}>
-                New Campaign
-              </Link>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            <Link href="/brands" className="rounded-2xl p-8 border transition-colors block" style={{ background: '#0b1628', borderColor: '#1a2d50' }}>
-              <h3 className="text-white font-bold text-lg mb-2">Your Brands</h3>
-              <p className="text-sm" style={{ color: '#7a90b8' }}>Manage brand profiles and voice guidelines</p>
-            </Link>
-            <Link href="/campaigns" className="rounded-2xl p-8 border transition-colors block" style={{ background: '#0b1628', borderColor: '#1a2d50' }}>
-              <h3 className="text-white font-bold text-lg mb-2">Your Campaigns</h3>
-              <p className="text-sm" style={{ color: '#7a90b8' }}>View and manage all your ad campaigns</p>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
