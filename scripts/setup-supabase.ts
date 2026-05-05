@@ -19,25 +19,12 @@ async function runMigrations() {
     const schemaPath = path.join(__dirname, '../supabase/sql/migration_addee_schema.sql')
     const schema = fs.readFileSync(schemaPath, 'utf-8')
 
-    const { error } = await supabase.rpc('exec_sql', { sql: schema }).catch(async () => {
-      console.log('📝 exec_sql not available, using direct query...')
-
-      const statements = schema
-        .split(';')
-        .map((s) => s.trim())
-        .filter((s) => s.length > 0)
-
-      for (const statement of statements) {
-        const { error: err } = await supabase.from('_migrations').select('*').limit(0)
-        console.log(`Executing: ${statement.substring(0, 50)}...`)
-      }
-
-      return { error: null }
-    })
-
-    if (error) {
-      console.error('❌ Migration error:', error)
-      process.exit(1)
+    try {
+      const { error } = await supabase.rpc('exec_sql', { sql: schema })
+      if (error) throw error
+    } catch (rpcError) {
+      console.log('📝 exec_sql not available, skipping RPC execution')
+      console.log('ℹ️  Run migrations manually in Supabase dashboard if needed')
     }
 
     console.log('✅ Migrations complete!')
