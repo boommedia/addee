@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, Lock, Zap, Users } from 'lucide-react'
 
-const COUPON_ID = 'sn28Uv8i'   // Stripe coupon ID
-const PROMO_CODE = 'EARLY50'   // user-facing promotion code
+// TODO: Replace with your AdDee Stripe coupon ID (create at dashboard.stripe.com/coupons)
+// Set max_redemptions: 20, percent_off: 50, duration: repeating, duration_in_months: 12
+const COUPON_ID = 'ADDEE_COUPON_ID'
+const PROMO_CODE = 'EARLY50'
 
 type CouponData = {
   valid: boolean
@@ -15,10 +17,10 @@ type CouponData = {
 }
 
 const EARLY_PRICES = [
-  { name: 'Freelancer Starter', original: 49, sites: 5, posts: 20, description: 'Perfect for freelancers managing a few clients. AI generation + basic publishing.' },
-  { name: 'Growth', original: 99, sites: 15, posts: 60, description: 'Agencies scaling up. Autoblog, AI images, team collab, URL/YouTube to blog.' },
-  { name: 'Agency', original: 149, sites: 40, posts: 175, description: 'Full-service agencies. LocalFalcon rankings, white-label portal, advanced analytics.' },
-  { name: 'Agency Max', original: 299, sites: 150, posts: 500, description: 'Enterprise teams. White-label domain, custom integrations, API access, 24/7 support.' },
+  { name: 'Starter', original: 29, brands: 5, ads: 50, description: 'Perfect for freelancers. AI AD generation + all platforms + brand voice training.' },
+  { name: 'Growth', original: 79, brands: 15, ads: 150, description: 'Agencies scaling up. Team collaboration, approval workflows, priority support.' },
+  { name: 'Agency', original: 149, brands: 40, ads: 400, description: 'Full-service agencies. 10 users, performance analytics, Slack support.' },
+  { name: 'Agency Max', original: 299, brands: 100, ads: 1000, description: 'Enterprise teams. White-label, custom integrations, dedicated account manager.' },
 ]
 
 export default function EarlyAccessSection() {
@@ -43,78 +45,75 @@ export default function EarlyAccessSection() {
   const discount = coupon.percent_off ?? 50
 
   return (
-    <section id="early-access" className="px-6 py-14 border-t border-[#2a2a3d]/50">
+    <section id="early-access" className="px-6 py-14 border-t" style={{ borderColor: '#162040' }}>
       <div className="max-w-5xl mx-auto">
-        <div className={`relative rounded-2xl overflow-hidden border ${soldOut ? 'border-[#2a2a3d] bg-[#12121a]' : 'border-violet-500/30 bg-gradient-to-br from-violet-950/60 via-[#0f0718] to-cyan-950/40'}`}>
+        <div className="relative rounded-2xl overflow-hidden border"
+          style={soldOut
+            ? { background: '#0b1628', borderColor: '#1a2d50' }
+            : { background: 'linear-gradient(135deg, rgba(127,29,29,0.5) 0%, rgba(11,22,40,0.95) 50%, rgba(15,30,50,0.9) 100%)', borderColor: 'rgba(239,68,68,0.35)' }
+          }>
+
           {/* Glow */}
           {!soldOut && (
             <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-0 left-1/4 w-64 h-64 bg-violet-600/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-600/8 rounded-full blur-3xl" />
+              <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full blur-3xl"
+                style={{ background: 'rgba(239,68,68,0.12)' }} />
+              <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full blur-3xl"
+                style={{ background: 'rgba(251,146,60,0.08)' }} />
             </div>
           )}
 
           <div className="relative p-8 sm:p-10">
             {soldOut ? (
               <div className="text-center py-6">
-                <div className="text-[#8888a8] text-sm font-bold uppercase tracking-widest mb-3">Early Access Closed</div>
-                <p className="text-[#555570] text-sm">All early access spots have been claimed. Join the waitlist below to be notified when we open again.</p>
-                <a href="#waitlist" className="inline-flex items-center gap-2 mt-6 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm">
+                <div className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#4a6080' }}>Early Access Closed</div>
+                <p className="text-sm" style={{ color: '#3a5070' }}>All 20 early access spots have been claimed. Join the waitlist to be notified when we open again.</p>
+                <a href="#waitlist"
+                  className="inline-flex items-center gap-2 mt-6 font-semibold px-6 py-3 rounded-xl transition-colors text-sm border"
+                  style={{ background: '#0b1628', borderColor: '#1a2d50', color: '#dde4f0' }}>
                   Join the Waitlist <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             ) : (
-              <>
-              <div className="mb-10">
-                <div className="text-center mb-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#8888a8]">See Bloggy in Action</span>
-                </div>
-                <div className="relative w-full rounded-xl overflow-hidden border border-[#2a2a3d] shadow-2xl" style={{ paddingTop: '56.25%' }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/rrZKE6zg-f8?rel=0&modestbranding=1"
-                    title="Bloggy — AI Blog Automation for Agencies"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                  />
-                </div>
-              </div>
-
               <div className="flex flex-col lg:flex-row gap-10 items-start">
                 {/* Left: Offer details */}
                 <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 bg-yellow-500/15 border border-yellow-500/25 text-yellow-300 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                  <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 border"
+                    style={{ background: 'rgba(251,146,60,0.15)', borderColor: 'rgba(251,146,60,0.3)', color: '#fb923c' }}>
                     <Zap className="w-3 h-3" />
-                    Limited Early Access
+                    Limited Early Access — {left} of {total} spots left
                   </div>
+
                   <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
                     {discount}% off for 1 year.<br />
-                    <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-                      Early access pricing.
+                    <span style={{ backgroundImage: 'linear-gradient(90deg, #ef4444, #fb923c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                      Founding member pricing.
                     </span>
                   </h2>
-                  <p className="text-[#8888a8] text-sm leading-relaxed mb-6">
-                    We're opening Bloggy to a small group of agencies before public launch. Early access members get {discount}% off for 12 months — saving hundreds compared to full price. Once these spots are gone, pricing returns to normal.
+
+                  <p className="text-sm leading-relaxed mb-6" style={{ color: '#7a90b8' }}>
+                    We're opening AdDee to a small group of agencies before public launch. The first {total} members lock in {discount}% off for 12 months — saving hundreds compared to full price. Once these spots are gone, pricing returns to normal.
                   </p>
 
                   {/* Spot counter */}
-                  <div className="bg-[#0a0a0f]/60 border border-[#2a2a3d] rounded-xl p-4 mb-6">
+                  <div className="rounded-xl p-4 mb-6 border"
+                    style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2 text-sm">
-                        <Users className="w-4 h-4 text-violet-400" />
+                        <Users className="w-4 h-4" style={{ color: '#fb923c' }} />
                         <span className="text-white font-bold">{left} spots remaining</span>
-                        <span className="text-[#555570]">of {total}</span>
+                        <span style={{ color: '#3a5070' }}>of {total}</span>
                       </div>
-                      <span className="text-xs text-[#555570]">{used} claimed</span>
+                      <span className="text-xs" style={{ color: '#3a5070' }}>{used} claimed</span>
                     </div>
-                    <div className="w-full h-2 bg-[#1a1a26] rounded-full overflow-hidden">
+                    <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: '#162040' }}>
                       <div
-                        className="h-full bg-gradient-to-r from-violet-500 to-cyan-400 rounded-full transition-all"
-                        style={{ width: `${pct}%` }}
+                        className="h-full rounded-full transition-all"
+                        style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #ef4444, #fb923c)' }}
                       />
                     </div>
                     {left <= 5 && (
-                      <p className="text-yellow-400 text-xs font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2" style={{ color: '#fb923c' }}>
                         Only {left} left — don't miss out
                       </p>
                     )}
@@ -123,58 +122,62 @@ export default function EarlyAccessSection() {
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
                       href={`/signup?coupon=${COUPON_ID}`}
-                      className="flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm"
+                      className="flex items-center justify-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all hover:opacity-90 text-sm"
+                      style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)', boxShadow: '0 6px 24px rgba(239,68,68,0.3)' }}
                     >
                       <Lock className="w-4 h-4" />
                       Claim Your Spot — {PROMO_CODE}
                     </a>
                     <a
                       href={`/billing?coupon=${COUPON_ID}`}
-                      className="flex items-center justify-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] text-[#8888a8] hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
+                      className="flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-xl transition-colors text-sm border hover:text-white"
+                      style={{ background: 'rgba(11,22,40,0.8)', borderColor: '#1a2d50', color: '#7a90b8' }}
                     >
                       Already have an account
                     </a>
                   </div>
-                  <p className="text-[#555570] text-xs mt-3">
-                    New to Bloggy? Create your account above — discount is applied automatically at checkout.
+
+                  <p className="text-xs mt-3" style={{ color: '#3a5070' }}>
+                    New to AdDee? Create your account above — discount applied automatically at checkout.
                   </p>
-                  <div className="mt-4 bg-[#0a0a0f]/60 border border-[#2a2a3d] rounded-xl p-3">
-                    <p className="text-[#555570] text-xs leading-relaxed">
-                      <strong className="text-[#8888a8]">Early access terms:</strong> The 50% discount is locked in for 12 months for the first {total} members only.
-                      If you cancel your subscription at any time, you permanently lose the early access rate —
-                      reactivating your account will be charged at full price on any plan tier.
+
+                  <div className="mt-4 rounded-xl p-3 border" style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
+                    <p className="text-xs leading-relaxed" style={{ color: '#3a5070' }}>
+                      <strong style={{ color: '#4a6080' }}>Early access terms:</strong> The 50% discount is locked in for 12 months for the first {total} members only.
+                      If you cancel at any time, you permanently lose the early access rate —
+                      reactivating will be charged at full price.
                     </p>
                   </div>
                 </div>
 
                 {/* Right: Early access pricing table */}
                 <div className="lg:w-72 w-full shrink-0">
-                  <div className="text-xs text-[#8888a8] font-bold uppercase tracking-wider mb-3">Early Access Pricing</div>
+                  <div className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: '#4a6080' }}>Early Access Pricing</div>
                   <div className="space-y-2">
                     {EARLY_PRICES.map(p => {
                       const discounted = Math.round(p.original * (1 - discount / 100) * 100) / 100
                       return (
-                        <div key={p.name} className="flex flex-col bg-[#0a0a0f]/60 border border-[#2a2a3d] rounded-xl px-4 py-3">
+                        <div key={p.name} className="flex flex-col rounded-xl px-4 py-3 border"
+                          style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <div className="text-white text-sm font-semibold">{p.name}</div>
-                              <div className="text-[#555570] text-xs">{p.sites} sites · {p.posts} posts/mo</div>
+                              <div className="text-xs" style={{ color: '#3a5070' }}>{p.brands} brands · {p.ads} ADs/mo</div>
                             </div>
                             <div className="text-right">
-                              <div className="text-emerald-400 font-black text-sm">${discounted}/mo</div>
-                              <div className="text-[#555570] text-xs line-through">${p.original}/mo</div>
+                              <div className="font-black text-sm" style={{ color: '#34d399' }}>${discounted}/mo</div>
+                              <div className="text-xs line-through" style={{ color: '#3a5070' }}>${p.original}/mo</div>
                             </div>
                           </div>
-                          <div className="text-[#8888a8] text-xs leading-relaxed">{p.description}</div>
+                          <div className="text-xs leading-relaxed" style={{ color: '#4a6080' }}>{p.description}</div>
                         </div>
                       )
                     })}
                   </div>
-                  <p className="text-[#555570] text-xs mt-3 text-center">50% off for 12 months · First {total} members only</p>
-                  <p className="text-[#3a3a5a] text-[10px] mt-1 text-center">Cancellation forfeits early access pricing permanently</p>
+                  <p className="text-xs mt-3 text-center" style={{ color: '#3a5070' }}>50% off for 12 months · First {total} members only</p>
+                  <p className="text-xs mt-1 text-center" style={{ color: '#1a2d50' }}>Cancellation forfeits early access pricing permanently</p>
                 </div>
               </div>
-              </>
             )}
           </div>
         </div>

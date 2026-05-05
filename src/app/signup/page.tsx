@@ -64,13 +64,13 @@ function SignupForm() {
     setGoogleLoading(true)
     setError(null)
     try {
-      if (coupon) localStorage.setItem('bloggy_coupon', coupon)
+      if (coupon) localStorage.setItem('addee_coupon', coupon)
       const next = coupon ? '/billing' : '/welcome'
       const supabase = createClient()
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.bloggy.online'}/auth/callback?next=${next}`,
+          redirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.addee.online'}/auth/callback?next=${next}`,
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
@@ -105,7 +105,7 @@ function SignupForm() {
         email,
         password,
         options: {
-          emailRedirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.bloggy.online'}/auth/callback?next=/home`,
+          emailRedirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.addee.online'}/auth/callback?next=/home`,
           data: {
             full_name: fullName.trim(),
             agency_name: agencyName.trim(),
@@ -116,7 +116,7 @@ function SignupForm() {
       if (error) {
         setError(error.message)
       } else {
-        if (coupon) localStorage.setItem('bloggy_coupon', coupon)
+        if (coupon) localStorage.setItem('addee_coupon', coupon)
         setOtpStep(true)
         setTimeout(() => inputRefs.current[0]?.focus(), 100)
       }
@@ -182,8 +182,8 @@ function SignupForm() {
     return (
       <div>
         <div className="text-center mb-6">
-          <div className="w-12 h-12 bg-violet-500/15 border border-violet-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 border" style={{ background: 'rgba(251,146,60,0.15)', borderColor: 'rgba(251,146,60,0.3)' }}>
+            <svg className="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
@@ -209,7 +209,7 @@ function SignupForm() {
                   value={digit}
                   onChange={e => handleOtpChange(i, e.target.value)}
                   onKeyDown={e => handleOtpKeyDown(i, e)}
-                  className="w-11 h-14 bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-violet-500 transition-colors"
+                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-orange-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
                 />
               ))}
             </div>
@@ -224,7 +224,8 @@ function SignupForm() {
           <button
             type="submit"
             disabled={otpLoading || otp.join('').length < 8}
-            className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-colors"
+            className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
+            style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
           >
             {otpLoading ? 'Verifying…' : 'Verify & continue'}
           </button>
@@ -233,8 +234,8 @@ function SignupForm() {
         <p className="text-[#555570] text-xs text-center mt-4">
           Didn&apos;t get it? Check your spam folder or{' '}
           <button
-            onClick={() => { setOtpStep(false); setOtp(['', '', '', '', '', '']); setOtpError(null) }}
-            className="text-violet-400 hover:text-violet-300 transition-colors"
+            onClick={() => { setOtpStep(false); setOtp(['', '', '', '', '', '', '', '']); setOtpError(null) }}
+            className="text-orange-400 hover:text-orange-300 transition-colors"
           >
             try again
           </button>
@@ -243,8 +244,9 @@ function SignupForm() {
     )
   }
 
-  const inputClass = 'w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors'
-  const labelClass = 'block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5'
+  const inputClass = 'w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors'
+  const inputStyle = { background: '#060d1a', border: '1px solid #1a2d50' }
+  const labelClass = 'block text-xs font-semibold uppercase tracking-wider mb-1.5'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -265,16 +267,16 @@ function SignupForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-[#2a2a3d]"></div>
+          <div className="w-full border-t" style={{ borderColor: '#162040' }}></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-2 bg-[#12121a] text-[#555570]">or continue with email</span>
+          <span className="px-2 text-[#555570]" style={{ background: '#0b1628' }}>or continue with email</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass}>Full Name *</label>
+          <label className={labelClass} style={{ color: '#7a90b8' }}>Full Name *</label>
           <input
             type="text"
             required
@@ -282,11 +284,12 @@ function SignupForm() {
             onChange={e => setFullName(e.target.value)}
             autoComplete="name"
             className={inputClass}
+            style={inputStyle}
             placeholder="Jane Smith"
           />
         </div>
         <div>
-          <label className={labelClass}>Agency Name *</label>
+          <label className={labelClass} style={{ color: '#7a90b8' }}>Agency Name *</label>
           <input
             type="text"
             required
@@ -294,13 +297,14 @@ function SignupForm() {
             onChange={e => setAgencyName(e.target.value)}
             autoComplete="organization"
             className={inputClass}
+            style={inputStyle}
             placeholder="Acme Marketing"
           />
         </div>
       </div>
 
       <div>
-        <label className={labelClass}>Agency Website *</label>
+        <label className={labelClass} style={{ color: '#7a90b8' }}>Agency Website *</label>
         <div className="relative">
           <input
             type="text"
@@ -309,11 +313,12 @@ function SignupForm() {
             onChange={e => { setAgencyUrl(e.target.value); setUrlStatus('idle'); setUrlError(null) }}
             onBlur={() => checkUrl(agencyUrl)}
             autoComplete="url"
-            className={`${inputClass} pr-10 ${urlStatus === 'valid' ? 'border-emerald-500' : urlStatus === 'invalid' ? 'border-red-500' : ''}`}
+            className={`${inputClass} pr-10`}
+            style={{ ...inputStyle, ...(urlStatus === 'valid' ? { borderColor: '#10b981' } : urlStatus === 'invalid' ? { borderColor: '#ef4444' } : {}) }}
             placeholder="https://youragency.com"
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            {urlStatus === 'checking' && <Loader2 className="w-4 h-4 text-violet-400 animate-spin" />}
+            {urlStatus === 'checking' && <Loader2 className="w-4 h-4 text-orange-400 animate-spin" />}
             {urlStatus === 'valid' && <CheckCircle className="w-4 h-4 text-emerald-400" />}
             {urlStatus === 'invalid' && <XCircle className="w-4 h-4 text-red-400" />}
           </div>
@@ -323,7 +328,7 @@ function SignupForm() {
       </div>
 
       <div>
-        <label className={labelClass}>Work Email *</label>
+        <label className={labelClass} style={{ color: '#7a90b8' }}>Work Email *</label>
         <input
           type="email"
           required
@@ -331,13 +336,14 @@ function SignupForm() {
           onChange={e => setEmail(e.target.value)}
           autoComplete="email"
           className={inputClass}
+          style={inputStyle}
           placeholder="you@agency.com"
         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass}>Password *</label>
+          <label className={labelClass} style={{ color: '#7a90b8' }}>Password *</label>
           <input
             type="password"
             required
@@ -345,11 +351,12 @@ function SignupForm() {
             onChange={e => setPassword(e.target.value)}
             autoComplete="new-password"
             className={inputClass}
+            style={inputStyle}
             placeholder="Min. 8 characters"
           />
         </div>
         <div>
-          <label className={labelClass}>Confirm Password *</label>
+          <label className={labelClass} style={{ color: '#7a90b8' }}>Confirm Password *</label>
           <input
             type="password"
             required
@@ -357,6 +364,7 @@ function SignupForm() {
             onChange={e => setConfirm(e.target.value)}
             autoComplete="new-password"
             className={inputClass}
+            style={inputStyle}
             placeholder="Repeat password"
           />
         </div>
@@ -364,26 +372,26 @@ function SignupForm() {
 
       {/* Coupon banner */}
       {coupon && (
-        <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-4 py-3 flex items-start gap-3">
-          <div className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5">
+        <div className="rounded-xl px-4 py-3 flex items-start gap-3 border" style={{ background: 'rgba(52,211,153,0.08)', borderColor: 'rgba(52,211,153,0.25)' }}>
+          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: 'rgba(52,211,153,0.15)', borderColor: 'rgba(52,211,153,0.3)' }}>
             <span className="text-emerald-400 text-xs font-bold">%</span>
           </div>
           <div>
             <p className="text-emerald-300 text-xs font-semibold">Discount code applied: <span className="font-mono">{coupon}</span></p>
-            <p className="text-[#555570] text-xs mt-0.5">Your discount will be applied when you upgrade to a paid plan.</p>
+            <p className="text-xs mt-0.5" style={{ color: '#3a5070' }}>Your discount will be applied when you upgrade to a paid plan.</p>
           </div>
         </div>
       )}
 
       {/* Free plan callout */}
       {!coupon && (
-        <div className="bg-violet-500/8 border border-violet-500/20 rounded-xl px-4 py-3 flex items-start gap-3">
-          <div className="w-5 h-5 rounded-full bg-violet-500/20 border border-violet-500/30 flex items-center justify-center shrink-0 mt-0.5">
-            <span className="text-violet-400 text-xs font-bold">✓</span>
+        <div className="rounded-xl px-4 py-3 flex items-start gap-3 border" style={{ background: 'rgba(251,146,60,0.08)', borderColor: 'rgba(251,146,60,0.2)' }}>
+          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: 'rgba(251,146,60,0.15)', borderColor: 'rgba(251,146,60,0.3)' }}>
+            <span className="text-orange-400 text-xs font-bold">✓</span>
           </div>
           <div>
-            <p className="text-violet-300 text-xs font-semibold">Free plan includes 2 posts</p>
-            <p className="text-[#555570] text-xs mt-0.5">No credit card required. Upgrade anytime for unlimited access.</p>
+            <p className="text-orange-300 text-xs font-semibold">Free plan includes 10 ADs</p>
+            <p className="text-xs mt-0.5" style={{ color: '#3a5070' }}>No credit card required. Upgrade anytime for unlimited access.</p>
           </div>
         </div>
       )}
@@ -395,16 +403,17 @@ function SignupForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-colors"
+        className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
+        style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
       >
         {loading ? 'Creating account…' : 'Create free account'}
       </button>
 
       <p className="text-[#555570] text-xs text-center">
         By signing up you agree to our{' '}
-        <a href="/terms" className="text-violet-400 hover:text-violet-300 transition-colors">Terms</a>
+        <a href="/terms" className="text-orange-400 hover:text-orange-300 transition-colors">Terms</a>
         {' '}and{' '}
-        <a href="/privacy" className="text-violet-400 hover:text-violet-300 transition-colors">Privacy Policy</a>.
+        <a href="/privacy" className="text-orange-400 hover:text-orange-300 transition-colors">Privacy Policy</a>.
       </p>
     </form>
   )
@@ -412,23 +421,23 @@ function SignupForm() {
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10" style={{ background: '#060d1a' }}>
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Logo className="h-9" />
+          <div className="inline-flex items-center justify-center mb-3">
+            <Logo />
           </div>
-          <p className="text-[#8888a8] text-sm">Start generating AI blog posts for your clients</p>
+          <p className="text-sm" style={{ color: '#7a90b8' }}>Start generating AI ad creatives for your brands</p>
         </div>
 
-        <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-8">
+        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#162040' }}>
           <h1 className="text-white font-bold text-lg mb-6">Create your free account</h1>
           <Suspense>
             <SignupForm />
           </Suspense>
           <div className="mt-5 text-center">
-            <span className="text-[#8888a8] text-xs">Already have an account? </span>
-            <a href="/login" className="text-violet-400 hover:text-violet-300 text-xs transition-colors">Sign in</a>
+            <span className="text-xs" style={{ color: '#7a90b8' }}>Already have an account? </span>
+            <a href="/login" className="text-orange-400 hover:text-orange-300 text-xs transition-colors">Sign in</a>
           </div>
         </div>
       </div>

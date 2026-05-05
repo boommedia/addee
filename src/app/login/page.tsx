@@ -30,7 +30,7 @@ function LoginForm() {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.bloggy.online'}/auth/callback?next=/home`,
+          redirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'https://www.addee.online'}/auth/callback?next=/home`,
         },
       })
       if (error) {
@@ -77,7 +77,7 @@ function LoginForm() {
           <div className="w-full border-t border-[#2a2a3d]"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-2 bg-[#12121a] text-[#555570]">or continue with email</span>
+          <span className="px-2 text-[#555570]" style={{ background: '#0b1628' }}>or continue with email</span>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ function LoginForm() {
           type="email"
           required
           autoComplete="email"
-          className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
           placeholder="you@agency.com"
         />
       </div>
@@ -105,7 +105,7 @@ function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
           placeholder="••••••••"
         />
       </div>
@@ -119,7 +119,8 @@ function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5 text-sm transition-colors mt-2"
+        className="w-full disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90 mt-2"
+        style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
@@ -130,25 +131,25 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#060d1a' }}>
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Logo className="h-9" />
+          <div className="inline-flex items-center justify-center mb-3">
+            <Logo />
           </div>
-          <p className="text-[#8888a8] text-sm">Sign in to your account</p>
+          <p className="text-sm" style={{ color: '#7a90b8' }}>Sign in to your account</p>
         </div>
 
-        <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-8">
+        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#162040' }}>
           <h1 className="text-white font-bold text-lg mb-6">Welcome back</h1>
           <Suspense>
             <LoginForm />
           </Suspense>
           <div className="mt-4 flex items-center justify-between">
-            <a href="/forgot-password" className="text-[#8888a8] hover:text-violet-400 text-xs transition-colors">
+            <a href="/forgot-password" className="hover:text-orange-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
               Forgot password?
             </a>
-            <a href="/signup" className="text-[#8888a8] hover:text-violet-400 text-xs transition-colors">
+            <a href="/signup" className="hover:text-orange-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
               Create account
             </a>
           </div>

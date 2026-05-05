@@ -15,8 +15,8 @@ import DashboardStats from '@/components/DashboardStats'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Generate — Bloggy',
-  description: 'AI blog post generator. Create SEO-optimized blog posts for your clients from topics, URLs, or YouTube videos.',
+  title: 'Generate — AdDee',
+  description: 'AI ad creative generator. Create ready-to-publish ad creatives for your brands in seconds.',
   robots: { index: false, follow: false },
 }
 
@@ -34,7 +34,7 @@ export default async function HomePage({
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  const isAdmin = user?.email === 'eric@bloggy.online' || user?.email === 'eric@boommedia.us'
+  const isAdmin = user?.email === 'eric@boommedia.us'
 
   const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
 
@@ -90,19 +90,19 @@ export default async function HomePage({
 
   const onboardingSteps = [
 
-    { id: 'client', label: 'Add your first client', description: 'Create a client profile with name, brand voice, and industry.', href: '/clients', done: hasClients },
+    { id: 'brand', label: 'Add your first brand', description: 'Create a brand profile with name, voice guidelines, and target audience.', href: '/brands', done: hasClients },
 
-    { id: 'wp', label: 'Connect WordPress', description: 'Add WordPress credentials to publish posts directly.', href: '/clients', done: hasWP },
+    { id: 'campaign', label: 'Create a campaign brief', description: 'Set up your first campaign with platform, format, and messaging goals.', href: '/campaigns', done: hasWP },
 
-    { id: 'post', label: 'Generate your first post', description: 'Enter a topic or brief and let Bloggy write it.', href: '#generate', done: hasPost },
+    { id: 'ad', label: 'Generate your first AD', description: 'Enter a brief and let AdDee write 3 variations instantly.', href: '#generate', done: hasPost },
 
-    { id: 'autoblog', label: 'Queue autoblog topics', description: 'Set up automated publishing for a client.', href: '/autoblog', done: hasTopics },
+    { id: 'publish', label: 'Connect a platform', description: 'Link Instagram, LinkedIn, TikTok or Google Ads to publish directly.', href: '/connectors', done: hasTopics },
 
   ]
 
   return (
 
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen text-[#dde4f0]" style={{ background: '#060d1a' }}>
 
       <AppNav active="/dashboard" />
 
@@ -110,9 +110,9 @@ export default async function HomePage({
 
         <div className="mb-8">
 
-          <h1 className="text-2xl font-bold text-white mb-1">Generate Blog Post</h1>
+          <h1 className="text-2xl font-bold text-white mb-1">Generate AD Creative</h1>
 
-          <p className="text-[#8888a8] text-sm">Enter a topic or brief → Bloggy will write a publish-ready SEO blog post.</p>
+          <p className="text-sm" style={{ color: '#7a90b8' }}>Enter a campaign brief → AdDee writes 3 platform-ready AD variations in your brand voice.</p>
 
         </div>
 

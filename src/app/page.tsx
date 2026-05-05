@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Check, Globe, Image, Share2, Sparkles, TrendingUp, Lock, Users, RefreshCw, ArrowRight } from 'lucide-react'
+import EarlyAccessSection from '@/components/EarlyAccessSection'
 
 const FEATURES = [
   {
@@ -96,12 +97,12 @@ const PRICING = [
 ]
 
 const FAQS = [
-  { q: 'What AI model powers Addee?', a: "Addee runs on Anthropic's Claude Sonnet 4.6 — one of the most capable models for copywriting and brand voice consistency. Better copy, faster generation, ads that sound like your brand." },
-  { q: 'How does brand voice training work?', a: 'Upload your brand guidelines, past ads, tone examples, and messaging pillars. Addee learns your brand and generates ads that sound like you — not a generic AI.' },
+  { q: 'What AI model powers AdDee?', a: "AdDee runs on Anthropic's Claude Sonnet 4.6 — one of the most capable models for copywriting and brand voice consistency. Better copy, faster generation, ads that sound like your brand." },
+  { q: 'How does brand voice training work?', a: 'Upload your brand guidelines, past ads, tone examples, and messaging pillars. AdDee learns your brand and generates ads that sound like you — not a generic AI.' },
   { q: 'Can I edit ads before publishing?', a: 'Yes — every generated ad has a full editor built in. Edit copy, headlines, CTAs, hashtags, and visual elements before one-click publishing to all platforms.' },
   { q: 'Which platforms do you support?', a: 'Instagram (Feed, Stories, Reels), LinkedIn, TikTok, Google Ads, Meta (Facebook & Instagram), Twitter/X, Pinterest — with more coming in Q2 2026.' },
   { q: 'Is there a free trial?', a: 'Yes. Every account starts with 10 free ads and 2 brand slots. Full feature access. No credit card required. Cancel anytime.' },
-  { q: 'Who is Addee built for?', a: "Addee is built for anyone managing ads for more than one brand — freelancers, solopreneurs, and agencies. If you're running ads for 2+ brands, Addee saves you 10–15 hours every week." },
+  { q: 'Who is AdDee built for?', a: "AdDee is built for anyone managing ads for more than one brand — freelancers, solopreneurs, and agencies. If you're running ads for 2+ brands, AdDee saves you 10–15 hours every week." },
   { q: 'Can I upgrade or downgrade?', a: 'Yes — change plans anytime from the Billing page. Changes take effect immediately with Stripe proration.' },
 ]
 
@@ -119,7 +120,7 @@ export default function HomePage() {
         <div style={{ background: 'rgba(251,146,60,0.12)', borderBottom: '1px solid rgba(251,146,60,0.25)' }}
           className="py-2.5 text-center text-xs font-bold text-orange-300 tracking-wide">
           <span className="inline-block w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse mr-2 align-middle" />
-          Addee Early Access — Founding pricing locked in forever · Get started free
+          AdDee Early Access — Founding pricing locked in forever · Get started free
         </div>
         <nav style={{ background: 'rgba(6,13,26,0.92)', borderBottom: '1px solid rgba(22,32,64,0.8)' }}
           className="backdrop-blur">
@@ -127,7 +128,7 @@ export default function HomePage() {
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded flex items-center justify-center font-black text-sm text-white"
                 style={{ background: 'linear-gradient(135deg, #ef4444, #fb923c)' }}>A</div>
-              <span className="font-black text-white">Addee</span>
+              <span className="font-black text-white">AdDee</span>
               <span style={{ color: '#162040' }} className="mx-1 hidden sm:inline">·</span>
               <span style={{ color: '#4a6080' }} className="text-xs hidden sm:inline">by Boom Media</span>
             </div>
@@ -171,12 +172,12 @@ export default function HomePage() {
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-6">
             One Dashboard.<br />
             <span style={{ backgroundImage: 'linear-gradient(90deg, #ef4444, #fb923c, #f97316)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              Every Brand Ad. Done.
+              Every Brand AD. Done.
             </span>
           </h1>
 
           <p className="text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: '#7a90b8' }}>
-            Addee is built for freelancers, solopreneurs, and agencies who manage ads for more than one client.
+            AdDee is built for freelancers, solopreneurs, and agencies who manage ads for more than one client.
             Generate, publish, and track performance for all your brands — from one login.
             As low as <span className="text-white font-semibold">$2.99 per brand.</span>
           </p>
@@ -225,7 +226,7 @@ export default function HomePage() {
                 <h3 className="text-white text-xl sm:text-2xl font-black mb-3">Boom Media</h3>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: '#7a90b8' }}>
                   Boom Media is a full-service digital marketing agency managing SEO, social media, and web design for local businesses across South Florida.
-                  They built Addee to eliminate per-ad design costs and streamline ad delivery across their entire client base.
+                  They built AdDee to eliminate per-ad design costs and streamline ad delivery across their entire client base.
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: '#7a90b8' }}>
                   With 15 active client brands, Boom Media generates 10 ads per platform per month, publishes directly to Instagram, LinkedIn, and Meta — delivering branded monthly performance reports without a designer on staff.
@@ -305,7 +306,7 @@ export default function HomePage() {
             <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#34d399' }}>The Agency Math</div>
             <h2 className="text-2xl sm:text-4xl font-black text-white">You're already charging for content.</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>
-              Addee doesn't replace your revenue — it replaces your cost.
+              AdDee doesn't replace your revenue — it replaces your cost.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -367,7 +368,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { step: '01', title: 'Set up your brand', desc: 'Add a brand profile with voice guidelines, target audience, tone preferences, and visual style. Takes 2 minutes.', detail: 'Brand voice · Tone · Target audience' },
-            { step: '02', title: 'Generate ad creatives', desc: 'Enter a campaign brief or product. Addee writes 3 variations per platform in your brand voice — with headlines, copy, and CTAs.', detail: 'AI writing · 3 variations · Every format' },
+            { step: '02', title: 'Generate ad creatives', desc: 'Enter a campaign brief or product. AdDee writes 3 variations per platform in your brand voice — with headlines, copy, and CTAs.', detail: 'AI writing · 3 variations · Every format' },
             { step: '03', title: 'Edit, approve, publish', desc: 'Review and refine in the built-in editor. Send for client approval. Then one-click publish to every platform at once.', detail: 'Approval workflows · Bulk publish · All platforms' },
           ].map(({ step, title, desc, detail }) => (
             <div key={step} className="relative rounded-2xl p-7 border transition-colors" style={{ background: '#0b1628', borderColor: '#1a2d50' }}>
@@ -433,7 +434,7 @@ export default function HomePage() {
         <div className="text-center mb-14">
           <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>Roadmap</div>
           <h2 className="text-2xl sm:text-4xl font-black text-white">Built. Shipping. Coming soon.</h2>
-          <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>Addee ships new features every week.</p>
+          <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>AdDee ships new features every week.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
@@ -444,7 +445,7 @@ export default function HomePage() {
             { title: 'Performance Analytics', desc: 'CTR, conversions, ROAS per platform per ad.', status: 'progress' },
             { title: 'Auto-Repurposing', desc: 'One ad becomes LinkedIn posts, email, Twitter threads.', status: 'progress' },
             { title: 'Competitor Analysis', desc: 'See what competitors run. Clone winning angles.', status: 'soon' },
-            { title: 'White-Label Portal', desc: 'Brand Addee as your own. Client-facing dashboard.', status: 'soon' },
+            { title: 'White-Label Portal', desc: 'Brand AdDee as your own. Client-facing dashboard.', status: 'soon' },
             { title: 'A/B Testing Automation', desc: 'Auto-generate and test 5 ad variations per platform.', status: 'soon' },
           ].map(({ title, desc, status }) => (
             <div key={title} className="rounded-2xl p-5 border" style={{
@@ -475,7 +476,7 @@ export default function HomePage() {
           <div className="text-center mb-14">
             <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>Integrations</div>
             <h2 className="text-2xl sm:text-4xl font-black text-white">Publish & Post Everywhere</h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>Addee connects to every platform your clients use.</p>
+            <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>AdDee connects to every platform your clients use.</p>
           </div>
           <div className="space-y-8">
             <div>
@@ -510,6 +511,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── EARLY ACCESS ── */}
+      <EarlyAccessSection />
 
       {/* ── FAQ ── */}
       <section id="faq" className="max-w-3xl mx-auto px-6 py-20">
@@ -555,7 +559,7 @@ export default function HomePage() {
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-7 h-7 rounded flex items-center justify-center font-black text-sm text-white"
                   style={{ background: 'linear-gradient(135deg, #ef4444, #fb923c)' }}>A</div>
-                <span className="font-black text-white">Addee</span>
+                <span className="font-black text-white">AdDee</span>
               </div>
               <p className="text-xs" style={{ color: '#3a5070' }}>AI ad creatives for agencies. Built by Boom Media.</p>
             </div>
@@ -575,7 +579,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="pt-8 text-center text-xs border-t" style={{ borderColor: '#162040', color: '#3a5070' }}>
-            © 2026 Addee by Boom Media. All rights reserved.
+            © 2026 AdDee by Boom Media. All rights reserved.
           </div>
         </div>
       </footer>

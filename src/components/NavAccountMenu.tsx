@@ -33,18 +33,18 @@ export default function NavAccountMenu({ email, planLabel, planStyle, postsLeft,
       >
         <span className="capitalize">{planLabel}</span>
         <span className="opacity-50">·</span>
-        <span className={nearLimit ? '' : 'opacity-70'}>{postsLeft}/{postsLimit} posts</span>
+        <span className={nearLimit ? '' : 'opacity-70'}>{postsLeft}/{postsLimit} ADs</span>
         <ChevronDown className="w-3 h-3 opacity-60" />
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-52 bg-[#12121a] border border-[#2a2a3d] rounded-xl shadow-xl z-50 overflow-hidden">
-          <div className="px-3 py-2.5 border-b border-[#2a2a3d]">
+        <div className="absolute right-0 top-full mt-2 w-52 rounded-xl shadow-xl z-50 overflow-hidden border" style={{ background: '#0b1628', borderColor: '#162040' }}>
+          <div className="px-3 py-2.5 border-b" style={{ borderColor: '#162040' }}>
             <p className="text-[#8888a8] text-xs truncate">{email}</p>
           </div>
           <div className="py-1">
             {[
-              { href: '/posts',   icon: <FileText className="w-3.5 h-3.5" />,     label: 'Post History' },
+              { href: '/campaigns', icon: <FileText className="w-3.5 h-3.5" />,   label: 'AD History'   },
               { href: '/account', icon: <BarChart2 className="w-3.5 h-3.5" />,   label: 'Usage' },
               { href: '/billing', icon: <CreditCard className="w-3.5 h-3.5" />,  label: 'Billing' },
               { href: '/settings',icon: <Settings className="w-3.5 h-3.5" />,    label: 'Settings' },
@@ -54,18 +54,18 @@ export default function NavAccountMenu({ email, planLabel, planStyle, postsLeft,
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 text-sm text-[#c8c8d8] hover:text-white hover:bg-[#1a1a26] transition-colors"
+                className="flex items-center gap-2.5 px-3 py-2 text-sm text-[#c8c8d8] hover:text-white hover:bg-[#0f1f38] transition-colors"
               >
                 <span className="text-[#8888a8]">{icon}</span>
                 {label}
               </a>
             ))}
           </div>
-          <div className="border-t border-[#2a2a3d] py-1">
+          <div className="border-t py-1" style={{ borderColor: '#162040' }}>
             <form action={signOutAction}>
               <button
                 type="submit"
-                className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#8888a8] hover:text-red-400 hover:bg-[#1a1a26] transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#8888a8] hover:text-red-400 hover:bg-[#0f1f38] transition-colors"
               >
                 <LogOut className="w-3.5 h-3.5" /> Sign out
               </button>

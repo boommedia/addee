@@ -22,7 +22,14 @@
       "mcp__claude_ai_Vercel__get_deployment_build_logs",
       "Bash(rm -rf src/app/api/url-to-blog src/app/api/clients src/app/api/publish src/app/api/keyword-lists src/app/api/approve src/app/api/wp-health src/app/api/email src/app/api/dataforseo src/app/api/gsc src/app/api/seo src/app/api/autoblog src/app/api/tools src/app/api/investors src/app/api/social src/app/api/keywords src/app/api/rankings src/app/api/reports src/app/api/internal-links src/app/api/referral src/app/api/chat src/app/api/integrations src/app/api/repurpose src/app/api/rewrite src/app/api/youtube-to-blog src/app/api/client-images src/app/api/local-falcon src/app/api/keyword-searches src/app/api/webhooks src/app/api/posts src/app/api/validate-url)",
       "Bash(rm -rf \"src/app/api/approve\" \"src/app/api/dataforseo\" \"src/app/api/gsc\" \"src/app/api/seo\" \"src/app/api/autoblog\" \"src/app/api/tools\" \"src/app/api/investors\" \"src/app/api/social\" \"src/app/api/keywords\" \"src/app/api/rankings\" \"src/app/api/reports\" \"src/app/api/integrations\" \"src/app/api/client-images\" \"src/app/api/local-falcon\" \"src/app/api/webhooks\" \"src/app/api/posts\" \"src/app/api/publish\" \"src/app/api/keyword-lists\" \"src/app/api/email\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "mcp__claude_ai_Vercel__list_teams",
+      "mcp__claude_ai_Vercel__get_project",
+      "mcp__claude_ai_Vercel__web_fetch_vercel_url",
+      "mcp__claude_ai_Vercel__get_runtime_logs",
+      "Bash(npx tsc *)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(npm run *)"
     ],
     "additionalDirectories": [
       "G:\\My Drive\\AI\\Claude\\Projects\\Boom Media\\Addee\\Bloggy",
