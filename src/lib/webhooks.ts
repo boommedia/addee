@@ -1,12 +1,12 @@
 import { createClient as createServiceClient } from '@supabase/supabase-js'
 
-const supabase = createServiceClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
 export async function fireWebhooks(userId: string, event: string, payload: Record<string, unknown>) {
   try {
+    const supabase = createServiceClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+
     const { data: hooks } = await supabase
       .from('webhooks')
       .select('id, url, events')
@@ -23,7 +23,7 @@ export async function fireWebhooks(userId: string, event: string, payload: Recor
       try {
         const res = await fetch(hook.url, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Bloggy-Event': event },
+          headers: { 'Content-Type': 'application/json', 'X-Addee-Event': event },
           body,
           signal: AbortSignal.timeout(10_000),
         })
