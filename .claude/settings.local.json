@@ -15,7 +15,8 @@
       "Bash(npx supabase *)",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "G:\\My Drive\\AI\\Claude\\Projects\\Boom Media\\Addee\\Bloggy",
