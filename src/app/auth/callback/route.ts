@@ -3,12 +3,13 @@ import { createServerClient } from '@supabase/ssr'
 import { createClient as createServiceClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 
-const serviceSupabase = createServiceClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+export const dynamic = 'force-dynamic'
 
 export async function GET(request: Request) {
+  const serviceSupabase = createServiceClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/home'
@@ -35,7 +36,7 @@ export async function GET(request: Request) {
       const { data: { user } } = await supabase.auth.getUser()
 
       // Redirect admin users to admin panel
-      if (user?.email === 'eric@bloggy.online') {
+      if (user?.email === 'eric@boommedia.us') {
         return NextResponse.redirect(`${origin}/admin`)
       }
 

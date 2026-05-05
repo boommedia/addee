@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+export const dynamic = 'force-dynamic'
 import { stripe, PLANS, type PlanKey } from '@/lib/stripe'
 import { createClient } from '@supabase/supabase-js'
 import { sendWelcomeEmail, sendPlanUpgradeEmail, sendCancellationEmail } from '@/lib/email'
