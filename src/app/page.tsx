@@ -1,12 +1,5 @@
-'use client'
 import Link from 'next/link'
-import { Check, Clock, Zap, Globe, Image, Share2, Sparkles, TrendingUp, Lock, Users, RefreshCw, ArrowRight } from 'lucide-react'
-
-export const metadata = {
-  title: 'Addee — AI Ad Creatives & Social Content by Boom Media',
-  description: 'Generate AI-powered ad creatives and social media posts in your brand\'s voice. Ready to publish across Instagram, LinkedIn, TikTok, Google Ads, and more.',
-  keywords: ['AI ad generator', 'social media content', 'ad creative tools', 'Instagram ads', 'LinkedIn ads', 'TikTok ads'],
-}
+import { Check, Globe, Image, Share2, Sparkles, TrendingUp, Lock, Users, RefreshCw, ArrowRight } from 'lucide-react'
 
 const FEATURES = [
   {
@@ -293,10 +286,8 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {FEATURES.map(({ icon, color, bg, title, desc }) => (
             <div key={title}
-              className="rounded-2xl p-6 border transition-all hover:scale-[1.02]"
-              style={{ background: '#0b1628', borderColor: '#1a2d50' }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(239,68,68,0.4)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = '#1a2d50')}>
+              className="rounded-2xl p-6 border transition-all hover:scale-[1.02] border-[#1a2d50] hover:border-red-500/40"
+              style={{ background: '#0b1628' }}>
               <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${bg} ${color}`}>
                 {icon}
               </div>
