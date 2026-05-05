@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        primary: 'var(--primary)',
-        'primary-light': 'var(--primary-light)',
-        'primary-dark': 'var(--primary-dark)',
-        border: 'var(--border)',
-        'text-muted': 'var(--text-muted)',
+        background: '#ffffff',
+        foreground: '#1f2937',
+        primary: '#ef4444',
+        'primary-light': '#fecaca',
+        'primary-dark': '#991b1b',
+        border: '#e5e7eb',
+        'text-muted': '#6b7280',
       },
     },
   },
