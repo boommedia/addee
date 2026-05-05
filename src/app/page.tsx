@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import { Check, Clock, Zap, Globe, Image, Share2, Sparkles, TrendingUp, Lock, Users, RefreshCw, ArrowRight } from 'lucide-react'
 
