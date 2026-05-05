@@ -5,10 +5,12 @@ import { createClient } from '@supabase/supabase-js'
 import { sendWelcomeEmail, sendPlanUpgradeEmail, sendCancellationEmail } from '@/lib/email'
 import type Stripe from 'stripe'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 function planFromSubscription(sub: Stripe.Subscription): { plan: PlanKey; posts: number; sites: number } {
   const priceId = sub.items.data[0]?.price.id
@@ -38,6 +40,7 @@ async function getUserEmail(userId: string): Promise<string | null> {
 }
 
 export async function POST(request: Request) {
+  const supabase = getSupabase()
   const body = await request.text()
   const sig = request.headers.get('stripe-signature')!
 
