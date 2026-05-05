@@ -2,6 +2,8 @@ import AppNav from '@/components/AppNav'
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import {
+
+export const dynamic = 'force-dynamic'
   Zap, Globe, Calendar, BarChart2, Image, Link2, Video, FileText,
   Users, ArrowRight, CheckCircle, Star, TrendingUp, Clock, Target,
   Sparkles, MessageCircle, BookOpen, AlertCircle,

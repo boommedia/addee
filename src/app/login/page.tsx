@@ -6,6 +6,8 @@ import Logo from '@/components/Logo'
 import { login } from '@/app/auth/actions'
 import { createClient } from '@/lib/supabase/client'
 
+export const dynamic = 'force-dynamic'
+
 function LoginForm() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)

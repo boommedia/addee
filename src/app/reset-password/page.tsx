@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import Logo from '@/components/Logo'
 import { createClient } from '@/lib/supabase/client'
 
+export const dynamic = 'force-dynamic'
+
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')

@@ -3,6 +3,8 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import { Trash2, Plus } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Integrations',
   description: 'Connect social platforms and content publishing APIs.',

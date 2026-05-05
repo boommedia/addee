@@ -6,6 +6,8 @@ import Logo from '@/components/Logo'
 import { Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
+export const dynamic = 'force-dynamic'
+
 export default function WelcomePage() {
   const router = useRouter()
   const [user, setUser] = useState<any>(null)

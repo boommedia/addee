@@ -6,6 +6,8 @@ import Logo from '@/components/Logo'
 import { createClient } from '@/lib/supabase/client'
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 function SignupForm() {
   const [fullName, setFullName] = useState('')
   const [agencyName, setAgencyName] = useState('')

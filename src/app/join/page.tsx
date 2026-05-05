@@ -3,6 +3,8 @@ import { createClient as createServiceClient } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
 import { CheckCircle, XCircle } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function JoinPage({
   searchParams,
 }: {

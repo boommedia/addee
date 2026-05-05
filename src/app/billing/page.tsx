@@ -6,6 +6,8 @@ import { Check, CheckCircle, Loader2, ExternalLink, Zap, Tag, Lock, BarChart2, G
 import { createClient } from '@/lib/supabase/client'
 import { useRouter, useSearchParams } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 const PLAN_STYLES: Record<string, string> = {
   starter:    'bg-blue-500/15 border-blue-500/30 text-blue-400',
   growth:     'bg-violet-500/15 border-violet-500/30 text-violet-400',

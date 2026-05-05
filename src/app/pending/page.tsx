@@ -3,6 +3,8 @@ import { createClient } from '@/lib/supabase/server'
 import { logout } from '@/app/auth/actions'
 import { redirect } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Account Under Review — Bloggy',
   robots: 'noindex,nofollow',

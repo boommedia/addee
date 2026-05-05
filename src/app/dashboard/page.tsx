@@ -12,6 +12,8 @@ import OnboardingChecklist from '@/components/OnboardingChecklist'
 
 import DashboardStats from '@/components/DashboardStats'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Generate — Bloggy',
   description: 'AI blog post generator. Create SEO-optimized blog posts for your clients from topics, URLs, or YouTube videos.',

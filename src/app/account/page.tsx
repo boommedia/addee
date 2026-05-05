@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import AppNav from '@/components/AppNav'
 import { FileText, Globe, TrendingUp, Zap, ExternalLink, Calendar } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 const PLAN_STYLES: Record<string, { badge: string; card: string }> = {
   starter:    { badge: 'bg-blue-500/15 border-blue-500/30 text-blue-400',    card: 'from-blue-600/10 to-transparent border-blue-500/20' },
   growth:     { badge: 'bg-violet-500/15 border-violet-500/30 text-violet-400', card: 'from-violet-600/10 to-transparent border-violet-500/20' },

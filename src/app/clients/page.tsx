@@ -10,6 +10,8 @@ import ClientList from '@/components/ClientList'
 
 import ClientForm from '@/components/ClientForm'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Clients — Bloggy',
   description: 'Manage all your client sites, brand voice settings, WordPress credentials, and target keywords from one dashboard.',

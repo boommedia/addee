@@ -14,6 +14,8 @@ import DiscordReleaseForm from './DiscordReleaseForm'
 import ApprovalActions from './ApprovalActions'
 import AdminIntegrationsPanel from './AdminIntegrationsPanel'
 
+export const dynamic = 'force-dynamic'
+
 const PLAN_PRICE: Record<string, number> = {
   starter: 49, growth: 99, agency: 199, agency_max: 299,
 }

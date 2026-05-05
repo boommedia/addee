@@ -5,6 +5,8 @@ import { Trash2, Plus, TrendingUp, Search, CheckCircle, ArrowRight } from 'lucid
 import WebhookSettings from '@/app/settings/WebhookSettings'
 import { googleIndexingConfigured } from '@/lib/google-indexing'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Connectors',
   description: 'Connect Google services and set up webhooks.',

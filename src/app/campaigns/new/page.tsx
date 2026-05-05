@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 const PLATFORMS = [
   { id: 'instagram', name: 'Instagram', formats: ['Feed Post', 'Story', 'Reel', 'Carousel'] },
   { id: 'linkedin', name: 'LinkedIn', formats: ['Post', 'Document Ad'] },

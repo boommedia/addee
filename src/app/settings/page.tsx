@@ -18,6 +18,8 @@ import { FileText, BarChart2, CreditCard, ChevronRight, Search, CheckCircle, Tre
 
 import { googleIndexingConfigured } from '@/lib/google-indexing'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Settings — Bloggy',
   description: 'Manage account settings, team members, white-label branding, and Google Indexing API configuration.',
