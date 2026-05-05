@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { Check, Zap, Globe, Image, Calendar, Share2, Sparkles, TrendingUp, Lock, Users, Code2, GitBranch, BookOpen, Copy, Languages, RefreshCw } from 'lucide-react'
+import { Check, Clock, Zap, Globe, Image, Calendar, Share2, Sparkles, TrendingUp, Lock, Users, Code2, GitBranch, BookOpen, Copy, Languages, RefreshCw } from 'lucide-react'
 
 export const metadata = {
   title: 'Addee — AI Ad Creatives & Social Content by Boom Media',
