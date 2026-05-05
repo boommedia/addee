@@ -35,7 +35,7 @@ function monthlyAmountFromSubscription(sub: Stripe.Subscription): number {
 }
 
 async function getUserEmail(userId: string): Promise<string | null> {
-  const { data } = await supabase.auth.admin.getUserById(userId)
+  const { data } = await getSupabase().auth.admin.getUserById(userId)
   return data.user?.email ?? null
 }
 
