@@ -1,0 +1,387 @@
+{
+  "page": {
+    "title": "Bloggy — AI Blog Automation for Agencies | Boom Media",
+    "slug": "bloggy",
+    "description": "Automate blog content creation for your agency clients. Generate SEO-optimized posts, manage multiple WordPress sites, track rankings, and scale without hiring.",
+    "type": "landing_page",
+    "lastUpdated": "2026-04-24",
+    "status": "active"
+  },
+  "metadata": {
+    "seo": {
+      "title": "Bloggy — AI Blog Automation for Agencies | Boom Media",
+      "description": "Automate blog content creation for your agency clients. Generate SEO-optimized posts, manage multiple WordPress sites, track rankings, and scale without hiring.",
+      "keywords": [
+        "AI blog automation",
+        "agency content creation",
+        "WordPress automation",
+        "blog generator",
+        "content marketing tool",
+        "SEO blog writing",
+        "agency growth tool"
+      ],
+      "canonicalUrl": "https://boommedia.us/bloggy"
+    },
+    "ogTags": {
+      "title": "Bloggy — AI Blog Automation for Agencies",
+      "description": "Stop struggling with agency blog content. Automate creation, manage multiple sites, track rankings.",
+      "image": "https://bloggy.online/og-image.png",
+      "url": "https://boommedia.us/bloggy"
+    }
+  },
+  "navigation": {
+    "logo": {
+      "text": "Bloggy",
+      "url": "https://boommedia.us/bloggy"
+    },
+    "cta": {
+      "text": "Go to App",
+      "url": "https://bloggy.online"
+    }
+  },
+  "hero": {
+    "headline": "Stop Struggling with Agency Blog Content",
+    "highlightedText": "Blog Content",
+    "subheadline": "Automate blog creation for your clients. Generate SEO-optimized posts, manage multiple WordPress sites, and scale without hiring.",
+    "ctaButtons": [
+      {
+        "text": "Start Free",
+        "url": "https://bloggy.online/login",
+        "type": "primary"
+      },
+      {
+        "text": "View Pricing",
+        "url": "#pricing",
+        "type": "secondary"
+      }
+    ],
+    "heroImage": {
+      "alt": "AI-Powered Blog Automation Platform",
+      "text": "🎯 AI-Powered Blog Automation Platform"
+    }
+  },
+  "features": {
+    "sectionTitle": "Why Agencies Choose Bloggy",
+    "items": [
+      {
+        "icon": "⚡",
+        "title": "AI Content Generation",
+        "description": "Generate SEO-optimized blog posts in seconds using advanced AI. No more blank page syndrome or expensive copywriters."
+      },
+      {
+        "icon": "📊",
+        "title": "Multi-Site Management",
+        "description": "Manage WordPress sites for multiple clients from one dashboard. Publish to any number of websites simultaneously."
+      },
+      {
+        "icon": "🎯",
+        "title": "Keyword Research Built In",
+        "description": "Integrated keyword research identifies high-opportunity terms. Create content that ranks without third-party tools."
+      },
+      {
+        "icon": "📈",
+        "title": "Track Rankings & ROI",
+        "description": "Monitor keyword rankings over time. Prove content performance to your clients with real data and metrics."
+      },
+      {
+        "icon": "🔗",
+        "title": "WordPress Integration",
+        "description": "Direct integration with WordPress. Publish posts automatically or review before going live. Your choice."
+      },
+      {
+        "icon": "💼",
+        "title": "Scale Without Hiring",
+        "description": "Handle 10x more content production without expanding your team. Grow revenue while keeping costs flat."
+      }
+    ]
+  },
+  "pricing": {
+    "sectionId": "pricing",
+    "sectionTitle": "Simple, Transparent Pricing",
+    "sectionDescription": "Choose the plan that fits your agency. Upgrade or downgrade anytime.",
+    "tiers": [
+      {
+        "id": "starter",
+        "name": "Starter",
+        "price": 49,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Perfect for solo agencies and freelancers",
+        "featured": false,
+        "cta": {
+          "text": "Get Started",
+          "url": "https://bloggy.online/login"
+        },
+        "features": [
+          "2 blog posts/month",
+          "1 website",
+          "Basic keyword research",
+          "AI content generation",
+          "WordPress integration",
+          "Standard support"
+        ]
+      },
+      {
+        "id": "growth",
+        "name": "Growth",
+        "price": 149,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "For growing agencies managing multiple clients",
+        "featured": true,
+        "cta": {
+          "text": "Get Started",
+          "url": "https://bloggy.online/login"
+        },
+        "features": [
+          "10 blog posts/month",
+          "3 websites",
+          "Advanced keyword research",
+          "AI content + SEO optimization",
+          "WordPress + client portal",
+          "Priority support",
+          "Analytics dashboard"
+        ]
+      },
+      {
+        "id": "agency",
+        "name": "Agency",
+        "price": 349,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "For established agencies with multiple clients",
+        "featured": false,
+        "cta": {
+          "text": "Get Started",
+          "url": "https://bloggy.online/login"
+        },
+        "features": [
+          "30 blog posts/month",
+          "10 websites",
+          "Unlimited keyword research",
+          "Premium AI + SEO",
+          "White-label options",
+          "Dedicated support",
+          "Custom workflows",
+          "Team collaboration"
+        ]
+      },
+      {
+        "id": "agency_max",
+        "name": "Agency Max",
+        "price": 699,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Enterprise solution for scaling agencies",
+        "featured": false,
+        "cta": {
+          "text": "Get Started",
+          "url": "https://bloggy.online/login"
+        },
+        "features": [
+          "Unlimited blog posts",
+          "Unlimited websites",
+          "Everything in Agency",
+          "Custom API access",
+          "Advanced integrations",
+          "24/7 priority support",
+          "Dedicated account manager",
+          "Custom feature development"
+        ]
+      }
+    ]
+  },
+  "addons": {
+    "sectionTitle": "Powerful Add-ons to Extend Your Capabilities",
+    "sectionDescription": "Enhance Bloggy with specialized tools for your agency's unique needs",
+    "featured": [
+      {
+        "id": "social-autopilot",
+        "icon": "📱",
+        "name": "Social Media Autopilot",
+        "price": 15,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Auto-post blog content to Google Business Profile, LinkedIn, Facebook, and Instagram. Expand reach without manual posting.",
+        "status": "active"
+      },
+      {
+        "id": "rankings-pro",
+        "icon": "📈",
+        "name": "Rankings History Pro",
+        "price": 8,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Track keyword rankings over time. Monitor competition, visualize trends, and generate detailed SEO reports for clients.",
+        "status": "active"
+      }
+    ],
+    "comingSoon": [
+      {
+        "id": "whitelabel-portal",
+        "icon": "💼",
+        "name": "White-label Client Portal",
+        "price": 15,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Customizable client dashboard with your branding",
+        "status": "coming-soon",
+        "estimatedLaunch": "Q3 2026"
+      },
+      {
+        "id": "competitor-analysis",
+        "icon": "🎯",
+        "name": "Competitor Gap Analysis",
+        "price": 15,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Deep dive into competitor content and keyword strategies",
+        "status": "coming-soon",
+        "estimatedLaunch": "Q3 2026"
+      },
+      {
+        "id": "branded-reports",
+        "icon": "📊",
+        "name": "Branded Monthly Reports",
+        "price": 8,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "White-labeled PDF reports to send to your clients",
+        "status": "coming-soon",
+        "estimatedLaunch": "Q2 2026"
+      },
+      {
+        "id": "image-pack",
+        "icon": "🖼️",
+        "name": "AI Image Pack",
+        "price": 8,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Generate custom AI images for blog posts (100/month)",
+        "status": "coming-soon",
+        "estimatedLaunch": "Q3 2026"
+      },
+      {
+        "id": "video-scripts",
+        "icon": "🎬",
+        "name": "Video Script Generator",
+        "price": 8,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Turn blog posts into YouTube video scripts automatically",
+        "status": "coming-soon",
+        "estimatedLaunch": "Q3 2026"
+      },
+      {
+        "id": "email-digest",
+        "icon": "📧",
+        "name": "Email Newsletter Digest",
+        "price": 8,
+        "currency": "USD",
+        "billingCycle": "month",
+        "description": "Auto-generate newsletter content from blog posts",
+        "status": "coming-soon",
+        "estimatedLaunch": "Q2 2026"
+      }
+    ]
+  },
+  "bundle": {
+    "id": "all-addons-bundle",
+    "icon": "💎",
+    "name": "All Add-ons Bundle",
+    "price": 65,
+    "currency": "USD",
+    "billingCycle": "month",
+    "description": "Get all 10 add-ons at a discounted rate",
+    "highlight": "Save $100+ per month vs. buying add-ons individually",
+    "includedAddOns": [
+      "Social Media Autopilot",
+      "Rankings History Pro",
+      "White-label Client Portal",
+      "Competitor Gap Analysis",
+      "Branded Monthly Reports",
+      "AI Image Pack",
+      "Video Script Generator",
+      "Email Newsletter Digest",
+      "Client Approval Workflow",
+      "Search Console Sync"
+    ],
+    "cta": {
+      "text": "Explore Bundle",
+      "url": "https://bloggy.online/login"
+    }
+  },
+  "whyChoose": {
+    "sectionTitle": "Perfect for Digital Agencies",
+    "items": [
+      {
+        "icon": "⏱️",
+        "title": "Save Time",
+        "description": "What takes 4 hours manually takes 5 minutes with Bloggy. Free up your team for client strategy."
+      },
+      {
+        "icon": "💰",
+        "title": "Increase Margins",
+        "description": "Deliver more content to clients without increasing staff costs. Boost profitability on every account."
+      },
+      {
+        "icon": "📊",
+        "title": "Better Client Results",
+        "description": "Consistent, SEO-optimized content means better rankings and more traffic for your clients."
+      },
+      {
+        "icon": "🔧",
+        "title": "Easy Integration",
+        "description": "Works with WordPress instantly. No technical setup required. Publish in seconds."
+      },
+      {
+        "icon": "🎯",
+        "title": "Proven Results",
+        "description": "Agencies report 3-5x more blog posts published and 40% increase in organic traffic for clients."
+      },
+      {
+        "icon": "🤝",
+        "title": "Customer Support",
+        "description": "Dedicated support team ready to help. Priority assistance for higher tiers."
+      }
+    ]
+  },
+  "cta": {
+    "sectionTitle": "Ready to Transform Your Agency's Content?",
+    "sectionDescription": "Join hundreds of agencies using Bloggy to automate content, save time, and scale client results.",
+    "button": {
+      "text": "Start Your Free Trial Today",
+      "url": "https://bloggy.online/login"
+    },
+    "disclaimer": "No credit card required. Full access to all features."
+  },
+  "footer": {
+    "branding": {
+      "name": "Bloggy",
+      "byline": "by Boom Media"
+    },
+    "links": [
+      {
+        "text": "Home",
+        "url": "https://bloggy.online"
+      },
+      {
+        "text": "Blog",
+        "url": "https://bloggy.online/blog"
+      },
+      {
+        "text": "Support",
+        "url": "https://bloggy.online/support"
+      },
+      {
+        "text": "Terms",
+        "url": "https://bloggy.online"
+      },
+      {
+        "text": "Privacy",
+        "url": "https://bloggy.online"
+      }
+    ],
+    "copyright": "© 2026 Boom Media. All rights reserved."
+  }
+}

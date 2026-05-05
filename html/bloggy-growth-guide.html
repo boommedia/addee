@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloggy — Growth & Promotion Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --surface: #12121a; --surface2: #1a1a26;
+      --border: #2a2a3d; --muted: #8888a8; --faint: #555570;
+      --text: #e8e8f0; --violet: #7c3aed; --violet-lt: #a78bfa;
+      --emerald: #10b981; --cyan: #22d3ee; --amber: #f59e0b; --rose: #f43f5e;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; padding-bottom: 80px; }
+
+    /* ── Header ── */
+    .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 0; z-index: 100; }
+    .header-inner { max-width: 900px; margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1rem; color: var(--text); }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--violet-lt); box-shadow: 0 0 10px var(--violet-lt); }
+    .progress-bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .progress-label { font-size: .75rem; color: var(--muted); }
+    .progress-bar { width: 160px; height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); border-radius: 999px; transition: width .4s ease; }
+    .progress-pct { font-size: .75rem; font-weight: 700; color: var(--violet-lt); min-width: 32px; }
+
+    /* ── Layout ── */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px 0; }
+
+    /* ── Hero ── */
+    .hero { text-align: center; padding: 48px 0 40px; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.15; margin-bottom: 12px; background: linear-gradient(135deg, #fff 30%, var(--violet-lt)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto 24px; line-height: 1.6; }
+    .funnel { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; margin-top: 8px; }
+    .funnel-step { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 8px 14px; font-size: .78rem; font-weight: 600; color: var(--text); }
+    .funnel-arrow { color: var(--faint); font-size: 1rem; margin: 0 6px; }
+
+    /* ── Phase headers ── */
+    .phase { margin-bottom: 40px; }
+    .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .phase-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .badge-now   { background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); color: var(--emerald); }
+    .badge-week2 { background: rgba(124,58,237,.12); border: 1px solid rgba(124,58,237,.3); color: var(--violet-lt); }
+    .badge-week3 { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); color: var(--amber); }
+    .badge-month2{ background: rgba(34,211,238,.1); border: 1px solid rgba(34,211,238,.3); color: var(--cyan); }
+    .phase-title { font-size: 1.2rem; font-weight: 700; }
+    .phase-time  { font-size: .8rem; color: var(--muted); margin-left: auto; }
+
+    /* ── Cards ── */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 14px; overflow: hidden; transition: border-color .2s; }
+    .card:hover { border-color: rgba(124,58,237,.35); }
+    .card-header { display: flex; align-items: center; gap: 12px; padding: 16px 18px; cursor: pointer; user-select: none; }
+    .card-icon { font-size: 1.2rem; width: 32px; text-align: center; flex-shrink: 0; }
+    .card-title { font-size: .95rem; font-weight: 700; flex: 1; }
+    .card-meta { font-size: .72rem; color: var(--muted); }
+    .chevron { color: var(--faint); font-size: .85rem; transition: transform .2s; flex-shrink: 0; }
+    .card.open .chevron { transform: rotate(90deg); }
+    .card-body { padding: 0 18px 18px; display: none; }
+    .card.open .card-body { display: block; }
+
+    /* ── Checklist ── */
+    .checklist { list-style: none; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(42,42,61,.5); }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box { width: 18px; height: 18px; border-radius: 5px; border: 2px solid var(--border); background: transparent; cursor: pointer; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+    .check-box.checked { background: var(--emerald); border-color: var(--emerald); }
+    .check-box.checked::after { content: '✓'; color: #000; font-size: .65rem; font-weight: 900; }
+    .check-label { font-size: .88rem; line-height: 1.5; color: var(--text); flex: 1; cursor: pointer; }
+    .check-label.done { text-decoration: line-through; color: var(--faint); }
+    .check-sub { font-size: .75rem; color: var(--muted); margin-top: 2px; display: block; }
+
+    /* ── Tables ── */
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .82rem; }
+    th { text-align: left; padding: 8px 12px; background: var(--surface2); color: var(--muted); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    td { padding: 9px 12px; border-bottom: 1px solid rgba(42,42,61,.4); vertical-align: top; color: var(--text); }
+    tr:last-child td { border-bottom: none; }
+    td a { color: var(--violet-lt); text-decoration: none; }
+    td a:hover { text-decoration: underline; }
+    .tag-free  { background: rgba(16,185,129,.1); color: var(--emerald); border: 1px solid rgba(16,185,129,.25); padding: 2px 7px; border-radius: 100px; font-size: .65rem; font-weight: 700; }
+    .tag-paid  { background: rgba(124,58,237,.1); color: var(--violet-lt); border: 1px solid rgba(124,58,237,.25); padding: 2px 7px; border-radius: 100px; font-size: .65rem; font-weight: 700; }
+    .tag-high  { background: rgba(245,158,11,.1); color: var(--amber); border: 1px solid rgba(245,158,11,.25); padding: 2px 7px; border-radius: 100px; font-size: .65rem; font-weight: 700; }
+
+    /* ── Copy blocks ── */
+    .copy-block { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin: 12px 0; position: relative; }
+    .copy-block pre { font-family: 'SF Mono', Consolas, monospace; font-size: .78rem; white-space: pre-wrap; color: #c8c8e0; line-height: 1.6; }
+    .copy-btn { position: absolute; top: 10px; right: 10px; background: var(--border); border: none; color: var(--muted); font-size: .7rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; cursor: pointer; transition: all .15s; }
+    .copy-btn:hover { background: var(--violet); color: #fff; }
+    .copy-btn.copied { background: var(--emerald); color: #000; }
+
+    /* ── Info blocks ── */
+    .info { background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.2); border-radius: 10px; padding: 12px 14px; margin: 12px 0; font-size: .82rem; color: #b8b8d8; line-height: 1.6; }
+    .info strong { color: var(--violet-lt); }
+    .tip  { background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.2); border-radius: 10px; padding: 12px 14px; margin: 12px 0; font-size: .82rem; color: #b8d8c8; line-height: 1.6; }
+    .tip strong { color: var(--emerald); }
+    .warn { background: rgba(245,158,11,.07); border: 1px solid rgba(245,158,11,.2); border-radius: 10px; padding: 12px 14px; margin: 12px 0; font-size: .82rem; color: #d8c8a8; line-height: 1.6; }
+    .warn strong { color: var(--amber); }
+
+    /* ── Divider ── */
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 36px 0; }
+
+    /* ── Metric cards ── */
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin: 14px 0; }
+    .metric-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+    .metric-val { font-size: 1.5rem; font-weight: 800; color: var(--text); }
+    .metric-label { font-size: .7rem; color: var(--muted); margin-top: 3px; }
+
+    /* ── Steps ── */
+    .steps { counter-reset: step; list-style: none; }
+    .steps li { counter-increment: step; display: flex; gap: 12px; margin-bottom: 12px; }
+    .steps li::before { content: counter(step); width: 22px; height: 22px; border-radius: 50%; background: var(--violet); color: #fff; font-size: .7rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .steps li p { font-size: .85rem; color: var(--text); line-height: 1.55; }
+    .steps li p strong { color: var(--violet-lt); }
+
+    /* ── Section label ── */
+    .section-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin: 18px 0 8px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .funnel-step { font-size: .7rem; padding: 6px 10px; }
+      .metric-grid { grid-template-columns: repeat(2, 1fr); }
+      .progress-bar { width: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo"><div class="logo-dot"></div> Bloggy Growth Guide</div>
+    <div class="progress-bar-wrap">
+      <span class="progress-label">Tasks done:</span>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>From Zero to Sales —<br>Your Bloggy Promotion Playbook</h1>
+    <p>Every action you need to get traffic, signups, and paying customers. Check off tasks as you go — progress saves automatically.</p>
+    <div class="funnel">
+      <div class="funnel-step">🎯 Awareness</div><div class="funnel-arrow">→</div>
+      <div class="funnel-step">🛬 Landing Page</div><div class="funnel-arrow">→</div>
+      <div class="funnel-step">✍️ Free Trial</div><div class="funnel-arrow">→</div>
+      <div class="funnel-step">🚀 First Publish</div><div class="funnel-arrow">→</div>
+      <div class="funnel-step">💳 Paid Plan</div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- WEEK 1 -->
+  <!-- ──────────────────────────────────────────── -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge badge-now">● Week 1</span>
+      <span class="phase-title">Free Wins — Do These First</span>
+      <span class="phase-time">~3 hours total</span>
+    </div>
+
+    <!-- Google Search Console -->
+    <div class="card open" id="card-gsc">
+      <div class="card-header" onclick="toggleCard('card-gsc')">
+        <span class="card-icon">🔍</span>
+        <span class="card-title">Submit Sitemap to Google Search Console</span>
+        <span class="card-meta">5 min · Free · Critical</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="warn"><strong>⚠ Do this first.</strong> Until your sitemap is submitted, Google won't index your blog posts, landing pages, or features page. You're invisible.</div>
+        <ol class="steps">
+          <li><p>Go to <strong>search.google.com/search-console</strong> and sign in with your Google account</p></li>
+          <li><p>Click <strong>Add Property</strong> → Domain → enter <strong>bloggy.online</strong></p></li>
+          <li><p>Verify ownership via DNS record in your Vercel/domain dashboard</p></li>
+          <li><p>Go to <strong>Sitemaps</strong> (left sidebar) → enter <strong>https://bloggy.online/sitemap.xml</strong> → Submit</p></li>
+          <li><p>Go to <strong>URL Inspection</strong> → paste each URL below → click <strong>Request Indexing</strong></p></li>
+        </ol>
+        <div class="section-label">Request indexing on these URLs</div>
+        <div class="copy-block">
+          <pre>https://bloggy.online
+https://bloggy.online/features
+https://bloggy.online/blog
+https://bloggy.online/lp/agency
+https://bloggy.online/blog/blawgy-vs-rightblogger-vs-bloggy
+https://bloggy.online/blog/agency-seo-content-roi
+https://bloggy.online/blog/seo-content-pricing-guide-agencies-2026</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Search Console property added and verified<span class="check-sub">Domain verification via DNS in Vercel</span></label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Sitemap submitted: bloggy.online/sitemap.xml</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">URL Inspection requested on all 7 key pages</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Google Ads Fix -->
+    <div class="card" id="card-adsfix">
+      <div class="card-header" onclick="toggleCard('card-adsfix')">
+        <span class="card-icon">⚙️</span>
+        <span class="card-title">Fix Your Running Google Ad</span>
+        <span class="card-meta">15 min · Improves conversion rate immediately</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="info"><strong>Key fix:</strong> Change your ad destination from the homepage to <strong>bloggy.online/lp/agency</strong> — no nav, single CTA, built to convert. This alone can double your conversion rate.</div>
+        <div class="section-label">Changes to make in Google Ads</div>
+        <table>
+          <tr><th>Setting</th><th>Change to</th></tr>
+          <tr><td>Destination URL</td><td><code>bloggy.online/lp/agency</code></td></tr>
+          <tr><td>Ad schedule</td><td>Mon–Fri, 6am–10pm (your timezone)</td></tr>
+          <tr><td>Negative keywords</td><td>free, open source, DIY, template, crack, download</td></tr>
+          <tr><td>Location</td><td>USA, Canada, UK, Australia only</td></tr>
+        </table>
+        <div class="section-label">Best ad copy to use</div>
+        <div class="copy-block">
+          <pre>Headline 1: AI Blog Automation for Agencies
+Headline 2: Manage All Clients — One Dashboard
+Headline 3: Start Free — No Card Required
+Description: Generate & publish SEO posts to WordPress for every client automatically. Per-client brand voice. Plans from $49/mo.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Landing page URL changed to /lp/agency</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Negative keywords added</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Ad schedule set to Mon–Fri only</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Ad copy updated to match template above</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Directory Listings -->
+    <div class="card" id="card-dirs">
+      <div class="card-header" onclick="toggleCard('card-dirs')">
+        <span class="card-icon">📋</span>
+        <span class="card-title">Submit to Directories</span>
+        <span class="card-meta">2 hrs · Free · Permanent backlinks + buyer traffic</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="tip"><strong>Why this works:</strong> Each listing is a permanent backlink from a DA 75–91 site. Agency buyers actively compare tools on G2 and Capterra. Getting listed here = traffic from buyers who are ready to pay.</div>
+        <table>
+          <tr><th>Platform</th><th>DA</th><th>Why</th><th>Cost</th></tr>
+          <tr><td><a href="https://sell.g2.com/get-listed" target="_blank">G2.com</a></td><td>91</td><td>Most trusted SaaS review site — agencies search here</td><td><span class="tag-free">Free</span></td></tr>
+          <tr><td><a href="https://vendors.capterra.com" target="_blank">Capterra</a></td><td>90</td><td>SMB buyers, massive search traffic</td><td><span class="tag-free">Free</span></td></tr>
+          <tr><td><a href="https://alternativeto.net/add" target="_blank">AlternativeTo</a></td><td>82</td><td>List as alternative to Jasper, Blawgy, RightBlogger</td><td><span class="tag-free">Free</span></td></tr>
+          <tr><td><a href="https://www.saashub.com/add-product" target="_blank">SaaSHub</a></td><td>75</td><td>Developer and agency crowd</td><td><span class="tag-free">Free</span></td></tr>
+          <tr><td><a href="https://www.getapp.com" target="_blank">GetApp</a></td><td>86</td><td>Sister site to Capterra, different audience</td><td><span class="tag-free">Free</span></td></tr>
+          <tr><td><a href="https://www.crunchbase.com/add-new" target="_blank">Crunchbase</a></td><td>91</td><td>Legitimacy + powerful SEO backlink</td><td><span class="tag-free">Free</span></td></tr>
+          <tr><td><a href="https://www.producthunt.com" target="_blank">Product Hunt</a></td><td>91</td><td>Save for a proper launch — see Week 3</td><td><span class="tag-free">Free</span></td></tr>
+        </table>
+        <div class="section-label">Listing description — paste into every directory</div>
+        <div class="copy-block">
+          <pre>Bloggy is AI blog automation software built for digital marketing agencies. Generate SEO-optimized blog posts and publish directly to WordPress for all your clients from one dashboard. Per-client brand voice, autoblogging scheduler, internal linking, AI hero images, and team access. Plans from $49/mo. Free trial — no credit card required.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">G2 listing submitted</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Capterra listing submitted</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">AlternativeTo listing submitted (add as alternative to Jasper + Blawgy)</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">SaaSHub listing submitted</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Crunchbase company profile created</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Facebook Groups -->
+    <div class="card" id="card-fb">
+      <div class="card-header" onclick="toggleCard('card-fb')">
+        <span class="card-icon">👥</span>
+        <span class="card-title">Post in Facebook Agency Groups</span>
+        <span class="card-meta">30 min · Free · Direct agency audience</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="warn"><strong>Do not post ads.</strong> Post helpful content. The goal is to sound like an agency owner sharing a tool — not a founder promoting their product.</div>
+        <div class="section-label">Groups to join and post in</div>
+        <table>
+          <tr><th>Group</th><th>Members</th></tr>
+          <tr><td>Agency Owners &amp; Operators</td><td>45K</td></tr>
+          <tr><td>Digital Marketing Agency Owners</td><td>30K</td></tr>
+          <tr><td>WordPress Agency Owners</td><td>18K</td></tr>
+          <tr><td>SEO Professionals Group</td><td>90K</td></tr>
+          <tr><td>Social Media Marketing</td><td>180K</td></tr>
+        </table>
+        <div class="section-label">Post template — casual, no pitch</div>
+        <div class="copy-block">
+          <pre>We were spending 20–30 hours a week writing blog posts for clients across 15 WordPress sites. Freelancers, copy-paste, manual uploads — the whole mess.
+
+Built a tool that handles all of it automatically. AI generates the post, publishes directly to WordPress, and handles the SEO metadata. Per-client brand voice so each client sounds like themselves.
+
+If anyone else is dealing with this — it's called Bloggy. Free trial at bloggy.online
+
+Happy to answer questions about how we set it up.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <div class="section-label">Reddit post template (r/agency, r/SEO, r/digital_marketing)</div>
+        <div class="copy-block">
+          <pre>Title: How we cut our client blog content time from 30 hrs/week to 90 minutes
+
+We manage SEO content for 15 agency clients. Each one needs 4 posts/month published to WordPress with proper SEO metadata. That used to mean writers, freelancers, and hours of copy-pasting.
+
+Now we use AI blog automation to generate and auto-publish every post. Here's the actual workflow we use: [link to bloggy.online/blog/how-to-automate-client-blog-content]
+
+Tool we built for this is at bloggy.online if anyone wants to try it — 2 free posts, no card.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Joined all 5 Facebook groups</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Posted in 3 Facebook groups using casual template</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Posted in r/agency on Reddit</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Posted in r/SEO on Reddit</label></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /phase week 1 -->
+
+  <div class="divider"></div>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- WEEK 2 -->
+  <!-- ──────────────────────────────────────────── -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge badge-week2">● Week 2</span>
+      <span class="phase-title">Paid Channels + Organic Outreach</span>
+      <span class="phase-time">$300/month budget ($10/day) — Focus on conversion</span>
+    </div>
+
+    <!-- CRITICAL: Onboarding Conversion Rate -->
+    <div class="card open" id="card-onboarding">
+      <div class="card-header" onclick="toggleCard('card-onboarding')">
+        <span class="card-icon">⚡</span>
+        <span class="card-title">CRITICAL: First WordPress Publish Rate</span>
+        <span class="card-meta">Measure this before spending any money on ads</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="warn"><strong>This metric determines everything.</strong> Users who publish their first blog post to WordPress convert to paid at 3–5× the rate of those who don't. If your publish rate is below 30%, fix onboarding before scaling ads.</div>
+        <div class="section-label">What to measure</div>
+        <table>
+          <tr><th>Metric</th><th>Target</th><th>Check in</th></tr>
+          <tr><td>Free trial signups</td><td>Track weekly</td><td>Supabase auth table</td></tr>
+          <tr><td>First WordPress publish rate</td><td>≥30%</td><td>posts table — filter by created_at &gt; signup_date</td></tr>
+          <tr><td>Trial → Paid conversion</td><td>≥25%</td><td>subscriptions + trial_started timestamp</td></tr>
+          <tr><td>Cost per trial signup</td><td>&lt;$10 ($300/mo ÷ 30 trials)</td><td>Ad spend ÷ signups from UTM</td></tr>
+        </table>
+        <div class="section-label">Before running ads: test onboarding</div>
+        <ol class="steps">
+          <li><p>Sign up for a free trial yourself</p></li>
+          <li><p>Time how long it takes to: (a) set up WordPress integration, (b) generate first post, (c) publish to WordPress</p></li>
+          <li><p>Target: Total time &lt; 5 minutes. If longer, simplify flow before ads go live.</p></li>
+          <li><p>Invite 3–5 beta users. Ask them: "How easy was it to publish your first post?" (aim for 4–5/5)</p></li>
+        </ol>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">First publish rate calculated — it's ≥30%</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Onboarding flow tested end-to-end (time &lt; 5 min)</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Beta users surveyed on ease of first publish</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Ready to run paid ads ✓</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- YouTube Ad -->
+    <div class="card" id="card-yt">
+      <div class="card-header" onclick="toggleCard('card-yt')">
+        <span class="card-icon">▶️</span>
+        <span class="card-title">Launch YouTube Skippable In-Stream Ads</span>
+        <span class="card-meta">30 min setup · $4–5/day · 50–80 targeted views/day</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="tip"><strong>Why YouTube:</strong> Skippable in-stream ads cost $0.05–0.10 per view. Agency owners searching "autoblogging software" or "AI blog writing" watch the full 60-sec video. Lowest CAC of all paid channels.</div>
+        <ol class="steps">
+          <li><p>Export HeyGen video as MP4, 1920×1080, H.264</p></li>
+          <li><p>Upload to YouTube → <strong>Unlisted</strong> (not public yet)</p></li>
+          <li><p>Go to <strong>ads.google.com</strong> → New Campaign → <strong>Video</strong> → Sales</p></li>
+          <li><p>Choose <strong>Skippable in-stream</strong> ad format</p></li>
+          <li><p>Set destination URL: <strong>bloggy.online/lp/agency</strong></p></li>
+          <li><p>Set budget: <strong>$4–5/day</strong> (out of $10/day total)</p></li>
+          <li><p>Target CPV: <strong>$0.05–0.10</strong> per view (adjust bid based on view-through rate)</p></li>
+          <li><p>Set targeting (see table below) → Publish</p></li>
+        </ol>
+        <div class="section-label">Targeting settings</div>
+        <table>
+          <tr><th>Setting</th><th>Value</th></tr>
+          <tr><td>Custom intent keywords</td><td>autoblogging software, AI blog writing agency, WordPress content automation, blog content for clients</td></tr>
+          <tr><td>Topics</td><td>Marketing, Business Software, Entrepreneurship</td></tr>
+          <tr><td>Placements</td><td>Digital marketing channels, SEO channels, Agency growth channels</td></tr>
+          <tr><td>Age</td><td>25–54</td></tr>
+          <tr><td>Location</td><td>USA, Canada, UK, Australia</td></tr>
+          <tr><td>Bidding</td><td>Target CPV: $0.05</td></tr>
+        </table>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">HeyGen video exported as MP4</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Video uploaded to YouTube (unlisted)</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">YouTube skippable ad campaign created</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Targeting set using table above</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Ad live and approved</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="card" id="card-li">
+      <div class="card-header" onclick="toggleCard('card-li')">
+        <span class="card-icon">💼</span>
+        <span class="card-title">LinkedIn Outreach — Direct to Agency Owners</span>
+        <span class="card-meta">20 min/day · Free · Highest B2B conversion channel</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="info"><strong>The math:</strong> 20 connection requests/day → ~7 accept → ~2 reply → 1 demo every 3–4 days. That's 6–8 qualified conversations per month at zero cost.</div>
+        <div class="section-label">LinkedIn search filters</div>
+        <table>
+          <tr><th>Filter</th><th>Value</th></tr>
+          <tr><td>Title (OR)</td><td>Agency Owner, Founder, Managing Director, Head of Content</td></tr>
+          <tr><td>Industry</td><td>Marketing and Advertising</td></tr>
+          <tr><td>Company size</td><td>2–50 employees</td></tr>
+          <tr><td>Location</td><td>USA, UK, Canada, Australia</td></tr>
+        </table>
+        <div class="section-label">Connection request message (under 300 chars)</div>
+        <div class="copy-block">
+          <pre>Hey [Name] — built a tool that auto-generates and publishes SEO blog posts to WordPress for all your clients from one dashboard. Saves agencies 20–30 hrs/week. Happy to show you a quick demo if useful.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <div class="section-label">Follow-up message if they accept but don't reply (send day 3)</div>
+        <div class="copy-block">
+          <pre>Thanks for connecting [Name]. Quick context — Bloggy generates and publishes blog posts to WordPress across all your client sites automatically. Per-client brand voice, SEO metadata, autoblogging scheduler. Plans start at $49/mo. Free trial at bloggy.online — worth a look if you're managing content for multiple clients.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <div class="section-label">Post the HeyGen video to your LinkedIn profile (native video)</div>
+        <div class="copy-block">
+          <pre>We spend 30+ hours writing blog posts for clients. There's a better way.
+
+[attach 60-sec HeyGen video]
+
+Bloggy generates SEO blog posts and publishes directly to WordPress — for every client, from one dashboard. Autoblogging, per-client brand voice, internal linking, AI images. Everything.
+
+30 seconds per post. Not 3 hours.
+
+Free trial → bloggy.online</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">LinkedIn search filters saved</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">20 connection requests sent (Day 1)</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">20 connection requests sent (Day 2)</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">HeyGen video posted to LinkedIn as native video</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Follow-up messages sent to acceptees who didn't reply</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LinkedIn Ads + Display Retargeting -->
+    <div class="card" id="card-ads2">
+      <div class="card-header" onclick="toggleCard('card-ads2')">
+        <span class="card-icon">📢</span>
+        <span class="card-title">LinkedIn Ads + Google Display Retargeting</span>
+        <span class="card-meta">20 min setup · $3–4/day · Direct B2B pipeline</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="info"><strong>LinkedIn Ads advantage:</strong> Target by job title + company size. Agency owners on LinkedIn actively looking for tools. $3–4/day reaches 300–500 people/week.</div>
+        <div class="section-label">LinkedIn Ad Setup</div>
+        <ol class="steps">
+          <li><p>Go to <strong>linkedin.com/ads</strong> → Create campaign → Lead generation</p></li>
+          <li><p>Upload HeyGen video as creative</p></li>
+          <li><p>Set budget: <strong>$3–4/day</strong></p></li>
+          <li><p>Targeting: Job title = Agency Owner, Head of Marketing, Founder; Company size = 2–50</p></li>
+          <li><p>Location: USA, Canada, UK, Australia</p></li>
+          <li><p>CPC target: <strong>$0.50–1.00</strong></p></li>
+        </ol>
+        <div class="section-label">Google Display Retargeting ($2–3/day)</div>
+        <div class="copy-block">
+          <pre>Set up a Google Display campaign targeting people who visited bloggy.online but didn't convert. Show them the HeyGen video or testimonial imagery. Low cost, high intent (they already know about you).</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">LinkedIn ad campaign created with video</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Targeting set to Agency Owner + 2–50 employee companies</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Daily budget set to $3–4/day</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Google Display retargeting campaign created</label></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /phase week 2 -->
+
+  <div class="divider"></div>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- WEEK 3 -->
+  <!-- ──────────────────────────────────────────── -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge badge-week3">● Week 3</span>
+      <span class="phase-title">Product Hunt Launch</span>
+      <span class="phase-time">Biggest free traffic spike possible</span>
+    </div>
+
+    <div class="card" id="card-ph">
+      <div class="card-header" onclick="toggleCard('card-ph')">
+        <span class="card-icon">🚀</span>
+        <span class="card-title">Launch on Product Hunt</span>
+        <span class="card-meta">Top 5 = 500–2,000 visitors · 50+ backlinks · press pickup</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <div class="warn"><strong>Best launch days:</strong> Tuesday or Wednesday. Never Monday (low traffic) or Friday (people check out). Launch at 12:01am Pacific Time to maximize voting window.</div>
+        <div class="section-label">Pre-launch checklist (do 5 days before)</div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Product Hunt account created and aged 5+ days<span class="check-sub">New accounts have less voting weight — create it now</span></label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Product submitted with tagline, description, screenshots, video</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">5 screenshots prepared: dashboard, generate flow, WordPress publish, autoblog, content calendar</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">HeyGen 60-sec video uploaded as demo</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Launch date scheduled for Tuesday or Wednesday</label></li>
+        </ul>
+        <div class="section-label">Product Hunt listing copy</div>
+        <div class="copy-block">
+          <pre>Tagline: AI blog automation for marketing agencies — one dashboard, every WordPress client
+
+Description:
+Bloggy generates SEO-optimized blog posts and publishes them directly to WordPress for all your agency clients — from one dashboard.
+
+→ Type a topic → AI writes a full post in 30 seconds → One click publishes to WordPress
+→ Per-client brand voice, tone, and keyword settings
+→ Autoblogging scheduler: queue topics, set cadence, walk away
+→ Internal link automation, AI hero images, content briefs
+→ Team access, client reports, Google Search Console sync
+
+Built for agencies managing 5–40 client sites. Plans from $49/mo. Free trial — no card required.</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <div class="section-label">Launch day promotion — post everywhere at 12:01am PT</div>
+        <div class="copy-block">
+          <pre>We just launched Bloggy on Product Hunt 🚀
+
+AI blog automation for marketing agencies — one dashboard, all your WordPress clients, posts generated and published automatically.
+
+Would love your support if this solves a problem you've seen in your work 👇
+[your Product Hunt link]</pre>
+          <button class="copy-btn" onclick="copyBlock(this)">Copy</button>
+        </div>
+        <div class="section-label">Where to share on launch day</div>
+        <table>
+          <tr><th>Channel</th><th>What to post</th></tr>
+          <tr><td>LinkedIn</td><td>Native post with PH link + HeyGen video</td></tr>
+          <tr><td>Twitter/X</td><td>Thread: problem → solution → PH link</td></tr>
+          <tr><td>Facebook groups</td><td>All 5 agency groups from Week 1</td></tr>
+          <tr><td>Reddit</td><td>r/agency, r/entrepreneur, r/SideProject</td></tr>
+          <tr><td>Email list</td><td>Any trial signups, waitlist, or contacts</td></tr>
+          <tr><td>Slack communities</td><td>Agency Slack groups, OnDeck, No-code communities</td></tr>
+        </table>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Launch scheduled for Tuesday/Wednesday at 12:01am PT</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Promotional posts drafted for all channels</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Email drafted to send to trial signups on launch day</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">LAUNCHED ✓</label></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /phase week 3 -->
+
+  <div class="divider"></div>
+
+  <!-- ──────────────────────────────────────────── -->
+  <!-- MONTH 2 -->
+  <!-- ──────────────────────────────────────────── -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-badge badge-month2">● Month 2</span>
+      <span class="phase-title">Scale What's Working</span>
+      <span class="phase-time">After first 10 paying customers</span>
+    </div>
+
+    <div class="card" id="card-scale">
+      <div class="card-header" onclick="toggleCard('card-scale')">
+        <span class="card-icon">📈</span>
+        <span class="card-title">Scale Playbook</span>
+        <span class="card-meta">Double down on what converted — cut what didn't</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="card-body">
+        <table>
+          <tr><th>Channel</th><th>If working → do this</th></tr>
+          <tr><td>Google Search Ads</td><td>Increase budget 20%, add Campaign 2 competitor keywords</td></tr>
+          <tr><td>YouTube Ads</td><td>Create 15-sec non-skippable bumper for retargeting visitors</td></tr>
+          <tr><td>LinkedIn</td><td>Hire a VA at $5–8/hr to send 20 requests/day consistently</td></tr>
+          <tr><td>Product Hunt</td><td>Submit to Indie Hackers, BetaList, Hacker News "Show HN"</td></tr>
+          <tr><td>Blog content</td><td>Check GSC — which posts got clicks? Write more like those</td></tr>
+          <tr><td>Referrals</td><td>Email all paid users offering 1 free month per referral</td></tr>
+        </table>
+        <div class="section-label">The number to watch above everything else</div>
+        <div class="info"><strong>Trial → First WordPress Publish rate.</strong> Users who publish one post to WordPress convert to paid at 3–5× the rate of those who don't. If this rate is below 30%, fix the onboarding flow before spending more on ads.</div>
+        <div class="section-label">Revenue target math ($300/month ad budget)</div>
+        <div class="metric-grid">
+          <div class="metric-card"><div class="metric-val">$300</div><div class="metric-label">Monthly spend</div></div>
+          <div class="metric-card"><div class="metric-val">~800</div><div class="metric-label">Trial signups/mo</div></div>
+          <div class="metric-card"><div class="metric-val">35%+</div><div class="metric-label">First publish rate</div></div>
+          <div class="metric-card"><div class="metric-val">~100</div><div class="metric-label">New paid/mo</div></div>
+          <div class="metric-card"><div class="metric-val">$49–99</div><div class="metric-label">Avg plan tier</div></div>
+          <div class="metric-card"><div class="metric-val">$4,900–9,900</div><div class="metric-label">New MRR/month</div></div>
+        </div>
+        <ul class="checklist">
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">First 10 paying customers reached</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">GSC checked — top 3 blog posts by clicks identified</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Best-performing ad channel identified and budget increased</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">Referral email sent to all paid users</label></li>
+          <li><div class="check-box" onclick="toggleCheck(this)"></div><label class="check-label" onclick="toggleCheckLabel(this)">$1,000 MRR milestone reached 🎉</label></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /phase month 2 -->
+
+  <!-- Footer -->
+  <div class="divider"></div>
+  <div style="text-align:center; padding: 20px 0 40px; color: var(--faint); font-size: .78rem;">
+    <p>Bloggy Growth Guide · Updated April 25, 2026 · $300/month budget edition</p>
+    <p style="margin-top: 8px; font-size: .7rem;">Previous version assumed $40/day ($1,200/mo). This version optimizes for $10/day spend with focus on onboarding conversion rate.</p>
+    <p style="margin-top: 8px;"><a href="https://bloggy.online" style="color:var(--violet-lt)">bloggy.online</a></p>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Card toggle ──
+  function toggleCard(id) {
+    const c = document.getElementById(id)
+    c.classList.toggle('open')
+  }
+
+  // ── Checklist ──
+  function toggleCheck(box) {
+    box.classList.toggle('checked')
+    const label = box.nextElementSibling
+    if (label) label.classList.toggle('done', box.classList.contains('checked'))
+    saveState()
+    updateProgress()
+  }
+  function toggleCheckLabel(label) {
+    const box = label.previousElementSibling
+    if (box && box.classList.contains('check-box')) {
+      toggleCheck(box)
+    }
+  }
+
+  // ── Progress ──
+  function updateProgress() {
+    const all   = document.querySelectorAll('.check-box').length
+    const done  = document.querySelectorAll('.check-box.checked').length
+    const pct   = all ? Math.round((done / all) * 100) : 0
+    document.getElementById('progressFill').style.width = pct + '%'
+    document.getElementById('progressPct').textContent  = pct + '%'
+  }
+
+  // ── Persist state ──
+  function saveState() {
+    const boxes = document.querySelectorAll('.check-box')
+    const state = Array.from(boxes).map(b => b.classList.contains('checked'))
+    localStorage.setItem('bloggy_guide_v1', JSON.stringify(state))
+  }
+  function loadState() {
+    const raw = localStorage.getItem('bloggy_guide_v1')
+    if (!raw) return
+    const state = JSON.parse(raw)
+    const boxes = document.querySelectorAll('.check-box')
+    boxes.forEach((box, i) => {
+      if (state[i]) {
+        box.classList.add('checked')
+        const label = box.nextElementSibling
+        if (label) label.classList.add('done')
+      }
+    })
+    updateProgress()
+  }
+
+  // ── Copy button ──
+  function copyBlock(btn) {
+    const pre = btn.previousElementSibling
+    if (!pre) return
+    navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+      btn.textContent = 'Copied!'
+      btn.classList.add('copied')
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied') }, 2000)
+    })
+  }
+
+  // ── Init ──
+  loadState()
+  // open all cards by default on first load
+  document.querySelectorAll('.card:not(.open)').forEach(c => {
+    if (!localStorage.getItem('bloggy_guide_v1')) c.classList.add('open')
+  })
+</script>
+</body>
+</html>

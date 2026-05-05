@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloggy Discord Setup Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #e8e8f0;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #1a0a2e 0%, #0a0a0f 50%, #0a1a2e 100%);
+      border-bottom: 1px solid #2a2a3d;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(88,28,235,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(88,28,235,0.15);
+      border: 1px solid rgba(139,92,246,0.3);
+      color: #a78bfa;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .header-badge span {
+      width: 6px; height: 6px;
+      background: #7c3aed;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .header h1 {
+      font-size: 42px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .header h1 span {
+      background: linear-gradient(90deg, #a78bfa, #67e8f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      color: #8888a8;
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .header-meta span {
+      color: #555570;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-meta span strong { color: #8888a8; }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      background: #12121a;
+      border: 1px solid #2a2a3d;
+      border-radius: 16px;
+      padding: 24px 32px;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .progress-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+    }
+    .progress-step::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 60%;
+      width: 80%;
+      height: 2px;
+      background: #2a2a3d;
+    }
+    .progress-step:last-child::after { display: none; }
+    .progress-step .dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #1a1a26;
+      border: 2px solid #2a2a3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #555570;
+      margin: 0 auto 6px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.2s;
+    }
+    .progress-step.done .dot {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #fff;
+    }
+    .progress-step .label {
+      font-size: 10px;
+      color: #555570;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .progress-step.done .label { color: #a78bfa; }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 52px;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .step-number {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(124,58,237,0.3);
+    }
+    .section-title { flex: 1; }
+    .section-title h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .section-title p {
+      color: #8888a8;
+      font-size: 14px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: #12121a;
+      border: 1px solid #2a2a3d;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card:hover {
+      border-color: rgba(139,92,246,0.2);
+    }
+
+    /* ── Steps list ── */
+    .steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: #0a0a0f;
+      border: 1px solid #1a1a26;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #c8c8d8;
+      transition: border-color 0.2s;
+    }
+    .steps-list li:hover { border-color: #2a2a3d; }
+    .steps-list li .num {
+      width: 22px; height: 22px;
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #a78bfa;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Roles table ── */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .role-card {
+      background: #0a0a0f;
+      border: 1px solid #1a1a26;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .role-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .role-desc {
+      font-size: 12px;
+      color: #555570;
+    }
+    .role-card.admin .role-name { color: #f87171; }
+    .role-card.pro .role-name { color: #fbbf24; }
+    .role-card.free .role-name { color: #34d399; }
+    .role-card.visitor .role-name { color: #94a3b8; }
+
+    /* ── Channel tree ── */
+    .channel-tree {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+    .channel-tree .category {
+      color: #8888a8;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 16px;
+    }
+    .channel-tree .category:first-child { margin-top: 0; }
+    .channel-tree .channel {
+      color: #c8c8d8;
+      padding-left: 20px;
+    }
+    .channel-tree .channel .icon { margin-right: 4px; }
+    .channel-tree .note {
+      color: #555570;
+      font-size: 11px;
+      padding-left: 40px;
+      font-style: italic;
+    }
+    .channel-tree .locked {
+      color: #fbbf24;
+    }
+
+    /* ── Message box ── */
+    .message-box {
+      background: #0a0a0f;
+      border: 1px solid #2a2a3d;
+      border-left: 3px solid #7c3aed;
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #c8c8d8;
+      white-space: pre-wrap;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    .message-box a { color: #67e8f9; }
+
+    /* ── Bot card ── */
+    .bot-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: #0a0a0f;
+      border: 1px solid #2a2a3d;
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+    .bot-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .bot-card h4 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .bot-card p { font-size: 13px; color: #8888a8; margin-bottom: 10px; }
+    .bot-card .bot-steps { font-size: 12px; color: #c8c8d8; padding-left: 14px; }
+    .bot-card .bot-steps li { margin-bottom: 4px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 4px;
+    }
+    .tag.free { background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
+    .tag.paid { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+
+    /* ── Sales tactics ── */
+    .tactic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .tactic-card {
+      background: #0a0a0f;
+      border: 1px solid #1a1a26;
+      border-radius: 14px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+    .tactic-card:hover { border-color: rgba(139,92,246,0.3); }
+    .tactic-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .tactic-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .tactic-card p {
+      font-size: 13px;
+      color: #8888a8;
+      line-height: 1.6;
+    }
+
+    /* ── Checklist ── */
+    .checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .checklist { grid-template-columns: 1fr; }
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #0a0a0f;
+      border: 1px solid #1a1a26;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #c8c8d8;
+    }
+    .check-box {
+      width: 18px; height: 18px;
+      border: 2px solid #2a2a3d;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #1a1a26;
+      margin: 48px 0;
+    }
+
+    /* ── Code ── */
+    code {
+      background: rgba(124,58,237,0.15);
+      color: #a78bfa;
+      font-size: 12px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── Highlight box ── */
+    .highlight {
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .highlight.yellow {
+      background: rgba(251,191,36,0.08);
+      border-color: rgba(251,191,36,0.2);
+    }
+    .highlight.green {
+      background: rgba(52,211,153,0.08);
+      border-color: rgba(52,211,153,0.2);
+    }
+    .highlight h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      color: #a78bfa;
+    }
+    .highlight.yellow h4 { color: #fbbf24; }
+    .highlight.green h4 { color: #34d399; }
+    .highlight p, .highlight li {
+      font-size: 13px;
+      color: #c8c8d8;
+      line-height: 1.7;
+    }
+    .highlight ul { padding-left: 16px; }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid #1a1a26;
+      padding: 40px;
+      text-align: center;
+    }
+    .footer p { color: #555570; font-size: 13px; }
+    .footer strong { color: #8888a8; }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .header { background: #f5f5ff; }
+      .card, .steps-list li, .bot-card, .tactic-card, .check-item { background: #f9f9f9; border-color: #ddd; }
+    }
+
+    @media (max-width: 640px) {
+      .header { padding: 40px 20px; }
+      .header h1 { font-size: 28px; }
+      .container { padding: 40px 20px; }
+      .progress-bar { display: none; }
+      .roles-grid { grid-template-columns: 1fr 1fr; }
+      .tactic-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-badge"><span></span> Bloggy Internal Guide</div>
+  <h1>Discord <span>Setup Guide</span></h1>
+  <p>Build your support community and sales channel — step by step. Estimated time: 45–60 minutes.</p>
+  <div class="header-meta">
+    <span>📋 <strong>9 Steps</strong></span>
+    <span>🤖 <strong>2 Bots</strong></span>
+    <span>🏠 <strong>20+ Channels</strong></span>
+    <span>⏱️ <strong>~1 hour</strong></span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Progress tracker -->
+  <div class="progress-bar">
+    <div class="progress-step"><div class="dot">1</div><div class="label">Create</div></div>
+    <div class="progress-step"><div class="dot">2</div><div class="label">Roles</div></div>
+    <div class="progress-step"><div class="dot">3</div><div class="label">Channels</div></div>
+    <div class="progress-step"><div class="dot">4</div><div class="label">Perms</div></div>
+    <div class="progress-step"><div class="dot">5</div><div class="label">Welcome</div></div>
+    <div class="progress-step"><div class="dot">6</div><div class="label">Bots</div></div>
+    <div class="progress-step"><div class="dot">7</div><div class="label">Tutorials</div></div>
+    <div class="progress-step"><div class="dot">8</div><div class="label">Sales</div></div>
+    <div class="progress-step"><div class="dot">9</div><div class="label">Launch</div></div>
+  </div>
+
+  <!-- ── STEP 1 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">1</div>
+      <div class="section-title">
+        <h2>Create the Server</h2>
+        <p>Get the server set up with your branding before anything else.</p>
+      </div>
+    </div>
+    <div class="card">
+      <ul class="steps-list">
+        <li><div class="num">1</div>Open Discord → click the <strong>+</strong> icon in the left sidebar (Add a Server)</li>
+        <li><div class="num">2</div>Select <strong>"Create My Own"</strong> → then <strong>"For a club or community"</strong></li>
+        <li><div class="num">3</div>Server name: <code>Bloggy Community</code></li>
+        <li><div class="num">4</div>Click the server icon area → upload the <strong>Bloggy logo</strong> (square PNG, at least 512×512)</li>
+        <li><div class="num">5</div>Click <strong>Create</strong></li>
+        <li><div class="num">6</div>Go to <strong>Server Settings → Overview</strong> → set Server Description: <em>"The official community for Bloggy — AI blog automation for agencies. Get support, share wins, and connect with other agency owners."</em></li>
+        <li><div class="num">7</div>Under <strong>Server Settings → Community</strong> → Enable Community features (gives you welcome screen, rules, announcements)</li>
+      </ul>
+    </div>
+    <div class="highlight yellow">
+      <h4>💡 Tip</h4>
+      <p>Go to <strong>Server Settings → Invites → Create Invite → Never Expires</strong> and save that link. You'll need it for the Bloggy website later.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 2 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">2</div>
+      <div class="section-title">
+        <h2>Create Roles</h2>
+        <p>Set up roles before channels — you'll need them for permissions. Do these in order.</p>
+      </div>
+    </div>
+    <div class="card">
+      <ul class="steps-list" style="margin-bottom: 20px;">
+        <li><div class="num">→</div>Go to <strong>Server Settings → Roles → Create Role</strong> for each role below</li>
+        <li><div class="num">→</div>For each role: set the name, pick the color, enable <strong>"Display role members separately"</strong> so they show in the sidebar</li>
+        <li><div class="num">→</div>Drag roles in this order from top to bottom: Admin, Pro Member, Free Member, Visitor</li>
+      </ul>
+      <div class="roles-grid">
+        <div class="role-card admin">
+          <div class="role-name">🛡️ Admin</div>
+          <div class="role-desc">Color: Red<br>You only. Full permissions. Keep this at the top of the role list.</div>
+        </div>
+        <div class="role-card pro">
+          <div class="role-name">⭐ Pro Member</div>
+          <div class="role-desc">Color: Gold<br>Paying Bloggy subscribers. Gets access to exclusive Pro channels.</div>
+        </div>
+        <div class="role-card free">
+          <div class="role-name">🌱 Free Member</div>
+          <div class="role-desc">Color: Green<br>Free account users. Self-assigned via reaction role.</div>
+        </div>
+        <div class="role-card visitor">
+          <div class="role-name">👀 Visitor</div>
+          <div class="role-desc">Color: Gray<br>Default for anyone who joins. Limited read-only access.</div>
+        </div>
+      </div>
+    </div>
+    <div class="highlight">
+      <h4>⭐ Pro Member Upgrades</h4>
+      <p>For now, manually assign Pro Member roles by asking users to DM you their account email. In the future, this can be automated via a Stripe webhook → Discord bot integration.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 3 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">3</div>
+      <div class="section-title">
+        <h2>Build the Channel Structure</h2>
+        <p>Create categories first, then channels inside each. Right-click the server name to create categories.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="channel-tree">
+        <div class="category">📢 WELCOME</div>
+        <div class="channel"><span class="icon">#</span> 👋 welcome &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— read-only, pinned intro message</em></div>
+        <div class="channel"><span class="icon">#</span> 📋 rules &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— read-only</em></div>
+        <div class="channel"><span class="icon">#</span> 🎉 changelog &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— announcements only</em></div>
+        <div class="channel"><span class="icon">#</span> 🗺️ roadmap &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— what's coming next</em></div>
+
+        <div class="category" style="margin-top:20px">💬 COMMUNITY</div>
+        <div class="channel"><span class="icon">#</span> 💬 general</div>
+        <div class="channel"><span class="icon">#</span> 🏆 wins &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— members share results (your best sales tool)</em></div>
+        <div class="channel"><span class="icon">#</span> 💡 feature-requests</div>
+        <div class="channel"><span class="icon">#</span> 🔗 share-your-work &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— posts, blogs, client sites</em></div>
+
+        <div class="category" style="margin-top:20px">🆘 SUPPORT</div>
+        <div class="channel"><span class="icon">#</span> 🎫 get-help &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— main support channel</em></div>
+        <div class="channel"><span class="icon">#</span> 🔧 wordpress-help</div>
+        <div class="channel"><span class="icon">#</span> 🤖 autoblog-help</div>
+        <div class="channel"><span class="icon">#</span> 🐛 bug-reports</div>
+
+        <div class="category" style="margin-top:20px">📚 TUTORIALS</div>
+        <div class="channel"><span class="icon">#</span> 🚀 start-here &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— pinned step-by-step onboarding</em></div>
+        <div class="channel"><span class="icon">#</span> 🔗 wordpress-setup</div>
+        <div class="channel"><span class="icon">#</span> 🤖 autoblog-setup</div>
+        <div class="channel"><span class="icon">#</span> 📊 client-reports</div>
+        <div class="channel"><span class="icon">#</span> ❓ faq &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— pinned common Q&A</em></div>
+
+        <div class="category" style="margin-top:20px">💎 PRO ONLY &nbsp;<span style="color:#fbbf24;font-size:11px">⚠️ role-gated — Pro Member only</span></div>
+        <div class="channel locked"><span class="icon">#</span> 🔒 pro-lounge &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— exclusive chat for paying members</em></div>
+        <div class="channel locked"><span class="icon">#</span> 💰 agency-strategies &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— pricing, client sales, packaging</em></div>
+        <div class="channel locked"><span class="icon">#</span> 🛠️ advanced-tips &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— power user features</em></div>
+        <div class="channel locked"><span class="icon">#</span> 🎯 seo-strategy &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— keyword research, ranking tips</em></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 4 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">4</div>
+      <div class="section-title">
+        <h2>Set Permissions</h2>
+        <p>Lock down the right channels so the structure works properly.</p>
+      </div>
+    </div>
+    <div class="card">
+      <ul class="steps-list">
+        <li>
+          <div class="num">A</div>
+          <div>
+            <strong>Make Welcome channels read-only:</strong><br>
+            Click any Welcome channel → Edit Channel → Permissions → @everyone → set <strong>Send Messages = ❌</strong> and <strong>Add Reactions = ❌</strong>
+          </div>
+        </li>
+        <li>
+          <div class="num">B</div>
+          <div>
+            <strong>Make #changelog announcements-only:</strong><br>
+            Edit Channel → Channel Type → switch to <strong>Announcement Channel</strong>. Only Admins can post, everyone else sees it as read-only.
+          </div>
+        </li>
+        <li>
+          <div class="num">C</div>
+          <div>
+            <strong>Gate the Pro Only category:</strong><br>
+            Right-click <strong>💎 PRO ONLY</strong> category → Edit Category → Permissions<br>
+            → @everyone: set <strong>View Channel = ❌</strong><br>
+            → Click + Add Role → add <strong>⭐ Pro Member</strong> → set <strong>View Channel = ✅</strong><br>
+            → Click + Add Role → add <strong>🛡️ Admin</strong> → set <strong>View Channel = ✅</strong>
+          </div>
+        </li>
+        <li>
+          <div class="num">D</div>
+          <div>
+            <strong>Sync all channels in Pro Only category:</strong><br>
+            For each channel inside 💎 PRO ONLY → Edit Channel → Permissions → click <strong>"Sync with Category"</strong>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 5 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">5</div>
+      <div class="section-title">
+        <h2>Pin Your Welcome Message</h2>
+        <p>This is the first thing every member sees. Make it count.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p style="color:#8888a8; font-size:13px; margin-bottom:16px;">Post this in <strong>#welcome</strong>, then right-click the message → <strong>Pin Message</strong>. Also set it as the Welcome Screen message in Server Settings → Community → Welcome Screen.</p>
+      <div class="message-box">👋 <strong>Welcome to the Bloggy Community!</strong>
+
+Bloggy is the AI blog automation platform built for digital marketing agencies. Generate, publish, and manage SEO blog posts for all your clients — from one dashboard.
+
+━━━━━━━━━━━━━━━━━━━━━
+
+🚀 <strong>GET STARTED</strong>
+→ Create your free account: https://bloggy.online/signup
+→ 🔥 Early Access Deal (50% off for 12 months): https://bloggy.online/#early-access
+
+📚 <strong>NEW HERE?</strong>
+→ Read #start-here for the full onboarding walkthrough
+→ Check #faq for common questions
+
+🆘 <strong>NEED HELP?</strong>
+→ Post in #get-help — we respond fast, usually within a few hours
+
+💎 <strong>ALREADY A PRO SUBSCRIBER?</strong>
+→ DM an admin with your account email to get your ⭐ Pro Member role and unlock the Pro channels
+
+━━━━━━━━━━━━━━━━━━━━━
+
+React with ✅ below to confirm you've read the rules!</div>
+
+      <div style="margin-top:16px;">
+        <ul class="steps-list">
+          <li><div class="num">→</div>Post the message above in <strong>#welcome</strong></li>
+          <li><div class="num">→</div>Right-click the message → <strong>Pin Message</strong></li>
+          <li><div class="num">→</div>Add a ✅ reaction to it yourself first (sets the example)</li>
+          <li><div class="num">→</div>Go to <strong>Server Settings → Community → Welcome Screen</strong> → set #welcome as the welcome channel and add shortcut buttons to #start-here and #get-help</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 6 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">6</div>
+      <div class="section-title">
+        <h2>Add Bots</h2>
+        <p>Two bots handle auto-welcome messages, moderation, and reaction roles. Both are free.</p>
+      </div>
+    </div>
+
+    <div class="bot-card">
+      <div class="bot-icon" style="background:rgba(255,100,100,0.15);">🤖</div>
+      <div>
+        <h4>MEE6 <span class="tag free">Free</span></h4>
+        <p>Handles welcome DMs, auto-moderation, reaction roles, and level/XP system. The most popular Discord bot.</p>
+        <ol class="bot-steps">
+          <li>Go to <strong>mee6.xyz</strong> → click <strong>Add to Discord</strong> → select <strong>Bloggy Community</strong></li>
+          <li>Enable <strong>Welcome</strong> plugin → set DM message:<br><em>"Hey {user}, welcome to Bloggy! Head to #start-here to get going, and post in #get-help if you need anything. Claim your early access deal here: https://bloggy.online/#early-access 🚀"</em></li>
+          <li>Enable <strong>Reaction Roles</strong> → post a message in #welcome: <em>"React 🌱 to get your Free Member role"</em> → link 🌱 to the Free Member role</li>
+          <li>Enable <strong>Moderator</strong> → turn on anti-spam and anti-links (prevents spam bots)</li>
+          <li>Optional: enable <strong>Levels</strong> — members earn XP for chatting, creates engagement</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bot-card">
+      <div class="bot-icon" style="background:rgba(100,200,255,0.15);">📋</div>
+      <div>
+        <h4>Ticket Tool <span class="tag free">Free</span></h4>
+        <p>Turns support requests into private threads. Cleaner than public channels for sensitive issues.</p>
+        <ol class="bot-steps">
+          <li>Go to <strong>tickettool.xyz</strong> → <strong>Add to Server</strong></li>
+          <li>Create a ticket panel in <strong>#get-help</strong>: users click a button → opens a private thread with you and the user only</li>
+          <li>Set auto-close: <em>"Close ticket after 48 hours of inactivity"</em></li>
+          <li>Set close message: <em>"Thanks for reaching out! If this helped, drop a ⭐ review on G2 or Product Hunt 🙏"</em></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="highlight yellow">
+      <h4>⚡ Optional Power-Up</h4>
+      <p><strong>Carl-bot</strong> — more powerful than MEE6 for reaction roles and auto-moderation. Free tier is generous. Use it if MEE6 feels limiting. carlbot.io</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 7 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">7</div>
+      <div class="section-title">
+        <h2>Pin Tutorial Content</h2>
+        <p>Each tutorial channel needs a pinned message. Write these once and they work forever.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <h4 style="color:#a78bfa; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">#start-here — Pin this message</h4>
+      <div class="message-box">🚀 <strong>Getting Started with Bloggy — 5 Steps</strong>
+
+<strong>Step 1:</strong> Create your account
+→ https://bloggy.online/signup (free, no card needed)
+
+<strong>Step 2:</strong> Add your first client
+→ Go to Clients → Add Client → fill in name, industry, and WordPress URL if you have it
+
+<strong>Step 3:</strong> Generate your first post
+→ Dashboard → select client → enter a topic → click Generate
+→ Your post is ready in under 30 seconds
+
+<strong>Step 4:</strong> Connect WordPress (optional but recommended)
+→ In WordPress: Users → Profile → scroll to Application Passwords → generate one
+→ In Bloggy: Edit client → WordPress section → paste URL, username, and password
+
+<strong>Step 5:</strong> Publish!
+→ Click Publish → choose Draft or Live → done ✅
+
+━━━━━━━━━━━━━━━━━━━━━
+
+💡 Next steps:
+→ Set up Autoblog scheduler to run on autopilot
+→ Generate client reports to share with your clients
+→ Upgrade your plan: https://bloggy.online/billing</div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px;">
+      <h4 style="color:#a78bfa; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">#faq — Pin this message</h4>
+      <div class="message-box"><strong>❓ Frequently Asked Questions</strong>
+
+<strong>Q: What AI powers Bloggy?</strong>
+A: Claude Sonnet by Anthropic — one of the best models for long-form writing. DALL-E 3 for hero images.
+
+<strong>Q: How does WordPress publishing work?</strong>
+A: You add your WP site URL, username, and an Application Password (WP → Users → Profile → Application Passwords). Bloggy publishes directly including featured image, categories, tags, and SmartCrawl SEO fields.
+
+<strong>Q: Can I edit posts before publishing?</strong>
+A: Yes — every post has a built-in markdown editor. Edit content, headings, anything before you push to WordPress.
+
+<strong>Q: What is Autoblog?</strong>
+A: You queue topics per client and set a publishing schedule (daily, weekly, etc.). Bloggy generates and publishes each post automatically. You just review the results.
+
+<strong>Q: How do client reports work?</strong>
+A: One click generates a shareable report per client showing posts this month, words written, live URLs, and keywords. Send it to clients as a proof-of-work.
+
+<strong>Q: How do agencies price blog content?</strong>
+A: Most charge $150–$400/mo per client for monthly blog posts. At $49/mo for 5 clients on Bloggy, your cost is under $10/client. The rest is margin.
+
+<strong>Q: Is there a free trial?</strong>
+A: Every account starts with 2 free posts and 2 client slots. No card required. Upgrade when you're ready.
+
+<strong>Q: What is the Early Access deal?</strong>
+A: 50% off your plan for 12 months. Limited to 20 spots. Code: EARLY50 → https://bloggy.online/#early-access</div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 8 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">8</div>
+      <div class="section-title">
+        <h2>Use It as a Sales Tool</h2>
+        <p>Discord isn't just support — it's your best conversion engine. Here's how to work it.</p>
+      </div>
+    </div>
+
+    <div class="tactic-grid">
+      <div class="tactic-card">
+        <span class="tactic-icon">🏆</span>
+        <h4>Post Wins Constantly</h4>
+        <p>Every time Boom Media publishes a good post or a client gets a result — screenshot it and post in #wins. Real proof converts better than any ad copy.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">📢</span>
+        <h4>Announce Every Feature</h4>
+        <p>Post in #changelog whenever something ships. Free users watching new features get FOMO → they upgrade. Keep them feeling the product is alive.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">💎</span>
+        <h4>Make Pro Feel Exclusive</h4>
+        <p>Occasionally hint at what's being discussed in #pro-lounge or #agency-strategies. The exclusivity of a locked channel is a real upgrade driver.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">⚡</span>
+        <h4>Pin the Early Access Deal</h4>
+        <p>Pin the EARLY50 offer in #welcome and #general. Mention it in your welcome DM. Every new member should see it within 30 seconds of joining.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">🤝</span>
+        <h4>Answer Fast</h4>
+        <p>Respond to every #get-help post within a few hours. Fast support builds trust and word-of-mouth. It's the #1 thing that turns free users into paid.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">🎙️</span>
+        <h4>Run Monthly Q&As</h4>
+        <p>Once a month, jump into a Discord Voice channel for a live "Office Hours" session. Answer questions, show new features, build personal connection with members.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">📈</span>
+        <h4>Share the Roadmap</h4>
+        <p>Post upcoming features in #roadmap. Let members vote on what to build next. This drives engagement and keeps users subscribed waiting for features they care about.</p>
+      </div>
+      <div class="tactic-card">
+        <span class="tactic-icon">🔗</span>
+        <h4>Link from Bloggy App</h4>
+        <p>Add a Discord button inside the Bloggy dashboard and on the landing page. Every user who hits a problem should have one click to reach support.</p>
+      </div>
+    </div>
+
+    <div class="highlight green" style="margin-top:20px;">
+      <h4>💰 The Conversion Flow</h4>
+      <ul>
+        <li>Visitor joins Discord → sees #welcome with early access deal → signs up free</li>
+        <li>Free user asks question in #get-help → you answer fast → builds trust</li>
+        <li>They see #wins posts from Pro members → want results like that</li>
+        <li>They see #changelog and #roadmap → product feels alive and worth paying for</li>
+        <li>They upgrade → DM you for Pro Member role → enter the exclusive channels</li>
+        <li>They feel part of something → refer other agency owners → viral growth</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── STEP 9 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-number">9</div>
+      <div class="section-title">
+        <h2>Launch Checklist</h2>
+        <p>Run through this before you share the invite link publicly.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="checklist">
+        <div class="check-item"><div class="check-box"></div>Server created with logo</div>
+        <div class="check-item"><div class="check-box"></div>Community features enabled</div>
+        <div class="check-item"><div class="check-box"></div>4 roles created and ordered</div>
+        <div class="check-item"><div class="check-box"></div>All categories and channels built</div>
+        <div class="check-item"><div class="check-box"></div>Welcome channels set to read-only</div>
+        <div class="check-item"><div class="check-box"></div>#changelog set to Announcement type</div>
+        <div class="check-item"><div class="check-box"></div>Pro Only category gated to Pro Member role</div>
+        <div class="check-item"><div class="check-box"></div>Welcome message posted and pinned</div>
+        <div class="check-item"><div class="check-box"></div>MEE6 installed with welcome DM set up</div>
+        <div class="check-item"><div class="check-box"></div>Reaction role set up (🌱 = Free Member)</div>
+        <div class="check-item"><div class="check-box"></div>Ticket Tool installed in #get-help</div>
+        <div class="check-item"><div class="check-box"></div>#start-here pinned message posted</div>
+        <div class="check-item"><div class="check-box"></div>#faq pinned message posted</div>
+        <div class="check-item"><div class="check-box"></div>Permanent invite link created (never expires)</div>
+        <div class="check-item"><div class="check-box"></div>Invite link sent to developer to add to website</div>
+        <div class="check-item"><div class="check-box"></div>First win posted in #wins (use a Boom Media result)</div>
+        <div class="check-item"><div class="check-box"></div>Early access deal pinned in #general</div>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:16px;">
+      <h4>🚀 After Launch</h4>
+      <p>Share your invite link on: <strong>LinkedIn</strong> (agency owners post there), <strong>Twitter/X</strong> with a post about building in public, <strong>Facebook Groups</strong> (agency and marketing groups), and inside the <strong>Bloggy app itself</strong> (settings page + dashboard). The developer can add the Discord button to bloggy.online within minutes once you have the link.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Bloggy Discord Setup Guide &nbsp;·&nbsp; <strong>Boom Media</strong> &nbsp;·&nbsp; bloggy.online</p>
+  <p style="margin-top:6px;">Once your server is ready, share the permanent invite link to get it added to the Bloggy website.</p>
+</div>
+
+</body>
+</html>

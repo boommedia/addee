@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Boom Media — WordPress Publishing Guide</title>
+<style>
+:root{--bg:#0b0b12;--card:#111118;--card2:#18181f;--border:#1f1f2e;--primary:#7c3aed;--accent:#06b6d4;--green:#10b981;--yellow:#f59e0b;--red:#ef4444;--wp:#21759b;--text:#ddd8f0;--muted:#6868a0;--bright:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.7}
+header{background:linear-gradient(135deg,#0b0b12 0%,#0d1a2e 60%,#0b0b12 100%);border-bottom:1px solid var(--border);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(33,117,155,.1) 0%,transparent 70%);pointer-events:none}
+header .badge{display:inline-block;background:rgba(33,117,155,.15);border:1px solid rgba(33,117,155,.35);color:#5bb3d4;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+header h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:var(--bright);letter-spacing:-1px;margin-bottom:10px}
+header h1 span{background:linear-gradient(90deg,#5bb3d4,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:var(--muted);max-width:580px;margin:0 auto;font-size:.95rem}
+header .prereq{display:inline-block;margin-top:18px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);color:#a78bfa;font-size:.78rem;padding:6px 16px;border-radius:8px}
+
+.toc{background:var(--card);border-bottom:1px solid var(--border);padding:14px 24px;position:sticky;top:0;z-index:100;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.toc a{color:var(--muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;padding:5px 12px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
+.toc a:hover{color:var(--bright);border-color:var(--accent);background:rgba(6,182,212,.08)}
+
+main{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+
+.phase{margin:48px 0 24px}
+.phase-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#5bb3d4;margin-bottom:6px}
+.phase h2{font-size:1.5rem;font-weight:900;color:var(--bright);letter-spacing:-.5px}
+.phase p{color:var(--muted);font-size:.875rem;margin-top:6px;max-width:640px}
+
+.step{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:18px;overflow:hidden}
+.step-head{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--border)}
+.step-num{min-width:32px;height:32px;border-radius:8px;background:#21759b;color:#fff;font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step-head h3{font-size:.95rem;font-weight:700;color:var(--bright);flex:1}
+.step-status{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(104,104,160,.12);color:var(--muted)}
+.step-status.required{background:rgba(239,68,68,.1);color:#fca5a5}
+.step-status.code{background:rgba(124,58,237,.1);color:#a78bfa}
+.step-body{padding:22px}
+.step-body p{color:var(--muted);font-size:.875rem;margin-bottom:12px}
+.step-body p:last-child{margin-bottom:0}
+.step-body h4{font-size:.78rem;font-weight:800;color:var(--bright);letter-spacing:.5px;text-transform:uppercase;margin:18px 0 8px}
+.step-body h4:first-child{margin-top:0}
+
+pre{background:#080810;border:1px solid var(--border);border-radius:10px;padding:16px 18px;overflow-x:auto;margin:10px 0;font-size:.775rem;line-height:1.65;font-family:'Cascadia Code','Consolas','Fira Code',monospace}
+code{background:rgba(33,117,155,.15);color:#7dd3fc;padding:2px 6px;border-radius:4px;font-size:.8rem;font-family:'Cascadia Code','Consolas',monospace}
+.file-label{font-size:.72rem;font-weight:700;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-bottom:none;padding:5px 14px;border-radius:8px 8px 0 0;display:inline-block;margin-bottom:-1px}
+.file-label+pre{border-radius:0 8px 8px 8px;margin-top:0}
+
+.cmd{background:#06060e;border:1px solid rgba(6,182,212,.2);border-left:3px solid var(--accent);border-radius:8px;padding:12px 16px;font-family:'Cascadia Code','Consolas',monospace;font-size:.8rem;color:#67e8f9;margin:10px 0}
+.cmd span{color:var(--muted);font-size:.72rem;display:block;margin-bottom:4px;font-family:system-ui}
+
+.checklist{list-style:none;display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.checklist li{display:flex;gap:10px;align-items:flex-start;font-size:.845rem;color:var(--muted)}
+.checklist li::before{content:'□';color:#21759b;font-size:16px;line-height:1.2;flex-shrink:0}
+
+.callout{border-radius:10px;padding:14px 18px;margin:14px 0;display:flex;gap:12px;align-items:flex-start;font-size:.83rem;line-height:1.6}
+.callout.info{background:rgba(6,182,212,.05);border:1px solid rgba(6,182,212,.18)}
+.callout.warn{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.2)}
+.callout.tip{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.18)}
+.callout.wp{background:rgba(33,117,155,.06);border:1px solid rgba(33,117,155,.2)}
+.callout p{color:var(--text);margin:0}
+.callout strong{color:var(--accent)}
+.callout.warn strong{color:var(--yellow)}
+.callout.tip strong{color:var(--green)}
+.callout.wp strong{color:#5bb3d4}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+.mini-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px}
+.mini-card .label{font-size:.7rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.mini-card .value{font-size:.875rem;color:var(--bright);font-weight:700}
+.mini-card p{font-size:.78rem;color:var(--muted);margin-top:4px}
+
+.flow{display:flex;align-items:center;gap:0;margin:16px 0;flex-wrap:wrap}
+.flow-step{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--text);white-space:nowrap}
+.flow-arrow{color:var(--muted);padding:0 8px;font-size:1rem}
+
+footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted);font-size:.75rem}
+footer strong{color:#5bb3d4}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Boom Media — Add-On Module</div>
+  <h1>WordPress<br><span>Publishing Integration</span></h1>
+  <p>Add one-click WordPress publishing to the Boom Media blog generator. Staff click Publish and the post goes live on the client's site instantly.</p>
+  <div class="prereq">⚠ Requires the base blog tool from build-guide-step1.html to be complete first</div>
+</header>
+
+<nav class="toc">
+  <a href="#how">How It Works</a>
+  <a href="#wp-setup">WordPress Setup</a>
+  <a href="#db">Database</a>
+  <a href="#package">Install Package</a>
+  <a href="#api">API Route</a>
+  <a href="#ui">UI Changes</a>
+  <a href="#clients">Client Form</a>
+  <a href="#test">Test It</a>
+</nav>
+
+<main>
+
+<!-- HOW IT WORKS -->
+<div class="phase" id="how">
+  <div class="phase-label">Overview</div>
+  <h2>How WordPress Publishing Works</h2>
+  <p>WordPress has a built-in REST API. We authenticate with an "Application Password" (a special secure token) and POST the blog content as HTML directly to the client's site.</p>
+</div>
+
+<div class="flow">
+  <div class="flow-step">Staff clicks<br>"Publish to WordPress"</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Our API route loads<br>post + WP credentials</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Markdown → HTML<br>conversion</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">POST to client's<br>WordPress REST API</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-step">Save WP post URL<br>→ show live link</div>
+</div>
+
+<div class="two-col" style="margin-top:20px">
+  <div class="mini-card">
+    <div class="label">What we need per client</div>
+    <div class="value">3 things from WordPress</div>
+    <p>Site URL · WordPress username · Application Password (not their login password)</p>
+  </div>
+  <div class="mini-card">
+    <div class="label">WordPress requirement</div>
+    <div class="value">WordPress 5.6+ (2020)</div>
+    <p>Application Passwords are built-in from WP 5.6. Works on any self-hosted WordPress. Does NOT work on WordPress.com free plans.</p>
+  </div>
+  <div class="mini-card">
+    <div class="label">Published post status</div>
+    <div class="value">Draft by default</div>
+    <p>We publish as "draft" so client can review before going live. One setting change to publish immediately if preferred.</p>
+  </div>
+  <div class="mini-card">
+    <div class="label">New package needed</div>
+    <div class="value">marked (markdown → HTML)</div>
+    <p>WordPress needs HTML. Claude returns markdown. The <code>marked</code> package converts it instantly.</p>
+  </div>
+</div>
+
+<!-- PHASE 1: WORDPRESS SETUP ON CLIENT SITE -->
+<div class="phase" id="wp-setup">
+  <div class="phase-label">Phase 1 — On the Client's WordPress Site</div>
+  <h2>WordPress Setup (Done Once Per Client)</h2>
+  <p>You or the client needs to do this on each WordPress site. Takes 3 minutes. Only needs to be done once per site.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">1</div>
+    <h3>Enable Application Passwords on the WordPress Site</h3>
+    <span class="step-status required">On Client's Site</span>
+  </div>
+  <div class="step-body">
+    <div class="callout wp">
+      <span>ℹ️</span>
+      <p><strong>Application Passwords are different from the login password.</strong> They are special tokens generated for API access only. If one is compromised, you delete it and generate a new one — the actual account password is untouched.</p>
+    </div>
+
+    <h4>Step 1 — Log into the client's WordPress admin</h4>
+    <p>Go to <code>https://clientsite.com/wp-admin</code> and log in as an Administrator.</p>
+
+    <h4>Step 2 — Check Application Passwords are not blocked</h4>
+    <p>Some security plugins (Wordfence, iThemes Security) disable the REST API or Application Passwords. To verify the REST API is accessible, open a browser tab and go to:</p>
+    <pre>https://clientsite.com/wp-json/wp/v2/posts</pre>
+    <p>If you see a JSON response (even if it's an empty array <code>[]</code>), the REST API is working. If you get an error or a blank page, the REST API is blocked — see the callout below.</p>
+
+    <div class="callout warn">
+      <span>⚠️</span>
+      <p><strong>If the REST API is blocked:</strong> In WordPress admin go to the security plugin settings (Wordfence → Firewall, or iThemes → Security → Settings) and look for "Disable REST API" or "REST API access" — set it to allow authenticated users or disable the block entirely. If using Wordfence: Wordfence → Firewall → Brute Force Protection → uncheck "Disable WordPress XML-RPC authentication" (different feature but sometimes confused).</p>
+    </div>
+
+    <h4>Step 3 — Generate an Application Password</h4>
+    <ul class="checklist">
+      <li>In WordPress admin: go to <strong>Users → Profile</strong> (or Users → All Users → click the admin user → Edit)</li>
+      <li>Scroll all the way down to the <strong>"Application Passwords"</strong> section</li>
+      <li>In the "New Application Password Name" field, type: <code>Boom Media Blog Tool</code></li>
+      <li>Click <strong>"Add New Application Password"</strong></li>
+      <li>WordPress shows the password <strong>one time only</strong> — it looks like: <code>AbCd EfGh IjKl MnOp QrSt UvWx</code></li>
+      <li>Copy it immediately. Remove the spaces when saving — store as: <code>AbCdEfGhIjKlMnOpQrStUvWx</code></li>
+    </ul>
+
+    <h4>What to record for each client</h4>
+    <pre># Save these 3 values for each client in the Boom Media tool:
+
+WordPress Site URL:   https://clientsite.com
+WordPress Username:   admin              (the username they log in with)
+Application Password: AbCdEfGhIjKlMnOpQrStUvWx  (no spaces)</pre>
+
+    <div class="callout tip">
+      <span>✓</span>
+      <p><strong>Use an Editor or Author account, not Admin:</strong> For extra security, create a dedicated WordPress user with "Editor" role for API publishing. That way the API token can only create/edit posts — not change site settings. Name the user <code>boom-media-api</code>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">2</div>
+    <h3>Test the WordPress Credentials Manually</h3>
+    <span class="step-status required">Verify Before Building</span>
+  </div>
+  <div class="step-body">
+    <p>Before writing any code, verify the credentials work by running this command in your terminal. Replace the values with the real client credentials:</p>
+
+    <div class="cmd"><span>Terminal — test WordPress connection (replace values)</span>curl -X POST "https://CLIENTSITE.com/wp-json/wp/v2/posts" \
+  -H "Content-Type: application/json" \
+  -u "WORDPRESS_USERNAME:APPLICATION_PASSWORD" \
+  -d '{"title":"Test Post from Boom Media","content":"This is a test.","status":"draft"}'</div>
+
+    <p>A successful response looks like this (truncated):</p>
+    <pre>{
+  "id": 1234,
+  "link": "https://clientsite.com/?p=1234",
+  "title": { "rendered": "Test Post from Boom Media" },
+  "status": "draft",
+  ...
+}</pre>
+
+    <div class="callout warn">
+      <span>⚠️</span>
+      <p><strong>Common errors and fixes:</strong><br>
+      <code>401 Unauthorized</code> → wrong username or application password. Re-check both — username is the login name, NOT the display name or email.<br>
+      <code>403 Forbidden</code> → REST API is blocked by a plugin or the user doesn't have permission to create posts.<br>
+      <code>curl not found</code> on Windows → use Git Bash instead of Command Prompt, or test using Postman.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2: DATABASE -->
+<div class="phase" id="db">
+  <div class="phase-label">Phase 2 — Database</div>
+  <h2>Add WordPress Columns to the Database</h2>
+  <p>Add three credential columns to the clients table, and two tracking columns to blog_posts.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">3</div>
+    <h3>Run the Database Migration</h3>
+    <span class="step-status code">Supabase SQL Editor</span>
+  </div>
+  <div class="step-body">
+    <p>In Supabase: go to <strong>SQL Editor → New Query</strong>, paste and run:</p>
+
+    <div class="file-label">Supabase SQL Editor</div>
+    <pre>-- Add WordPress credentials to clients table
+ALTER TABLE clients
+  ADD COLUMN IF NOT EXISTS wp_url         TEXT,         -- e.g. https://clientsite.com
+  ADD COLUMN IF NOT EXISTS wp_username    TEXT,         -- WordPress login username
+  ADD COLUMN IF NOT EXISTS wp_app_password TEXT;        -- Application Password (no spaces)
+
+-- Add WordPress tracking to blog_posts table
+ALTER TABLE blog_posts
+  ADD COLUMN IF NOT EXISTS wp_post_id     INTEGER,      -- WordPress post ID after publishing
+  ADD COLUMN IF NOT EXISTS wp_post_url    TEXT,         -- Live URL of the published post
+  ADD COLUMN IF NOT EXISTS wp_status      TEXT;         -- 'draft' | 'publish' | 'failed'
+
+-- Index for quick lookup of published posts
+CREATE INDEX IF NOT EXISTS idx_blog_posts_wp_post_id ON blog_posts(wp_post_id);</pre>
+
+    <p>After running: go to <strong>Table Editor → clients</strong> — you should see <code>wp_url</code>, <code>wp_username</code>, and <code>wp_app_password</code> as new columns. Check <code>blog_posts</code> for <code>wp_post_id</code>, <code>wp_post_url</code>, and <code>wp_status</code>.</p>
+
+    <div class="callout warn">
+      <span>⚠️</span>
+      <p><strong>Security note:</strong> Application passwords are stored as plain text in Supabase for this internal v1. Since this is a private internal tool with controlled access, this is acceptable. For a future public SaaS version, encrypt these with AES-256 before storing using a separate encryption key.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3: INSTALL PACKAGE -->
+<div class="phase" id="package">
+  <div class="phase-label">Phase 3 — Package</div>
+  <h2>Install the Markdown Converter</h2>
+  <p>Claude returns blog content in Markdown. WordPress expects HTML. One package handles the conversion.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">4</div>
+    <h3>Install <code>marked</code></h3>
+    <span class="step-status code">~1 min</span>
+  </div>
+  <div class="step-body">
+    <div class="cmd"><span>Terminal — in your boom-blog-tool folder</span>npm install marked
+npm install --save-dev @types/marked</div>
+
+    <p>That's it. <code>marked</code> converts Markdown like <code>## Heading</code> and <code>**bold**</code> into proper HTML tags that WordPress renders correctly.</p>
+
+    <div class="callout info">
+      <span>ℹ️</span>
+      <p><strong>Why not a heavier library?</strong> We only need basic Markdown-to-HTML. <code>marked</code> is 4KB, fast, and handles everything Claude outputs — headings, bold, italic, bullet lists, numbered lists, links, and horizontal rules.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 4: API ROUTE -->
+<div class="phase" id="api">
+  <div class="phase-label">Phase 4 — Backend</div>
+  <h2>Create the Publish API Route</h2>
+  <p>A new server-side route that handles the publish request. WordPress credentials never touch the browser.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">5</div>
+    <h3>Create <code>app/api/publish-wordpress/route.ts</code></h3>
+    <span class="step-status code">New File</span>
+  </div>
+  <div class="step-body">
+    <p>Create this file at the path shown in the label — make the folder <code>app/api/publish-wordpress/</code> first if it doesn't exist.</p>
+
+    <div class="file-label">app/api/publish-wordpress/route.ts</div>
+    <pre>import { NextRequest, NextResponse } from 'next/server'
+import { marked } from 'marked'
+import { createClient } from '@/lib/supabase/server'
+
+export async function POST(request: NextRequest) {
+  try {
+    const { postId, publishStatus = 'draft' } = await request.json()
+
+    if (!postId) {
+      return NextResponse.json({ error: 'postId is required' }, { status: 400 })
+    }
+
+    const supabase = await createClient()
+
+    // Verify the user is logged in
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    // Load the blog post and its client's WordPress credentials
+    const { data: post, error: postError } = await supabase
+      .from('blog_posts')
+      .select(`
+        id,
+        title,
+        content,
+        meta_description,
+        client_id,
+        clients (
+          name,
+          wp_url,
+          wp_username,
+          wp_app_password
+        )
+      `)
+      .eq('id', postId)
+      .single()
+
+    if (postError || !post) {
+      return NextResponse.json({ error: 'Blog post not found' }, { status: 404 })
+    }
+
+    const client = (post as any).clients
+
+    // Validate WordPress credentials exist for this client
+    if (!client?.wp_url || !client?.wp_username || !client?.wp_app_password) {
+      return NextResponse.json({
+        error: 'WordPress credentials not configured for this client. Go to Clients → Edit and add the WordPress URL, username, and application password.',
+      }, { status: 422 })
+    }
+
+    // Convert Markdown content to HTML for WordPress
+    const contentHtml = await marked(post.content || '', {
+      gfm: true,     // GitHub Flavored Markdown (tables, strikethrough, etc.)
+      breaks: true,  // Convert \n to <br> in paragraphs
+    })
+
+    // Build the WordPress post payload
+    const wpPayload = {
+      title: post.title,
+      content: contentHtml,
+      status: publishStatus, // 'draft' or 'publish'
+      excerpt: post.meta_description || '',
+    }
+
+    // Clean up the WordPress URL (remove trailing slash)
+    const wpBaseUrl = client.wp_url.replace(/\/$/, '')
+    const wpApiUrl = `${wpBaseUrl}/wp-json/wp/v2/posts`
+
+    // Build Basic Auth header from username + application password
+    const credentials = Buffer.from(
+      `${client.wp_username}:${client.wp_app_password}`
+    ).toString('base64')
+
+    // POST to WordPress REST API
+    const wpResponse = await fetch(wpApiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`,
+      },
+      body: JSON.stringify(wpPayload),
+    })
+
+    const wpData = await wpResponse.json()
+
+    // Handle WordPress errors
+    if (!wpResponse.ok) {
+      console.error('WordPress API error:', wpData)
+
+      const wpError = wpData?.message || wpData?.code || 'WordPress rejected the request'
+      return NextResponse.json({
+        error: `WordPress error: ${wpError}`,
+        wpCode: wpData?.code,
+      }, { status: wpResponse.status })
+    }
+
+    // WordPress published successfully — save the WP post details to our DB
+    const { error: updateError } = await supabase
+      .from('blog_posts')
+      .update({
+        wp_post_id: wpData.id,
+        wp_post_url: wpData.link,
+        wp_status: publishStatus,
+        status: publishStatus === 'publish' ? 'published' : 'draft',
+      })
+      .eq('id', postId)
+
+    if (updateError) {
+      console.error('DB update error after WP publish:', updateError)
+      // Don't fail the request — post IS on WordPress, just DB tracking failed
+    }
+
+    return NextResponse.json({
+      success: true,
+      wpPostId: wpData.id,
+      wpPostUrl: wpData.link,
+      wpStatus: publishStatus,
+      wpEditUrl: `${wpBaseUrl}/wp-admin/post.php?post=${wpData.id}&action=edit`,
+    })
+
+  } catch (error: any) {
+    console.error('Publish to WordPress error:', error)
+    return NextResponse.json(
+      { error: error.message || 'Failed to publish to WordPress' },
+      { status: 500 }
+    )
+  }
+}</pre>
+
+    <div class="callout tip">
+      <span>✓</span>
+      <p><strong>Two publish modes:</strong> The route accepts <code>publishStatus: "draft"</code> or <code>publishStatus: "publish"</code>. The UI will offer both buttons. Draft = goes to WordPress but stays hidden. Publish = goes live immediately. Default is draft for safety.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 5: UPDATE TYPES -->
+<div class="phase">
+  <div class="phase-label">Phase 5 — Types</div>
+  <h2>Update the TypeScript Types</h2>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">6</div>
+    <h3>Update <code>lib/types.ts</code></h3>
+    <span class="step-status code">Edit Existing File</span>
+  </div>
+  <div class="step-body">
+    <p>Add the new WordPress fields to the existing <code>Client</code> and <code>BlogPost</code> interfaces. Open <code>lib/types.ts</code> and replace the entire file:</p>
+
+    <div class="file-label">lib/types.ts — full replacement</div>
+    <pre>export interface Client {
+  id: string
+  name: string
+  industry: string | null
+  website: string | null
+  brand_voice: string | null
+  keywords: string | null
+  // WordPress publishing credentials
+  wp_url: string | null
+  wp_username: string | null
+  wp_app_password: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface BlogPost {
+  id: string
+  client_id: string | null
+  prompt: string
+  title: string | null
+  content: string | null
+  meta_title: string | null
+  meta_description: string | null
+  word_count: number | null
+  status: 'draft' | 'published'
+  // WordPress tracking
+  wp_post_id: number | null
+  wp_post_url: string | null
+  wp_status: string | null
+  created_by: string | null
+  created_at: string
+  updated_at: string
+  clients?: Pick&lt;Client, 'id' | 'name' | 'wp_url'&gt;
+}</pre>
+  </div>
+</div>
+
+<!-- PHASE 6: UI CHANGES ON DASHBOARD -->
+<div class="phase" id="ui">
+  <div class="phase-label">Phase 6 — Frontend</div>
+  <h2>Add Publish Buttons to the Dashboard</h2>
+  <p>Update the blog output section on the dashboard to show WordPress publish buttons after a post is generated.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">7</div>
+    <h3>Add WordPress State + Publish Handler to Dashboard</h3>
+    <span class="step-status code">Edit app/dashboard/page.tsx</span>
+  </div>
+  <div class="step-body">
+    <p>Open <code>app/dashboard/page.tsx</code>. Find and add the WordPress state variables alongside the existing state at the top of the component. Then add the publish handler function. Then update the output section to show the publish buttons.</p>
+
+    <h4>Step A — Add WordPress state (add below existing state declarations)</h4>
+    <pre>// Add these alongside the existing useState declarations
+const [publishing, setPublishing] = useState(false)
+const [publishResult, setPublishResult] = useState&lt;{
+  wpPostUrl: string
+  wpEditUrl: string
+  wpStatus: string
+} | null&gt;(null)
+const [publishError, setPublishError] = useState('')</pre>
+
+    <h4>Step B — Add the publish handler function (add below handleCopy)</h4>
+    <pre>async function handlePublishToWordPress(publishStatus: 'draft' | 'publish') {
+  if (!output?.id) return
+  setPublishing(true)
+  setPublishError('')
+  setPublishResult(null)
+
+  try {
+    const res = await fetch('/api/publish-wordpress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ postId: output.id, publishStatus }),
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      throw new Error(data.error || 'Publish failed')
+    }
+
+    setPublishResult({
+      wpPostUrl: data.wpPostUrl,
+      wpEditUrl: data.wpEditUrl,
+      wpStatus: data.wpStatus,
+    })
+
+    // Update the local output state so the UI reflects the new WP status
+    setOutput(prev => prev ? {
+      ...prev,
+      wp_post_id: data.wpPostId,
+      wp_post_url: data.wpPostUrl,
+      wp_status: data.wpStatus,
+      status: publishStatus === 'publish' ? 'published' : 'draft',
+    } : null)
+
+  } catch (err: any) {
+    setPublishError(err.message)
+  } finally {
+    setPublishing(false)
+  }
+}</pre>
+
+    <h4>Step C — Replace the output section JSX</h4>
+    <p>Find the existing <code>{output && (</code> block in the JSX and replace the entire thing with this updated version that includes the WordPress publish buttons:</p>
+
+    <div class="file-label">Replace the existing output JSX block in app/dashboard/page.tsx</div>
+    <pre>{output &amp;&amp; (
+  &lt;div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-4"&gt;
+
+    {/* Title + word count */}
+    &lt;div className="flex items-start justify-between gap-4"&gt;
+      &lt;div&gt;
+        &lt;h2 className="text-white font-bold text-xl leading-tight"&gt;{output.title}&lt;/h2&gt;
+        &lt;p className="text-gray-500 text-xs mt-1"&gt;
+          {output.word_count?.toLocaleString()} words
+          {output.wp_post_id &amp;&amp; (
+            &lt;span className="ml-2 text-green-400 font-medium"&gt;
+              ✓ On WordPress ({output.wp_status})
+            &lt;/span&gt;
+          )}
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;button
+        onClick={handleCopy}
+        className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 px-3 py-1.5 rounded-lg transition-all flex-shrink-0"
+      &gt;
+        {copied ? &lt;&gt;&lt;Check size={14} className="text-green-400" /&gt; Copied&lt;/&gt; : &lt;&gt;&lt;Copy size={14} /&gt; Copy&lt;/&gt;}
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+    {/* SEO meta description */}
+    {output.meta_description &amp;&amp; (
+      &lt;div className="bg-blue-500/8 border border-blue-500/20 rounded-lg p-3"&gt;
+        &lt;p className="text-xs font-semibold text-blue-400 mb-1"&gt;SEO Meta Description&lt;/p&gt;
+        &lt;p className="text-gray-300 text-sm"&gt;{output.meta_description}&lt;/p&gt;
+      &lt;/div&gt;
+    )}
+
+    {/* WordPress publish section */}
+    {selectedClientId ? (
+      &lt;div className="border border-gray-700 rounded-xl p-4 space-y-3"&gt;
+        &lt;p className="text-xs font-semibold text-gray-400 uppercase tracking-wide"&gt;Publish to WordPress&lt;/p&gt;
+
+        {/* Success result */}
+        {publishResult &amp;&amp; (
+          &lt;div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3 space-y-2"&gt;
+            &lt;p className="text-green-400 text-sm font-semibold"&gt;
+              ✓ {publishResult.wpStatus === 'publish' ? 'Published live!' : 'Saved as draft on WordPress'}
+            &lt;/p&gt;
+            &lt;div className="flex gap-3"&gt;
+              &lt;a
+                href={publishResult.wpPostUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-green-400 underline hover:text-green-300"
+              &gt;
+                View on site →
+              &lt;/a&gt;
+              &lt;a
+                href={publishResult.wpEditUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-gray-400 underline hover:text-gray-300"
+              &gt;
+                Edit in WordPress →
+              &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        )}
+
+        {/* Error */}
+        {publishError &amp;&amp; (
+          &lt;div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm p-3 rounded-lg"&gt;
+            {publishError}
+          &lt;/div&gt;
+        )}
+
+        {/* Already published — show links */}
+        {output.wp_post_id &amp;&amp; !publishResult &amp;&amp; (
+          &lt;div className="flex gap-3 text-xs"&gt;
+            &lt;a href={output.wp_post_url!} target="_blank" rel="noopener noreferrer"
+              className="text-green-400 underline hover:text-green-300"&gt;View on site →&lt;/a&gt;
+            &lt;span className="text-gray-600"&gt;WP Post #{output.wp_post_id}&lt;/span&gt;
+          &lt;/div&gt;
+        )}
+
+        {/* Publish buttons */}
+        {!publishResult &amp;&amp; (
+          &lt;div className="flex gap-3"&gt;
+            &lt;button
+              onClick={() =&gt; handlePublishToWordPress('draft')}
+              disabled={publishing}
+              className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors"
+            &gt;
+              {publishing ? (
+                &lt;svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"&gt;
+                  &lt;circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/&gt;
+                  &lt;path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/&gt;
+                &lt;/svg&gt;
+              ) : '📋'}
+              Save as WP Draft
+            &lt;/button&gt;
+
+            &lt;button
+              onClick={() =&gt; handlePublishToWordPress('publish')}
+              disabled={publishing}
+              className="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors"
+            &gt;
+              {publishing ? (
+                &lt;svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"&gt;
+                  &lt;circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/&gt;
+                  &lt;path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/&gt;
+                &lt;/svg&gt;
+              ) : '🚀'}
+              Publish Live Now
+            &lt;/button&gt;
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+    ) : (
+      &lt;div className="border border-dashed border-gray-700 rounded-lg p-3"&gt;
+        &lt;p className="text-gray-600 text-xs"&gt;
+          Select a client above to enable WordPress publishing. Or &lt;a href="/clients" className="text-violet-400 hover:text-violet-300 underline"&gt;add WordPress credentials to a client&lt;/a&gt;.
+        &lt;/p&gt;
+      &lt;/div&gt;
+    )}
+
+    {/* Blog content */}
+    &lt;div className="border-t border-gray-800 pt-4"&gt;
+      &lt;pre className="whitespace-pre-wrap text-gray-300 text-sm leading-relaxed font-sans"&gt;
+        {output.content}
+      &lt;/pre&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+)}</pre>
+  </div>
+</div>
+
+<!-- PHASE 7: UPDATE CLIENT FORM -->
+<div class="phase" id="clients">
+  <div class="phase-label">Phase 7 — Client Form</div>
+  <h2>Add WordPress Fields to the Client Form</h2>
+  <p>Staff need to enter the 3 WordPress credentials when setting up a client. Update the clients page form.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">8</div>
+    <h3>Update <code>app/clients/page.tsx</code> — Add WP Fields</h3>
+    <span class="step-status code">Edit Existing File</span>
+  </div>
+  <div class="step-body">
+    <h4>Step A — Update EMPTY_FORM to include WP fields</h4>
+    <p>Find the <code>EMPTY_FORM</code> constant at the top and replace it:</p>
+    <pre>const EMPTY_FORM = {
+  name: '',
+  industry: '',
+  website: '',
+  brand_voice: '',
+  keywords: '',
+  // WordPress publishing
+  wp_url: '',
+  wp_username: '',
+  wp_app_password: '',
+}</pre>
+
+    <h4>Step B — Update handleEdit to include WP fields</h4>
+    <p>Find the <code>handleEdit</code> function and replace it:</p>
+    <pre>function handleEdit(client: Client) {
+  setForm({
+    name: client.name,
+    industry: client.industry || '',
+    website: client.website || '',
+    brand_voice: client.brand_voice || '',
+    keywords: client.keywords || '',
+    wp_url: client.wp_url || '',
+    wp_username: client.wp_username || '',
+    wp_app_password: client.wp_app_password || '',
+  })
+  setEditId(client.id)
+  setShowForm(true)
+}</pre>
+
+    <h4>Step C — Add WordPress fields to the form JSX</h4>
+    <p>Inside the <code>&lt;form&gt;</code>, find the closing <code>&lt;div className="flex gap-3 pt-1"&gt;</code> (the save/cancel buttons). Add the WordPress section immediately <strong>before</strong> those buttons:</p>
+
+    <pre>{/* WordPress Publishing Section — paste before the save/cancel buttons */}
+&lt;div className="pt-2 border-t border-gray-700 space-y-3"&gt;
+  &lt;p className="text-xs font-semibold text-gray-400 uppercase tracking-wide"&gt;
+    WordPress Publishing &lt;span className="font-normal text-gray-600 normal-case tracking-normal"&gt;— optional, needed to publish directly to client's site&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;div&gt;
+    &lt;label className="block text-xs font-medium text-gray-400 mb-1.5"&gt;WordPress Site URL&lt;/label&gt;
+    &lt;input
+      type="url"
+      value={form.wp_url}
+      onChange={e =&gt; setForm({...form, wp_url: e.target.value})}
+      className={inputClass}
+      placeholder="https://clientsite.com"
+    /&gt;
+    &lt;p className="text-gray-600 text-xs mt-1"&gt;The root URL of their WordPress site (no trailing slash)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div className="grid grid-cols-2 gap-4"&gt;
+    &lt;div&gt;
+      &lt;label className="block text-xs font-medium text-gray-400 mb-1.5"&gt;WordPress Username&lt;/label&gt;
+      &lt;input
+        value={form.wp_username}
+        onChange={e =&gt; setForm({...form, wp_username: e.target.value})}
+        className={inputClass}
+        placeholder="admin"
+      /&gt;
+      &lt;p className="text-gray-600 text-xs mt-1"&gt;Their WP login username (not email)</p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label className="block text-xs font-medium text-gray-400 mb-1.5"&gt;Application Password&lt;/label&gt;
+      &lt;input
+        type="password"
+        value={form.wp_app_password}
+        onChange={e =&gt; setForm({...form, wp_app_password: e.target.value})}
+        className={inputClass}
+        placeholder="AbCdEfGhIjKlMnOpQrSt"
+      /&gt;
+      &lt;p className="text-gray-600 text-xs mt-1"&gt;From WP Admin → Users → Profile → Application Passwords. Remove spaces.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+    <h4>Step D — Show WP status on client cards</h4>
+    <p>In the client list section, find where the client name and industry are displayed and add a WordPress status indicator after the keywords line:</p>
+    <pre>{/* Add after the keywords display */}
+&lt;div className="flex items-center gap-2 mt-2"&gt;
+  {client.wp_url ? (
+    &lt;span className="text-xs text-green-400 bg-green-400/10 border border-green-400/20 px-2 py-0.5 rounded-md"&gt;
+      ✓ WordPress connected
+    &lt;/span&gt;
+  ) : (
+    &lt;span className="text-xs text-gray-600 border border-gray-700 px-2 py-0.5 rounded-md"&gt;
+      No WordPress
+    &lt;/span&gt;
+  )}
+&lt;/div&gt;</pre>
+  </div>
+</div>
+
+<!-- PHASE 8: TEST -->
+<div class="phase" id="test">
+  <div class="phase-label">Phase 8 — Test</div>
+  <h2>End-to-End Testing Checklist</h2>
+  <p>Run through every scenario before deploying. Test both the draft and publish flows.</p>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">9</div>
+    <h3>Full Test Checklist</h3>
+    <span class="step-status required">Do All of These</span>
+  </div>
+  <div class="step-body">
+    <div class="cmd"><span>Restart dev server to pick up new dependencies</span>npm run dev</div>
+
+    <h4>1. Set up WordPress credentials on a client</h4>
+    <ul class="checklist">
+      <li>Go to <code>/clients</code> → Edit "Test Client Co."</li>
+      <li>Add <code>https://clientsite.com</code> as WordPress URL</li>
+      <li>Add WordPress username and application password</li>
+      <li>Save — the client card should show "✓ WordPress connected"</li>
+    </ul>
+
+    <h4>2. Generate a blog post with that client selected</h4>
+    <ul class="checklist">
+      <li>Go to <code>/dashboard</code></li>
+      <li>Select the client from the dropdown</li>
+      <li>Enter a prompt and generate</li>
+      <li>Blog output appears — you should see the WordPress publish section below the meta description</li>
+      <li>Two buttons visible: "Save as WP Draft" and "Publish Live Now"</li>
+    </ul>
+
+    <h4>3. Test "Save as WP Draft"</h4>
+    <ul class="checklist">
+      <li>Click "Save as WP Draft"</li>
+      <li>Button shows spinner while publishing (should take 2–5 seconds)</li>
+      <li>Green success banner appears with "Saved as draft on WordPress"</li>
+      <li>Two links appear: "View on site" and "Edit in WordPress"</li>
+      <li>Click "Edit in WordPress" — log into WP admin — the post is there as a draft</li>
+      <li>Check title, content formatting (headings, bold, lists) — all should render as HTML in WP</li>
+    </ul>
+
+    <h4>4. Test "Publish Live Now"</h4>
+    <ul class="checklist">
+      <li>Generate a second post</li>
+      <li>Click "Publish Live Now"</li>
+      <li>Success banner shows "Published live!"</li>
+      <li>Click "View on site" — the post is publicly visible on the client's WordPress site</li>
+    </ul>
+
+    <h4>5. Test error states</h4>
+    <ul class="checklist">
+      <li>Try generating with no client selected → WordPress section shows "Select a client to enable publishing" message — no buttons visible</li>
+      <li>Add a client with a wrong application password → click publish → red error message appears with the WordPress error text</li>
+      <li>Check Supabase Table Editor → blog_posts → confirm <code>wp_post_id</code>, <code>wp_post_url</code>, and <code>wp_status</code> are saved after a successful publish</li>
+    </ul>
+
+    <div class="callout tip">
+      <span>✓</span>
+      <p><strong>What the WordPress post looks like:</strong> Open the draft in WP admin and switch to the "Text" (HTML) editor tab. You should see clean HTML — <code>&lt;h2&gt;</code> tags for headings, <code>&lt;strong&gt;</code> for bold, <code>&lt;ul&gt;&lt;li&gt;</code> for lists. No markdown symbols. If you see raw markdown like <code>**bold**</code>, the <code>marked</code> conversion isn't running — check the API route for import errors.</p>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">10</div>
+    <h3>Deploy the Update to Vercel</h3>
+    <span class="step-status code">~5 min</span>
+  </div>
+  <div class="step-body">
+    <div class="cmd"><span>Terminal — push to GitHub, Vercel auto-deploys</span>git add .
+git commit -m "feat: add WordPress publishing integration"
+git push</div>
+
+    <p>Vercel detects the push and rebuilds automatically. Watch the deploy in the Vercel dashboard — it should complete in 2–3 minutes. No new environment variables are needed for this feature.</p>
+
+    <div class="callout info">
+      <span>ℹ️</span>
+      <p><strong>No new env vars needed.</strong> WordPress credentials are stored per-client in Supabase (not in environment variables), so no Vercel configuration changes are required. Every new client you add in the app automatically works.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TROUBLESHOOTING -->
+<div class="phase">
+  <div class="phase-label">Reference</div>
+  <h2>Troubleshooting Common Issues</h2>
+</div>
+
+<div class="step">
+  <div class="step-head">
+    <div class="step-num">★</div>
+    <h3>Common WordPress Errors and Fixes</h3>
+    <span class="step-status">Quick Reference</span>
+  </div>
+  <div class="step-body">
+    <h4>401 Unauthorized</h4>
+    <pre>WordPress error: Sorry, you are not allowed to do this.</pre>
+    <p>The username or application password is wrong. Double-check: the username is the WP <em>login username</em>, not the display name or email. The application password should have no spaces. Re-generate a new application password in WP Admin → Users → Profile and try again.</p>
+
+    <h4>403 Forbidden — REST API disabled</h4>
+    <pre>WordPress error: rest_forbidden</pre>
+    <p>A security plugin is blocking the REST API. Common culprits: Wordfence, Solid Security (iThemes), All In One WP Security. Look for a setting called "Disable REST API" and set it to "Allow authenticated users" or disable it for the posts endpoint.</p>
+
+    <h4>Cannot POST — fetch failed / ECONNREFUSED</h4>
+    <p>The WordPress URL is wrong or the site is unreachable. Verify the URL is correct and the site is live. Check there's no redirect from http → https causing issues (always use the final <code>https://</code> URL).</p>
+
+    <h4>Posts publishing with broken formatting</h4>
+    <p>You see raw markdown in WordPress (e.g. <code>## Heading</code> instead of an H2). This means <code>marked</code> isn't running. Check: is <code>npm install marked</code> complete? Is the import at the top of the route file correct? Check the terminal for any TypeScript errors when the route runs.</p>
+
+    <h4>Post published but Supabase not updating</h4>
+    <p>The post IS on WordPress, but <code>wp_post_id</code> isn't saved in Supabase. This is a non-critical error — the API still returns success. Check Supabase logs (Dashboard → Logs) for the RLS policy blocking the update. The fix: make sure the Supabase client in <code>server.ts</code> uses the anon key (not service role) since the user's session handles auth.</p>
+
+    <h4>Image in blog content not appearing on WordPress</h4>
+    <p>Expected — v1 generates text-only posts. Claude doesn't produce images yet (that's a future feature). WordPress will show the post without a featured image. The client's WP theme will handle layout without it.</p>
+  </div>
+</div>
+
+<!-- WHATS NEXT -->
+<div class="phase">
+  <div class="phase-label">After This</div>
+  <h2>Next Features to Add</h2>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+  <div class="mini-card">
+    <div class="label">High Value Next</div>
+    <div class="value">WordPress Categories & Tags</div>
+    <p>Let staff select the WP category and add tags before publishing. One extra field in the publish payload: <code>"categories": [5], "tags": [12, 34]</code></p>
+  </div>
+  <div class="mini-card">
+    <div class="label">Quality of Life</div>
+    <div class="value">Featured Image via DALL-E</div>
+    <p>Generate a featured image with DALL-E 3 → upload to WordPress Media Library → attach to the post. Turns the post into a fully production-ready article.</p>
+  </div>
+  <div class="mini-card">
+    <div class="label">Efficiency</div>
+    <div class="value">Blog History Page</div>
+    <p>Show all past generated posts in a searchable table. Each row shows WP publish status and a direct edit link. Makes managing dozens of client posts easy.</p>
+  </div>
+  <div class="mini-card">
+    <div class="label">Content Sources</div>
+    <div class="value">YouTube URL → Blog → WP</div>
+    <p>The next source after text prompt. Paste YouTube URL → transcribe → generate → publish to WordPress. One full pipeline from video to live blog post.</p>
+  </div>
+</div>
+
+</main>
+<footer>
+  <p>Prepared for <strong>Boom Media</strong> · WordPress Publishing Module · April 2026</p>
+  <p style="margin-top:5px;font-size:.7rem;">Requires base tool from build-guide-step1.html · WordPress 5.6+ · marked package</p>
+</footer>
+</body>
+</html>

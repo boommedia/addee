@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloggy — Full Site SEO Audit · bloggy.online</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d0d14; color: #d0d0e0; font-size: 14px; line-height: 1.6; }
+  a { color: #7c72ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Header */
+  .audit-header { border-bottom: 1px solid #2a2a40; padding-bottom: 32px; margin-bottom: 40px; }
+  .audit-header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .audit-header .meta { color: #6666a0; font-size: 13px; }
+  .audit-header .meta strong { color: #9090c0; }
+
+  /* Score bar */
+  .score-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
+  .score-card { flex: 1; min-width: 140px; background: #14141f; border: 1px solid #2a2a40; border-radius: 12px; padding: 16px 20px; }
+  .score-card .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: #6666a0; margin-bottom: 8px; }
+  .score-card .val { font-size: 28px; font-weight: 700; }
+  .score-card.crit .val { color: #f87171; }
+  .score-card.high .val { color: #fb923c; }
+  .score-card.warn .val { color: #facc15; }
+  .score-card.pass .val { color: #4ade80; }
+  .score-card.info .val { color: #818cf8; }
+
+  /* Section */
+  section { margin-bottom: 48px; }
+  section h2 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  section h2 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  section h2 .dot.crit { background: #f87171; }
+  section h2 .dot.high { background: #fb923c; }
+  section h2 .dot.warn { background: #facc15; }
+  section h2 .dot.pass { background: #4ade80; }
+
+  /* Issue card */
+  .issue { background: #14141f; border: 1px solid #2a2a40; border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+  .issue.crit { border-left: 3px solid #f87171; }
+  .issue.high { border-left: 3px solid #fb923c; }
+  .issue.warn { border-left: 3px solid #facc15; }
+  .issue.pass { border-left: 3px solid #4ade80; }
+  .issue-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .issue-title { font-weight: 600; color: #e0e0f0; font-size: 14px; }
+  .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+  .badge.crit { background: #f8717122; color: #f87171; border: 1px solid #f8717140; }
+  .badge.high { background: #fb923c22; color: #fb923c; border: 1px solid #fb923c40; }
+  .badge.warn { background: #facc1522; color: #facc15; border: 1px solid #facc1540; }
+  .badge.pass { background: #4ade8022; color: #4ade80; border: 1px solid #4ade8040; }
+  .badge.info { background: #818cf822; color: #818cf8; border: 1px solid #818cf840; }
+  .issue-body { color: #8888a8; font-size: 13px; }
+  .issue-body p { margin-bottom: 6px; }
+  .issue-body p:last-child { margin-bottom: 0; }
+  .issue-fix { margin-top: 10px; padding: 10px 14px; background: #0a0a12; border: 1px solid #2a2a3a; border-radius: 8px; }
+  .issue-fix .fix-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4ade80; margin-bottom: 4px; }
+  .issue-fix p { color: #9090c0; font-size: 12px; }
+  code { background: #1c1c2e; padding: 1px 5px; border-radius: 4px; font-family: 'Menlo', 'Consolas', monospace; font-size: 12px; color: #a5b4fc; }
+  pre { background: #0a0a12; border: 1px solid #2a2a3a; border-radius: 8px; padding: 14px; overflow-x: auto; margin-top: 8px; }
+  pre code { background: none; padding: 0; color: #a5b4fc; font-size: 12px; }
+
+  /* Page table */
+  .page-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #2a2a40; }
+  table { width: 100%; border-collapse: collapse; }
+  thead th { background: #14141f; color: #6666a0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2a40; white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid #1e1e2e; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody td { padding: 10px 14px; font-size: 12px; vertical-align: top; }
+  tbody tr:hover { background: #14141f; }
+  .page-path { font-family: 'Menlo', 'Consolas', monospace; color: #a5b4fc; font-size: 11px; }
+  .tag { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; border-radius: 4px; }
+  .tag.public { background: #818cf822; color: #818cf8; border: 1px solid #818cf840; }
+  .tag.app { background: #6666a022; color: #6666a0; border: 1px solid #6666a040; }
+  .chk { font-size: 14px; }
+  .chk.ok { color: #4ade80; }
+  .chk.no { color: #f87171; }
+  .chk.warn { color: #facc15; }
+  .title-cell { max-width: 260px; }
+  .title-cell .rendered { color: #d0d0e0; font-size: 12px; }
+  .title-cell .raw { color: #6666a0; font-size: 10px; margin-top: 2px; }
+  .title-cell .len { font-size: 10px; }
+  .title-cell .len.ok { color: #4ade80; }
+  .title-cell .len.warn { color: #facc15; }
+  .title-cell .len.bad { color: #f87171; }
+  .desc-cell { max-width: 300px; color: #8888a8; font-size: 11px; }
+  .desc-cell .len { font-size: 10px; margin-top: 2px; }
+
+  /* Schema grid */
+  .schema-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .schema-item { background: #14141f; border: 1px solid #2a2a40; border-radius: 10px; padding: 14px 16px; }
+  .schema-item .schema-type { font-size: 12px; font-weight: 700; color: #a5b4fc; margin-bottom: 4px; }
+  .schema-item .schema-where { font-size: 11px; color: #6666a0; }
+  .schema-item.missing { border-style: dashed; opacity: .6; }
+  .schema-item.missing .schema-type { color: #f87171; }
+
+  /* Action plan */
+  .action-list { list-style: none; }
+  .action-list li { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #1e1e2e; }
+  .action-list li:last-child { border-bottom: none; }
+  .action-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .action-num.p1 { background: #f8717122; color: #f87171; }
+  .action-num.p2 { background: #fb923c22; color: #fb923c; }
+  .action-num.p3 { background: #facc1522; color: #facc15; }
+  .action-body strong { display: block; color: #e0e0f0; font-size: 13px; margin-bottom: 3px; }
+  .action-body span { color: #6666a0; font-size: 12px; }
+
+  /* Global tags */
+  .tag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .tag-item { background: #14141f; border: 1px solid #2a2a40; border-radius: 10px; padding: 14px 16px; }
+  .tag-item .tag-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6666a0; margin-bottom: 6px; }
+  .tag-item .tag-val { font-size: 12px; color: #d0d0e0; }
+  .tag-item .tag-val.ok::before { content: '✓ '; color: #4ade80; }
+  .tag-item .tag-val.no::before { content: '✗ '; color: #f87171; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid #1e1e2e; margin: 40px 0; }
+
+  /* Top banner */
+  .top-bar { background: #0a0a10; border-bottom: 1px solid #2a2a40; padding: 10px 24px; font-size: 12px; color: #6666a0; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .top-bar strong { color: #9090c0; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <strong>Bloggy SEO Audit</strong>
+  <span>Site: <a href="https://bloggy.online" target="_blank">bloggy.online</a></span>
+  <span>Audited: April 22, 2026</span>
+  <span>Pages audited: 20</span>
+  <span>Stack: Next.js App Router · Vercel</span>
+</div>
+
+<div class="wrap">
+
+  <!-- ── HEADER ── -->
+  <div class="audit-header">
+    <h1>Full Site SEO Audit — bloggy.online</h1>
+    <p class="meta">
+      <strong>Public / indexable pages:</strong> 10 &nbsp;·&nbsp;
+      <strong>App / noindex pages:</strong> 10 &nbsp;·&nbsp;
+      <strong>Blog posts:</strong> 7 &nbsp;·&nbsp;
+      <strong>Schema types found:</strong> 5
+    </p>
+
+    <div class="score-row">
+      <div class="score-card crit">
+        <div class="label">Critical</div>
+        <div class="val">4</div>
+      </div>
+      <div class="score-card high">
+        <div class="label">High Priority</div>
+        <div class="val">7</div>
+      </div>
+      <div class="score-card warn">
+        <div class="label">Warnings</div>
+        <div class="val">6</div>
+      </div>
+      <div class="score-card pass">
+        <div class="label">Passing</div>
+        <div class="val">14</div>
+      </div>
+      <div class="score-card info">
+        <div class="label">SEO Score</div>
+        <div class="val">61<span style="font-size:16px;color:#6666a0">/100</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — CRITICAL ISSUES
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot crit"></span> Critical Issues <span style="font-size:12px;font-weight:400;color:#6666a0;">(fix before next deploy)</span></h2>
+
+    <!-- C1 -->
+    <div class="issue crit">
+      <div class="issue-head">
+        <div class="issue-title">C1 — Title template duplication: every page renders "Bloggy | Bloggy" or "— Bloggy | Bloggy"</div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="issue-body">
+        <p>The root <code>layout.tsx</code> sets <code>title.template = '%s | Bloggy'</code>. Every child page that exports a plain string title (e.g., <code>title: 'Sign In — Bloggy'</code>) has <strong>| Bloggy</strong> appended automatically, producing duplicates in the <code>&lt;title&gt;</code> tag.</p>
+        <p>Browser tab example: <strong>"Sign In — Bloggy | Bloggy"</strong> &nbsp;·&nbsp; <strong>"All Tools — Bloggy | Bloggy"</strong> &nbsp;·&nbsp; <strong>"Blog — AI Content Strategy &amp; Agency Growth | Bloggy | Bloggy"</strong></p>
+        <p>Google sees these exact strings. Duplicate branding in the title tag wastes characters, looks unprofessional in SERPs, and can trigger deduplication where Google rewrites your title.</p>
+        <p><strong>Affected public pages:</strong> /, /features, /blog, /support, /signup, /terms, /privacy &nbsp;·&nbsp; <strong>App pages (noindex, lower impact):</strong> /dashboard, /clients, /keywords, /autoblog, /calendar, /analytics, /settings, /billing, /tools, /help, /login</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix — two clean options</div>
+        <p><strong>Option A (recommended):</strong> Strip "— Bloggy" / "| Bloggy" from every page-level title string. The template appends it automatically. Result: <code>'Sign In'</code> → <em>"Sign In | Bloggy"</em> ✓</p>
+        <p><strong>Option B:</strong> Wrap titles in <code>&#123; absolute: '...' &#125;</code> to bypass the template where you need full control: <code>title: &#123; absolute: 'Bloggy — AI Blog Automation for Agencies' &#125;</code></p>
+        <p><strong>For the homepage only:</strong> Use <code>absolute</code> so "Bloggy" leads the title rather than becoming "Bloggy — ... | Bloggy".</p>
+      </div>
+    </div>
+
+    <!-- C2 -->
+    <div class="issue crit">
+      <div class="issue-head">
+        <div class="issue-title">C2 — /posts page: no metadata, no noindex — protected app page is indexable</div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="issue-body">
+        <p>The <code>src/app/posts/page.tsx</code> file exports no <code>metadata</code> object at all. Because it has no <code>robots: &#123; index: false &#125;</code>, Google can crawl it, but it will inherit only the root layout's generic title and description — meaning two pages share the same title tag in SERPs. The page requires authentication; Google will see a redirect or empty state.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Add a <code>metadata</code> export to <code>posts/page.tsx</code>: <code>export const metadata = &#123; title: 'Posts', description: '...', robots: &#123; index: false, follow: false &#125; &#125;</code></p>
+      </div>
+    </div>
+
+    <!-- C3 -->
+    <div class="issue crit">
+      <div class="issue-head">
+        <div class="issue-title">C3 — No sitemap.xml — Google cannot efficiently discover all pages</div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="issue-body">
+        <p>There is no <code>src/app/sitemap.ts</code> and no <code>public/sitemap.xml</code>. Without a sitemap, Google relies entirely on links to find pages. Your 7 blog posts, /support, /features, and /signup are at risk of slow or incomplete indexing. A sitemap is especially important for a new site (bloggy.online is recently launched).</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix — create src/app/sitemap.ts</div>
+        <p>Next.js generates <code>/sitemap.xml</code> automatically from this file. Include: /, /features, /blog, /blog/[each slug], /support, /signup, /terms, /privacy. Exclude all app pages. Submit URL to Google Search Console after deploy.</p>
+      </div>
+    </div>
+
+    <!-- C4 -->
+    <div class="issue crit">
+      <div class="issue-head">
+        <div class="issue-title">C4 — No robots.txt — no crawl guidance for Google and Bing</div>
+        <span class="badge crit">Critical</span>
+      </div>
+      <div class="issue-body">
+        <p>Neither <code>public/robots.txt</code> nor <code>src/app/robots.ts</code> exists. Without it: (1) no sitemap pointer for crawlers, (2) no explicit disallow for app routes like <code>/dashboard</code>, <code>/api</code>, <code>/posts</code>, (3) no block on crawl budget waste from protected routes that redirect to login.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix — create src/app/robots.ts</div>
+        <p>Allow all public paths, disallow <code>/dashboard</code>, <code>/clients</code>, <code>/posts</code>, <code>/keywords</code>, <code>/autoblog</code>, <code>/calendar</code>, <code>/analytics</code>, <code>/settings</code>, <code>/billing</code>, <code>/api</code>. Point <code>Sitemap</code> to <code>https://bloggy.online/sitemap.xml</code>.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — HIGH PRIORITY
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot high"></span> High Priority Issues</h2>
+
+    <!-- H1 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H1 — /blog index: no structured data (missing ItemList / BlogPosting schema)</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p>The blog listing page has good metadata but zero JSON-LD schema. Adding <code>ItemList</code> or <code>Blog</code> schema with each post listed as a <code>BlogPosting</code> item enables Google to show your posts as rich results in search — especially useful since the blog targets competitive agency SEO keywords.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>In <code>src/app/blog/page.tsx</code>, add a <code>&lt;script type="application/ld+json"&gt;</code> block with <code>@type: "Blog"</code> containing a <code>blogPost</code> array of <code>BlogPosting</code> items (title, url, datePublished, description) using the <code>BLOG_POSTS</code> constant already imported on the page.</p>
+      </div>
+    </div>
+
+    <!-- H2 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H2 — /support: no FAQPage JSON-LD — SupportFaq is a client component (no static schema)</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p><code>SupportFaq.tsx</code> is a <code>'use client'</code> component — its content is rendered by JavaScript in the browser. Google's crawler does not reliably extract FAQ structured data from client-rendered components. The FAQPage JSON-LD must be in the server-rendered <code>page.tsx</code> for Google to use it in rich results.</p>
+        <p>This page has 20 FAQ questions across 5 categories — that is <strong>exactly</strong> the content Google wants for featured FAQ snippets. Right now none of it is marked up.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Add a <code>&lt;script type="application/ld+json"&gt;</code> block directly in <code>src/app/support/page.tsx</code> (server component) with <code>@type: "FAQPage"</code> and the top 8–10 FAQ Q&amp;As hardcoded. The homepage already does this correctly with its FAQS constant — replicate the same pattern here.</p>
+      </div>
+    </div>
+
+    <!-- H3 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H3 — /features: no page-level structured data</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p>The features page ranks for "AI blog generator features" and "WordPress publish automation" — competitive product terms. No schema means no chance of a rich result. A <code>SoftwareApplication</code> or <code>Product</code> schema with your features listed as highlights would strengthen this page's SERP appearance.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Add <code>ItemList</code> schema in <code>src/app/features/page.tsx</code> listing key features as <code>ListItem</code> entries, or extend the global <code>SoftwareApplication</code> schema to include a <code>featureList</code> property.</p>
+      </div>
+    </div>
+
+    <!-- H4 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H4 — Blog post pages: no keywords meta tag on any post</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p>The <code>generateMetadata</code> function in <code>blog/[slug]/page.tsx</code> returns title, description, openGraph, twitter, and alternates — but no <code>keywords</code> array. While Google officially ignores the keywords meta tag, Bing still uses it, and it signals intent. More importantly, each post targets a specific focus keyword that should appear in the meta.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Add a <code>keywords</code> field to the <code>BlogPost</code> type in <code>posts.ts</code>, populate it per post (3–5 keywords), and include <code>keywords: post.keywords</code> in <code>generateMetadata</code>.</p>
+      </div>
+    </div>
+
+    <!-- H5 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H5 — /terms and /privacy: no OpenGraph tags — blank social previews when shared</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p>Both legal pages are indexable (<code>robots: index</code>) but have no <code>openGraph</code> data. If someone shares a link to your privacy policy on social media, Twitter/LinkedIn will show a blank card. These pages are also linked from every email footer and confirmation screen — they get shared.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Add minimal <code>openGraph</code> to both pages: <code>&#123; title, description, url, type: 'website', images: [og-image] &#125;</code>. Same pattern as /blog or /features.</p>
+      </div>
+    </div>
+
+    <!-- H6 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H6 — /signup is fully indexable — no noindex, no canonical strategy defined</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p>The signup page has metadata, OG tags, and a canonical URL — suggesting it is intentionally indexable, which is valid (conversion pages can rank). But it has no explicit <code>robots</code> directive, so it defaults to whatever Google decides. If your intent is to rank it for "Bloggy free trial" type searches, keep it indexable but confirm the decision. If not, add noindex.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Decision needed</div>
+        <p>If indexable (recommended for trial signups): add <code>robots: &#123; index: true, follow: true &#125;</code> explicitly. If not: add <code>robots: &#123; index: false, follow: false &#125;</code> to <code>signup/layout.tsx</code>.</p>
+      </div>
+    </div>
+
+    <!-- H7 -->
+    <div class="issue high">
+      <div class="issue-head">
+        <div class="issue-title">H7 — No Twitter card on blog post pages (falls back to root layout summary_large_image)</div>
+        <span class="badge high">High</span>
+      </div>
+      <div class="issue-body">
+        <p>The blog post <code>generateMetadata</code> returns a <code>twitter</code> object with card, title, description, and images — but it does NOT include a <code>site</code> handle (<code>@GetBloggy</code>). Without the handle, Twitter attribution is broken and the card may appear without brand linkage on X.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix (1 line)</div>
+        <p>Add <code>site: '@GetBloggy'</code> to the <code>twitter</code> object returned by <code>generateMetadata</code> in <code>blog/[slug]/page.tsx</code>.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — WARNINGS
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot warn"></span> Warnings <span style="font-size:12px;font-weight:400;color:#6666a0;">(fix in next sprint)</span></h2>
+
+    <div class="issue warn">
+      <div class="issue-head">
+        <div class="issue-title">W1 — Meta description length violations: /features (184 chars) and /support (177 chars) exceed 160-char limit</div>
+        <span class="badge warn">Warning</span>
+      </div>
+      <div class="issue-body">
+        <p>Google truncates descriptions around 155–160 characters in SERPs. Text after that is cut with "…" and the call-to-action at the end of both descriptions is invisible in search results.</p>
+        <p><strong>/features:</strong> "Every Bloggy feature: AI blog generation from topics, URLs &amp; YouTube, one-click WordPress publish, AutoBlog scheduler, keyword research, social repurposing, rankings tracker, and more." (184 chars)</p>
+        <p><strong>/support:</strong> "Step-by-step guides, tutorials, and FAQs for Bloggy. Learn how to set up WordPress publishing, configure AutoBlog, track keyword rankings, and get the most from every feature." (177 chars)</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Trim to ≤155 chars. Suggested for /features: <em>"AI blog generation from topics, URLs &amp; YouTube · one-click WordPress publish · AutoBlog scheduler · keyword research · social repurposing · rankings tracker."</em> (154 chars)</p>
+      </div>
+    </div>
+
+    <div class="issue warn">
+      <div class="issue-head">
+        <div class="issue-title">W2 — Single generic OG image used on all pages (og-image.png)</div>
+        <span class="badge warn">Warning</span>
+      </div>
+      <div class="issue-body">
+        <p>Every page — homepage, features, blog index, blog posts, support, signup — uses the same <code>/og-image.png</code> (1200×630). When multiple pages are shared from the same domain, social platforms may show the same image repeatedly, reducing click differentiation. Blog posts especially benefit from unique preview images since each post already stores its own image URL in <code>post.image</code>.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix (blog posts already have post.image)</div>
+        <p>Blog posts already have <code>post.image</code> from the Unsplash URLs in <code>posts.ts</code>. The <code>generateMetadata</code> in <code>blog/[slug]/page.tsx</code> already uses <code>post.image</code> for OG — that part is correct. For other pages, consider creating 3–4 page-specific OG images for /features, /support, /signup for better social CTR.</p>
+      </div>
+    </div>
+
+    <div class="issue warn">
+      <div class="issue-head">
+        <div class="issue-title">W3 — Google Search Console not confirmed — site may not be verified</div>
+        <span class="badge warn">Warning</span>
+      </div>
+      <div class="issue-body">
+        <p>GA4 is wired up (G-WT6X97C78G) and Google Ads conversion tracking is present (AW-18109945240), but there is no Search Console verification meta tag or DNS TXT record visible in the codebase. Without GSC: no index coverage data, no manual indexing requests, no Core Web Vitals from field data, and no keyword performance in Search Console.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Action needed (not a code change)</div>
+        <p>Verify at search.google.com/search-console using the DNS TXT method (preferred) or by adding the Google Site Verification meta tag to <code>layout.tsx</code> metadata. Submit sitemap.xml once created.</p>
+      </div>
+    </div>
+
+    <div class="issue warn">
+      <div class="issue-head">
+        <div class="issue-title">W4 — No canonical URL set on /terms and /privacy OpenGraph</div>
+        <span class="badge warn">Warning</span>
+      </div>
+      <div class="issue-body">
+        <p>Both pages have <code>alternates: &#123; canonical: '...' &#125;</code> set correctly. But both are missing an <code>openGraph.url</code> which serves as the OG canonical. If shared, the og:url may default to the sharing URL (with query params or UTM) rather than the clean canonical.</p>
+      </div>
+      <div class="issue-fix">
+        <div class="fix-label">Fix</div>
+        <p>Add <code>openGraph: &#123; url: 'https://bloggy.online/terms' &#125;</code> to both pages when you add OG tags (fixes H5 and W4 together).</p>
+      </div>
+    </div>
+
+    <div class="issue warn">
+      <div class="issue-head">
+        <div class="issue-title">W5 — Blog post pages lack a Twitter site handle</div>
+        <span class="badge warn">Warning</span>
+      </div>
+      <div class="issue-body">
+        <p>Covered in H7 above. <code>site: '@GetBloggy'</code> missing from blog post Twitter card. One-line fix.</p>
+      </div>
+    </div>
+
+    <div class="issue warn">
+      <div class="issue-head">
+        <div class="issue-title">W6 — No page-level H1 audit possible — confirm H1 exists and matches title intent on all public pages</div>
+        <span class="badge warn">Warning</span>
+      </div>
+      <div class="issue-body">
+        <p>Static analysis only. Recommend manually verifying that each public page has exactly one <code>&lt;h1&gt;</code> tag, that it contains the primary focus keyword, and that it matches the semantic intent of the title tag. Common issues: missing H1 on marketing pages, H1 hidden in a client component, H1 not matching the meta title.</p>
+        <p><strong>Pages to manually check:</strong> / (homepage), /features, /blog, /blog/[slug], /support</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — PAGE-BY-PAGE TABLE
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot pass"></span> Page-by-Page SEO Inventory</h2>
+    <div class="page-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Type</th>
+            <th>Title (rendered)</th>
+            <th>Desc Length</th>
+            <th>KW</th>
+            <th>Canonical</th>
+            <th>OG</th>
+            <th>Twitter</th>
+            <th>Schema</th>
+            <th>Robots</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="page-path">/</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Bloggy — AI Blog Automation for Agencies</div>
+              <div class="raw">⚠ Use <code>absolute</code> to avoid "…| Bloggy" append</div>
+              <div class="len warn">41 chars (raw) · ~50 rendered</div>
+            </td>
+            <td class="desc-cell">
+              171 chars
+              <div class="len warn">⚠ ~11 chars over limit</div>
+            </td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓ 4 types</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/features</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Features — Bloggy AI Blog Automation | Bloggy</div>
+              <div class="raw">⚠ "Bloggy" appears twice</div>
+              <div class="len warn">45 chars rendered</div>
+            </td>
+            <td class="desc-cell">
+              184 chars
+              <div class="len bad">✗ Over 160 limit</div>
+            </td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗ None</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/blog</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Blog — AI Content Strategy &amp; Agency Growth | Bloggy | Bloggy</div>
+              <div class="raw">✗ "Bloggy" appears 3× — already ends in "| Bloggy"</div>
+              <div class="len bad">60 chars rendered</div>
+            </td>
+            <td class="desc-cell">
+              162 chars
+              <div class="len warn">⚠ Slightly over</div>
+            </td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗ None</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/blog/[slug]<br><span style="font-size:10px;color:#6666a0">×7 posts</span></td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">AI Blog Automation for Agencies: Scale Client Content | Bloggy</div>
+              <div class="raw">✓ No brand duplication — metaTitle doesn't include Bloggy</div>
+              <div class="len ok">62 chars ✓</div>
+            </td>
+            <td class="desc-cell">
+              ~145 chars avg
+              <div class="len ok">✓ Within limit</div>
+            </td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk warn">⚠ No site handle</td>
+            <td class="chk ok">✓ Article</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/support</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Help Center &amp; Tutorials — Bloggy Support | Bloggy</div>
+              <div class="raw">⚠ "Bloggy" appears twice</div>
+              <div class="len warn">50 chars rendered</div>
+            </td>
+            <td class="desc-cell">
+              177 chars
+              <div class="len bad">✗ Over 160 limit</div>
+            </td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗ No FAQPage</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/signup</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Start Free — 7-Day Trial | Bloggy | Bloggy</div>
+              <div class="raw">✗ Already ends in "| Bloggy" + template appends again</div>
+              <div class="len bad">42 chars rendered (dupe)</div>
+            </td>
+            <td class="desc-cell">
+              160 chars
+              <div class="len ok">✓ Right at limit</div>
+            </td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk ok">✓</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗ None</td>
+            <td class="chk warn">⚠ Undefined</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/terms</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Terms of Service — Bloggy | Bloggy</div>
+              <div class="raw">✗ Duplicate brand</div>
+              <div class="len warn">34 chars rendered</div>
+            </td>
+            <td class="desc-cell">
+              163 chars
+              <div class="len ok">✓ OK</div>
+            </td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗ None</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr>
+            <td class="page-path">/privacy</td>
+            <td><span class="tag public">Public</span></td>
+            <td class="title-cell">
+              <div class="rendered">Privacy Policy — Bloggy | Bloggy</div>
+              <div class="raw">✗ Duplicate brand</div>
+              <div class="len warn">32 chars rendered</div>
+            </td>
+            <td class="desc-cell">
+              131 chars
+              <div class="len ok">✓ Good</div>
+            </td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗ None</td>
+            <td class="chk ok">Index</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/login</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell">
+              <div class="rendered">Sign In — Bloggy | Bloggy</div>
+              <div class="raw">✗ Duplicate (noindex — low impact)</div>
+            </td>
+            <td class="desc-cell">99 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk warn">⚠ Root only</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/dashboard</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell">
+              <div class="rendered">Generate — Bloggy | Bloggy</div>
+              <div class="raw">✗ Duplicate (noindex — low impact)</div>
+            </td>
+            <td class="desc-cell">111 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/clients</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Clients — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">114 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/posts</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell">
+              <div class="rendered" style="color:#f87171">No metadata! Uses root default title</div>
+            </td>
+            <td class="desc-cell" style="color:#f87171">✗ None</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no" style="color:#f87171">✗ INDEXABLE</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/keywords</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Keyword Research — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">116 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/autoblog</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">AutoBlog Scheduler — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">103 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/calendar</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Content Calendar — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">80 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/analytics</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Analytics &amp; Rankings — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">97 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/settings</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Settings — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">99 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/billing</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Billing &amp; Plans — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">120 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/tools</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">All Tools — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">161 chars ⚠</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+          <tr style="opacity:.6">
+            <td class="page-path">/help</td>
+            <td><span class="tag app">App</span></td>
+            <td class="title-cell"><div class="rendered">Help &amp; Tutorials — Bloggy | Bloggy</div></td>
+            <td class="desc-cell">138 chars ✓</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk no">✗</td>
+            <td class="chk ok">Noindex ✓</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;font-size:11px;color:#6666a0;">App pages (greyed rows) are all noindex — title duplication noted for hygiene but not a Google ranking factor. <strong>Focus fixes on the top 8 white rows (public pages).</strong></p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 — SCHEMA INVENTORY
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot pass"></span> Schema / Structured Data Inventory</h2>
+
+    <div class="schema-grid">
+      <div class="schema-item">
+        <div class="schema-type">SoftwareApplication</div>
+        <div class="schema-where">Location: root layout.tsx (all pages)<br>Includes: offers (AggregateOffer $49–$299), aggregateRating (4.9 ★, 47 reviews)</div>
+      </div>
+      <div class="schema-item">
+        <div class="schema-type">Organization</div>
+        <div class="schema-where">Location: root layout.tsx (all pages)<br>Includes: name, url, logo, sameAs (YouTube, Discord), contactPoint (email)</div>
+      </div>
+      <div class="schema-item">
+        <div class="schema-type">WebSite</div>
+        <div class="schema-where">Location: root layout.tsx (all pages)<br>Includes: SearchAction (potentialAction pointing to /support#guides)</div>
+      </div>
+      <div class="schema-item">
+        <div class="schema-type">FAQPage</div>
+        <div class="schema-where">Location: / (homepage)<br>Contains: 9 Q&amp;As from FAQS constant. ✓ Server-rendered</div>
+      </div>
+      <div class="schema-item">
+        <div class="schema-type">Article</div>
+        <div class="schema-where">Location: /blog/[slug] (all 7 posts)<br>Includes: headline, description, image, datePublished, author, publisher</div>
+      </div>
+
+      <!-- Missing -->
+      <div class="schema-item missing">
+        <div class="schema-type">✗ FAQPage (support)</div>
+        <div class="schema-where">Missing on /support — 20 FAQs exist in client component, not in JSON-LD</div>
+      </div>
+      <div class="schema-item missing">
+        <div class="schema-type">✗ Blog / ItemList</div>
+        <div class="schema-where">Missing on /blog — no structured data for blog index listing</div>
+      </div>
+      <div class="schema-item missing">
+        <div class="schema-type">✗ ItemList (features)</div>
+        <div class="schema-where">Missing on /features — feature list not marked up</div>
+      </div>
+      <div class="schema-item missing">
+        <div class="schema-type">✗ BreadcrumbList</div>
+        <div class="schema-where">Missing on blog posts — /blog → /blog/slug navigation not marked up</div>
+      </div>
+      <div class="schema-item missing">
+        <div class="schema-type">✗ Sitemap / robots.txt</div>
+        <div class="schema-where">No sitemap.xml, no robots.txt — critical for crawl</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:16px 20px;background:#14141f;border:1px solid #2a2a40;border-radius:10px;">
+      <div style="font-size:12px;font-weight:600;color:#9090c0;margin-bottom:8px;">Schema Rating Note</div>
+      <p style="font-size:12px;color:#8888a8;">The 3 global schemas (SoftwareApplication, Organization, WebSite) injected in <code>layout.tsx</code> are <strong>on every single page</strong> — including noindex app pages. While harmless, best practice is to put global schema only on pages that benefit (homepage, landing pages). Google may also see multiple SoftwareApplication schema from the same URL across different pages as redundant. Consider moving these to the homepage <code>page.tsx</code> instead of the root layout.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 6 — GLOBAL TAGS
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot pass"></span> Global Tags (root layout.tsx)</h2>
+    <div class="tag-grid">
+      <div class="tag-item">
+        <div class="tag-name">Title Template</div>
+        <div class="tag-val ok">"%s | Bloggy" — set correctly</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Default Title</div>
+        <div class="tag-val ok">"Bloggy — AI Blog Automation for Agencies"</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Root Description</div>
+        <div class="tag-val ok">AI blog automation software for digital marketing agencies… (146 chars)</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">metadataBase</div>
+        <div class="tag-val ok">https://bloggy.online</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Canonical (root)</div>
+        <div class="tag-val ok">https://bloggy.online</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">OG Type</div>
+        <div class="tag-val ok">website · siteName: "Bloggy" · locale: en_US</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">OG Image</div>
+        <div class="tag-val ok">og-image.png · 1200×630 (same on all pages)</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Twitter Card</div>
+        <div class="tag-val ok">summary_large_image · @GetBloggy</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Favicon</div>
+        <div class="tag-val ok">bloggy-icon.png (icon + apple)</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Google Analytics</div>
+        <div class="tag-val ok">GA4: G-WT6X97C78G</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Google Ads</div>
+        <div class="tag-val ok">AW-18109945240 (conversion tracking)</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Global Keywords</div>
+        <div class="tag-val ok">6 keywords set in root layout</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">lang="en"</div>
+        <div class="tag-val ok">Set on &lt;html&gt; — correct</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">Sitemap</div>
+        <div class="tag-val no">Not found — create sitemap.ts</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">robots.txt</div>
+        <div class="tag-val no">Not found — create robots.ts</div>
+      </div>
+      <div class="tag-item">
+        <div class="tag-name">GSC Verification</div>
+        <div class="tag-val no">Not found in codebase</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 7 — BLOG POST INVENTORY
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot pass"></span> Blog Post Inventory (7 posts)</h2>
+    <div class="page-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Slug</th>
+            <th>Meta Title</th>
+            <th>Desc</th>
+            <th>OG Image</th>
+            <th>Schema</th>
+            <th>Keywords Meta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="page-path" style="font-size:10px">ai-blog-content-for-agencies</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">AI Blog Automation for Agencies: Scale Client Content <span class="len ok" style="font-size:10px">(52 chars ✓)</span></td>
+            <td><span class="len ok">✓ 145 chars</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+          <tr>
+            <td class="page-path" style="font-size:10px">wordpress-seo-blog-strategy-2025</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">WordPress SEO Blog Strategy 2025</td>
+            <td><span class="chk warn">⚠ Check</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+          <tr>
+            <td class="page-path" style="font-size:10px">local-seo-blog-content-small-business</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">Local SEO Blog Content for Small Business</td>
+            <td><span class="chk warn">⚠ Check</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+          <tr>
+            <td class="page-path" style="font-size:10px">blawgy-vs-rightblogger-vs-bloggy</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">Blawgy vs RightBlogger vs Bloggy — Comparison</td>
+            <td><span class="chk warn">⚠ Check</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+          <tr>
+            <td class="page-path" style="font-size:10px">how-to-automate-client-blog-content</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">How to Automate Client Blog Content</td>
+            <td><span class="chk warn">⚠ Check</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+          <tr>
+            <td class="page-path" style="font-size:10px">what-is-autoblogging-software</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">What Is Autoblogging Software?</td>
+            <td><span class="chk warn">⚠ Check</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+          <tr>
+            <td class="page-path" style="font-size:10px">agency-seo-content-roi</td>
+            <td style="font-size:12px;max-width:240px;color:#d0d0e0">Agency SEO Content ROI</td>
+            <td><span class="chk warn">⚠ Check</span></td>
+            <td><span class="chk ok">✓ Unsplash</span></td>
+            <td><span class="chk ok">✓ Article</span></td>
+            <td><span class="chk no">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;font-size:11px;color:#6666a0;">All 7 posts use <code>generateStaticParams</code> — they are statically generated at build time ✓. All have Article JSON-LD, OG with publishedTime, and Twitter cards. Main gap: no <code>keywords</code> meta on any post.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 8 — WHAT'S WORKING WELL
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot pass"></span> What's Working Well</h2>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">All protected app pages correctly marked noindex</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>Dashboard, clients, keywords, autoblog, calendar, analytics, settings, billing, tools, help, and login all have <code>robots: &#123; index: false, follow: false &#125;</code>. Google will not index any authenticated app page. Exception: /posts (C2 above).</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">Article JSON-LD on all 7 blog posts — correct server-side injection</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>Every blog post injects an Article schema via <code>&lt;script type="application/ld+json"&gt;</code> directly in the server component. Schema includes headline, description, image, datePublished, dateModified, url, author (Organization), publisher (with logo). This is exactly what Google requires for Article rich results.</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">FAQPage schema on homepage — hardcoded in server component</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>The homepage has 9 FAQ Q&amp;As in a <code>FAQPage</code> JSON-LD block injected server-side. This is the correct approach and qualifies for Google's FAQ rich snippets in search results. The /support page should mirror this approach for its 20 FAQs (see H2).</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">3 global schemas in root layout: SoftwareApplication, Organization, WebSite</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>The SoftwareApplication schema includes <code>aggregateRating</code> (4.9 stars, 47 reviews) and <code>AggregateOffer</code> ($49–$299). Organization schema includes contactPoint and sameAs social URLs. WebSite schema has SearchAction for sitelinks searchbox. All structurally valid.</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">OpenGraph and Twitter cards on all key public pages</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>Homepage, features, blog index, blog posts, support, and signup all have proper OG metadata (title, description, url, type, image 1200×630). Blog posts have OG with <code>publishedTime</code> and <code>authors</code> for article type. Twitter <code>summary_large_image</code> with @GetBloggy handle on root level.</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">Canonical URLs on all public pages</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>Every public page sets <code>alternates: &#123; canonical: 'https://bloggy.online/...' &#125;</code>. Blog posts use dynamic canonical per slug. This prevents duplicate content issues from Vercel preview URLs, query parameters, or trailing slashes.</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">GA4 + Google Ads conversion tracking active</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>GA4 (G-WT6X97C78G) fires on every page via Next.js <code>Script</code> with <code>strategy="afterInteractive"</code>. Google Ads (AW-18109945240) also fires for conversion tracking. Both use the non-blocking afterInteractive strategy — no page speed impact.</p>
+      </div>
+    </div>
+
+    <div class="issue pass">
+      <div class="issue-head">
+        <div class="issue-title">Blog posts statically generated (generateStaticParams)</div>
+        <span class="badge pass">Pass</span>
+      </div>
+      <div class="issue-body">
+        <p>All 7 blog post pages use <code>generateStaticParams()</code> — they are built as static HTML at deploy time. Google gets instant, fully-rendered HTML with no JavaScript required for content. Zero crawl budget wasted on JS rendering. Core Web Vitals will be excellent for blog pages.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       SECTION 9 — PRIORITIZED ACTION PLAN
+  ═══════════════════════════════════════ -->
+  <section>
+    <h2><span class="dot crit"></span> Prioritized Fix List</h2>
+    <ul class="action-list">
+      <li>
+        <div class="action-num p1">1</div>
+        <div class="action-body">
+          <strong>Create src/app/sitemap.ts + src/app/robots.ts</strong>
+          <span>Unlocks Google crawl efficiency across all public pages. Single biggest SEO lever for a new domain. ~30 min effort.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p1">2</div>
+        <div class="action-body">
+          <strong>Fix title duplication — remove "— Bloggy" / "| Bloggy" from page-level title strings</strong>
+          <span>The template appends "| Bloggy" automatically. Affects every public page title in SERPs. ~20 min effort across all pages.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p1">3</div>
+        <div class="action-body">
+          <strong>Add metadata + noindex to src/app/posts/page.tsx</strong>
+          <span>Protected app page is currently indexable. Google will crawl it, see a redirect, waste crawl budget. 5 min fix.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p1">4</div>
+        <div class="action-body">
+          <strong>Add FAQPage JSON-LD schema to /support page.tsx (server-rendered, not client component)</strong>
+          <span>20 FAQ questions already exist — just need to hardcode top 10 into a &lt;script&gt; block in the server component. High chance of Google featured snippet rich result.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p2">5</div>
+        <div class="action-body">
+          <strong>Add Blog/ItemList schema to /blog index page</strong>
+          <span>All 7 posts are in the BLOG_POSTS constant already imported on the page. Add a &lt;script&gt; block with BlogPosting items.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p2">6</div>
+        <div class="action-body">
+          <strong>Add Twitter site: '@GetBloggy' to blog post generateMetadata</strong>
+          <span>1-line fix in blog/[slug]/page.tsx. Ensures all 7 posts show the Twitter handle in X card previews.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p2">7</div>
+        <div class="action-body">
+          <strong>Add OpenGraph to /terms and /privacy pages</strong>
+          <span>Both are indexable and linked from every email footer. Without OG they show blank cards when shared. 5 min fix each.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p2">8</div>
+        <div class="action-body">
+          <strong>Trim /features and /support meta descriptions to ≤155 chars</strong>
+          <span>/features is 184 chars, /support is 177 chars. Google truncates at ~155. The CTR hook at the end of both descriptions is invisible in SERPs right now.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p3">9</div>
+        <div class="action-body">
+          <strong>Add keywords field to BlogPost type and populate per post</strong>
+          <span>Blog posts have no keywords meta. Add 3–5 per post in posts.ts and surface via generateMetadata. Helps Bing and signals topical focus.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p3">10</div>
+        <div class="action-body">
+          <strong>Verify Google Search Console — submit sitemap after creating it</strong>
+          <span>User action — no code change needed. GSC is the only way to see real indexing status, keyword clicks, and Core Web Vitals from Google's crawler data.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p3">11</div>
+        <div class="action-body">
+          <strong>Decide /signup robot intent — add explicit robots: &#123; index: true &#125; or noindex</strong>
+          <span>Currently undefined. If intentionally indexable for trial conversion searches, make it explicit. Leaving it undefined is ambiguous.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num p3">12</div>
+        <div class="action-body">
+          <strong>Consider moving global schemas from root layout.tsx → homepage page.tsx</strong>
+          <span>SoftwareApplication/Organization/WebSite fire on every noindex app page too. Not harmful, but messy. Move to homepage for cleaner schema targeting.</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <hr>
+  <p style="color:#3a3a55;font-size:11px;text-align:center;">Bloggy SEO Audit · Generated April 22, 2026 · bloggy.online · Built on Next.js App Router + Vercel</p>
+
+</div>
+</body>
+</html>

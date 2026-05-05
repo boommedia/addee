@@ -1,0 +1,217 @@
+{
+  "businessName": "Bloggy by Boom Media",
+  "description": "AI-powered blog automation platform for agencies",
+  "website": "https://bloggy.online",
+  "lastUpdated": "2026-04-24",
+  "basePlans": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "price": "$49",
+      "billingCycle": "month",
+      "description": "Perfect for solo agencies and freelancers",
+      "features": [
+        "2 blog posts/month",
+        "1 website",
+        "Basic keyword research",
+        "AI content generation",
+        "WordPress integration",
+        "Standard support"
+      ],
+      "stripePriceId": "price_1TOQFbKnTmqeO7PSS5JB6qi4",
+      "stripeProductId": null,
+      "cta": "Start Free"
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "price": "$149",
+      "billingCycle": "month",
+      "description": "For growing agencies managing multiple clients",
+      "features": [
+        "10 blog posts/month",
+        "3 websites",
+        "Advanced keyword research",
+        "AI content + SEO optimization",
+        "WordPress + client portal",
+        "Priority support",
+        "Analytics dashboard"
+      ],
+      "stripePriceId": "price_1TOQFtKnTmqeO7PSPOPv6S4z",
+      "stripeProductId": null,
+      "cta": "Upgrade to Growth"
+    },
+    {
+      "id": "agency",
+      "name": "Agency",
+      "price": "$349",
+      "billingCycle": "month",
+      "description": "For established agencies with multiple clients",
+      "features": [
+        "30 blog posts/month",
+        "10 websites",
+        "Unlimited keyword research",
+        "Premium AI + SEO",
+        "White-label options",
+        "Dedicated support",
+        "Custom workflows",
+        "Team collaboration"
+      ],
+      "stripePriceId": "price_1TOQGBKnTmqeO7PSKriRbYws",
+      "stripeProductId": null,
+      "cta": "Upgrade to Agency"
+    },
+    {
+      "id": "agency_max",
+      "name": "Agency Max",
+      "price": "$699",
+      "billingCycle": "month",
+      "description": "Enterprise solution for scaling agencies",
+      "features": [
+        "Unlimited blog posts",
+        "Unlimited websites",
+        "Everything in Agency",
+        "Custom API access",
+        "Advanced integrations",
+        "24/7 priority support",
+        "Dedicated account manager",
+        "Custom feature development"
+      ],
+      "stripePriceId": "price_1TOQGUKnTmqeO7PSc0aVFkl0",
+      "stripeProductId": null,
+      "cta": "Upgrade to Agency Max"
+    }
+  ],
+  "featuredAddOns": [
+    {
+      "id": "social-autopilot",
+      "name": "Social Media Autopilot",
+      "price": "$15",
+      "billingCycle": "month",
+      "description": "Auto-post to Google Business Profile, LinkedIn, Facebook, Instagram",
+      "features": [
+        "Auto-sync to Google Business Profile",
+        "LinkedIn company page automation",
+        "Facebook business page posting",
+        "Instagram business account support",
+        "Scheduled post timing",
+        "Performance analytics"
+      ],
+      "stripePriceId": "price_1TOQGmKnTmqeO7PStba1K2aA",
+      "requiresActivePlan": true,
+      "availability": "active",
+      "badge": "Popular",
+      "icon": "share-2"
+    },
+    {
+      "id": "rankings-pro",
+      "name": "Rankings History Pro",
+      "price": "$8",
+      "billingCycle": "month",
+      "description": "Track keyword rankings and monitor SEO performance over time",
+      "features": [
+        "Keyword ranking tracking",
+        "Monthly ranking history",
+        "Competition analysis",
+        "Ranking trends visualization",
+        "Export reports",
+        "Weekly digest"
+      ],
+      "stripePriceId": "price_1TOQGqKnTmqeO7PSi5fK3bNc",
+      "requiresActivePlan": true,
+      "availability": "active",
+      "badge": null,
+      "icon": "trending-up"
+    }
+  ],
+  "comingSoonAddOns": [
+    {
+      "id": "whitelabel-portal",
+      "name": "White-label Client Portal",
+      "price": "$15",
+      "billingCycle": "month",
+      "description": "Customizable client dashboard with your branding",
+      "availability": "coming-soon",
+      "requiresActivePlan": true,
+      "estimatedLaunch": "Q3 2026"
+    },
+    {
+      "id": "competitor-analysis",
+      "name": "Competitor Gap Analysis",
+      "price": "$15",
+      "billingCycle": "month",
+      "description": "Deep dive into competitor content and keyword strategies",
+      "availability": "coming-soon",
+      "requiresActivePlan": true,
+      "estimatedLaunch": "Q3 2026"
+    },
+    {
+      "id": "branded-reports",
+      "name": "Branded Monthly Reports",
+      "price": "$8",
+      "billingCycle": "month",
+      "description": "White-labeled PDF reports to send to your clients",
+      "availability": "coming-soon",
+      "requiresActivePlan": true,
+      "estimatedLaunch": "Q2 2026"
+    },
+    {
+      "id": "image-pack",
+      "name": "AI Image Pack",
+      "price": "$8",
+      "billingCycle": "month",
+      "description": "Generate custom AI images for blog posts (100/month)",
+      "availability": "coming-soon",
+      "requiresActivePlan": true,
+      "estimatedLaunch": "Q3 2026"
+    },
+    {
+      "id": "video-scripts",
+      "name": "Video Script Generator",
+      "price": "$8",
+      "billingCycle": "month",
+      "description": "Turn blog posts into YouTube video scripts automatically",
+      "availability": "coming-soon",
+      "requiresActivePlan": true,
+      "estimatedLaunch": "Q3 2026"
+    },
+    {
+      "id": "email-digest",
+      "name": "Email Newsletter Digest",
+      "price": "$8",
+      "billingCycle": "month",
+      "description": "Auto-generate newsletter content from blog posts",
+      "availability": "coming-soon",
+      "requiresActivePlan": true,
+      "estimatedLaunch": "Q2 2026"
+    }
+  ],
+  "bundleDeal": {
+    "id": "all-addons-bundle",
+    "name": "All Add-ons Bundle",
+    "price": "$65",
+    "billingCycle": "month",
+    "description": "Get all 10 add-ons at a discounted rate",
+    "savings": "Save over $100/month vs individual pricing",
+    "includedAddOns": [
+      "social-autopilot",
+      "rankings-pro",
+      "whitelabel-portal",
+      "competitor-analysis",
+      "branded-reports",
+      "image-pack",
+      "video-scripts",
+      "email-digest",
+      "client-approval",
+      "search-console"
+    ],
+    "requiresActivePlan": true,
+    "availability": "active"
+  },
+  "notes": {
+    "updateReason": "April 2026 pricing optimization and bundle launch",
+    "allAddOnsRequireActiveSubscription": true,
+    "contactEmail": "support@bloggy.online",
+    "supportUrl": "https://bloggy.online/support"
+  }
+}

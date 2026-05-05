@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloggy — Social Media Setup Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #e8e8f0;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #12121a 0%, #1a1a2e 100%);
+      border-bottom: 1px solid #2a2a3d;
+      padding: 32px 40px;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      padding: 8px 16px;
+      border-radius: 10px;
+    }
+    .logo-sub {
+      color: #555570;
+      font-size: 13px;
+    }
+    .header-title {
+      text-align: right;
+    }
+    .header-title h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+    .header-title p {
+      color: #8888a8;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+    }
+
+    /* ── Progress tracker ── */
+    .progress-bar {
+      background: #12121a;
+      border: 1px solid #2a2a3d;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .progress-bar span {
+      font-size: 11px;
+      color: #555570;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-right: 8px;
+    }
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid #2a2a3d;
+      background: #0a0a0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #555570;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .step-dot:hover { border-color: #7c3aed; color: #a78bfa; }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 48px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555570;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .section-desc {
+      color: #8888a8;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #12121a;
+      border: 1px solid #2a2a3d;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .card + .card { margin-top: 12px; }
+
+    /* ── Platform card ── */
+    .platform {
+      padding: 24px;
+    }
+    .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .platform-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .platform-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: white;
+    }
+    .platform-url {
+      font-size: 12px;
+      color: #555570;
+      margin-top: 1px;
+    }
+    .platform-url a {
+      color: #7c3aed;
+      text-decoration: none;
+    }
+    .platform-url a:hover { text-decoration: underline; }
+
+    .steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: #c8c8d8;
+    }
+    .step-num {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3d;
+      color: #8888a8;
+      font-size: 11px;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-content strong { color: white; }
+    .step-content code {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3d;
+      color: #a78bfa;
+      padding: 1px 7px;
+      border-radius: 5px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+    }
+    .step-content .note {
+      color: #555570;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* ── Checkbox step ── */
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #1a1a26;
+      cursor: pointer;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #7c3aed;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .check-item label {
+      font-size: 14px;
+      color: #c8c8d8;
+      cursor: pointer;
+      flex: 1;
+    }
+    .check-item input:checked + label {
+      color: #555570;
+      text-decoration: line-through;
+    }
+
+    /* ── Copy box ── */
+    .copy-box {
+      background: #0a0a0f;
+      border: 1px solid #2a2a3d;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 12px;
+      position: relative;
+    }
+    .copy-box-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555570;
+      margin-bottom: 8px;
+    }
+    .copy-box p {
+      font-size: 13px;
+      color: #c8c8d8;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1a1a2e;
+      border: 1px solid #2a2a3d;
+      color: #8888a8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .copy-btn:hover { border-color: #7c3aed; color: #a78bfa; }
+
+    /* ── Asset spec table ── */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .spec-table th {
+      text-align: left;
+      padding: 10px 16px;
+      background: #0a0a0f;
+      color: #555570;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #2a2a3d;
+    }
+    .spec-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #1a1a26;
+      color: #c8c8d8;
+      vertical-align: top;
+    }
+    .spec-table tr:last-child td { border-bottom: none; }
+    .spec-table td:first-child { font-weight: 600; color: white; width: 160px; }
+    .spec-table td code {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3d;
+      color: #a78bfa;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+    }
+    .size-tag {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3d;
+      color: #8888a8;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ── Tip box ── */
+    .tip {
+      background: #0f0f1e;
+      border: 1px solid #2a2a3d;
+      border-left: 3px solid #7c3aed;
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #8888a8;
+      line-height: 1.6;
+    }
+    .tip strong { color: #a78bfa; }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #1a1a26;
+      margin: 32px 0;
+    }
+
+    /* ── Bio grid ── */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) { .bio-grid { grid-template-columns: 1fr; } }
+    .bio-card {
+      background: #0a0a0f;
+      border: 1px solid #2a2a3d;
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .bio-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .bio-platform { font-size: 13px; font-weight: 700; color: white; }
+    .bio-limit { font-size: 11px; color: #555570; }
+    .bio-text {
+      font-size: 13px;
+      color: #c8c8d8;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    /* ── Handle card ── */
+    .handle-card {
+      background: linear-gradient(135deg, #12121a, #1a1a2e);
+      border: 1px solid #7c3aed44;
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .handle-card .handle {
+      font-size: 36px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+    .handle-card .handle span { color: #7c3aed; }
+    .handle-card p {
+      color: #8888a8;
+      font-size: 14px;
+    }
+    .handle-tag {
+      display: inline-block;
+      background: #7c3aed22;
+      border: 1px solid #7c3aed44;
+      color: #a78bfa;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    /* ── Colors ── */
+    .colors { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .color-swatch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0a0a0f;
+      border: 1px solid #2a2a3d;
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .swatch { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; }
+    .swatch-info { font-size: 12px; }
+    .swatch-name { color: white; font-weight: 600; }
+    .swatch-hex { color: #555570; font-family: 'SF Mono', monospace; font-size: 11px; }
+
+    /* ── Platform-specific colors ── */
+    .gmb    { background: #1a2a1a; }
+    .fb     { background: #1a1e2a; }
+    .ig     { background: #2a1a1e; }
+    .li     { background: #1a201a; }
+    .yt     { background: #2a1a1a; }
+    .disc   { background: #1a1a2a; }
+    .x      { background: #1a1a1a; }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-left: 8px;
+    }
+    .badge-free  { background: #1a2a1a; color: #4ade80; border: 1px solid #166534; }
+    .badge-paid  { background: #2a1a1a; color: #f87171; border: 1px solid #991b1b; }
+    .badge-verify { background: #2a2a1a; color: #facc15; border: 1px solid #854d0e; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-badge">Bloggy</div>
+        <div class="logo-sub">by Boom Media</div>
+      </div>
+      <div class="header-title">
+        <h1>Social Media Setup Guide</h1>
+        <p>Brand all 7 platforms consistently · bloggyapp everywhere</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Handle -->
+    <div class="handle-card">
+      <div class="handle"><span>@</span>bloggyapp</div>
+      <p>Use this handle on every platform — check availability at <a href="https://namechk.com" target="_blank" style="color:#7c3aed;">namechk.com</a> before creating accounts</p>
+      <div class="handle-tag">Primary slug · bloggyapp · Use everywhere</div>
+    </div>
+
+    <!-- Progress tracker -->
+    <div class="progress-bar">
+      <span>Progress</span>
+      <a class="step-dot" href="#gmb">G</a>
+      <a class="step-dot" href="#fb">F</a>
+      <a class="step-dot" href="#ig">IG</a>
+      <a class="step-dot" href="#li">in</a>
+      <a class="step-dot" href="#yt">▶</a>
+      <a class="step-dot" href="#disc">D</a>
+      <a class="step-dot" href="#x">𝕏</a>
+    </div>
+
+    <!-- ── BRAND ASSETS ── -->
+    <div class="section">
+      <div class="section-label">Step 0 — Before You Start</div>
+      <div class="section-title">Brand Assets Needed</div>
+      <div class="section-desc">Prepare these files once and use them across all platforms.</div>
+
+      <div class="card">
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Size</th>
+              <th>Used On</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Profile Picture</td>
+              <td><span class="size-tag">800 × 800 px</span></td>
+              <td>All platforms</td>
+              <td>Square logo — Bloggy wordmark on dark/purple bg. Save as <code>profile-800.png</code></td>
+            </tr>
+            <tr>
+              <td>Facebook Cover</td>
+              <td><span class="size-tag">820 × 312 px</span></td>
+              <td>Facebook Page</td>
+              <td>Tagline + logo on dark bg. Save as <code>cover-fb.png</code></td>
+            </tr>
+            <tr>
+              <td>Twitter/X Header</td>
+              <td><span class="size-tag">1500 × 500 px</span></td>
+              <td>X (Twitter)</td>
+              <td>Wide banner. Save as <code>cover-x.png</code></td>
+            </tr>
+            <tr>
+              <td>LinkedIn Banner</td>
+              <td><span class="size-tag">1128 × 191 px</span></td>
+              <td>LinkedIn Company</td>
+              <td>Very wide, short. Keep text minimal. Save as <code>cover-li.png</code></td>
+            </tr>
+            <tr>
+              <td>YouTube Banner</td>
+              <td><span class="size-tag">2560 × 1440 px</span></td>
+              <td>YouTube Channel</td>
+              <td>Safe zone: center 1235 × 338 px. Save as <code>cover-yt.png</code></td>
+            </tr>
+            <tr>
+              <td>YouTube Thumbnail</td>
+              <td><span class="size-tag">1280 × 720 px</span></td>
+              <td>YouTube videos</td>
+              <td>Template for future videos. Save as <code>thumbnail-template.png</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Brand colors -->
+      <div class="tip">
+        <strong>Brand Colors</strong> — use these in all designs
+      </div>
+      <div class="colors">
+        <div class="color-swatch">
+          <div class="swatch" style="background:#7c3aed;"></div>
+          <div class="swatch-info"><div class="swatch-name">Violet</div><div class="swatch-hex">#7c3aed</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#4f46e5;"></div>
+          <div class="swatch-info"><div class="swatch-name">Indigo</div><div class="swatch-hex">#4f46e5</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#0a0a0f;"></div>
+          <div class="swatch-info"><div class="swatch-name">Dark BG</div><div class="swatch-hex">#0a0a0f</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#e8e8f0;"></div>
+          <div class="swatch-info"><div class="swatch-name">Off White</div><div class="swatch-hex">#e8e8f0</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#a78bfa;"></div>
+          <div class="swatch-info"><div class="swatch-name">Violet Light</div><div class="swatch-hex">#a78bfa</div></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── BIO COPY ── -->
+    <div class="section">
+      <div class="section-label">Bio Copy</div>
+      <div class="section-title">Platform Bios</div>
+      <div class="section-desc">Each platform has a different character limit — use the right one.</div>
+
+      <div class="bio-grid">
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <span>🗺️</span>
+            <span class="bio-platform">Google Business</span>
+            <span class="bio-limit">750 chars</span>
+          </div>
+          <div class="bio-text">Bloggy by Boom Media is an AI-powered content engine built for digital agencies. Generate SEO-optimized blog posts for all your clients in seconds — complete with WordPress publishing, SmartCrawl SEO metadata, featured images, and client reporting. Save hours every week. Start free at bloggy.online</div>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <span>📘</span>
+            <span class="bio-platform">Facebook</span>
+            <span class="bio-limit">255 chars</span>
+          </div>
+          <div class="bio-text">AI blog content engine for agencies. Generate SEO posts for all your clients in seconds. WordPress publishing, SmartCrawl SEO, client reports & more. Built by Boom Media. Start free → bloggy.online</div>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <span>📸</span>
+            <span class="bio-platform">Instagram</span>
+            <span class="bio-limit">150 chars</span>
+          </div>
+          <div class="bio-text">AI blog content for agencies ✦
+Generate SEO posts in seconds
+WordPress publishing built-in
+🔗 bloggy.online</div>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <span>💼</span>
+            <span class="bio-platform">LinkedIn</span>
+            <span class="bio-limit">500 chars</span>
+          </div>
+          <div class="bio-text">Bloggy is the AI content engine built for marketing agencies. Generate SEO-optimized blog posts for every client — in seconds, not hours. Features: WordPress auto-publish, SmartCrawl SEO fields, featured images, scheduling, bulk publishing, client PDF reports, and internal linking. Start free at bloggy.online</div>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <span>▶️</span>
+            <span class="bio-platform">YouTube</span>
+            <span class="bio-limit">1000 chars</span>
+          </div>
+          <div class="bio-text">Bloggy by Boom Media — the AI content engine built for agencies.
+
+Watch tutorials, product demos, and tips on using Bloggy to generate SEO blog posts for your clients in seconds.
+
+🚀 Start free: bloggy.online
+📧 Contact: eric@boommedia.us</div>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <span>🐦</span>
+            <span class="bio-platform">X (Twitter)</span>
+            <span class="bio-limit">160 chars</span>
+          </div>
+          <div class="bio-text">AI blog engine for agencies. Generate SEO posts for all your clients in seconds. WordPress publishing, SmartCrawl SEO & more. Free to start → bloggy.online</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── GOOGLE BUSINESS ── -->
+    <div class="section" id="gmb">
+      <div class="section-label">Platform 1 of 7</div>
+      <div class="section-title">Google Business Profile <span class="badge badge-free">Free</span></div>
+      <div class="section-desc">Shows in Google Search and Maps when people search "Bloggy" or blog tools.</div>
+
+      <div class="card">
+        <div class="platform gmb">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#1a2a1a;">🗺️</div>
+            <div>
+              <div class="platform-name">Google Business Profile</div>
+              <div class="platform-url"><a href="https://business.google.com" target="_blank">business.google.com</a></div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Go to <a href="https://business.google.com" target="_blank" style="color:#7c3aed;">business.google.com</a> → Sign in with your Google account</div></li>
+            <li><div class="step-num">2</div><div class="step-content">Click <strong>Add your business</strong> → Business name: <code>Bloggy by Boom Media</code></div></li>
+            <li><div class="step-num">3</div><div class="step-content">Category: <strong>Software Company</strong> (or Internet Company)</div></li>
+            <li><div class="step-num">4</div><div class="step-content">Website: <code>https://bloggy.online</code></div></li>
+            <li><div class="step-num">5</div><div class="step-content">Phone: Add your business phone — this is optional but increases trust</div></li>
+            <li><div class="step-num">6</div><div class="step-content">Address: Use your business address or choose "I serve customers online" (no physical location needed)</div></li>
+            <li><div class="step-num">7</div><div class="step-content">Verify via postcard, phone, or email (Google will guide you)</div></li>
+            <li><div class="step-num">8</div><div class="step-content">After verification → <strong>Edit Profile</strong> → Add description (use the 750-char bio above)</div></li>
+            <li><div class="step-num">9</div><div class="step-content">Upload logo as profile photo and a branded cover photo</div></li>
+            <li><div class="step-num">10</div><div class="step-content">Add products: "Starter Plan", "Growth Plan", "Agency Plan" with prices and bloggy.online links</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Post a Google Business update every week — it helps SEO ranking for your listing.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FACEBOOK ── -->
+    <div class="section" id="fb">
+      <div class="section-label">Platform 2 of 7</div>
+      <div class="section-title">Facebook Page <span class="badge badge-free">Free</span></div>
+      <div class="section-desc">Business Page for ads, community, and organic reach.</div>
+
+      <div class="card">
+        <div class="platform fb">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#1a1e2a;">📘</div>
+            <div>
+              <div class="platform-name">Facebook Page</div>
+              <div class="platform-url">Target URL: <code>facebook.com/bloggyapp</code></div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Go to <a href="https://facebook.com/pages/create" target="_blank" style="color:#7c3aed;">facebook.com/pages/create</a></div></li>
+            <li><div class="step-num">2</div><div class="step-content">Page name: <code>Bloggy</code> — Category: <strong>Software</strong> or <strong>Internet company</strong></div></li>
+            <li><div class="step-num">3</div><div class="step-content">Username (Page URL): Set to <code>bloggyapp</code> → gives you <code>facebook.com/bloggyapp</code></div></li>
+            <li><div class="step-num">4</div><div class="step-content">Profile photo: Upload <code>profile-800.png</code> (square logo)</div></li>
+            <li><div class="step-num">5</div><div class="step-content">Cover photo: Upload <code>cover-fb.png</code> (820×312)</div></li>
+            <li><div class="step-num">6</div><div class="step-content">About → Description: Paste the 255-char Facebook bio</div></li>
+            <li><div class="step-num">7</div><div class="step-content">Website: <code>https://bloggy.online</code> · Email: <code>eric@boommedia.us</code></div></li>
+            <li><div class="step-num">8</div><div class="step-content">Add a CTA button: <strong>Sign Up</strong> → link to <code>https://bloggy.online/signup</code></div></li>
+            <li><div class="step-num">9</div><div class="step-content">Create a pinned post — use the hero copy from the website: "The AI Content Engine Built for Agencies"</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Connect your Facebook Page to your Instagram (same Meta Business Suite) — makes cross-posting easy.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── INSTAGRAM ── -->
+    <div class="section" id="ig">
+      <div class="section-label">Platform 3 of 7</div>
+      <div class="section-title">Instagram <span class="badge badge-free">Free</span></div>
+      <div class="section-desc">Visual platform — great for product screenshots, carousels, and short reels.</div>
+
+      <div class="card">
+        <div class="platform ig">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#2a1a1e;">📸</div>
+            <div>
+              <div class="platform-name">Instagram Business</div>
+              <div class="platform-url">Target URL: <code>instagram.com/bloggyapp</code></div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Create account at <a href="https://instagram.com" target="_blank" style="color:#7c3aed;">instagram.com</a> → username: <code>bloggyapp</code></div></li>
+            <li><div class="step-num">2</div><div class="step-content">Go to Settings → Account → Switch to <strong>Professional Account</strong> → Business → Category: Software</div></li>
+            <li><div class="step-num">3</div><div class="step-content">Profile photo: Upload <code>profile-800.png</code></div></li>
+            <li><div class="step-num">4</div><div class="step-content">Bio: Paste the 150-char Instagram bio (with line breaks)</div></li>
+            <li><div class="step-num">5</div><div class="step-content">Website: <code>https://bloggy.online</code></div></li>
+            <li><div class="step-num">6</div><div class="step-content">Connect to your Facebook Page (Meta Business Suite → Link accounts)</div></li>
+            <li><div class="step-num">7</div><div class="step-content">Post 3 intro posts before going live — screenshots of the app, feature highlights, or a demo video reel</div></li>
+            <li><div class="step-num">8</div><div class="step-content">Set up <strong>Highlights</strong>: "Features", "Pricing", "How it works"</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Use Instagram Reels for 30–60 second app demos — they get the most organic reach on Instagram right now.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LINKEDIN ── -->
+    <div class="section" id="li">
+      <div class="section-label">Platform 4 of 7</div>
+      <div class="section-title">LinkedIn Company Page <span class="badge badge-free">Free</span></div>
+      <div class="section-desc">B2B audience — agency owners and digital marketers are heavy LinkedIn users.</div>
+
+      <div class="card">
+        <div class="platform li">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#1a201a;">💼</div>
+            <div>
+              <div class="platform-name">LinkedIn Company Page</div>
+              <div class="platform-url">Target URL: <code>linkedin.com/company/bloggyapp</code></div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Go to <a href="https://linkedin.com/company/setup/new" target="_blank" style="color:#7c3aed;">linkedin.com/company/setup/new</a> (must be logged into your personal LinkedIn)</div></li>
+            <li><div class="step-num">2</div><div class="step-content">Company name: <code>Bloggy</code> — Industry: <strong>Software Development</strong> or <strong>Marketing & Advertising</strong></div></li>
+            <li><div class="step-num">3</div><div class="step-content">Company size: <strong>1–10 employees</strong> — Type: <strong>Privately Held</strong></div></li>
+            <li><div class="step-num">4</div><div class="step-content">Website: <code>https://bloggy.online</code></div></li>
+            <li><div class="step-num">5</div><div class="step-content">Tagline: <code>AI blog content engine for agencies</code> (120 chars max)</div></li>
+            <li><div class="step-num">6</div><div class="step-content">Custom URL slug: Go to Edit Page → Public URL → set to <code>bloggyapp</code></div></li>
+            <li><div class="step-num">7</div><div class="step-content">Logo: Upload <code>profile-800.png</code> — Cover: Upload <code>cover-li.png</code> (1128×191)</div></li>
+            <li><div class="step-num">8</div><div class="step-content">About section: Paste the 500-char LinkedIn bio</div></li>
+            <li><div class="step-num">9</div><div class="step-content">Add Boom Media as affiliated company (optional but adds credibility)</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> LinkedIn gives the best B2B organic reach. Post a "product launch" announcement as your first post and ask your connections to follow the page.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── YOUTUBE ── -->
+    <div class="section" id="yt">
+      <div class="section-label">Platform 5 of 7</div>
+      <div class="section-title">YouTube Channel <span class="badge badge-free">Free</span></div>
+      <div class="section-desc">Long-form demos and tutorials — drives SEO and trust for SaaS products.</div>
+
+      <div class="card">
+        <div class="platform yt">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#2a1a1a;">▶️</div>
+            <div>
+              <div class="platform-name">YouTube Channel</div>
+              <div class="platform-url">Target URL: <code>youtube.com/@bloggyapp</code></div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Go to <a href="https://studio.youtube.com" target="_blank" style="color:#7c3aed;">studio.youtube.com</a> → Sign in with your Google account</div></li>
+            <li><div class="step-num">2</div><div class="step-content">Click your profile → <strong>Create a channel</strong> → Use a custom name: <code>Bloggy</code></div></li>
+            <li><div class="step-num">3</div><div class="step-content">Customization → Handle → set to <code>@bloggyapp</code></div></li>
+            <li><div class="step-num">4</div><div class="step-content">Upload profile photo: <code>profile-800.png</code></div></li>
+            <li><div class="step-num">5</div><div class="step-content">Upload banner: <code>cover-yt.png</code> (2560×1440 — safe zone is center 1235×338)</div></li>
+            <li><div class="step-num">6</div><div class="step-content">Description: Paste the YouTube bio</div></li>
+            <li><div class="step-num">7</div><div class="step-content">Links → Add website: <code>https://bloggy.online</code> and social links</div></li>
+            <li><div class="step-num">8</div><div class="step-content">Add a channel trailer — a 60-second screen recording showing a post being generated end-to-end</div></li>
+            <li><div class="step-num">9</div><div class="step-content">Create playlists: "Getting Started", "Features & Updates", "Tutorials"</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Even 1 demo video ranking on YouTube + Google search can drive steady signups. Record the "generate a blog post in 30 seconds" flow as your first video.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DISCORD ── -->
+    <div class="section" id="disc">
+      <div class="section-label">Platform 6 of 7</div>
+      <div class="section-title">Discord Server <span class="badge badge-free">Free</span></div>
+      <div class="section-desc">Community hub — users share tips, post feedback, and feel connected to the product.</div>
+
+      <div class="card">
+        <div class="platform disc">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#1a1a2a;">💬</div>
+            <div>
+              <div class="platform-name">Discord Server</div>
+              <div class="platform-url">Target invite: <code>discord.gg/bloggy</code> (set custom invite slug)</div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Open Discord → left sidebar → <strong>+</strong> icon → Create My Own → For a community</div></li>
+            <li><div class="step-num">2</div><div class="step-content">Server name: <code>Bloggy Community</code> — Upload the logo as server icon</div></li>
+            <li><div class="step-num">3</div><div class="step-content">Server Settings → Overview → set Vanity URL to <code>bloggy</code> (requires Level 3 boost) or <code>bloggyapp</code></div></li>
+            <li><div class="step-num">4</div><div class="step-content">Create channels:
+              <div class="note">#welcome · #announcements · #general · #tips-and-tricks · #feature-requests · #bug-reports · #showcase</div>
+            </div></li>
+            <li><div class="step-num">5</div><div class="step-content">Set up roles: <strong>Admin</strong>, <strong>Agency Member</strong>, <strong>Free User</strong></div></li>
+            <li><div class="step-num">6</div><div class="step-content">Write a #welcome message with what Bloggy does and links to bloggy.online</div></li>
+            <li><div class="step-num">7</div><div class="step-content">Add rules in #welcome: no spam, respect others, feature requests in #feature-requests</div></li>
+            <li><div class="step-num">8</div><div class="step-content">Create a permanent invite link → Server Settings → Invites → set expiry to <strong>Never</strong></div></li>
+            <li><div class="step-num">9</div><div class="step-content">Add the invite link to your website footer and billing confirmation emails</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Discord Vanity URLs (discord.gg/bloggy) require Server Boost Level 3 — that's 14 boosts (~$70/month) or you can buy them. Alternatively, use a link shortener like go.bloggy.online/discord to redirect to the auto-generated URL.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── X (TWITTER) ── -->
+    <div class="section" id="x">
+      <div class="section-label">Platform 7 of 7</div>
+      <div class="section-title">X (Twitter) <span class="badge badge-free">Free</span> <span class="badge badge-verify">Verify for reach</span></div>
+      <div class="section-desc">Real-time updates, product launches, and developer/agency community.</div>
+
+      <div class="card">
+        <div class="platform x">
+          <div class="platform-header">
+            <div class="platform-icon" style="background:#1a1a1a;">𝕏</div>
+            <div>
+              <div class="platform-name">X (Twitter)</div>
+              <div class="platform-url">Target URL: <code>x.com/bloggyapp</code></div>
+            </div>
+          </div>
+          <ul class="steps-list">
+            <li><div class="step-num">1</div><div class="step-content">Create account at <a href="https://x.com" target="_blank" style="color:#7c3aed;">x.com</a> → username: <code>bloggyapp</code></div></li>
+            <li><div class="step-num">2</div><div class="step-content">Display name: <code>Bloggy</code> — Bio: Paste the 160-char X bio</div></li>
+            <li><div class="step-num">3</div><div class="step-content">Profile photo: Upload <code>profile-800.png</code></div></li>
+            <li><div class="step-num">4</div><div class="step-content">Header/banner: Upload <code>cover-x.png</code> (1500×500)</div></li>
+            <li><div class="step-num">5</div><div class="step-content">Website: <code>https://bloggy.online</code></div></li>
+            <li><div class="step-num">6</div><div class="step-content">Consider <strong>X Premium</strong> ($8/mo) for the blue checkmark — increases reach and credibility for a SaaS account</div></li>
+            <li><div class="step-num">7</div><div class="step-content">Pin a launch tweet: "Introducing Bloggy — generate SEO blog posts for all your agency clients in seconds. [screenshot] bloggy.online"</div></li>
+            <li><div class="step-num">8</div><div class="step-content">Follow and engage with: agency owners, SEO tools accounts, WordPress accounts, marketing tool founders</div></li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Post a "building in public" thread about Bloggy — how you built it, what it does, early stats. These consistently go viral in the indie hacker / SaaS Twitter community.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ── CHECKLIST ── -->
+    <div class="section">
+      <div class="section-label">Master Checklist</div>
+      <div class="section-title">Everything to complete</div>
+      <div class="section-desc">Check each item off as you go.</div>
+
+      <div class="card" style="padding:8px 24px;">
+        <div style="padding:12px 0 4px;color:#555570;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Assets</div>
+        <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Design and export profile-800.png (square logo)</label></div>
+        <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Design and export cover-fb.png (820×312)</label></div>
+        <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Design and export cover-x.png (1500×500)</label></div>
+        <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Design and export cover-li.png (1128×191)</label></div>
+        <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Design and export cover-yt.png (2560×1440)</label></div>
+
+        <div style="padding:16px 0 4px;color:#555570;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Accounts</div>
+        <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Check @bloggyapp availability at namechk.com</label></div>
+        <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Google Business Profile — created and verified</label></div>
+        <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Facebook Page — created at facebook.com/bloggyapp</label></div>
+        <div class="check-item"><input type="checkbox" id="c9"><label for="c9">Instagram Business — created at instagram.com/bloggyapp</label></div>
+        <div class="check-item"><input type="checkbox" id="c10"><label for="c10">LinkedIn Company Page — created at linkedin.com/company/bloggyapp</label></div>
+        <div class="check-item"><input type="checkbox" id="c11"><label for="c11">YouTube Channel — handle set to @bloggyapp</label></div>
+        <div class="check-item"><input type="checkbox" id="c12"><label for="c12">Discord Server — created with invite link saved</label></div>
+        <div class="check-item"><input type="checkbox" id="c13"><label for="c13">X (Twitter) — created at x.com/bloggyapp</label></div>
+
+        <div style="padding:16px 0 4px;color:#555570;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Content</div>
+        <div class="check-item"><input type="checkbox" id="c14"><label for="c14">Post first launch announcement on all platforms</label></div>
+        <div class="check-item"><input type="checkbox" id="c15"><label for="c15">Add social links to bloggy.online footer</label></div>
+        <div class="check-item"><input type="checkbox" id="c16"><label for="c16">Add Discord invite link to emails and billing page</label></div>
+        <div class="check-item"><input type="checkbox" id="c17"><label for="c17">Record YouTube intro/demo video</label></div>
+        <div class="check-item"><input type="checkbox" id="c18"><label for="c18">Pin a post on Facebook, Instagram, and X</label></div>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:#333350;font-size:12px;margin-top:32px;">Bloggy by Boom Media · bloggy.online · eric@boommedia.us</p>
+
+  </div>
+
+  <script>
+    // Persist checkboxes in localStorage
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      const key = 'bloggy-sm-' + cb.id
+      if (localStorage.getItem(key) === 'true') cb.checked = true
+      cb.addEventListener('change', () => localStorage.setItem(key, cb.checked))
+    })
+  </script>
+
+</body>
+</html>

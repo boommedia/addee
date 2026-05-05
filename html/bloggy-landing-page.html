@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloggy — AI Blog Automation for Agencies | Boom Media</title>
+    <meta name="description" content="Automate blog content creation for your agency clients. Generate SEO-optimized posts, manage multiple WordPress sites, track rankings, and scale without hiring.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%);
+            color: #e8e8f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            border-bottom: 1px solid rgba(42, 42, 61, 0.5);
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: #8888a8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e8e8f0;
+        }
+
+        nav a.cta {
+            background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            color: #8888a8;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 64px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #e8e8f0;
+            border: 1px solid #2a2a3d;
+        }
+
+        .btn-secondary:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            color: #8888a8;
+            font-size: 18px;
+            margin-top: 48px;
+        }
+
+        /* Features */
+        .section {
+            padding: 80px 0;
+            border-top: 1px solid rgba(42, 42, 61, 0.3);
+        }
+
+        .section h2 {
+            font-size: 40px;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+
+        .feature-card {
+            background: rgba(18, 18, 26, 0.5);
+            border: 1px solid rgba(42, 42, 61, 0.5);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(124, 58, 237, 0.3);
+            background: rgba(18, 18, 26, 0.8);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #8888a8;
+            font-size: 14px;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 80px 0;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .pricing-header h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-header p {
+            color: #8888a8;
+            font-size: 18px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-card {
+            background: rgba(18, 18, 26, 0.5);
+            border: 1px solid rgba(42, 42, 61, 0.5);
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(124, 58, 237, 0.5);
+            background: rgba(18, 18, 26, 0.8);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid rgba(124, 58, 237, 0.5);
+            background: rgba(124, 58, 237, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .pricing-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .pricing-card .price {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pricing-card .price span {
+            font-size: 16px;
+            color: #8888a8;
+        }
+
+        .pricing-card .description {
+            color: #8888a8;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #c8c8d8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-card ul li:before {
+            content: "✓";
+            color: #06b6d4;
+            font-weight: bold;
+        }
+
+        /* Add-ons */
+        .addons-section {
+            padding: 80px 0;
+            border-top: 1px solid rgba(42, 42, 61, 0.3);
+        }
+
+        .addons-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .addons-header h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .featured-addons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .addon-card {
+            background: rgba(18, 18, 26, 0.5);
+            border: 1px solid rgba(42, 42, 61, 0.5);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .addon-card h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .addon-card .price {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #06b6d4;
+        }
+
+        .addon-card p {
+            color: #8888a8;
+            font-size: 14px;
+        }
+
+        /* Bundle */
+        .bundle-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .bundle-section h3 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: #10b981;
+        }
+
+        .bundle-section .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .bundle-section p {
+            color: #8888a8;
+            margin-bottom: 24px;
+        }
+
+        .bundle-addons-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+            text-align: left;
+        }
+
+        .bundle-addon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .bundle-addon:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Why Choose */
+        .why-choose {
+            padding: 80px 0;
+            border-top: 1px solid rgba(42, 42, 61, 0.3);
+        }
+
+        .why-choose h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 48px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+        }
+
+        .why-item h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #06b6d4;
+        }
+
+        .why-item p {
+            color: #8888a8;
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(42, 42, 61, 0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            color: #8888a8;
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(42, 42, 61, 0.3);
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        footer .logo {
+            font-weight: 700;
+            color: #7c3aed;
+        }
+
+        footer a {
+            color: #8888a8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #e8e8f0;
+        }
+
+        footer .links {
+            display: flex;
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .subtitle {
+                font-size: 16px;
+            }
+
+            .section h2,
+            .pricing-header h2,
+            .addons-header h2,
+            .why-choose h2,
+            .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .bundle-section {
+                padding: 32px;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0 24px;">
+            <div class="logo">Bloggy</div>
+            <a href="https://bloggy.online" class="cta">Go to App</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="container">
+            <h1>Stop Struggling with<br><span class="gradient">Agency Blog Content</span></h1>
+            <p class="subtitle">Automate blog creation for your clients. Generate SEO-optimized posts, manage multiple WordPress sites, and scale without hiring.</p>
+            <div class="cta-buttons">
+                <a href="https://bloggy.online/login" class="btn btn-primary">Start Free</a>
+                <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+            </div>
+            <div class="hero-image">
+                <p>🎯 AI-Powered Blog Automation Platform</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="section">
+        <div class="container">
+            <h2>Why Agencies Choose Bloggy</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>⚡ AI Content Generation</h3>
+                    <p>Generate SEO-optimized blog posts in seconds using advanced AI. No more blank page syndrome or expensive copywriters.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Multi-Site Management</h3>
+                    <p>Manage WordPress sites for multiple clients from one dashboard. Publish to any number of websites simultaneously.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Keyword Research Built In</h3>
+                    <p>Integrated keyword research identifies high-opportunity terms. Create content that ranks without third-party tools.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📈 Track Rankings & ROI</h3>
+                    <p>Monitor keyword rankings over time. Prove content performance to your clients with real data and metrics.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔗 WordPress Integration</h3>
+                    <p>Direct integration with WordPress. Publish posts automatically or review before going live. Your choice.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💼 Scale Without Hiring</h3>
+                    <p>Handle 10x more content production without expanding your team. Grow revenue while keeping costs flat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section">
+        <div class="container">
+            <div class="pricing-header">
+                <h2 id="pricing">Simple, Transparent Pricing</h2>
+                <p>Choose the plan that fits your agency. Upgrade or downgrade anytime.</p>
+            </div>
+
+            <div class="pricing-tiers">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$49<span>/month</span></div>
+                    <p class="description">Perfect for solo agencies and freelancers</p>
+                    <ul>
+                        <li>2 blog posts/month</li>
+                        <li>1 website</li>
+                        <li>Basic keyword research</li>
+                        <li>AI content generation</li>
+                        <li>WordPress integration</li>
+                        <li>Standard support</li>
+                    </ul>
+                    <a href="https://bloggy.online/login" class="btn btn-secondary" style="width: 100%; text-align: center;">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Growth</h3>
+                    <div class="price">$149<span>/month</span></div>
+                    <p class="description">For growing agencies managing multiple clients</p>
+                    <ul>
+                        <li>10 blog posts/month</li>
+                        <li>3 websites</li>
+                        <li>Advanced keyword research</li>
+                        <li>AI content + SEO optimization</li>
+                        <li>WordPress + client portal</li>
+                        <li>Priority support</li>
+                        <li>Analytics dashboard</li>
+                    </ul>
+                    <a href="https://bloggy.online/login" class="btn btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Agency</h3>
+                    <div class="price">$349<span>/month</span></div>
+                    <p class="description">For established agencies with multiple clients</p>
+                    <ul>
+                        <li>30 blog posts/month</li>
+                        <li>10 websites</li>
+                        <li>Unlimited keyword research</li>
+                        <li>Premium AI + SEO</li>
+                        <li>White-label options</li>
+                        <li>Dedicated support</li>
+                        <li>Custom workflows</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                    <a href="https://bloggy.online/login" class="btn btn-secondary" style="width: 100%; text-align: center;">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Agency Max</h3>
+                    <div class="price">$699<span>/month</span></div>
+                    <p class="description">Enterprise solution for scaling agencies</p>
+                    <ul>
+                        <li>Unlimited blog posts</li>
+                        <li>Unlimited websites</li>
+                        <li>Everything in Agency</li>
+                        <li>Custom API access</li>
+                        <li>Advanced integrations</li>
+                        <li>24/7 priority support</li>
+                        <li>Dedicated account manager</li>
+                        <li>Custom feature development</li>
+                    </ul>
+                    <a href="https://bloggy.online/login" class="btn btn-secondary" style="width: 100%; text-align: center;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="addons-section">
+        <div class="container">
+            <div class="addons-header">
+                <h2>Powerful Add-ons to Extend Your Capabilities</h2>
+                <p>Enhance Bloggy with specialized tools for your agency's unique needs</p>
+            </div>
+
+            <div class="featured-addons">
+                <div class="addon-card">
+                    <h4>📱 Social Media Autopilot</h4>
+                    <div class="price">$15<span style="font-size: 14px; color: #8888a8;">/month</span></div>
+                    <p>Auto-post blog content to Google Business Profile, LinkedIn, Facebook, and Instagram. Expand reach without manual posting.</p>
+                </div>
+
+                <div class="addon-card">
+                    <h4>📈 Rankings History Pro</h4>
+                    <div class="price">$8<span style="font-size: 14px; color: #8888a8;">/month</span></div>
+                    <p>Track keyword rankings over time. Monitor competition, visualize trends, and generate detailed SEO reports for clients.</p>
+                </div>
+            </div>
+
+            <div class="bundle-section">
+                <h3>💎 All Add-ons Bundle</h3>
+                <div class="price">$65<span style="font-size: 20px; color: #8888a8;">/month</span></div>
+                <p><strong>Save $100+ per month</strong> vs. buying add-ons individually</p>
+
+                <div class="bundle-addons-list">
+                    <div class="bundle-addon">Social Media Autopilot</div>
+                    <div class="bundle-addon">Rankings History Pro</div>
+                    <div class="bundle-addon">White-label Client Portal</div>
+                    <div class="bundle-addon">Competitor Gap Analysis</div>
+                    <div class="bundle-addon">Branded Monthly Reports</div>
+                    <div class="bundle-addon">AI Image Pack</div>
+                    <div class="bundle-addon">Video Script Generator</div>
+                    <div class="bundle-addon">Email Newsletter Digest</div>
+                    <div class="bundle-addon">Client Approval Workflow</div>
+                    <div class="bundle-addon">Search Console Sync</div>
+                </div>
+
+                <a href="https://bloggy.online/login" class="btn btn-primary">Explore Bundle</a>
+            </div>
+
+            <p style="text-align: center; color: #8888a8; margin-top: 32px; font-size: 14px;">Coming soon: White-label Client Portal, Competitor Gap Analysis, Branded Reports, AI Image Pack, Video Scripts, Email Digests, and more.</p>
+        </div>
+    </div>
+
+    <!-- Why Choose Section -->
+    <div class="why-choose">
+        <div class="container">
+            <h2>Perfect for Digital Agencies</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <h4>⏱️ Save Time</h4>
+                    <p>What takes 4 hours manually takes 5 minutes with Bloggy. Free up your team for client strategy.</p>
+                </div>
+                <div class="why-item">
+                    <h4>💰 Increase Margins</h4>
+                    <p>Deliver more content to clients without increasing staff costs. Boost profitability on every account.</p>
+                </div>
+                <div class="why-item">
+                    <h4>📊 Better Client Results</h4>
+                    <p>Consistent, SEO-optimized content means better rankings and more traffic for your clients.</p>
+                </div>
+                <div class="why-item">
+                    <h4>🔧 Easy Integration</h4>
+                    <p>Works with WordPress instantly. No technical setup required. Publish in seconds.</p>
+                </div>
+                <div class="why-item">
+                    <h4>🎯 Proven Results</h4>
+                    <p>Agencies report 3-5x more blog posts published and 40% increase in organic traffic for clients.</p>
+                </div>
+                <div class="why-item">
+                    <h4>🤝 Customer Support</h4>
+                    <p>Dedicated support team ready to help. Priority assistance for higher tiers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Agency's Content?</h2>
+            <p>Join hundreds of agencies using Bloggy to automate content, save time, and scale client results.</p>
+            <a href="https://bloggy.online/login" class="btn btn-primary">Start Your Free Trial Today</a>
+            <p style="color: #8888a8; margin-top: 24px; font-size: 14px;">No credit card required. Full access to all features.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="logo">Bloggy</div>
+                    <p style="color: #8888a8; font-size: 13px; margin-top: 8px;">by Boom Media</p>
+                </div>
+                <div class="links">
+                    <a href="https://bloggy.online">Home</a>
+                    <a href="https://bloggy.online/blog">Blog</a>
+                    <a href="https://bloggy.online/support">Support</a>
+                    <a href="https://bloggy.online">Terms</a>
+                    <a href="https://bloggy.online">Privacy</a>
+                </div>
+                <div style="color: #8888a8; font-size: 13px;">
+                    © 2026 Boom Media. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

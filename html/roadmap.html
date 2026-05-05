@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloggy — Product Roadmap</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #12121a;
+      --border:    #2a2a3d;
+      --muted:     #8888a8;
+      --faint:     #555570;
+      --text:      #e8e8f0;
+      --violet:    #7c3aed;
+      --violet-lt: #a78bfa;
+      --emerald:   #10b981;
+      --cyan:      #22d3ee;
+      --amber:     #f59e0b;
+      --rose:      #f43f5e;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      padding: 0 0 80px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 72px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(124,58,237,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+    .logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--violet-lt);
+      box-shadow: 0 0 12px var(--violet-lt);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 30%, var(--violet-lt) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .pill-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 600;
+      border: 1px solid;
+    }
+    .pill.launched  { background: rgba(16,185,129,.1); border-color: rgba(16,185,129,.3); color: var(--emerald); }
+    .pill.building  { background: rgba(124,58,237,.12); border-color: rgba(124,58,237,.35); color: var(--violet-lt); }
+    .pill.planned   { background: rgba(136,136,168,.08); border-color: var(--border); color: var(--muted); }
+    .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* ── Timeline ── */
+    .timeline-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .phase-block {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 56px;
+    }
+    /* vertical spine */
+    .phase-block::before {
+      content: '';
+      position: absolute;
+      left: 11px; top: 28px; bottom: -20px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+    }
+    .phase-block:last-child::before { display: none; }
+
+    /* phase header */
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .phase-icon {
+      position: absolute;
+      left: 0;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      font-weight: 800;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .phase-icon.done    { background: var(--emerald);    color: #000; box-shadow: 0 0 14px rgba(16,185,129,.4); }
+    .phase-icon.current { background: var(--violet);     color: #fff; box-shadow: 0 0 14px rgba(124,58,237,.5); }
+    .phase-icon.next    { background: var(--surface);    color: var(--muted); border: 2px solid var(--border); }
+
+    .phase-meta { padding-left: 0; }
+    .phase-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .phase-label.done    { color: var(--emerald); }
+    .phase-label.current { color: var(--violet-lt); }
+    .phase-label.next    { color: var(--faint); }
+
+    .phase-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.02em;
+    }
+    .phase-date {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* cards grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      transition: border-color .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: rgba(124,58,237,.4);
+      transform: translateY(-2px);
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .card.done::after    { background: linear-gradient(90deg, var(--emerald), transparent); opacity: .6; }
+    .card.current::after { background: linear-gradient(90deg, var(--violet-lt), transparent); opacity: .5; }
+    .card.planned::after { background: linear-gradient(90deg, var(--faint), transparent); opacity: .3; }
+
+    .card-icon {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .card-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .card-desc {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: .68rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+    .card-tag.done    { background: rgba(16,185,129,.1); color: var(--emerald); }
+    .card-tag.current { background: rgba(124,58,237,.12); color: var(--violet-lt); }
+    .card-tag.planned { background: rgba(136,136,168,.07); color: var(--faint); border: 1px solid var(--border); }
+    .card-tag.soon    { background: rgba(245,158,11,.1); color: var(--amber); }
+
+    /* divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 0 48px;
+    }
+
+    /* cta banner */
+    .cta {
+      text-align: center;
+      margin-top: 64px;
+    }
+    .cta h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: 10px;
+    }
+    .cta p {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 11px 28px;
+      border-radius: 12px;
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:hover { opacity: .85; transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--violet), #5b21b6);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(124,58,237,.3);
+    }
+    .btn.ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+      margin-left: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .btn.ghost { margin-left: 0; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    Bloggy
+  </div>
+  <h1>Product Roadmap</h1>
+  <p>Everything we've shipped and everything coming next — built for agencies who run content at scale.</p>
+  <div class="pill-row">
+    <span class="pill launched"><span class="pill-dot"></span> Launched</span>
+    <span class="pill building"><span class="pill-dot"></span> In Development</span>
+    <span class="pill planned"><span class="pill-dot"></span> Planned</span>
+  </div>
+</div>
+
+<div class="timeline-wrap">
+
+  <!-- ── Phase 1 — Foundation ── -->
+  <div class="phase-block">
+    <div class="phase-icon done">✓</div>
+    <div class="phase-header" style="padding-left:36px">
+      <div class="phase-meta">
+        <div class="phase-label done">Phase 1</div>
+        <div class="phase-title">Foundation</div>
+        <div class="phase-date">Launched — Q1 2026</div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card done">
+        <span class="card-icon">✍️</span>
+        <div class="card-title">AI Blog Generation</div>
+        <div class="card-desc">One-click long-form posts powered by Claude. Custom tone, keywords, and length controls.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🌐</span>
+        <div class="card-title">WordPress Publishing</div>
+        <div class="card-desc">Publish directly to any WordPress site with featured images, tags, and categories.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">👥</span>
+        <div class="card-title">Client Management</div>
+        <div class="card-desc">Manage unlimited client sites with per-client tone profiles and publishing targets.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">💳</span>
+        <div class="card-title">Subscription Billing</div>
+        <div class="card-desc">Starter, Growth, Agency, and Agency Max plans with Stripe-powered billing.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🏷️</span>
+        <div class="card-title">White-Label Branding</div>
+        <div class="card-desc">Agency Max plan includes custom branding so clients see your name, not ours.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">📊</span>
+        <div class="card-title">Analytics Dashboard</div>
+        <div class="card-desc">Post volume, word count trends, and per-client publishing stats at a glance.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🔑</span>
+        <div class="card-title">Keyword Research</div>
+        <div class="card-desc">Built-in keyword list builder with volume estimates to fuel your content strategy.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🔍</span>
+        <div class="card-title">Google Indexing API</div>
+        <div class="card-desc">Ping Google to index new posts instantly the moment they go live on WordPress.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🤝</span>
+        <div class="card-title">Team Collaboration</div>
+        <div class="card-desc">Invite team members and freelancers with role-based access controls.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 2 — Power Features ── -->
+  <div class="phase-block">
+    <div class="phase-icon done">✓</div>
+    <div class="phase-header" style="padding-left:36px">
+      <div class="phase-meta">
+        <div class="phase-label done">Phase 2</div>
+        <div class="phase-title">Power Features</div>
+        <div class="phase-date">Launched — April 2026</div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card done">
+        <span class="card-icon">⚡</span>
+        <div class="card-title">Live Streaming Generation</div>
+        <div class="card-desc">Watch your post write itself in real time — no waiting, no spinner, just live output.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🤖</span>
+        <div class="card-title">AI Rewrite & Improve</div>
+        <div class="card-desc">Seven rewrite presets — shorten, lengthen, more SEO, simpler, professional — plus custom instructions.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">⌘</span>
+        <div class="card-title">Command Palette (⌘K)</div>
+        <div class="card-desc">Jump anywhere in the app in milliseconds. 18 commands, keyboard-first navigation.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🕰️</span>
+        <div class="card-title">Post Version History</div>
+        <div class="card-desc">Save snapshots of any post and restore any version in one click. Never lose a draft.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">📋</span>
+        <div class="card-title">Content Brief Generator</div>
+        <div class="card-desc">AI-built content briefs with full outlines, SEO meta, audience definition, and CTAs.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🖼️</span>
+        <div class="card-title">Unsplash Image Picker</div>
+        <div class="card-desc">Search millions of free hero images and attach them to any post before publishing.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🔔</span>
+        <div class="card-title">Zapier & Make Webhooks</div>
+        <div class="card-desc">Fire outbound webhooks on post creation. Connect to any automation in minutes.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">📈</span>
+        <div class="card-title">Google Search Console Sync</div>
+        <div class="card-desc">See real clicks, impressions, CTR, and rankings from GSC directly inside Bloggy Analytics.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">🎁</span>
+        <div class="card-title">Referral Program</div>
+        <div class="card-desc">Earn credits for every user you refer. Unique link, live tracking, instant rewards.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+      <div class="card done">
+        <span class="card-icon">📅</span>
+        <div class="card-title">Annual Billing</div>
+        <div class="card-desc">Save 20% by switching to annual billing. Monthly / annual toggle on the billing page.</div>
+        <span class="card-tag done">✓ Live</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── Phase 3 — Growth ── -->
+  <div class="phase-block">
+    <div class="phase-icon current">3</div>
+    <div class="phase-header" style="padding-left:36px">
+      <div class="phase-meta">
+        <div class="phase-label current">Phase 3</div>
+        <div class="phase-title">Growth & Polish</div>
+        <div class="phase-date">Coming — Q2 2026</div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card current">
+        <span class="card-icon">🌗</span>
+        <div class="card-title">Dark / Light Mode</div>
+        <div class="card-desc">Full theme toggle with system preference detection and instant switching.</div>
+        <span class="card-tag soon">Coming Soon</span>
+      </div>
+      <div class="card current">
+        <span class="card-icon">🧭</span>
+        <div class="card-title">Product Tour & Onboarding</div>
+        <div class="card-desc">Step-by-step walkthrough for new users — no guessing where to start.</div>
+        <span class="card-tag soon">Coming Soon</span>
+      </div>
+      <div class="card current">
+        <span class="card-icon">◀</span>
+        <div class="card-title">Collapsible Sidebar Nav</div>
+        <div class="card-desc">More screen real estate when you need it — collapse and expand with one click.</div>
+        <span class="card-tag soon">Coming Soon</span>
+      </div>
+      <div class="card current">
+        <span class="card-icon">📆</span>
+        <div class="card-title">Content Calendar</div>
+        <div class="card-desc">Drag-and-drop calendar to schedule, visualize, and manage posts across all clients.</div>
+        <span class="card-tag soon">Coming Soon</span>
+      </div>
+      <div class="card current">
+        <span class="card-icon">📤</span>
+        <div class="card-title">Client Report Portal</div>
+        <div class="card-desc">Public, branded report links you can share directly with clients — no login needed.</div>
+        <span class="card-tag soon">Coming Soon</span>
+      </div>
+      <div class="card current">
+        <span class="card-icon">🔔</span>
+        <div class="card-title">Slack Notifications</div>
+        <div class="card-desc">Get a Slack ping every time a post is published. Never miss a delivery.</div>
+        <span class="card-tag soon">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Phase 4 — Integrations ── -->
+  <div class="phase-block">
+    <div class="phase-icon next">4</div>
+    <div class="phase-header" style="padding-left:36px">
+      <div class="phase-meta">
+        <div class="phase-label next">Phase 4</div>
+        <div class="phase-title">Integrations & Scale</div>
+        <div class="phase-date">Planned — Q3 2026</div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card planned">
+        <span class="card-icon">🛒</span>
+        <div class="card-title">Shopify Publishing</div>
+        <div class="card-desc">Publish blog posts directly to Shopify stores — perfect for e-commerce clients.</div>
+        <span class="card-tag planned">Planned</span>
+      </div>
+      <div class="card planned">
+        <span class="card-icon">🌊</span>
+        <div class="card-title">Webflow Publishing</div>
+        <div class="card-desc">Push posts to Webflow CMS collections with full field mapping.</div>
+        <span class="card-tag planned">Planned</span>
+      </div>
+      <div class="card planned">
+        <span class="card-icon">🎙️</span>
+        <div class="card-title">AI Audio Posts</div>
+        <div class="card-desc">Convert any blog post into a listenable audio clip via ElevenLabs text-to-speech.</div>
+        <span class="card-tag planned">Planned</span>
+      </div>
+      <div class="card planned">
+        <span class="card-icon">🪑</span>
+        <div class="card-title">Seat-Based Pricing</div>
+        <div class="card-desc">Add seats for your team and clients — perfect for larger agencies scaling up.</div>
+        <span class="card-tag planned">Planned</span>
+      </div>
+      <div class="card planned">
+        <span class="card-icon">📊</span>
+        <div class="card-title">Client-Specific Dashboards</div>
+        <div class="card-desc">Dedicated dashboard views scoped to a single client — great for QBRs and check-ins.</div>
+        <span class="card-tag planned">Planned</span>
+      </div>
+      <div class="card planned">
+        <span class="card-icon">🏷️</span>
+        <div class="card-title">AppSumo LTD</div>
+        <div class="card-desc">Lifetime deal launch on AppSumo for early adopters and agencies buying in bulk.</div>
+        <span class="card-tag planned">Planned</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="cta">
+    <h2>Ready to ship content at scale?</h2>
+    <p>Join agencies already using Bloggy to publish faster and grow their clients' traffic.</p>
+    <a href="https://bloggy.online/signup" class="btn primary">Start Free Trial</a>
+    <a href="https://bloggy.online" class="btn ghost">See Pricing</a>
+  </div>
+
+</div>
+
+</body>
+</html>

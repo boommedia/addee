@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"G:\\\\My Drive\\\\AI\\\\Claude\\\\Projects\\\\Boom Media\\\\Bloggy\")",
+      "Read(//g/My Drive/AI/Claude/Projects/Boom Media/Bloggy/**)",
+      "Bash(mv \"G:\\\\My Drive\\\\AI\\\\Claude\\\\Projects\\\\Boom Media\\\\Addee\\\\Bloggy\\\\*\" \"G:\\\\My Drive\\\\AI\\\\Claude\\\\Projects\\\\Boom Media\\\\Addee\\\\\" 2>&1 || true)",
+      "Bash(cd \"G:\\\\My Drive\\\\AI\\\\Claude\\\\Projects\\\\Boom Media\\\\Addee\" && mv Bloggy/* . && rmdir Bloggy)",
+      "Bash(shopt -s dotglob)",
+      "Bash(mv Bloggy/* .)",
+      "Bash(rm -rf .git)",
+      "Bash(git init *)",
+      "Bash(grep -v \"^\\\\.$\")",
+      "Bash(mkdir -p \"g:\\\\My Drive\\\\AI\\\\Claude\\\\Projects\\\\Boom Media\\\\Addee\\\\src\\\\app\\\\campaigns\\\\[id]\")",
+      "Bash(npm install *)",
+      "Bash(npx supabase *)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ],
+    "additionalDirectories": [
+      "G:\\My Drive\\AI\\Claude\\Projects\\Boom Media\\Addee\\Bloggy",
+      "g:\\My Drive\\AI\\Claude\\Projects\\Boom Media\\Addee\\src\\app\\campaigns"
+    ]
+  }
+}

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boom Media — Bloggy — AI Blog Generator</title>
+  <style>
+    :root {
+      --primary: #6c47ff;
+      --primary-light: #8b6bff;
+      --primary-dark: #4f2de0;
+      --accent: #00d4aa;
+      --accent-light: #00f5c4;
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card2: #1a1a26;
+      --border: #2a2a3d;
+      --text: #e8e8f0;
+      --text-muted: #8888a8;
+      --text-bright: #ffffff;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a0f3a 50%, #0a1a2a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(108,71,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(108,71,255,0.2);
+      border: 1px solid rgba(108,71,255,0.4);
+      color: var(--primary-light);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--text-bright);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .num {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 64px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-bright);
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 24px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .card:hover {
+      border-color: rgba(108,71,255,0.4);
+      transition: border-color 0.2s;
+    }
+
+    /* ── Feature Modules ── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .module-card:hover {
+      border-color: rgba(108,71,255,0.5);
+      transform: translateY(-2px);
+    }
+    .module-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(108,71,255,0.2), rgba(0,212,170,0.1));
+      border: 1px solid rgba(108,71,255,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .module-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 10px;
+    }
+    .module-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .module-card ul li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding-left: 18px;
+      position: relative;
+    }
+    .module-card ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 10px;
+      top: 3px;
+    }
+
+    /* ── Tech Stack Table ── */
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .tech-table th {
+      text-align: left;
+      padding: 14px 20px;
+      background: rgba(108,71,255,0.1);
+      color: var(--primary-light);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .tech-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(42,42,61,0.6);
+      color: var(--text);
+      vertical-align: top;
+    }
+    .tech-table tr:last-child td { border-bottom: none; }
+    .tech-table tr:hover td { background: rgba(108,71,255,0.04); }
+    .tech-table td:first-child { color: var(--text-muted); font-weight: 600; width: 140px; }
+    .tech-table td:nth-child(2) { color: var(--text-bright); font-weight: 600; width: 200px; }
+    .tech-table td:nth-child(3) { color: var(--text-muted); font-size: 0.825rem; }
+    .tag {
+      display: inline-block;
+      background: rgba(0,212,170,0.12);
+      border: 1px solid rgba(0,212,170,0.25);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      padding: 0 0 32px 60px;
+      position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: 15px;
+      top: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg);
+      z-index: 1;
+    }
+    .timeline-content {
+      flex: 1;
+    }
+    .timeline-content h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 6px;
+    }
+    .timeline-content .duration {
+      display: inline-block;
+      background: rgba(108,71,255,0.15);
+      color: var(--primary-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .timeline-content p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Cost Tables ── */
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .cost-table th {
+      text-align: left;
+      padding: 12px 16px;
+      background: rgba(108,71,255,0.08);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .cost-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(42,42,61,0.5);
+      color: var(--text);
+    }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table tr:hover td { background: rgba(108,71,255,0.03); }
+    .cost-table .total-row td {
+      background: rgba(108,71,255,0.08);
+      color: var(--text-bright);
+      font-weight: 700;
+      border-top: 1px solid var(--border);
+    }
+    .cost-value { color: var(--accent); font-weight: 700; text-align: right; }
+    .cost-table th:last-child { text-align: right; }
+
+    /* ── Scale Cards ── */
+    .scale-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .scale-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .scale-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(108,71,255,0.4);
+    }
+    .scale-card .tier {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .scale-card .users {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-bright);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .scale-card .blogs {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .scale-card .cost {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .scale-card .cost-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Pricing Cards ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .pricing-card:hover { transform: translateY(-2px); }
+    .pricing-card.featured {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(108,71,255,0.12), rgba(0,212,170,0.04));
+      position: relative;
+    }
+    .pricing-card.featured::before {
+      content: 'POPULAR';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 3px 12px;
+      border-radius: 100px;
+    }
+    .pricing-card .plan-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .pricing-card .plan-price {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-bright);
+      line-height: 1;
+    }
+    .pricing-card .plan-price span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .pricing-card .plan-credits {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 8px 0 16px;
+    }
+    .pricing-card .plan-blogs {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ── Differentiators ── */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .diff-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .diff-card:hover { border-color: rgba(0,212,170,0.3); }
+    .diff-num {
+      min-width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: white;
+    }
+    .diff-content h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 6px;
+    }
+    .diff-content p {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Build Cost Table ── */
+    .build-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 700px) {
+      .build-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+    }
+
+    .info-box {
+      background: rgba(0,212,170,0.06);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .info-box .icon { font-size: 20px; }
+    .info-box p {
+      font-size: 0.875rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .info-box strong { color: var(--accent); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(108,71,255,0.15), rgba(0,212,170,0.08));
+      border: 1px solid rgba(108,71,255,0.3);
+      border-radius: 24px;
+      padding: 64px 40px;
+      text-align: center;
+      margin: 40px 24px 80px;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-bright);
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+    .cta-steps {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .cta-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+    .cta-step .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    footer strong { color: var(--primary-light); }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-badge">Boom Media — Internal Client Tool</div>
+  <h1>AI Blog Generator<br><span>Bloggy for Boom Media Clients</span></h1>
+  <p>An internal content production tool built for Boom Media — convert any client content source into SEO-optimized blog posts. No subscriptions, no affiliate engine, no public SaaS overhead.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">40+</span><span class="label">Content Sources</span></div>
+    <div class="hero-stat"><span class="num">150+</span><span class="label">Languages</span></div>
+    <div class="hero-stat"><span class="num">~$115</span><span class="label">Est. Run Cost/mo</span></div>
+    <div class="hero-stat"><span class="num">6–8wk</span><span class="label">Time to MVP</span></div>
+  </div>
+</div>
+
+<!-- ── WHAT IS IT ── -->
+<section>
+  <div class="section-label">Overview</div>
+  <div class="section-title">What This Tool Does for Boom Media</div>
+  <div class="section-sub">An internal AI-powered content engine — paste a prompt, drop a YouTube link, upload audio, or point it at any webpage, and get a publish-ready SEO blog post for your client in minutes.</div>
+
+  <div class="modules-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px,1fr));">
+    <div class="card">
+      <strong style="color:var(--text-bright)">Primary Use Case</strong>
+      <div style="font-size:0.875rem;color:var(--text-muted);margin-top:8px;line-height:1.6;">Boom Media staff generate and publish client blog content faster — no more manual writing or external tools per client</div>
+    </div>
+    <div class="card">
+      <strong style="color:var(--text-bright)">Inspired By</strong>
+      <div style="font-size:0.875rem;color:var(--text-muted);margin-top:8px;line-height:1.6;">Blogify.ai — rated 4.7/5 on G2. We build the core engine without the SaaS overhead (no credits, no subscriptions, no affiliate layer)</div>
+    </div>
+    <div class="card">
+      <strong style="color:var(--text-bright)">Not Included (Yet)</strong>
+      <div style="font-size:0.875rem;color:var(--text-muted);margin-top:8px;line-height:1.6;">Custom domains · Affiliate monetization engine · Credit & subscription billing — these are skipped for v1</div>
+    </div>
+    <div class="card">
+      <strong style="color:var(--text-bright)">Key Advantage</strong>
+      <div style="font-size:0.875rem;color:var(--text-muted);margin-top:8px;line-height:1.6;">Owned infrastructure — no per-seat SaaS fees, no usage caps, full control over prompts, client data stays internal</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── COMPETITOR REFERENCE ── -->
+<section>
+  <div class="section-label">Market Reference</div>
+  <div class="section-title">What Blogify.ai Charges (For Context)</div>
+  <div class="section-sub">We're building this internally — no subscription tiers needed. But this shows the market value of the tool you'll have in-house for free.</div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">Lite</div>
+      <div class="plan-price">$3.99<span>/mo</span></div>
+      <div class="plan-credits">50 credits</div>
+      <div class="plan-blogs">~10 blogs/mo</div>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Basic</div>
+      <div class="plan-price">$15.99<span>/mo</span></div>
+      <div class="plan-credits">150 credits</div>
+      <div class="plan-blogs">~30 blogs/mo</div>
+    </div>
+    <div class="pricing-card featured">
+      <div class="plan-name">Premium</div>
+      <div class="plan-price">$31.99<span>/mo</span></div>
+      <div class="plan-credits">300 credits</div>
+      <div class="plan-blogs">~60 blogs/mo</div>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Business</div>
+      <div class="plan-price">$39.99<span>/mo</span></div>
+      <div class="plan-credits">500 credits</div>
+      <div class="plan-blogs">~100 blogs/mo</div>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price">$79.99<span>/mo</span></div>
+      <div class="plan-credits">1,000 credits</div>
+      <div class="plan-blogs">~200 blogs/mo</div>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Unlimited</div>
+      <div class="plan-price">$199.99<span>/mo</span></div>
+      <div class="plan-credits">Unlimited</div>
+      <div class="plan-blogs">Unlimited blogs</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px;">
+    <div class="icon">💡</div>
+    <p><strong>Boom Media advantage:</strong> By owning this tool internally, you eliminate per-client SaaS costs entirely. At 10+ active clients generating 30 blogs/mo each, that's $160–$400/mo you'd otherwise pay Blogify.ai — this tool pays for itself immediately.</p>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── FEATURE MODULES ── -->
+<section>
+  <div class="section-label">Feature Architecture</div>
+  <div class="section-title">4 Core Modules to Build</div>
+  <div class="section-sub">Focused scope for Boom Media v1 — no affiliate engine, no custom domains, no subscription billing. Just the content engine and publishing pipeline.</div>
+
+  <div class="modules-grid">
+    <div class="module-card" style="border-color:rgba(108,71,255,0.4);">
+      <div class="module-icon">📥</div>
+      <h3>1. Content Ingestion Engine</h3>
+      <ul>
+        <li><strong style="color:var(--accent)">Text input / prompt</strong> — type or paste any topic, brief, or outline directly</li>
+        <li>YouTube URL → transcript via YouTube Data API</li>
+        <li>Podcasts / Audio file → AssemblyAI or OpenAI Whisper</li>
+        <li>Webpage URL → Puppeteer / Playwright scraping</li>
+        <li>TikTok / Vimeo → yt-dlp audio extraction</li>
+        <li>PDFs & Docs → PDF.js or Apache Tika</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <div class="module-icon">🤖</div>
+      <h3>2. AI Blog Generation</h3>
+      <ul>
+        <li>Claude Sonnet 4.6 — best quality/cost ratio</li>
+        <li>Prompt engineering: tone, length, H1/H2/H3 structure</li>
+        <li>Client brand voice / style settings per account</li>
+        <li>Image generation — DALL-E 3 or Stability AI</li>
+        <li>Auto-generated tables, charts, and pull quotes</li>
+        <li>150+ language output support</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <div class="module-icon">🔍</div>
+      <h3>3. SEO Optimization Layer</h3>
+      <ul>
+        <li>Keyword extraction via DataForSEO API</li>
+        <li>Meta title & description generation</li>
+        <li>Readability scoring (Flesch-Kincaid)</li>
+        <li>SEO score with actionable suggestions</li>
+        <li>Internal/external link suggestions</li>
+        <li>Structured data / schema markup</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <div class="module-icon">🚀</div>
+      <h3>4. Publishing Integrations</h3>
+      <ul>
+        <li>WordPress REST API — direct client site publish</li>
+        <li>Medium API</li>
+        <li>LinkedIn Articles API</li>
+        <li>Blogger integration</li>
+        <li>Copy-to-clipboard formatted output</li>
+        <li>Scheduled post publishing</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <div class="module-icon">📊</div>
+      <h3>5. Client Dashboard & Analytics</h3>
+      <ul>
+        <li>Per-client blog history and post log</li>
+        <li>Post performance tracking (views, clicks)</li>
+        <li>SEO ranking trends per post</li>
+        <li>Generation history with source tracking</li>
+        <li>Team activity log for Boom Media staff</li>
+        <li>Export blog content as Markdown or HTML</li>
+      </ul>
+    </div>
+
+    <div class="module-card" style="border:1px dashed var(--border);opacity:0.6;">
+      <div class="module-icon" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08);">🔒</div>
+      <h3 style="color:var(--text-muted);">Skipped for v1</h3>
+      <ul>
+        <li>Custom domain publishing</li>
+        <li>Affiliate monetization engine</li>
+        <li>Credit & subscription billing</li>
+        <li>White-label client access portals</li>
+        <li>Add-on marketplace</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── TECH STACK ── -->
+<section>
+  <div class="section-label">Technology</div>
+  <div class="section-title">Recommended Tech Stack</div>
+  <div class="section-sub">Battle-tested choices that scale without switching later. Every pick has a free tier to start.</div>
+
+  <div class="card" style="padding:0;overflow:hidden;">
+    <table class="tech-table">
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Choice</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Frontend</td><td>Next.js 14 <span class="tag">App Router</span></td><td>SSR for SEO, fast DX, Vercel native — perfect fit for a blog-focused product</td></tr>
+        <tr><td>Backend API</td><td>Node.js + Fastify</td><td>Speed + JavaScript shared types with frontend; or Python FastAPI for AI-heavy teams</td></tr>
+        <tr><td>Database</td><td>PostgreSQL <span class="tag">Supabase</span></td><td>Relational data for credits/users, real-time subscriptions, Auth built-in, free tier</td></tr>
+        <tr><td>Cache / Queue</td><td>Redis + BullMQ <span class="tag">Upstash</span></td><td>Job queue for generation tasks — blog creation is async, can take 30–90 seconds</td></tr>
+        <tr><td>AI Model</td><td>Claude Sonnet 4.6 <span class="tag">Primary</span></td><td>Best quality/cost for long-form content; add Claude Haiku for quick metadata tasks</td></tr>
+        <tr><td>Transcription</td><td>AssemblyAI</td><td>Accurate, 99 language support, speaker detection, timestamps — $0.65/hr audio</td></tr>
+        <tr><td>Image Gen</td><td>DALL-E 3 or Stability AI</td><td>DALL-E for quality; Stability for cost — both have API access</td></tr>
+        <tr><td>Storage</td><td>Cloudflare R2</td><td>No egress fees (vs S3), $0.015/GB storage, S3-compatible API</td></tr>
+        <tr><td>Auth</td><td>Supabase Auth</td><td>Simple login for Boom Media team — email/password or Google SSO, no public signup needed</td></tr>
+        <tr><td>Email</td><td>Resend</td><td>Transactional email for generation notifications and post reports — generous free tier</td></tr>
+        <tr><td>Hosting (FE)</td><td>Vercel</td><td>Zero-config Next.js, edge functions, preview deployments per PR</td></tr>
+        <tr><td>Hosting (BE)</td><td>Railway or Render</td><td>Simple Docker deploys, auto-scaling, PostgreSQL add-on available</td></tr>
+        <tr><td>CDN</td><td>Cloudflare</td><td>Edge caching, custom domain routing, DDoS protection, free tier</td></tr>
+        <tr><td>SEO Data</td><td>DataForSEO API</td><td>Keyword volume, SERP data, keyword difficulty — pay per call</td></tr>
+        <tr><td>Analytics</td><td>PostHog (self-hosted)</td><td>Product analytics + session recording + feature flags — open source</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── BUILD TIMELINE ── -->
+<section>
+  <div class="section-label">Roadmap</div>
+  <div class="section-title">Build Timeline</div>
+  <div class="section-sub">Simplified scope means faster delivery — targeting a working internal tool in 6–8 weeks.</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;" class="build-grid">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="duration">Weeks 1–4</div>
+          <h4>Phase 1 — Core Engine</h4>
+          <p>Text prompt input + YouTube URL ingestion. Claude Sonnet 4.6 blog generation. Basic UI with tone/length controls. Internal Boom Media login. Export as Markdown/HTML.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--accent);"></div>
+        <div class="timeline-content">
+          <div class="duration">Weeks 5–8</div>
+          <h4>Phase 2 — All Sources + Publishing</h4>
+          <p>Add audio/podcast, webpage, PDF ingestion. WordPress + LinkedIn publish integrations. SEO scoring layer. Per-client brand voice settings. Client dashboard.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:linear-gradient(135deg,var(--primary),var(--accent));"></div>
+        <div class="timeline-content">
+          <div class="duration">Weeks 9–12</div>
+          <h4>Phase 3 — Polish & Analytics</h4>
+          <p>Full analytics dashboard. Generation history log. SEO ranking tracking. Image generation integration. Scheduled publishing. Refinements from real client use.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="card">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Who Builds It</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.875rem;">
+            <span style="color:var(--text)">Fullstack Developer</span>
+            <span style="color:var(--accent);font-weight:700;">All Phases</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.875rem;">
+            <span style="color:var(--text)">Claude Code (AI pair)</span>
+            <span style="color:var(--accent);font-weight:700;">All Phases</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.875rem;">
+            <span style="color:var(--text)">Eric (direction + QA)</span>
+            <span style="color:var(--text-muted);font-weight:700;">Reviews</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Build Cost Estimate</div>
+        <table class="cost-table">
+          <tr><td>Fullstack Dev (200 hrs)</td><td class="cost-value">$15K–$24K</td></tr>
+          <tr><td>UI/UX Design</td><td class="cost-value">$2K–$4K</td></tr>
+          <tr><td>API setup + integrations</td><td class="cost-value">$500–$1K</td></tr>
+          <tr class="total-row"><td>Total (Hired)</td><td class="cost-value">$17K–$29K</td></tr>
+        </table>
+        <div class="info-box" style="margin-top:12px;padding:12px 16px;">
+          <div class="icon">🛠</div>
+          <p><strong>DIY with Claude Code:</strong> APIs + hosting only = <strong>$500–$2K</strong> to working MVP</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── INFRASTRUCTURE COSTS ── -->
+<section>
+  <div class="section-label">Monthly Operating Costs</div>
+  <div class="section-title">Infrastructure Cost Breakdown</div>
+  <div class="section-sub">Internal tool means lean infrastructure. No payment processor, no multi-tenant overhead — just the services you actually need.</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="build-grid">
+    <div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--text-bright);margin-bottom:12px;">Fixed Monthly Costs (Internal Boom Media Use)</div>
+      <div class="card" style="padding:0;overflow:hidden;">
+        <table class="cost-table">
+          <thead><tr><th>Service</th><th style="text-align:right">Cost/mo</th></tr></thead>
+          <tbody>
+            <tr><td>Vercel (free tier)</td><td class="cost-value">$0</td></tr>
+            <tr><td>Supabase (free tier)</td><td class="cost-value">$0</td></tr>
+            <tr><td>Upstash Redis (free tier)</td><td class="cost-value">$0</td></tr>
+            <tr><td>Cloudflare (free)</td><td class="cost-value">$0</td></tr>
+            <tr><td>Resend (free tier)</td><td class="cost-value">$0</td></tr>
+            <tr><td>AssemblyAI (~50 hrs audio)</td><td class="cost-value">~$33</td></tr>
+            <tr><td>DataForSEO (light usage)</td><td class="cost-value">~$20–$50</td></tr>
+            <tr class="total-row"><td>Fixed Total</td><td class="cost-value">~$53–$83/mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--text-bright);margin-bottom:12px;">Variable — Claude API Cost Per Blog</div>
+      <div class="card" style="padding:0;overflow:hidden;">
+        <table class="cost-table">
+          <thead><tr><th>Blogs/mo</th><th>Tokens/Blog</th><th style="text-align:right">API Cost</th></tr></thead>
+          <tbody>
+            <tr><td>1,000</td><td>8K in / 3K out</td><td class="cost-value">~$69</td></tr>
+            <tr><td>5,000</td><td>8K in / 3K out</td><td class="cost-value">~$345</td></tr>
+            <tr><td>20,000</td><td>8K in / 3K out</td><td class="cost-value">~$1,380</td></tr>
+            <tr><td>100,000</td><td>8K in / 3K out</td><td class="cost-value">~$6,900</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-box" style="margin-top:12px;padding:14px 16px;">
+        <div class="icon">⚡</div>
+        <p><strong>Prompt caching</strong> (Anthropic native) saves ~60% on repeated system prompt tokens. Always enable this — it's free to implement and cuts your biggest variable cost significantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── SCALE COSTS ── -->
+<section>
+  <div class="section-label">Cost at Scale</div>
+  <div class="section-title">Total Monthly Cost by Client Volume</div>
+  <div class="section-sub">Costs grow only with blog output volume — not headcount. Internal tooling means you keep free tiers longer.</div>
+
+  <div class="scale-grid">
+    <div class="scale-card">
+      <div class="tier">Launch</div>
+      <div class="users">5 clients</div>
+      <div class="blogs">~100 blogs/mo</div>
+      <div style="width:40px;height:2px;background:var(--border);margin:12px auto;"></div>
+      <div class="cost">~$60</div>
+      <div class="cost-label">per month</div>
+    </div>
+    <div class="scale-card" style="border-color:rgba(108,71,255,0.3);">
+      <div class="tier">Growing</div>
+      <div class="users">20 clients</div>
+      <div class="blogs">~500 blogs/mo</div>
+      <div style="width:40px;height:2px;background:var(--border);margin:12px auto;"></div>
+      <div class="cost">~$115</div>
+      <div class="cost-label">per month</div>
+    </div>
+    <div class="scale-card" style="border-color:rgba(0,212,170,0.3);">
+      <div class="tier">Active</div>
+      <div class="users">50 clients</div>
+      <div class="blogs">~2,000 blogs/mo</div>
+      <div style="width:40px;height:2px;background:var(--border);margin:12px auto;"></div>
+      <div class="cost">~$280</div>
+      <div class="cost-label">per month</div>
+    </div>
+    <div class="scale-card">
+      <div class="tier">Full Scale</div>
+      <div class="users">100+ clients</div>
+      <div class="blogs">~5,000 blogs/mo</div>
+      <div style="width:40px;height:2px;background:var(--border);margin:12px auto;"></div>
+      <div class="cost">~$600</div>
+      <div class="cost-label">per month</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:24px;">
+    <div class="icon">📈</div>
+    <p><strong>Key insight:</strong> At 20 clients generating 25 blogs/mo each, your entire tool cost is ~$115/mo. If you charge clients even $200/mo for content services, you're recovering that cost from a single client. The tool essentially runs free at any realistic Boom Media client volume.</p>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── DIFFERENTIATORS ── -->
+<section>
+  <div class="section-label">Boom Media Advantages</div>
+  <div class="section-title">What Makes This Tool Powerful for Your Clients</div>
+  <div class="section-sub">Built specifically for Boom Media workflows — not a generic SaaS. These advantages compound as you use it across more clients.</div>
+
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-num">1</div>
+      <div class="diff-content">
+        <h4>Text Prompt as First-Class Input</h4>
+        <p>Staff can type a brief, topic, or outline directly — no source content required. Fastest path from idea to published blog post with no friction.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">2</div>
+      <div class="diff-content">
+        <h4>Per-Client Brand Voice</h4>
+        <p>Store each client's tone, style guide, target audience, and preferred keywords. Every generated post sounds like the client wrote it — not a generic AI.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">3</div>
+      <div class="diff-content">
+        <h4>No Usage Caps — Ever</h4>
+        <p>You own the infrastructure. No credit limits, no throttling, no per-blog fees. Generate as many posts as your clients need without watching a meter.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">4</div>
+      <div class="diff-content">
+        <h4>Client Data Stays Internal</h4>
+        <p>No third-party SaaS storing your clients' content, briefs, or brand assets. Everything runs on Boom Media's own infrastructure — a real selling point for enterprise clients.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">5</div>
+      <div class="diff-content">
+        <h4>Full Content Repurpose Pipeline (v2)</h4>
+        <p>Future: YouTube video → Blog post → Social threads → Email newsletter — all in one workflow. Upsell clients on a complete content distribution package.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">6</div>
+      <div class="diff-content">
+        <h4>Potential Future SaaS Pivot</h4>
+        <p>Once the tool is polished internally, you can add the credit/subscription layer and sell access to other agencies. Validated product, zero market risk — built on real usage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── CTA ── -->
+<div style="max-width:1200px;margin:0 auto;">
+  <div class="cta-section">
+    <h2>Ready to Build for Boom Media?</h2>
+    <p>Scoped for internal use — lean, fast, and purpose-built. Phase 1 can be running in 4 weeks.</p>
+    <div class="cta-steps">
+      <div class="cta-step"><div class="step-num">1</div>Text prompt + YouTube URL → Claude blog generation</div>
+      <div class="cta-step"><div class="step-num">2</div>Internal Boom Media login + client profiles</div>
+      <div class="cta-step"><div class="step-num">3</div>WordPress direct publish integration</div>
+      <div class="cta-step"><div class="step-num">4</div>Add sources + SEO layer + analytics dashboard</div>
+    </div>
+    <div style="font-size:0.875rem;color:var(--text-muted);">
+      MVP run cost: <strong style="color:var(--accent);">~$60/mo</strong> &nbsp;·&nbsp;
+      Time to MVP: <strong style="color:var(--accent);">4–6 weeks</strong> &nbsp;·&nbsp;
+      Full tool: <strong style="color:var(--accent);">10–12 weeks</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>Prepared for <strong>Boom Media</strong> · <strong>Bloggy by Boom Media</strong> · bloggy.online · April 2026</p>
+  <p style="margin-top:6px;font-size:0.75rem;">Inspired by Blogify.ai · Built for internal client use · Anthropic API pricing as of April 2026.</p>
+</footer>
+
+</body>
+</html>
