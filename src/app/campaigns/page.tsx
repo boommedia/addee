@@ -42,9 +42,9 @@ export default async function CampaignsPage() {
               >
                 <h2 className="text-xl font-semibold text-foreground">{campaign.name}</h2>
                 <p className="text-foreground/60 mt-2">{campaign.description}</p>
-                <div className="flex gap-4 mt-4 text-sm">
-                  <span className="text-accent">Brand: {campaign.brands?.name}</span>
-                  <span className="text-secondary">Platforms: {JSON.stringify(campaign.platforms).replace(/"/g, '')}</span>
+                <div className="flex gap-6 mt-4 text-sm text-foreground/70">
+                  <span><strong className="text-foreground">Brand:</strong> {campaign.brands?.name}</span>
+                  <span><strong className="text-foreground">Platforms:</strong> {JSON.stringify(campaign.platforms).replace(/"/g, '')}</span>
                 </div>
               </Link>
             ))}

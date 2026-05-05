@@ -52,7 +52,7 @@ export default async function BrandsPage() {
                   <h2 className="text-xl font-semibold text-foreground flex-1">{brand.name}</h2>
                 </div>
                 <p className="text-foreground/60 text-sm">{brand.industry}</p>
-                <p className="text-accent text-sm mt-3">Tone: {brand.tone_examples ? 'Configured' : 'Not set'}</p>
+                <p className="text-primary text-sm mt-3 font-medium">Tone: {brand.tone_examples ? '✓ Configured' : 'Not set'}</p>
               </Link>
             ))}
           </div>
