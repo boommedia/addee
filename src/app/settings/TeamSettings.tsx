@@ -57,10 +57,10 @@ export default function TeamSettings({
   return (
     <div className="flex flex-col gap-6">
       {/* Team section */}
-      <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+      <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
         <div className="flex items-center gap-2 mb-5">
           <Users className="w-4 h-4 text-violet-400" />
-          <h2 className="text-white font-semibold text-sm">Team Members</h2>
+          <h2 className="font-semibold text-sm" style={{ color: '#dde4f0' }}>Team Members</h2>
         </div>
 
         {/* Owner row */}
@@ -70,7 +70,7 @@ export default function TeamSettings({
               {ownerEmail[0]?.toUpperCase()}
             </div>
             <div>
-              <div className="text-white text-sm">{ownerEmail}</div>
+              <div className="text-sm" style={{ color: '#dde4f0' }}>{ownerEmail}</div>
               <div className="text-[#8888a8] text-xs">Owner</div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function TeamSettings({
       </div>
 
       {/* Invite form */}
-      <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+      <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
         <div className="flex items-center gap-2 mb-4">
           <UserPlus className="w-4 h-4 text-violet-400" />
           <h2 className="text-white font-semibold text-sm">Invite Team Member</h2>
@@ -158,7 +158,7 @@ export default function TeamSettings({
 
       {/* Accepted history */}
       {accepted.length > 0 && (
-        <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+        <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
           <h2 className="text-white font-semibold text-sm mb-4">Accepted Invites</h2>
           <div className="flex flex-col gap-2">
             {accepted.map(inv => (

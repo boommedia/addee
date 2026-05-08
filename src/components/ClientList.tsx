@@ -56,7 +56,16 @@ function CopyReportLink({ clientId }: { clientId: string }) {
     <button
       onClick={copy}
       title="Copy shareable report link"
-      className="flex items-center gap-1 text-xs font-semibold text-[#8888a8] hover:text-white bg-[#0a0a0f] hover:bg-[#1a1a26] border border-[#2a2a3d] px-2.5 py-1.5 rounded-lg transition-colors"
+      className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors"
+      style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = '#dde4f0'
+        e.currentTarget.style.background = 'rgba(0,102,255,0.15)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = '#7a90b8'
+        e.currentTarget.style.background = 'rgba(11,22,40,0.6)'
+      }}
     >
       {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Link2 className="w-3 h-3" />}
       {copied ? 'Copied!' : 'Share'}
@@ -66,7 +75,7 @@ function CopyReportLink({ clientId }: { clientId: string }) {
 
 function ClientAvatar({ client }: { client: Client }) {
   if (client.logo_url) {
-    return <img src={client.logo_url} alt={client.name} className="w-10 h-10 rounded-xl object-contain bg-white/5 border border-[#2a2a3d] shrink-0 p-0.5" />
+    return <img src={client.logo_url} alt={client.name} className="w-10 h-10 rounded-xl object-contain bg-white/5 shrink-0 p-0.5" style={{ borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }} />
   }
   return (
     <div
@@ -85,12 +94,12 @@ function PostUsageBar({ used, limit }: { used: number; limit: number }) {
   return (
     <div className="mt-2.5 mb-0.5">
       <div className="flex items-center justify-between mb-1">
-        <span className="text-[#555570] text-xs">Posts this month</span>
-        <span className={`text-xs font-semibold ${pct >= 100 ? 'text-red-400' : pct >= 80 ? 'text-yellow-400' : 'text-[#8888a8]'}`}>
+        <span className="text-xs" style={{ color: '#7a90b8' }}>Posts this month</span>
+        <span className={`text-xs font-semibold ${pct >= 100 ? 'text-red-400' : pct >= 80 ? 'text-yellow-400' : ''}`} style={{ color: pct >= 100 ? undefined : pct >= 80 ? undefined : '#7a90b8' }}>
           {used}/{limit} · {left} left
         </span>
       </div>
-      <div className="h-1 bg-[#1a1a26] rounded-full overflow-hidden">
+      <div className="h-1 rounded-full overflow-hidden" style={{ background: 'rgba(0,102,255,0.15)' }}>
         <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
@@ -118,10 +127,10 @@ export default function ClientList({
 
   if (clients.length === 0) {
     return (
-      <div className="bg-[#12121a] border border-[#2a2a3d] border-dashed rounded-2xl py-20 text-center">
-        <Building2 className="w-10 h-10 text-[#2a2a3d] mx-auto mb-3" />
-        <p className="text-[#8888a8] text-sm">No clients yet</p>
-        <p className="text-[#8888a8] text-xs mt-1 opacity-60">Add your first client to get started</p>
+      <div className="border-dashed rounded-2xl py-20 text-center" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)' }}>
+        <Building2 className="w-10 h-10 mx-auto mb-3" style={{ color: 'rgba(0,102,255,0.3)' }} />
+        <p className="text-sm" style={{ color: '#7a90b8' }}>No clients yet</p>
+        <p className="text-xs mt-1 opacity-60" style={{ color: '#7a90b8' }}>Add your first client to get started</p>
       </div>
     )
   }
@@ -130,17 +139,19 @@ export default function ClientList({
     <div>
       {/* View toggle */}
       <div className="flex justify-end mb-4">
-        <div className="flex gap-1 bg-[#12121a] border border-[#2a2a3d] rounded-lg p-1">
+        <div className="flex gap-1 rounded-lg p-1" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
           <button
             onClick={() => setView('grid')}
-            className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'bg-[#2a2a3d] text-white' : 'text-[#555570] hover:text-white'}`}
+            className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'text-white' : ''}`}
+            style={view === 'grid' ? { background: 'rgba(0,102,255,0.3)' } : { color: '#7a90b8' }}
             title="Grid view"
           >
             <LayoutGrid className="w-4 h-4" />
           </button>
           <button
             onClick={() => setView('list')}
-            className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-[#2a2a3d] text-white' : 'text-[#555570] hover:text-white'}`}
+            className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'text-white' : ''}`}
+            style={view === 'list' ? { background: 'rgba(0,102,255,0.3)' } : { color: '#7a90b8' }}
             title="List view"
           >
             <List className="w-4 h-4" />
@@ -154,27 +165,28 @@ export default function ClientList({
           {clients.map(client => (
             <div
               key={client.id}
-              className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-4 flex flex-col hover:border-violet-500/30 transition-colors"
+              className="rounded-2xl p-4 flex flex-col transition-colors"
+              style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
             >
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div className="flex items-center gap-3 min-w-0">
                   <ClientAvatar client={client} />
                   <div className="min-w-0">
-                    <a href={`/clients/${client.id}`} className="text-white hover:text-violet-300 font-bold text-sm leading-tight truncate block transition-colors">{client.name}</a>
+                    <a href={`/clients/${client.id}`} className="font-bold text-sm leading-tight truncate block transition-colors" style={{ color: '#dde4f0' }}>{client.name}</a>
                     <div className="flex items-center gap-2 mt-0.5">
-                      {client.industry && <span className="text-[#555570] text-xs">{client.industry}</span>}
+                      {client.industry && <span className="text-xs" style={{ color: '#7a90b8' }}>{client.industry}</span>}
                       <WpHealthBadge hasWp={!!(client.wp_url && client.wp_username && client.wp_app_password)} />
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-0.5 shrink-0">
                   <ClientForm client={client} trigger={
-                    <button className="p-1.5 text-[#555570] hover:text-white hover:bg-[#1a1a26] rounded-lg transition-colors">
+                    <button className="p-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8' }}>
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
                   } />
                   <button onClick={() => handleDelete(client.id, client.name)} disabled={deletingId === client.id}
-                    className="p-1.5 text-[#555570] hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-40">
+                    className="p-1.5 rounded-lg transition-colors disabled:opacity-40" style={{ color: '#7a90b8' }}>
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -182,7 +194,7 @@ export default function ClientList({
 
               {client.website && (
                 <a href={client.website} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[#555570] hover:text-cyan-400 text-xs transition-colors truncate mb-1">
+                  className="flex items-center gap-1.5 text-xs transition-colors truncate mb-1" style={{ color: '#7a90b8' }}>
                   <Globe className="w-3 h-3 shrink-0" />
                   <span className="truncate">{client.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
                 </a>
@@ -190,18 +202,18 @@ export default function ClientList({
 
               <PostUsageBar used={postCountByClient[client.id] ?? 0} limit={perClientLimit} />
 
-              <div className="flex items-center gap-1.5 pt-3 border-t border-[#1a1a26] mt-auto">
+              <div className="flex items-center gap-1.5 pt-3 mt-auto" style={{ borderTopColor: 'rgba(0,102,255,0.2)', borderTop: '1px solid' }}>
                 <a href={`/clients/${client.id}`}
-                  className="flex items-center gap-1 text-xs font-semibold text-violet-400 hover:text-violet-300 bg-violet-600/10 hover:bg-violet-600/20 border border-violet-500/20 px-2.5 py-1.5 rounded-lg transition-colors">
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#0066FF', background: 'rgba(0,102,255,0.1)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
                   Manage
                 </a>
                 <a href={`/clients/${client.id}/report`}
-                  className="flex items-center gap-1 text-xs font-semibold text-[#8888a8] hover:text-white bg-[#0a0a0f] hover:bg-[#1a1a26] border border-[#2a2a3d] px-2.5 py-1.5 rounded-lg transition-colors">
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
                   <BarChart2 className="w-3 h-3" /> Report
                 </a>
                 <CopyReportLink clientId={client.id} />
                 <a href={`/dashboard?client=${client.id}`}
-                  className="ml-auto flex items-center gap-1 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-500 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">
+                  className="ml-auto flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap" style={{ color: 'white', background: '#0066FF' }}>
                   Generate →
                 </a>
               </div>
@@ -216,20 +228,21 @@ export default function ClientList({
           {clients.map(client => (
             <div
               key={client.id}
-              className="bg-[#12121a] border border-[#2a2a3d] rounded-xl px-4 py-3 flex items-center gap-4 hover:border-violet-500/30 transition-colors"
+              className="rounded-xl px-4 py-3 flex items-center gap-4 transition-colors"
+              style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
             >
               <ClientAvatar client={client} />
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <a href={`/clients/${client.id}`} className="text-white hover:text-violet-300 font-bold text-sm truncate transition-colors">{client.name}</a>
+                  <a href={`/clients/${client.id}`} className="font-bold text-sm truncate transition-colors" style={{ color: '#dde4f0' }}>{client.name}</a>
                   <WpHealthBadge hasWp={!!(client.wp_url && client.wp_username && client.wp_app_password)} />
                 </div>
                 <div className="flex items-center gap-3 mt-0.5">
-                  {client.industry && <span className="text-[#555570] text-xs">{client.industry}</span>}
+                  {client.industry && <span className="text-xs" style={{ color: '#7a90b8' }}>{client.industry}</span>}
                   {client.website && (
                     <a href={client.website} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-[#555570] hover:text-cyan-400 text-xs transition-colors truncate max-w-[200px]">
+                      className="flex items-center gap-1 text-xs transition-colors truncate max-w-[200px]" style={{ color: '#7a90b8' }}>
                       <Globe className="w-3 h-3 shrink-0" />
                       <span className="truncate">{client.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
                     </a>
@@ -253,25 +266,25 @@ export default function ClientList({
 
               <div className="flex items-center gap-1.5 shrink-0">
                 <a href={`/posts?client=${client.id}`}
-                  className="flex items-center gap-1 text-xs font-semibold text-[#8888a8] hover:text-white bg-[#0a0a0f] hover:bg-[#1a1a26] border border-[#2a2a3d] px-2.5 py-1.5 rounded-lg transition-colors">
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
                   <FileText className="w-3 h-3" /> Posts
                 </a>
                 <a href={`/clients/${client.id}/report`}
-                  className="flex items-center gap-1 text-xs font-semibold text-[#8888a8] hover:text-white bg-[#0a0a0f] hover:bg-[#1a1a26] border border-[#2a2a3d] px-2.5 py-1.5 rounded-lg transition-colors">
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
                   <BarChart2 className="w-3 h-3" /> Report
                 </a>
                 <CopyReportLink clientId={client.id} />
                 <ClientForm client={client} trigger={
-                  <button className="p-1.5 text-[#555570] hover:text-white hover:bg-[#1a1a26] rounded-lg transition-colors">
+                  <button className="p-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8' }}>
                     <Pencil className="w-3.5 h-3.5" />
                   </button>
                 } />
                 <button onClick={() => handleDelete(client.id, client.name)} disabled={deletingId === client.id}
-                  className="p-1.5 text-[#555570] hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-40">
+                  className="p-1.5 rounded-lg transition-colors disabled:opacity-40" style={{ color: '#7a90b8' }}>
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
                 <a href={`/dashboard?client=${client.id}`}
-                  className="flex items-center gap-1 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-500 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">
+                  className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap" style={{ color: 'white', background: '#0066FF' }}>
                   Generate →
                 </a>
               </div>

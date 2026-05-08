@@ -13,7 +13,7 @@ import ClientForm from '@/components/ClientForm'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Clients — Bloggy',
+  title: 'Clients — AdDee',
   description: 'Manage all your client sites, brand voice settings, WordPress credentials, and target keywords from one dashboard.',
   robots: { index: false, follow: false },
 }
@@ -70,7 +70,7 @@ export default async function ClientsPage() {
 
   return (
 
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen" style={{ background: '#060d1a', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
 
       <AppNav active="/clients" />
 
@@ -80,9 +80,9 @@ export default async function ClientsPage() {
 
           <div>
 
-            <h1 className="text-2xl font-bold text-white mb-1">Clients</h1>
+            <h1 className="text-2xl font-bold mb-1" style={{ color: '#00FF00' }}>Clients</h1>
 
-            <p className="text-[#8888a8] text-sm">Manage client profiles and brand voice settings.</p>
+            <p className="text-sm" style={{ color: '#7a90b8' }}>Manage client profiles and brand voice settings.</p>
 
           </div>
 
