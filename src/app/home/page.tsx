@@ -11,70 +11,63 @@ export const dynamic = 'force-dynamic'
 
 const FEATURES = [
   {
-    icon: <Zap className="w-5 h-5 text-violet-400" />,
+    icon: <Zap className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'AI Blog Generation',
     description: 'Write for all clients in one place. Apply brand voice once, generate instantly. Save 8 hours/week.',
     href: '/dashboard',
     cta: 'Generate now',
-    color: 'border-violet-500/20 hover:border-violet-500/40',
-    glow: 'bg-violet-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <Globe className="w-5 h-5 text-emerald-400" />,
+    icon: <Globe className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'Multi-Platform Publishing',
     description: 'Publish to WordPress, Shopify, Webflow without switching logins. One click. All clients.',
     href: '/clients',
     cta: 'Connect a site',
-    color: 'border-emerald-500/20 hover:border-emerald-500/40',
-    glow: 'bg-emerald-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <Calendar className="w-5 h-5 text-cyan-400" />,
+    icon: <Calendar className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'Autoblog Scheduler',
     description: 'Queue topics per client. Bloggy generates & publishes automatically. Never miss a deadline.',
     href: '/autoblog',
     cta: 'Set up autoblog',
-    color: 'border-cyan-500/20 hover:border-cyan-500/40',
-    glow: 'bg-cyan-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <BarChart2 className="w-5 h-5 text-pink-400" />,
+    icon: <BarChart2 className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'Analytics Dashboard',
     description: 'Track content quality, client health, keyword coverage, and keyword rankings. LocalFalcon grid data for Agency+ only.',
     href: '/analytics',
     cta: 'View analytics',
-    color: 'border-pink-500/20 hover:border-pink-500/40',
-    glow: 'bg-pink-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <Image className="w-5 h-5 text-yellow-400" />,
+    icon: <Image className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'AI Hero Images',
     description: 'Auto-generate on-brand featured images for every post without leaving the app.',
     href: '/dashboard',
     cta: 'Try it',
-    color: 'border-yellow-500/20 hover:border-yellow-500/40',
-    glow: 'bg-yellow-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <Video className="w-5 h-5 text-red-400" />,
+    icon: <Video className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'YouTube → Blog',
     description: 'Paste a YouTube URL and convert the transcript into a full blog post automatically.',
     href: '/dashboard',
     cta: 'Convert a video',
-    color: 'border-red-500/20 hover:border-red-500/40',
-    glow: 'bg-red-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <Link2 className="w-5 h-5 text-blue-400" />,
+    icon: <Link2 className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'URL to Blog',
     description: 'Turn any article, landing page, or product page into fresh blog content instantly.',
     href: '/dashboard',
     cta: 'Convert a URL',
-    color: 'border-blue-500/20 hover:border-blue-500/40',
-    glow: 'bg-blue-500/5',
+    color: 'hover:border-blue-400',
   },
   {
-    icon: <Target className="w-5 h-5 text-orange-400" />,
+    icon: <Target className="w-5 h-5" style={{ color: '#0066FF' }} />,
     title: 'SEO Meta Output',
     description: 'Every post comes with focus keyword, meta title, and meta description ready to go.',
     href: '/dashboard',
@@ -252,7 +245,7 @@ export default async function HomePage() {
 
       <main className="max-w-6xl mx-auto px-6 py-10 space-y-12">
         {/* Hero */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#12121a] via-[#1a1226] to-[#0a0a0f] border border-[#2a2a3d] px-8 py-12 sm:px-12">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#12121a] via-[#1a1226] to-[#0a0a0f] border border-[rgba(0,102,255,0.3)] px-8 py-12 sm:px-12">
           <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
           <div className="relative">
             <div className="flex items-center gap-2 mb-4">
@@ -268,7 +261,7 @@ export default async function HomePage() {
             <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
               Welcome back, <span className="text-violet-400">{firstName}</span> 👋
             </h1>
-            <p className="text-[#8888a8] text-base max-w-xl mb-8">
+            <p className="text-[#7a90b8] text-base max-w-xl mb-8">
               Manage client blogs across WordPress, Shopify, Webflow. Generate posts, track rankings, deliver reports — all in one place.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -277,11 +270,11 @@ export default async function HomePage() {
                 <Zap className="w-4 h-4" /> Generate a post
               </a>
               <a href="/clients"
-                className="inline-flex items-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors">
+                className="inline-flex items-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[rgba(0,102,255,0.3)] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors">
                 <Users className="w-4 h-4" /> Manage clients
               </a>
               <a href="/analytics"
-                className="inline-flex items-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] text-[#8888a8] hover:text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors">
+                className="inline-flex items-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[rgba(0,102,255,0.3)] text-[#7a90b8] hover:text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors">
                 <BarChart2 className="w-4 h-4" /> Analytics
               </a>
             </div>
@@ -296,7 +289,7 @@ export default async function HomePage() {
                 <div className="flex items-start gap-4">
                   <div className="flex-1">
                     <h3 className="text-white font-semibold text-sm mb-1">{announcement.title}</h3>
-                    <p className="text-[#8888a8] text-xs mb-3">{announcement.description}</p>
+                    <p className="text-[#7a90b8] text-xs mb-3">{announcement.description}</p>
                     <a href={announcement.ctaHref} className="inline-flex items-center gap-1 text-xs font-semibold text-violet-400 hover:text-violet-300 transition-colors">
                       {announcement.cta} <ArrowRight className="w-3 h-3" />
                     </a>
@@ -315,8 +308,8 @@ export default async function HomePage() {
             { label: 'Clients', value: (clients ?? []).length, icon: <Users className="w-4 h-4 text-pink-400" />, sub: 'active profiles' },
             { label: 'Posts / Limit', value: `${postsThisMonth ?? 0}/${postsLimit}`, icon: <Clock className="w-4 h-4 text-orange-400" />, sub: displayPlan.replace('_', ' ') },
           ].map(stat => (
-            <div key={stat.label} className="bg-[#12121a] border border-[#2a2a3d] rounded-xl px-4 py-4">
-              <div className="flex items-center gap-2 text-[#8888a8] text-xs mb-2">{stat.icon}{stat.label}</div>
+            <div key={stat.label} className="bg-[rgba(11,22,40,0.6)] border border-[rgba(0,102,255,0.3)] rounded-xl px-4 py-4">
+              <div className="flex items-center gap-2 text-[#7a90b8] text-xs mb-2">{stat.icon}{stat.label}</div>
               <div className="text-white font-bold text-2xl mb-1">{stat.value}</div>
               <div className="text-[#555570] text-xs">{stat.sub}</div>
             </div>
@@ -327,19 +320,20 @@ export default async function HomePage() {
         <div>
           <div className="mb-6">
             <h2 className="text-white font-bold text-xl mb-1">One Dashboard. Every Platform.</h2>
-            <p className="text-[#8888a8] text-sm">Manage all your client blogs — WordPress, Shopify, Webflow — in one place. Generate, publish, track, and scale.</p>
+            <p className="text-[#7a90b8] text-sm">Manage all your client blogs — WordPress, Shopify, Webflow — in one place. Generate, publish, track, and scale.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {FEATURES.map(f => (
               <a
                 key={f.title}
                 href={f.href}
-                className={`group bg-[#12121a] border rounded-2xl p-5 transition-all duration-200 ${f.color} ${f.glow} block`}
+                className="group rounded-2xl p-5 transition-all duration-200 block"
+                style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
               >
                 <div className="mb-3">{f.icon}</div>
-                <h3 className="text-white font-semibold text-sm mb-1.5 group-hover:text-violet-300 transition-colors">{f.title}</h3>
-                <p className="text-[#8888a8] text-xs leading-relaxed mb-4">{f.description}</p>
-                <span className="text-xs font-semibold text-violet-400 group-hover:text-violet-300 flex items-center gap-1 transition-colors">
+                <h3 className="text-white font-semibold text-sm mb-1.5 transition-colors" style={{ color: '#dde4f0' }}>{f.title}</h3>
+                <p className="text-xs leading-relaxed mb-4" style={{ color: '#7a90b8' }}>{f.description}</p>
+                <span className="text-xs font-semibold flex items-center gap-1 transition-colors" style={{ color: '#00FF00' }}>
                   {f.cta} <ArrowRight className="w-3 h-3" />
                 </span>
               </a>
@@ -351,15 +345,15 @@ export default async function HomePage() {
         <div>
           <div className="mb-6">
             <h2 className="text-white font-bold text-xl mb-1">Plans for Every Stage. Scale as You Grow.</h2>
-            <p className="text-[#8888a8] text-sm">Start with 2-5 clients. Grow to 40+. No lock-in. Upgrade anytime.</p>
+            <p className="text-[#7a90b8] text-sm">Start with 2-5 clients. Grow to 40+. No lock-in. Upgrade anytime.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
             {FEATURE_TIERS.map(tier => (
-              <div key={tier.name} className={`rounded-2xl border p-6 ${displayPlan.toLowerCase() === tier.name.toLowerCase() ? 'bg-gradient-to-br from-violet-500/10 to-cyan-500/10 border-violet-500/30' : 'bg-[#12121a] border-[#2a2a3d]'}`}>
+              <div key={tier.name} className="rounded-2xl border p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
                 <div className="mb-4">
                   <h3 className="text-white font-bold text-lg">{tier.name}</h3>
-                  <div className="text-violet-400 text-sm font-semibold mt-1">{tier.price}</div>
-                  <div className="text-[#8888a8] text-xs mt-1">{tier.posts}</div>
+                  <div className="text-sm font-semibold mt-1" style={{ color: '#00FF00' }}>{tier.price}</div>
+                  <div className="text-xs mt-1" style={{ color: '#7a90b8' }}>{tier.posts}</div>
                 </div>
                 <div className="space-y-3">
                   {tier.features.map(feature => (
@@ -370,11 +364,11 @@ export default async function HomePage() {
                   ))}
                   {tier.locked.length > 0 && (
                     <>
-                      <div className="border-t border-[#2a2a3d] my-3" />
+                      <div className="border-t border-[rgba(0,102,255,0.3)] my-3" />
                       {tier.locked.map(feature => (
                         <div key={feature} className="flex items-start gap-2 opacity-50">
                           <AlertCircle className="w-4 h-4 text-[#555570] shrink-0 mt-0.5" />
-                          <span className="text-[#8888a8] text-sm">{feature}</span>
+                          <span className="text-[#7a90b8] text-sm">{feature}</span>
                         </div>
                       ))}
                     </>
@@ -386,7 +380,7 @@ export default async function HomePage() {
                   const tierLevel = tierHierarchy[tier.name.toLowerCase() as keyof typeof tierHierarchy] ?? 0
 
                   if (tierLevel === currentLevel) {
-                    return <div className="block w-full mt-6 py-2 px-4 rounded-lg bg-[#2a2a3d] text-[#8888a8] text-sm font-semibold text-center">Current Plan</div>
+                    return <div className="block w-full mt-6 py-2 px-4 rounded-lg bg-[#2a2a3d] text-[#7a90b8] text-sm font-semibold text-center">Current Plan</div>
                   }
 
                   return (
@@ -403,7 +397,7 @@ export default async function HomePage() {
         {/* Recent posts + Upgrade CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6">
           {/* Recent posts */}
-          <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+          <div className="bg-[rgba(11,22,40,0.6)] border border-[rgba(0,102,255,0.3)] rounded-2xl p-6">
             <div className="flex items-center justify-between mb-5">
               <h2 className="text-white font-semibold text-sm flex items-center gap-2">
                 <Clock className="w-4 h-4 text-emerald-400" /> Recent Posts
@@ -415,7 +409,7 @@ export default async function HomePage() {
             {(recentPosts ?? []).length === 0 ? (
               <div className="text-center py-10">
                 <FileText className="w-10 h-10 text-[#2a2a3d] mx-auto mb-3" />
-                <p className="text-[#8888a8] text-sm mb-3">No posts yet.</p>
+                <p className="text-[#7a90b8] text-sm mb-3">No posts yet.</p>
                 <a href="/dashboard" className="text-violet-400 hover:text-violet-300 text-sm font-semibold transition-colors">Generate your first post →</a>
               </div>
             ) : (
@@ -428,7 +422,7 @@ export default async function HomePage() {
                     ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
                     : isPending
                     ? 'text-amber-400 bg-amber-500/10 border-amber-500/20'
-                    : 'text-[#8888a8] bg-[#1a1a26] border-[#2a2a3d]'
+                    : 'text-[#7a90b8] bg-[#1a1a26] border-[rgba(0,102,255,0.3)]'
                   const statusLabel = isLive ? 'Live' : isPending ? 'Pending Approval' : 'Draft'
                   return (
                     <div key={post.id} className="flex items-center gap-3 py-3 border-b border-[#1a1a26] last:border-0">
@@ -461,7 +455,7 @@ export default async function HomePage() {
                   <span className="text-violet-400 text-xs font-semibold uppercase tracking-wider">Upgrade to Growth</span>
                 </div>
                 <h3 className="text-white font-bold text-lg mb-2">Scale your content output</h3>
-                <p className="text-[#8888a8] text-sm mb-5">
+                <p className="text-[#7a90b8] text-sm mb-5">
                   Unlock more posts, more clients, and powerful automation tools.
                 </p>
                 <div className="space-y-2 mb-6">
@@ -483,7 +477,7 @@ export default async function HomePage() {
 
           {/* If already on a good plan, show quick actions instead */}
           {!isFreeOrStarter && (
-            <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+            <div className="bg-[rgba(11,22,40,0.6)] border border-[rgba(0,102,255,0.3)] rounded-2xl p-6">
               <h2 className="text-white font-semibold text-sm mb-5 flex items-center gap-2">
                 <Zap className="w-4 h-4 text-violet-400" /> Quick Actions
               </h2>
@@ -496,7 +490,7 @@ export default async function HomePage() {
                   { href: '/calendar', label: 'Open content calendar', icon: <Calendar className="w-4 h-4 text-blue-400" /> },
                 ].map(action => (
                   <a key={action.href} href={action.href}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] hover:border-[#3a3a50] transition-colors group">
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[rgba(0,102,255,0.3)] hover:border-[#3a3a50] transition-colors group">
                     {action.icon}
                     <span className="text-[#c8c8d8] group-hover:text-white text-sm font-medium transition-colors">{action.label}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-[#555570] group-hover:text-violet-400 ml-auto transition-colors" />
@@ -511,15 +505,15 @@ export default async function HomePage() {
         <div>
           <div className="mb-6">
             <h2 className="text-white font-bold text-xl mb-1">Get Help & Connect</h2>
-            <p className="text-[#8888a8] text-sm">We're here to support you and your team every step of the way.</p>
+            <p className="text-[#7a90b8] text-sm">We're here to support you and your team every step of the way.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {RESOURCES.map(resource => (
               <a key={resource.href} href={resource.href} target={resource.href.startsWith('http') ? '_blank' : undefined} rel={resource.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6 hover:border-[#3a3a50] transition-all group">
+                className="bg-[rgba(11,22,40,0.6)] border border-[rgba(0,102,255,0.3)] rounded-2xl p-6 hover:border-[#3a3a50] transition-all group">
                 <div className="mb-4">{resource.icon}</div>
                 <h3 className="text-white font-semibold text-sm mb-2 group-hover:text-violet-300 transition-colors">{resource.title}</h3>
-                <p className="text-[#8888a8] text-xs mb-4 leading-relaxed">{resource.description}</p>
+                <p className="text-[#7a90b8] text-xs mb-4 leading-relaxed">{resource.description}</p>
                 <span className="text-xs font-semibold text-violet-400 group-hover:text-violet-300 flex items-center gap-1 transition-colors">
                   {resource.cta} <ArrowRight className="w-3 h-3" />
                 </span>

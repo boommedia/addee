@@ -146,14 +146,14 @@ export default async function AccountPage() {
               label: 'Words this month',
               value: wordsThisMonth >= 1000 ? `${(wordsThisMonth / 1000).toFixed(1)}k` : wordsThisMonth.toString(),
               sub: wordsLastMonth > 0 ? `${(wordsLastMonth / 1000).toFixed(1)}k last month` : 'First month',
-              color: 'text-[#8888a8]',
+              color: 'text-[#7a90b8]',
             },
             {
               icon: <Globe className="w-4 h-4 text-emerald-400" />,
               label: 'Client sites',
               value: (sitesUsed ?? 0).toString(),
               sub: `of ${sitesLimit} allowed`,
-              color: 'text-[#8888a8]',
+              color: 'text-[#7a90b8]',
             },
             {
               icon: <Zap className="w-4 h-4 text-yellow-400" />,

@@ -19,7 +19,7 @@ const PLAN_STYLES: Record<string, string> = {
   growth:     'bg-violet-500/15 border-violet-500/30 text-violet-400',
   agency:     'bg-cyan-500/15 border-cyan-500/30 text-cyan-400',
   agency_max: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400',
-  free:       'bg-[#1a1a26] border-[#2a2a3d] text-[#8888a8]',
+  free:       'bg-[rgba(11,22,40,0.6)] border-[rgba(0,102,255,0.3)] text-[#7a90b8]',
 }
 
 export default async function AppNav({ active }: { active: string }) {

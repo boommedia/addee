@@ -478,12 +478,12 @@ function BillingPage() {
                             </div>
                             {billingInterval === 'annual' && (
                               <p className="text-emerald-400 text-xs mt-0.5">
-                                ${((plan as any).annualMonthlyPrice ?? plan.price) * 12}/yr <span className="text-[#555570] line-through">${plan.price * 12}</span>
+                                ${((plan as any).annualMonthlyPrice ?? plan.price) * 12}/yr <span className="text-[#7a90b8] line-through">${plan.price * 12}</span>
                               </p>
                             )}
                             {promoApplied && couponDetails && (
                               <div className="flex items-center gap-1.5 mt-0.5">
-                                <span className="text-[#555570] text-xs line-through">${displayPrice}</span>
+                                <span className="text-[#7a90b8] text-xs line-through">${displayPrice}</span>
                                 <span className="text-emerald-400 text-xs font-semibold">
                                   {couponDetails.percent_off ? `${couponDetails.percent_off}% off` : `$${(couponDetails.amount_off! / 100).toFixed(2)} off`}
                                 </span>
