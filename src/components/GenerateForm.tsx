@@ -1099,7 +1099,7 @@ ${markdownToHTML(currentContent)}
                       <div key={v.id} className="flex items-center justify-between gap-2">
                         <div>
                           <span className="text-white text-xs">{new Date(v.created_at).toLocaleString()}</span>
-                          <span className="text-[#555570] text-xs ml-2">{v.word_count.toLocaleString()} words</span>
+                          <span className="text-xs ml-2" style={{ color: '#7a90b8' }}>{v.word_count.toLocaleString()} words</span>
                         </div>
                         <button
                           onClick={() => restoreVersion(v.id)}
@@ -1127,7 +1127,7 @@ ${markdownToHTML(currentContent)}
               <div className="p-5 flex flex-col gap-4">
                 {/* Platform grid */}
                 <div>
-                  <p className="text-[#555570] text-xs mb-3">Select a platform to generate tailored copy from this post.</p>
+                  <p className="text-xs mb-3" style={{ color: '#7a90b8' }}>Select a platform to generate tailored copy from this post.</p>
                   <div className="grid grid-cols-3 gap-2">
                     {([
                       { id: 'linkedin',  label: 'LinkedIn',    abbr: 'in', bg: 'bg-[#0a66c2]', hint: 'Thought-leader post', dark: false },
@@ -1148,15 +1148,16 @@ ${markdownToHTML(currentContent)}
                           'flex items-center gap-2 px-2.5 py-2 rounded-xl border text-left transition-all',
                           socialPlatform === p.id
                             ? 'border-violet-500 bg-violet-600/10'
-                            : 'border-[#2a2a3d] bg-[#12121a] hover:border-[#3a3a5a]'
+                            : ''
                         )}
+                        style={socialPlatform !== p.id ? { borderColor: 'rgba(0,102,255,0.2)', background: 'rgba(11,22,40,0.6)', border: '1px solid' } : undefined}
                       >
                         <div className={clsx('w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0', p.bg, p.dark ? 'text-[#4285f4]' : 'text-white')}>
                           {p.abbr}
                         </div>
                         <div className="min-w-0">
-                          <div className={clsx('text-xs font-semibold truncate', socialPlatform === p.id ? 'text-white' : 'text-[#c8c8d8]')}>{p.label}</div>
-                          <div className="text-[#555570] text-[10px] truncate">{p.hint}</div>
+                          <div className={clsx('text-xs font-semibold truncate', socialPlatform === p.id ? 'text-white' : '')} style={socialPlatform !== p.id ? { color: '#dde4f0' } : undefined}>{p.label}</div>
+                          <div className="text-[10px] truncate" style={{ color: '#7a90b8' }}>{p.hint}</div>
                         </div>
                         {socialContent[p.id] && (
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 ml-auto" title="Generated" />
@@ -1166,7 +1167,7 @@ ${markdownToHTML(currentContent)}
                   </div>
                 </div>
                 {socialLoading && socialPlatform && !socialContent[socialPlatform] ? (
-                  <div className="flex items-center justify-center py-12 gap-2 text-[#8888a8] text-sm">
+                  <div className="flex items-center justify-center py-12 gap-2 text-sm" style={{ color: '#7a90b8' }}>
                     <Loader2 className="w-4 h-4 animate-spin" />
                     Generating {socialPlatform === 'gmb' ? 'Google Business' : socialPlatform === 'twitter' ? 'X / Twitter' : socialPlatform.charAt(0).toUpperCase() + socialPlatform.slice(1)} copy…
                   </div>
@@ -1176,17 +1177,17 @@ ${markdownToHTML(currentContent)}
                       value={socialContent[socialPlatform]}
                       onChange={e => setSocialContent(prev => ({ ...prev, [socialPlatform]: e.target.value }))}
                       rows={8}
-                      className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl px-4 py-3 text-white text-sm font-mono leading-relaxed focus:outline-none focus:border-violet-500 resize-none transition-colors"
+                      className="w-full rounded-xl px-4 py-3 text-sm font-mono leading-relaxed focus:outline-none focus:border-violet-500 resize-none transition-colors" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid', color: '#dde4f0' }}
                     />
                     <div className="flex items-center justify-between">
-                      <p className="text-[#555570] text-xs">Edit above before publishing. Click another platform to generate more.</p>
+                      <p className="text-xs" style={{ color: '#7a90b8' }}>Edit above before publishing. Click another platform to generate more.</p>
                       <button
                         onClick={() => {
                           navigator.clipboard.writeText(socialContent[socialPlatform])
                           setSocialCopied(true)
                           setTimeout(() => setSocialCopied(false), 2000)
                         }}
-                        className="flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#1a1a26] px-3 py-1.5 rounded-lg transition-colors shrink-0"
+                        className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors shrink-0 hover:text-white" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
                       >
                         <Copy className="w-3.5 h-3.5" />{socialCopied ? 'Copied!' : 'Copy'}
                       </button>
@@ -1203,7 +1204,7 @@ ${markdownToHTML(currentContent)}
                     )}
                   </div>
                 ) : (
-                  <p className="text-[#555570] text-sm text-center py-8">Select a platform above to generate tailored copy.</p>
+                  <p className="text-sm text-center py-8" style={{ color: '#7a90b8' }}>Select a platform above to generate tailored copy.</p>
                 )}
               </div>
             )}
@@ -1211,7 +1212,7 @@ ${markdownToHTML(currentContent)}
             {activeTab === 'links' && (
               <div className="p-5 flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-[#8888a8] text-xs">Internal link suggestions based on your published posts for this client.</p>
+                  <p className="text-xs" style={{ color: '#7a90b8' }}>Internal link suggestions based on your published posts for this client.</p>
                   <button
                     onClick={handleInternalLinks}
                     disabled={linksLoading}
@@ -1222,17 +1223,17 @@ ${markdownToHTML(currentContent)}
                   </button>
                 </div>
                 {linksLoading ? (
-                  <div className="flex items-center justify-center py-12 gap-2 text-[#8888a8] text-sm">
+                  <div className="flex items-center justify-center py-12 gap-2 text-sm" style={{ color: '#7a90b8' }}>
                     <Loader2 className="w-4 h-4 animate-spin" /> Finding link opportunities...
                   </div>
                 ) : internalLinks.length === 0 ? (
-                  <p className="text-[#8888a8] text-sm text-center py-8">
+                  <p className="text-sm text-center py-8" style={{ color: '#7a90b8' }}>
                     {clientId ? 'No published posts found for this client yet.' : 'Select a client above to get internal link suggestions.'}
                   </p>
                 ) : (
                   <div className="flex flex-col gap-3">
                     {internalLinks.map((link, i) => (
-                      <div key={i} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4 flex flex-col gap-1.5">
+                      <div key={i} className="rounded-xl p-4 flex flex-col gap-1.5" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}>
                         <div className="flex items-start justify-between gap-2">
                           <span className="text-white text-xs font-semibold">{link.title}</span>
                           <a
@@ -1244,14 +1245,14 @@ ${markdownToHTML(currentContent)}
                             <ExternalLink className="w-3.5 h-3.5" />
                           </a>
                         </div>
-                        <p className="text-[#8888a8] text-xs">Anchor: <span className="text-cyan-400">"{link.anchorText}"</span></p>
-                        <p className="text-[#8888a8] text-xs">{link.reason}</p>
+                        <p className="text-xs" style={{ color: '#7a90b8' }}>Anchor: <span className="text-cyan-400">"{link.anchorText}"</span></p>
+                        <p className="text-xs" style={{ color: '#7a90b8' }}>{link.reason}</p>
                         <button
                           onClick={() => {
                             const mdLink = `[${link.anchorText}](${link.url})`
                             navigator.clipboard.writeText(mdLink)
                           }}
-                          className="self-start flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#1a1a26] px-2.5 py-1 rounded-lg transition-colors mt-1"
+                          className="self-start flex items-center gap-1.5 text-xs hover:text-white px-2.5 py-1 rounded-lg transition-colors mt-1" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.7)', border: '1px solid rgba(0,102,255,0.2)' }}
                         >
                           <Copy className="w-3 h-3" /> Copy link
                         </button>
@@ -1263,9 +1264,9 @@ ${markdownToHTML(currentContent)}
             )}
 
             {/* WordPress Publish Bar */}
-            <div className="border-t border-[#2a2a3d] px-5 py-4">
+            <div className="px-5 py-4" style={{ borderTop: '1px solid rgba(0,102,255,0.2)' }}>
               {!clientHasWP ? (
-                <p className="text-[#8888a8] text-xs text-center">
+                <p className="text-xs text-center" style={{ color: '#7a90b8' }}>
                   Select a client with a WordPress connection to publish directly.{' '}
                   <a href="/clients" className="text-violet-400 hover:text-violet-300">Add one in Clients →</a>
                 </p>
@@ -1289,11 +1290,11 @@ ${markdownToHTML(currentContent)}
                   {/* Category picker */}
                   {(categoriesLoading || wpCategories.length > 0) && (
                     <div>
-                      <p className="flex items-center gap-1.5 text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-2">
+                      <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#7a90b8' }}>
                         <FolderOpen className="w-3 h-3" /> Category
                       </p>
                       {categoriesLoading ? (
-                        <p className="text-[#555570] text-xs flex items-center gap-1.5">
+                        <p className="text-xs flex items-center gap-1.5" style={{ color: '#7a90b8' }}>
                           <Loader2 className="w-3 h-3 animate-spin" /> Loading categories…
                         </p>
                       ) : (
@@ -1308,8 +1309,9 @@ ${markdownToHTML(currentContent)}
                                 'text-xs px-2.5 py-1 rounded-full border transition-colors',
                                 selectedCategories.includes(cat.id)
                                   ? 'bg-violet-600/20 border-violet-500/40 text-violet-300'
-                                  : 'bg-[#1a1a26] border-[#2a2a3d] text-[#8888a8] hover:text-white hover:border-[#3a3a4d]'
+                                  : 'hover:text-white'
                               )}
+                              style={!selectedCategories.includes(cat.id) ? { background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid', color: '#7a90b8' } : undefined}
                             >
                               {cat.name}
                             </button>
@@ -1320,16 +1322,18 @@ ${markdownToHTML(currentContent)}
                   )}
                   {/* Draft/Publish toggle + button */}
                   <div className="flex items-center gap-2">
-                    <div className="flex bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg overflow-hidden text-xs font-semibold">
+                    <div className="flex rounded-lg overflow-hidden text-xs font-semibold" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}>
                       <button
                         onClick={() => setPublishStatus('draft')}
-                        className={clsx('px-3 py-2 transition-colors', publishStatus === 'draft' ? 'bg-[#2a2a3d] text-white' : 'text-[#8888a8] hover:text-white')}
+                        className={clsx('px-3 py-2 transition-colors', publishStatus === 'draft' ? 'text-white' : 'hover:text-white')}
+                        style={publishStatus === 'draft' ? { background: 'rgba(0,102,255,0.2)' } : { color: '#7a90b8' }}
                       >
                         Draft
                       </button>
                       <button
                         onClick={() => setPublishStatus('publish')}
-                        className={clsx('px-3 py-2 transition-colors', publishStatus === 'publish' ? 'bg-[#2a2a3d] text-white' : 'text-[#8888a8] hover:text-white')}
+                        className={clsx('px-3 py-2 transition-colors', publishStatus === 'publish' ? 'text-white' : 'hover:text-white')}
+                        style={publishStatus === 'publish' ? { background: 'rgba(0,102,255,0.2)' } : { color: '#7a90b8' }}
                       >
                         Publish
                       </button>
@@ -1337,7 +1341,7 @@ ${markdownToHTML(currentContent)}
                     <button
                       onClick={handlePublishToWP}
                       disabled={publishing}
-                      className="flex-1 flex items-center justify-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] disabled:opacity-50 text-white text-xs font-semibold px-4 py-2 rounded-lg border border-[#2a2a3d] transition-colors"
+                      className="flex-1 flex items-center justify-center gap-2 disabled:opacity-50 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors" style={{ background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
                     >
                       {publishing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Globe className="w-3.5 h-3.5" />}
                       {publishing ? 'Publishing...' : `Send to WordPress as ${publishStatus === 'draft' ? 'Draft' : 'Live Post'}`}
@@ -1394,7 +1398,8 @@ ${markdownToHTML(currentContent)}
                             onKeyDown={e => e.key === 'Enter' && saveClientEmail()}
                             placeholder="client@example.com"
                             autoFocus
-                            className="flex-1 bg-[#0a0a0f] border border-[#2a2a3d] focus:border-violet-500 rounded-lg px-3 py-1.5 text-white text-xs placeholder-[#555570] focus:outline-none transition-colors"
+                            className="flex-1 rounded-lg px-3 py-1.5 text-white text-xs focus:outline-none transition-colors focus:border-violet-500"
+                            style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
                           />
                           <button
                             onClick={saveClientEmail}
@@ -1405,7 +1410,8 @@ ${markdownToHTML(currentContent)}
                           </button>
                           <button
                             onClick={() => { setAddingEmail(false); setEmailDraft('') }}
-                            className="text-[#8888a8] hover:text-white text-xs px-2 transition-colors"
+                            className="text-xs px-2 transition-colors hover:text-white"
+                            style={{ color: '#7a90b8' }}
                           >
                             Cancel
                           </button>
@@ -1414,7 +1420,8 @@ ${markdownToHTML(currentContent)}
                     ) : (
                       <button
                         onClick={() => setAddingEmail(true)}
-                        className="flex items-center gap-2 text-xs text-[#555570] hover:text-violet-400 transition-colors"
+                        className="flex items-center gap-2 text-xs transition-colors hover:text-violet-400"
+                        style={{ color: '#7a90b8' }}
                       >
                         <Send className="w-3.5 h-3.5" />
                         Add client email to enable approvals
@@ -1444,22 +1451,26 @@ function ToggleRow({
     <button
       type="button"
       onClick={() => onChange(!checked)}
-      className={clsx(
-        'flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all',
-        checked
-          ? 'bg-violet-600/10 border-violet-500/50 text-white'
-          : 'bg-[#12121a] border-[#2a2a3d] text-[#8888a8] hover:border-[#3a3a4d]'
-      )}
+      className="flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all"
+      style={checked ? {
+        background: 'rgba(139, 92, 246, 0.1)',
+        borderColor: 'rgba(139, 92, 246, 0.5)',
+        color: 'white'
+      } : {
+        background: 'rgba(11,22,40,0.6)',
+        borderColor: 'rgba(0,102,255,0.3)',
+        color: '#7a90b8'
+      }}
     >
-      <div className={clsx('shrink-0', checked ? 'text-violet-400' : 'text-[#8888a8]')}>{icon}</div>
+      <div className="shrink-0" style={{ color: checked ? '#a78bfa' : '#7a90b8' }}>{icon}</div>
       <div className="flex-1 min-w-0">
-        <div className={clsx('text-xs font-semibold', checked ? 'text-white' : 'text-[#c8c8d8]')}>{label}</div>
+        <div className="text-xs font-semibold" style={{ color: checked ? 'white' : '#dde4f0' }}>{label}</div>
         <div className="text-xs opacity-60 truncate">{sub}</div>
       </div>
-      <div className={clsx(
-        'w-9 h-5 rounded-full transition-colors relative shrink-0',
-        checked ? 'bg-violet-600' : 'bg-[#2a2a3d]'
-      )}>
+      <div
+        className="w-9 h-5 rounded-full transition-colors relative shrink-0"
+        style={{ background: checked ? '#7c3aed' : 'rgba(0,102,255,0.2)' }}
+      >
         <div className={clsx(
           'absolute top-0.5 w-4 h-4 rounded-full bg-white transition-transform',
           checked ? 'translate-x-4' : 'translate-x-0.5'
@@ -1532,10 +1543,10 @@ function SeoScore({ meta, content, wordCount }: { meta: SeoMeta; content: string
   return (
     <div className="space-y-4">
       {/* Gauge */}
-      <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-5 flex flex-col items-center">
+      <div className="rounded-xl p-5 flex flex-col items-center" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
         <svg viewBox="0 0 140 82" width="200" height="117" aria-label={`SEO Score: ${score} out of 100`}>
           {/* Track */}
-          <circle cx="70" cy="70" r={R} fill="none" stroke="#1a1a26" strokeWidth="12"
+          <circle cx="70" cy="70" r={R} fill="none" stroke="rgba(0,102,255,0.1)" strokeWidth="12"
             strokeDasharray={`${HALF} ${HALF}`}
             strokeDashoffset={`${HALF}`}
             strokeLinecap="round"
@@ -1549,31 +1560,31 @@ function SeoScore({ meta, content, wordCount }: { meta: SeoMeta; content: string
           />
           {/* Score text */}
           <text x="70" y="62" textAnchor="middle" fill="white" fontSize="28" fontWeight="800" fontFamily="system-ui">{score}</text>
-          <text x="70" y="76" textAnchor="middle" fill="#8888a8" fontSize="10" fontFamily="system-ui">/ 100</text>
+          <text x="70" y="76" textAnchor="middle" fill="#7a90b8" fontSize="10" fontFamily="system-ui">/ 100</text>
           {/* End labels */}
-          <text x="14" y="78" textAnchor="middle" fill="#555570" fontSize="9" fontFamily="system-ui">0</text>
-          <text x="126" y="78" textAnchor="middle" fill="#555570" fontSize="9" fontFamily="system-ui">100</text>
+          <text x="14" y="78" textAnchor="middle" fill="#7a90b8" fontSize="9" fontFamily="system-ui">0</text>
+          <text x="126" y="78" textAnchor="middle" fill="#7a90b8" fontSize="9" fontFamily="system-ui">100</text>
         </svg>
         <p className="text-xs mt-1" style={{ color: scoreColor }}>{scoreLabel}</p>
       </div>
 
       {/* Checks */}
-      <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl px-4 py-3 space-y-2">
-        <p className="text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-2">SEO Checks</p>
+      <div className="rounded-xl px-4 py-3 space-y-2" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#7a90b8' }}>SEO Checks</p>
         {checks.map(c => (
           <div key={c.label} className="flex items-center gap-2">
             {c.pass
               ? <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               : <XCircle className="w-3.5 h-3.5 text-red-400 shrink-0" />}
-            <span className="text-[#c8c8d8] text-xs flex-1">{c.label}</span>
-            <span className="text-[#8888a8] text-xs">{c.detail}</span>
+            <span className="text-xs flex-1" style={{ color: '#dde4f0' }}>{c.label}</span>
+            <span className="text-xs" style={{ color: '#7a90b8' }}>{c.detail}</span>
           </div>
         ))}
       </div>
 
       {/* Content Structure */}
-      <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4">
-        <p className="text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-3">Content Structure</p>
+      <div className="rounded-xl p-4" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#7a90b8' }}>Content Structure</p>
         <div className="grid grid-cols-2 gap-2">
           {[
             { label: 'Words', value: wordCount, min: 600, max: 2500, ideal: '600–2,500' },
@@ -1583,15 +1594,15 @@ function SeoScore({ meta, content, wordCount }: { meta: SeoMeta; content: string
           ].map(({ label, value, min, max, ideal }) => {
             const ok = value >= min && value <= max
             return (
-              <div key={label} className={`rounded-lg px-3 py-2.5 border ${ok ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-[#2a2a3d] bg-[#12121a]'}`}>
+              <div key={label} className="rounded-lg px-3 py-2.5 border" style={ok ? { borderColor: 'rgba(16, 185, 129, 0.2)', background: 'rgba(16, 185, 129, 0.05)' } : { borderColor: 'rgba(0,102,255,0.3)', background: 'rgba(11,22,40,0.6)' }}>
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-[#8888a8] text-xs">{label}</span>
+                  <span className="text-xs" style={{ color: '#7a90b8' }}>{label}</span>
                   {ok
                     ? <CheckCircle className="w-3 h-3 text-emerald-400" />
-                    : <XCircle className="w-3 h-3 text-[#555570]" />}
+                    : <XCircle className="w-3 h-3" style={{ color: '#7a90b8' }} />}
                 </div>
                 <div className="text-white text-lg font-bold leading-none">{value.toLocaleString()}</div>
-                <div className="text-[#555570] text-xs mt-0.5">ideal: {ideal}</div>
+                <div className="text-xs mt-0.5" style={{ color: '#7a90b8' }}>ideal: {ideal}</div>
               </div>
             )
           })}
@@ -1600,25 +1611,26 @@ function SeoScore({ meta, content, wordCount }: { meta: SeoMeta; content: string
 
       {/* Top Keywords */}
       {topKeywords.length > 0 && (
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4">
-          <p className="text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-3">Top Keywords</p>
+        <div className="rounded-xl p-4" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+          <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#7a90b8' }}>Top Keywords</p>
           <div className="flex flex-wrap gap-1.5">
             {topKeywords.map(([word, count]) => {
               const isFocus = kw && (word === kw || word.includes(kw) || kw.includes(word))
               return (
                 <span
                   key={word}
-                  className={`text-xs px-2.5 py-1 rounded-full border ${isFocus
-                    ? 'bg-violet-600/20 border-violet-500/40 text-violet-300'
-                    : 'bg-[#1a1a26] border-[#2a2a3d] text-[#c8c8d8]'
-                  }`}
+                  className="text-xs px-2.5 py-1 rounded-full border"
+                  style={isFocus
+                    ? { background: 'rgba(139, 92, 246, 0.2)', borderColor: 'rgba(139, 92, 246, 0.4)', color: '#d8b4fe' }
+                    : { background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', color: '#dde4f0' }
+                  }
                 >
                   {word} <span className="opacity-50">{count}x</span>
                 </span>
               )
             })}
           </div>
-          {kw && <p className="text-[#555570] text-xs mt-2">Focus keyword highlighted in purple</p>}
+          {kw && <p className="text-xs mt-2" style={{ color: '#7a90b8' }}>Focus keyword highlighted in purple</p>}
         </div>
       )}
     </div>
@@ -1646,16 +1658,17 @@ function SeoField({
   return (
     <div>
       <div className="flex items-center justify-between mb-1.5">
-        <label className="text-[#8888a8] text-xs font-semibold uppercase tracking-wider">{label}</label>
+        <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#7a90b8' }}>{label}</label>
         <div className="flex items-center gap-2">
           {limit && (
-            <span className={clsx('text-xs', overLimit ? 'text-red-400' : 'text-[#8888a8]')}>
+            <span className="text-xs" style={{ color: overLimit ? '#f87171' : '#7a90b8' }}>
               {value.length}/{limit}
             </span>
           )}
           <button
             onClick={copy}
-            className="text-xs text-[#8888a8] hover:text-white transition-colors"
+            className="text-xs transition-colors hover:text-white"
+            style={{ color: '#7a90b8' }}
           >
             {copied ? 'Copied!' : 'Copy'}
           </button>
@@ -1666,13 +1679,15 @@ function SeoField({
           readOnly
           value={value}
           rows={3}
-          className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm resize-none focus:outline-none"
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm resize-none focus:outline-none"
+          style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
         />
       ) : (
         <input
           readOnly
           value={value}
-          className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none"
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none"
+          style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
         />
       )}
       {overLimit && (
