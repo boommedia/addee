@@ -1,16 +1,8 @@
 ﻿import AppNav from '@/components/AppNav'
-
 import Logo from '@/components/Logo'
-
 import { createClient } from '@/lib/supabase/server'
-
-import { logout } from '@/app/auth/actions'
-
-import GenerateForm from '@/components/GenerateForm'
-
-import OnboardingChecklist from '@/components/OnboardingChecklist'
-
-import DashboardStats from '@/components/DashboardStats'
+import { ChevronRight, Sparkles, RefreshCw, Layers, Film, Copy, Lock } from 'lucide-react'
+import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
@@ -100,55 +92,106 @@ export default async function HomePage({
 
   ]
 
+  const services = [
+    { id: 'formats', icon: Sparkles, title: 'Choose Format & Platform', desc: 'Select platform (Instagram, TikTok, LinkedIn, Google Ads) and format (single image, carousel, video script)', href: '#generate', available: true },
+    { id: 'remix', icon: RefreshCw, title: 'Remix a Winning Ad', desc: 'Paste an existing high-converting ad and remix it for your brand', href: '#remix', available: true },
+    { id: 'variants', icon: Layers, title: 'Generate A/B Variants', desc: 'Create conservative + aggressive versions to test what resonates', href: '#variants', available: true },
+    { id: 'scripts', icon: Film, title: 'Video Scripts', desc: 'Generate TikTok, Reels, and YouTube Shorts scripts with hooks and CTAs', href: '#scripts', available: true },
+    { id: 'copy', icon: Copy, title: 'Copy Variations', desc: 'Short (150 chars) + Long (300 chars) + Caption styles for different needs', href: '#copy', available: true },
+  ]
+
+  const addons = [
+    { icon: Sparkles, title: 'Video Preview Mockups', desc: 'See how generated copy looks on video templates', comingSoon: true },
+    { icon: Sparkles, title: 'Hashtag & Keyword Suggestions', desc: 'Auto-generate trending hashtags and keywords for each ad', comingSoon: true },
+    { icon: Sparkles, title: 'Image Brief Generation', desc: 'Get AI-generated image descriptions and design requirements', comingSoon: true },
+    { icon: Film, title: 'Actual Video Generation', desc: 'Auto-create videos with voiceover and animations (Runway, Synthesia)', comingSoon: true },
+    { icon: Sparkles, title: 'AI Image Generation', desc: 'Generate custom images with DALL-E or Midjourney integration', comingSoon: true },
+    { icon: Sparkles, title: 'Direct Platform Publishing', desc: 'Publish ADs directly to Instagram, TikTok, LinkedIn, Google Ads', comingSoon: true },
+    { icon: Sparkles, title: 'Performance Analytics', desc: 'Track impressions, clicks, CTR, and ROI across platforms', comingSoon: true },
+  ]
+
   return (
-
-    <div className="min-h-screen text-[#dde4f0]" style={{ background: '#060d1a' }}>
-
+    <div className="min-h-screen" style={{ background: '#ffffff' }}>
       <AppNav active="/dashboard" />
 
-      <main className="max-w-6xl mx-auto px-6 py-10" id="generate">
-
-        <div className="mb-8">
-
-          <h1 className="text-2xl font-bold text-white mb-1">Generate AD Creative</h1>
-
-          <p className="text-sm" style={{ color: '#7a90b8' }}>Enter a campaign brief → AdDee writes 3 platform-ready AD variations in your brand voice.</p>
-
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="text-4xl font-bold mb-2" style={{ color: '#0066FF' }}>Generate Your First AD</h1>
+          <p className="text-lg text-gray-600">Pick a format and let AdDee create 3 platform-ready variations in your brand voice</p>
         </div>
 
-        <DashboardStats
-          postsThisMonth={postsThisMonth ?? 0}
-          postsLimit={sub?.posts_limit ?? 2}
-          wordsThisMonth={wordsThisMonth}
-          activeClients={clients?.length ?? 0}
-          lastPostTitle={lastPost?.[0]?.title ?? null}
-          lastPostDate={lastPost?.[0]?.created_at ?? null}
-        />
+        {/* Stats */}
+        <div className="grid grid-cols-4 gap-4 mb-12">
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="text-3xl font-bold" style={{ color: '#0066FF' }}>{postsThisMonth ?? 0}/{sub?.posts_limit ?? 2}</div>
+            <div className="text-sm text-gray-600 mt-1">ADs this month</div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="text-3xl font-bold" style={{ color: '#0066FF' }}>{clients?.length ?? 0}</div>
+            <div className="text-sm text-gray-600 mt-1">Brands</div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="text-3xl font-bold" style={{ color: '#0066FF' }}>{wordsThisMonth}</div>
+            <div className="text-sm text-gray-600 mt-1">Words generated</div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="text-3xl font-bold" style={{ color: lastPost?.[0]?.title ? '#00FF00' : '#999' }}>
+              {lastPost?.[0]?.title ? '✓' : '—'}
+            </div>
+            <div className="text-sm text-gray-600 mt-1">Last AD created</div>
+          </div>
+        </div>
 
-        <OnboardingChecklist steps={onboardingSteps} />
+        {/* Available Services */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: '#1f2937' }}>Available Services</h2>
+          <div className="space-y-3">
+            {services.map((service) => (
+              <Link key={service.id} href={service.href} className="block group">
+                <div className="bg-white border-2 rounded-lg p-5 hover:shadow-lg transition" style={{ borderColor: '#0066FF' }}>
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}>
+                        <service.icon className="text-white" size={24} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg text-gray-900 group-hover:" style={{ color: '#0066FF' }}>{service.title}</h3>
+                        <p className="text-gray-600 text-sm mt-1">{service.desc}</p>
+                      </div>
+                    </div>
+                    <ChevronRight className="flex-shrink-0 text-gray-400 group-hover:text-blue-600 transition mt-1" size={24} />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-        <GenerateForm
-
-          clients={clients ?? []}
-
-          preselectedClientId={preselectedClientId}
-
-          prefilledPrompt={prefilledPrompt}
-
-          prefilledTone={prefilledTone}
-
-          prefilledLength={prefilledLength}
-
-          prefilledKeywords={prefilledKeywords}
-
-          currentPlan={currentPlan as 'free' | 'starter' | 'growth' | 'agency' | 'agency_max'}
-
-        />
-
+        {/* Coming Soon Addons */}
+        <section>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: '#1f2937' }}>Coming Soon</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {addons.map((addon, i) => (
+              <div key={i} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-5 border border-gray-200 relative">
+                <div className="absolute top-3 right-3 bg-yellow-100 text-yellow-700 text-xs font-semibold px-2 py-1 rounded">
+                  Coming Soon
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center opacity-50" style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}>
+                    <addon.icon className="text-white" size={20} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900">{addon.title}</h3>
+                    <p className="text-gray-600 text-sm mt-1">{addon.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
-
     </div>
-
   )
 
 }
