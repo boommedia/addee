@@ -29,7 +29,8 @@
       "mcp__claude_ai_Vercel__get_runtime_logs",
       "Bash(npx tsc *)",
       "Bash(node_modules/.bin/tsc --noEmit)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "mcp__claude_ai_Vercel__deploy_to_vercel"
     ],
     "additionalDirectories": [
       "G:\\My Drive\\AI\\Claude\\Projects\\Boom Media\\Addee\\Bloggy",

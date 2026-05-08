@@ -3,9 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #1f2937;
-  --primary: #ef4444;
-  --primary-light: #fecaca;
-  --primary-dark: #991b1b;
+  --primary: #0066FF;
+  --primary-light: #80b3ff;
+  --primary-dark: #0044cc;
   --border: #e5e7eb;
   --text-muted: #6b7280;
 }
@@ -26,9 +26,9 @@
   :root {
     --background: #111827;
     --foreground: #f3f4f6;
-    --primary: #ff6b6b;
-    --primary-light: #ffa8a8;
-    --primary-dark: #ff5252;
+    --primary: #0066FF;
+    --primary-light: #80b3ff;
+    --primary-dark: #0044cc;
     --border: #374151;
     --text-muted: #d1d5db;
   }

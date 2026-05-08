@@ -182,8 +182,8 @@ function SignupForm() {
     return (
       <div>
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 border" style={{ background: 'rgba(251,146,60,0.15)', borderColor: 'rgba(251,146,60,0.3)' }}>
-            <svg className="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 border" style={{ background: 'rgba(0,102,255,0.15)', borderColor: 'rgba(0,102,255,0.3)' }}>
+            <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
@@ -209,7 +209,7 @@ function SignupForm() {
                   value={digit}
                   onChange={e => handleOtpChange(i, e.target.value)}
                   onKeyDown={e => handleOtpKeyDown(i, e)}
-                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-orange-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
+                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
                 />
               ))}
             </div>
@@ -225,7 +225,7 @@ function SignupForm() {
             type="submit"
             disabled={otpLoading || otp.join('').length < 8}
             className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
+            style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}
           >
             {otpLoading ? 'Verifying…' : 'Verify & continue'}
           </button>
@@ -235,7 +235,7 @@ function SignupForm() {
           Didn&apos;t get it? Check your spam folder or{' '}
           <button
             onClick={() => { setOtpStep(false); setOtp(['', '', '', '', '', '', '', '']); setOtpError(null) }}
-            className="text-orange-400 hover:text-orange-300 transition-colors"
+            className="text-blue-400 hover:text-blue-300 transition-colors"
           >
             try again
           </button>
@@ -244,7 +244,7 @@ function SignupForm() {
     )
   }
 
-  const inputClass = 'w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors'
+  const inputClass = 'w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors'
   const inputStyle = { background: '#060d1a', border: '1px solid #1a2d50' }
   const labelClass = 'block text-xs font-semibold uppercase tracking-wider mb-1.5'
 
@@ -314,11 +314,11 @@ function SignupForm() {
             onBlur={() => checkUrl(agencyUrl)}
             autoComplete="url"
             className={`${inputClass} pr-10`}
-            style={{ ...inputStyle, ...(urlStatus === 'valid' ? { borderColor: '#10b981' } : urlStatus === 'invalid' ? { borderColor: '#ef4444' } : {}) }}
+            style={{ ...inputStyle, ...(urlStatus === 'valid' ? { borderColor: '#10b981' } : urlStatus === 'invalid' ? { borderColor: '#0066FF' } : {}) }}
             placeholder="https://youragency.com"
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            {urlStatus === 'checking' && <Loader2 className="w-4 h-4 text-orange-400 animate-spin" />}
+            {urlStatus === 'checking' && <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />}
             {urlStatus === 'valid' && <CheckCircle className="w-4 h-4 text-emerald-400" />}
             {urlStatus === 'invalid' && <XCircle className="w-4 h-4 text-red-400" />}
           </div>
@@ -385,12 +385,12 @@ function SignupForm() {
 
       {/* Free plan callout */}
       {!coupon && (
-        <div className="rounded-xl px-4 py-3 flex items-start gap-3 border" style={{ background: 'rgba(251,146,60,0.08)', borderColor: 'rgba(251,146,60,0.2)' }}>
-          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: 'rgba(251,146,60,0.15)', borderColor: 'rgba(251,146,60,0.3)' }}>
-            <span className="text-orange-400 text-xs font-bold">✓</span>
+        <div className="rounded-xl px-4 py-3 flex items-start gap-3 border" style={{ background: 'rgba(0,102,255,0.08)', borderColor: 'rgba(0,102,255,0.2)' }}>
+          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: 'rgba(0,102,255,0.15)', borderColor: 'rgba(0,102,255,0.3)' }}>
+            <span className="text-blue-400 text-xs font-bold">✓</span>
           </div>
           <div>
-            <p className="text-orange-300 text-xs font-semibold">Free plan includes 10 ADs</p>
+            <p className="text-blue-300 text-xs font-semibold">Free plan includes 10 ADs</p>
             <p className="text-xs mt-0.5" style={{ color: '#3a5070' }}>No credit card required. Upgrade anytime for unlimited access.</p>
           </div>
         </div>
@@ -404,16 +404,16 @@ function SignupForm() {
         type="submit"
         disabled={loading}
         className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
-        style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
+        style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}
       >
         {loading ? 'Creating account…' : 'Create free account'}
       </button>
 
       <p className="text-[#555570] text-xs text-center">
         By signing up you agree to our{' '}
-        <a href="/terms" className="text-orange-400 hover:text-orange-300 transition-colors">Terms</a>
+        <a href="/terms" className="text-blue-400 hover:text-blue-300 transition-colors">Terms</a>
         {' '}and{' '}
-        <a href="/privacy" className="text-orange-400 hover:text-orange-300 transition-colors">Privacy Policy</a>.
+        <a href="/privacy" className="text-blue-400 hover:text-blue-300 transition-colors">Privacy Policy</a>.
       </p>
     </form>
   )
@@ -437,7 +437,7 @@ export default function SignupPage() {
           </Suspense>
           <div className="mt-5 text-center">
             <span className="text-xs" style={{ color: '#7a90b8' }}>Already have an account? </span>
-            <a href="/login" className="text-orange-400 hover:text-orange-300 text-xs transition-colors">Sign in</a>
+            <a href="/login" className="text-blue-400 hover:text-blue-300 text-xs transition-colors">Sign in</a>
           </div>
         </div>
       </div>

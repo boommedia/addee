@@ -5,57 +5,57 @@ import EarlyAccessSection from '@/components/EarlyAccessSection'
 const FEATURES = [
   {
     icon: <Sparkles className="w-5 h-5" />,
-    color: 'text-orange-400',
-    bg: 'bg-orange-500/15 border-orange-500/25',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/15 border-blue-500/25',
     title: 'AI Ad Generation',
     desc: 'Claude Sonnet writes brand-matched ad copy in seconds. 3 variations per platform, every format — feeds, stories, reels, carousels.',
   },
   {
     icon: <Globe className="w-5 h-5" />,
-    color: 'text-red-400',
-    bg: 'bg-red-500/15 border-red-500/25',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/15 border-blue-500/25',
     title: 'One-Click Multi-Platform Publish',
     desc: 'Publish as draft or live directly to Instagram, LinkedIn, TikTok, Google Ads, Meta, Pinterest — all from one click.',
   },
   {
     icon: <Image className="w-5 h-5" />,
-    color: 'text-amber-400',
-    bg: 'bg-amber-500/15 border-amber-500/25',
+    color: 'text-lime-400',
+    bg: 'bg-lime-500/15 border-lime-500/25',
     title: 'Multi-Format Ad Templates',
     desc: 'Stories, feeds, reels, carousels, collection ads, video ads — auto-generated in platform-perfect dimensions.',
   },
   {
     icon: <Lock className="w-5 h-5" />,
-    color: 'text-orange-300',
-    bg: 'bg-orange-500/15 border-orange-400/25',
+    color: 'text-blue-300',
+    bg: 'bg-blue-500/15 border-blue-400/25',
     title: 'Brand Voice Training',
     desc: 'Upload brand guidelines, past ads, and tone examples. Every generated ad sounds like you — not a robot.',
   },
   {
     icon: <TrendingUp className="w-5 h-5" />,
-    color: 'text-red-400',
-    bg: 'bg-red-500/15 border-red-500/25',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/15 border-blue-500/25',
     title: 'Performance Tracking',
     desc: 'Track CTR, conversions, ROAS, and impressions across all platforms from one unified dashboard.',
   },
   {
     icon: <Users className="w-5 h-5" />,
-    color: 'text-amber-400',
-    bg: 'bg-amber-500/15 border-amber-500/25',
+    color: 'text-lime-400',
+    bg: 'bg-lime-500/15 border-lime-500/25',
     title: 'Team Collaboration',
     desc: 'Invite team members, set approval workflows, manage permissions per brand — no extra logins needed.',
   },
   {
     icon: <RefreshCw className="w-5 h-5" />,
-    color: 'text-orange-400',
-    bg: 'bg-orange-500/15 border-orange-500/25',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/15 border-blue-500/25',
     title: 'Auto-Repurposing',
     desc: 'One ad becomes LinkedIn posts, email copy, and Twitter threads. No rewriting. One click, every channel.',
   },
   {
     icon: <Share2 className="w-5 h-5" />,
-    color: 'text-red-300',
-    bg: 'bg-red-500/15 border-red-500/25',
+    color: 'text-blue-300',
+    bg: 'bg-blue-500/15 border-blue-500/25',
     title: 'Client Approval Workflow',
     desc: 'Send any ad for client sign-off with one click. They approve or revise — no login required.',
   },
@@ -108,7 +108,7 @@ const FAQS = [
 
 // Dark navy blue palette (like Bloggy's dark indigo, but in navy/blue tones with orange/red accents)
 // bg-base: #060d1a   card: #0b1628   border: #162040   muted: #2a3a5a
-// accent-primary: #ef4444 (red)  accent-2: #fb923c (orange)  accent-3: #f97316 (orange-600)
+// accent-primary: #0066FF (red)  accent-2: #00FF00 (orange)  accent-3: #f97316 (orange-600)
 
 export default function HomePage() {
   return (
@@ -117,9 +117,9 @@ export default function HomePage() {
       {/* ── STICKY NAV ── */}
       <div className="sticky top-0 z-50">
         {/* Early access bar */}
-        <div style={{ background: 'rgba(251,146,60,0.12)', borderBottom: '1px solid rgba(251,146,60,0.25)' }}
-          className="py-2.5 text-center text-xs font-bold text-orange-300 tracking-wide">
-          <span className="inline-block w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse mr-2 align-middle" />
+        <div style={{ background: 'rgba(0,255,0,0.12)', borderBottom: '1px solid rgba(0,255,0,0.25)' }}
+          className="py-2.5 text-center text-xs font-bold text-blue-300 tracking-wide">
+          <span className="inline-block w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse mr-2 align-middle" />
           AdDee Early Access — Founding pricing locked in forever · Get started free
         </div>
         <nav style={{ background: 'rgba(6,13,26,0.92)', borderBottom: '1px solid rgba(22,32,64,0.8)' }}
@@ -127,7 +127,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded flex items-center justify-center font-black text-sm text-white"
-                style={{ background: 'linear-gradient(135deg, #ef4444, #fb923c)' }}>A</div>
+                style={{ background: 'linear-gradient(135deg, #0066FF, #00FF00)' }}>A</div>
               <span className="font-black text-white">AdDee</span>
               <span style={{ color: '#162040' }} className="mx-1 hidden sm:inline">·</span>
               <span style={{ color: '#4a6080' }} className="text-xs hidden sm:inline">by Boom Media</span>
@@ -141,7 +141,7 @@ export default function HomePage() {
               <Link href="/login" style={{ color: '#4a6080' }} className="hover:text-white text-xs sm:text-sm transition-colors">Sign In</Link>
               <Link href="/login"
                 className="text-white text-xs sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-all hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}>
+                style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}>
                 Start Free
               </Link>
             </div>
@@ -154,24 +154,24 @@ export default function HomePage() {
         {/* Big radial orange/red glow — same position as Bloggy's violet blob */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[650px] rounded-full blur-3xl"
-            style={{ background: 'radial-gradient(ellipse, rgba(239,68,68,0.18) 0%, rgba(251,146,60,0.08) 50%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(ellipse, rgba(239,68,68,0.18) 0%, rgba(0,255,0,0.08) 50%, transparent 70%)' }} />
           <div className="absolute top-32 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl"
-            style={{ background: 'rgba(251,146,60,0.06)' }} />
+            style={{ background: 'rgba(0,255,0,0.06)' }} />
           <div className="absolute top-10 right-1/4 w-[350px] h-[350px] rounded-full blur-3xl"
             style={{ background: 'rgba(239,68,68,0.05)' }} />
         </div>
 
         <div className="relative max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 border"
-            style={{ background: 'rgba(251,146,60,0.12)', borderColor: 'rgba(251,146,60,0.3)' }}>
-            <span className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-2 text-blue-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 border"
+            style={{ background: 'rgba(0,255,0,0.12)', borderColor: 'rgba(0,255,0,0.3)' }}>
+            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
             Early Access — Founding pricing locked in forever
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-6">
             One Dashboard.<br />
-            <span style={{ backgroundImage: 'linear-gradient(90deg, #ef4444, #fb923c, #f97316)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <span style={{ backgroundImage: 'linear-gradient(90deg, #0066FF, #00FF00, #f97316)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Every Brand AD. Done.
             </span>
           </h1>
@@ -185,7 +185,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link href="/login"
               className="w-full sm:w-auto flex items-center justify-center gap-2 text-white font-bold px-6 py-3.5 sm:px-9 sm:py-4 rounded-xl transition-all hover:opacity-90 text-sm shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)', boxShadow: '0 8px 32px rgba(239,68,68,0.35)' }}>
+              style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)', boxShadow: '0 8px 32px rgba(239,68,68,0.35)' }}>
               Start Free — No Card Required
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -219,7 +219,7 @@ export default function HomePage() {
           <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: 'rgba(239,68,68,0.25)' }}>
             <div className="flex flex-col lg:flex-row gap-10 items-start">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 text-orange-300 text-xs font-bold px-3 py-1.5 rounded-full mb-4 border"
+                <div className="inline-flex items-center gap-2 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-4 border"
                   style={{ background: 'rgba(239,68,68,0.12)', borderColor: 'rgba(239,68,68,0.25)' }}>
                   Case Study
                 </div>
@@ -234,8 +234,8 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-2 gap-4 lg:w-72 w-full shrink-0">
                 {[
-                  { label: 'Brand Profiles Managed', value: '15', color: '#fb923c' },
-                  { label: 'Ads Generated Per Month', value: '150+', color: '#ef4444' },
+                  { label: 'Brand Profiles Managed', value: '15', color: '#00FF00' },
+                  { label: 'Ads Generated Per Month', value: '150+', color: '#0066FF' },
                   { label: 'Tool Cost Per Brand', value: '$5.27', color: '#34d399' },
                   { label: 'Content Margin', value: '~97%', color: '#34d399' },
                 ].map(({ label, value, color }) => (
@@ -280,14 +280,14 @@ export default function HomePage() {
       {/* ── FEATURES ── */}
       <section id="features" className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-14">
-          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>What You Get</div>
+          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#00FF00' }}>What You Get</div>
           <h2 className="text-2xl sm:text-4xl font-black text-white">Everything you need to dominate ads</h2>
           <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>One platform. Every format. Every platform. All your brands.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {FEATURES.map(({ icon, color, bg, title, desc }) => (
             <div key={title}
-              className="rounded-2xl p-6 border transition-all hover:scale-[1.02] border-[#1a2d50] hover:border-red-500/40"
+              className="rounded-2xl p-6 border transition-all hover:scale-[1.02] border-[#1a2d50] hover:border-blue-500/40"
               style={{ background: '#0b1628' }}>
               <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${bg} ${color}`}>
                 {icon}
@@ -336,7 +336,7 @@ export default function HomePage() {
                     </div>
                     <div className="flex justify-between">
                       <span style={{ color: '#3a5070' }}>You bill clients*</span>
-                      <span className="font-semibold" style={{ color: '#fb923c' }}>${revenue.toLocaleString()}/mo</span>
+                      <span className="font-semibold" style={{ color: '#00FF00' }}>${revenue.toLocaleString()}/mo</span>
                     </div>
                     <div className="flex justify-between">
                       <span style={{ color: '#3a5070' }}>Your tool cost</span>
@@ -362,7 +362,7 @@ export default function HomePage() {
       {/* ── HOW IT WORKS ── */}
       <section className="max-w-6xl mx-auto px-6 py-20 border-t" style={{ borderColor: '#162040' }}>
         <div className="text-center mb-14">
-          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>How It Works</div>
+          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#00FF00' }}>How It Works</div>
           <h2 className="text-2xl sm:text-4xl font-black text-white">From brief to published in 3 steps</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -385,7 +385,7 @@ export default function HomePage() {
       <section id="pricing" className="border-t px-6 py-20" style={{ borderColor: '#162040', background: '#080f1e' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>Pricing</div>
+            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#00FF00' }}>Pricing</div>
             <h2 className="text-2xl sm:text-4xl font-black text-white">Simple, predictable pricing</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>Scale from freelancer to agency. No per-ad charges. No surprise fees.</p>
           </div>
@@ -394,7 +394,7 @@ export default function HomePage() {
               <div key={plan.name}
                 className="rounded-2xl p-7 flex flex-col gap-5 border"
                 style={plan.featured
-                  ? { background: 'linear-gradient(145deg, #7f1d1d, #991b1b)', borderColor: '#ef4444', boxShadow: '0 0 50px rgba(239,68,68,0.3)' }
+                  ? { background: 'linear-gradient(145deg, #7f1d1d, #991b1b)', borderColor: '#0066FF', boxShadow: '0 0 50px rgba(239,68,68,0.3)' }
                   : { background: '#0b1628', borderColor: '#1a2d50' }
                 }>
                 <div>
@@ -407,15 +407,15 @@ export default function HomePage() {
                 <Link href="/login"
                   className="w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all"
                   style={plan.featured
-                    ? { background: 'white', color: '#dc2626' }
-                    : { border: '1px solid rgba(239,68,68,0.5)', color: '#fb923c', background: 'rgba(239,68,68,0.06)' }
+                    ? { background: 'white', color: '#0055FF' }
+                    : { border: '1px solid rgba(239,68,68,0.5)', color: '#00FF00', background: 'rgba(239,68,68,0.06)' }
                   }>
                   Get Started
                 </Link>
                 <div className="space-y-2.5">
                   {plan.features.map((f) => (
                     <div key={f} className="flex gap-2 items-start">
-                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: plan.featured ? '#fca5a5' : '#fb923c' }} />
+                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: plan.featured ? '#fca5a5' : '#00FF00' }} />
                       <span className="text-xs" style={{ color: plan.featured ? 'rgba(254,202,202,0.9)' : '#7a90b8' }}>{f}</span>
                     </div>
                   ))}
@@ -432,7 +432,7 @@ export default function HomePage() {
       {/* ── ROADMAP ── */}
       <section id="roadmap" className="max-w-6xl mx-auto px-6 py-20 border-t" style={{ borderColor: '#162040' }}>
         <div className="text-center mb-14">
-          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>Roadmap</div>
+          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#00FF00' }}>Roadmap</div>
           <h2 className="text-2xl sm:text-4xl font-black text-white">Built. Shipping. Coming soon.</h2>
           <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>AdDee ships new features every week.</p>
         </div>
@@ -450,15 +450,15 @@ export default function HomePage() {
           ].map(({ title, desc, status }) => (
             <div key={title} className="rounded-2xl p-5 border" style={{
               background: '#0b1628',
-              borderColor: status === 'shipped' ? 'rgba(52,211,153,0.25)' : status === 'progress' ? 'rgba(251,146,60,0.25)' : '#1a2d50',
+              borderColor: status === 'shipped' ? 'rgba(52,211,153,0.25)' : status === 'progress' ? 'rgba(0,255,0,0.25)' : '#1a2d50',
             }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full" style={{
-                  background: status === 'shipped' ? '#34d399' : status === 'progress' ? '#fb923c' : '#3a5070',
+                  background: status === 'shipped' ? '#34d399' : status === 'progress' ? '#00FF00' : '#3a5070',
                   animation: status === 'progress' ? 'pulse 2s infinite' : 'none',
                 }} />
                 <span className="text-xs font-bold uppercase tracking-wider" style={{
-                  color: status === 'shipped' ? '#34d399' : status === 'progress' ? '#fb923c' : '#3a5070',
+                  color: status === 'shipped' ? '#34d399' : status === 'progress' ? '#00FF00' : '#3a5070',
                 }}>
                   {status === 'shipped' ? 'Shipped' : status === 'progress' ? 'In Progress' : 'Coming Soon'}
                 </span>
@@ -474,7 +474,7 @@ export default function HomePage() {
       <section className="border-t px-6 py-20" style={{ borderColor: '#162040', background: '#080f1e' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>Integrations</div>
+            <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#00FF00' }}>Integrations</div>
             <h2 className="text-2xl sm:text-4xl font-black text-white">Publish & Post Everywhere</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: '#7a90b8' }}>AdDee connects to every platform your clients use.</p>
           </div>
@@ -518,7 +518,7 @@ export default function HomePage() {
       {/* ── FAQ ── */}
       <section id="faq" className="max-w-3xl mx-auto px-6 py-20">
         <div className="text-center mb-14">
-          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#fb923c' }}>FAQ</div>
+          <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#00FF00' }}>FAQ</div>
           <h2 className="text-2xl sm:text-4xl font-black text-white">Common questions</h2>
         </div>
         <div>
@@ -536,14 +536,14 @@ export default function HomePage() {
         {/* Bottom glow */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-3xl"
-            style={{ background: 'radial-gradient(ellipse, rgba(239,68,68,0.16) 0%, rgba(251,146,60,0.06) 50%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(ellipse, rgba(239,68,68,0.16) 0%, rgba(0,255,0,0.06) 50%, transparent 70%)' }} />
         </div>
         <div className="relative max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">Ready to dominate ads?</h2>
           <p className="mb-8 text-sm" style={{ color: '#7a90b8' }}>Start free. 10 ads included. Set up your first brand in 30 seconds.</p>
           <Link href="/login"
             className="inline-flex items-center gap-2 text-white font-bold px-8 py-4 rounded-xl transition-all hover:opacity-90 text-base"
-            style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)', boxShadow: '0 8px 40px rgba(239,68,68,0.4)' }}>
+            style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)', boxShadow: '0 8px 40px rgba(239,68,68,0.4)' }}>
             Get Started Free
             <ArrowRight className="w-5 h-5" />
           </Link>
@@ -558,7 +558,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-7 h-7 rounded flex items-center justify-center font-black text-sm text-white"
-                  style={{ background: 'linear-gradient(135deg, #ef4444, #fb923c)' }}>A</div>
+                  style={{ background: 'linear-gradient(135deg, #0066FF, #00FF00)' }}>A</div>
                 <span className="font-black text-white">AdDee</span>
               </div>
               <p className="text-xs" style={{ color: '#3a5070' }}>AI ad creatives for agencies. Built by Boom Media.</p>

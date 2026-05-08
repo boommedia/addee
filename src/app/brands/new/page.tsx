@@ -16,7 +16,7 @@ export default function NewBrandPage() {
     brand_voice: '',
     tone_examples: '',
     visual_style: '',
-    colors: '#ef4444',
+    colors: '#0066FF',
   })
   const [loading, setLoading] = useState(false)
 

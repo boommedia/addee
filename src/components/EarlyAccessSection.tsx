@@ -50,16 +50,16 @@ export default function EarlyAccessSection() {
         <div className="relative rounded-2xl overflow-hidden border"
           style={soldOut
             ? { background: '#0b1628', borderColor: '#1a2d50' }
-            : { background: 'linear-gradient(135deg, rgba(127,29,29,0.5) 0%, rgba(11,22,40,0.95) 50%, rgba(15,30,50,0.9) 100%)', borderColor: 'rgba(239,68,68,0.35)' }
+            : { background: 'linear-gradient(135deg, rgba(0,102,255,0.5) 0%, rgba(11,22,40,0.95) 50%, rgba(15,30,50,0.9) 100%)', borderColor: 'rgba(0,102,255,0.35)' }
           }>
 
           {/* Glow */}
           {!soldOut && (
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full blur-3xl"
-                style={{ background: 'rgba(239,68,68,0.12)' }} />
+                style={{ background: 'rgba(0,102,255,0.12)' }} />
               <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full blur-3xl"
-                style={{ background: 'rgba(251,146,60,0.08)' }} />
+                style={{ background: 'rgba(0,255,0,0.08)' }} />
             </div>
           )}
 
@@ -79,14 +79,14 @@ export default function EarlyAccessSection() {
                 {/* Left: Offer details */}
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 border"
-                    style={{ background: 'rgba(251,146,60,0.15)', borderColor: 'rgba(251,146,60,0.3)', color: '#fb923c' }}>
+                    style={{ background: 'rgba(0,255,0,0.15)', borderColor: 'rgba(0,255,0,0.3)', color: '#00FF00' }}>
                     <Zap className="w-3 h-3" />
                     Limited Early Access — {left} of {total} spots left
                   </div>
 
                   <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
                     {discount}% off for 1 year.<br />
-                    <span style={{ backgroundImage: 'linear-gradient(90deg, #ef4444, #fb923c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    <span style={{ backgroundImage: 'linear-gradient(90deg, #0066FF, #00FF00)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                       Founding member pricing.
                     </span>
                   </h2>
@@ -100,7 +100,7 @@ export default function EarlyAccessSection() {
                     style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2 text-sm">
-                        <Users className="w-4 h-4" style={{ color: '#fb923c' }} />
+                        <Users className="w-4 h-4" style={{ color: '#00FF00' }} />
                         <span className="text-white font-bold">{left} spots remaining</span>
                         <span style={{ color: '#3a5070' }}>of {total}</span>
                       </div>
@@ -109,11 +109,11 @@ export default function EarlyAccessSection() {
                     <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: '#162040' }}>
                       <div
                         className="h-full rounded-full transition-all"
-                        style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #ef4444, #fb923c)' }}
+                        style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #0066FF, #00FF00)' }}
                       />
                     </div>
                     {left <= 5 && (
-                      <p className="text-xs font-semibold mt-2" style={{ color: '#fb923c' }}>
+                      <p className="text-xs font-semibold mt-2" style={{ color: '#00FF00' }}>
                         Only {left} left — don't miss out
                       </p>
                     )}
@@ -123,7 +123,7 @@ export default function EarlyAccessSection() {
                     <a
                       href={`/signup?coupon=${COUPON_ID}`}
                       className="flex items-center justify-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all hover:opacity-90 text-sm"
-                      style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)', boxShadow: '0 6px 24px rgba(239,68,68,0.3)' }}
+                      style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)', boxShadow: '0 6px 24px rgba(0,102,255,0.3)' }}
                     >
                       <Lock className="w-4 h-4" />
                       Claim Your Spot — {PROMO_CODE}

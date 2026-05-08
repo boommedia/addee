@@ -91,7 +91,7 @@ function LoginForm() {
           type="email"
           required
           autoComplete="email"
-          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
           placeholder="you@agency.com"
         />
       </div>
@@ -105,7 +105,7 @@ function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
           placeholder="••••••••"
         />
       </div>
@@ -120,7 +120,7 @@ function LoginForm() {
         type="submit"
         disabled={loading}
         className="w-full disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90 mt-2"
-        style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
+        style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
@@ -146,10 +146,10 @@ export default function LoginPage() {
             <LoginForm />
           </Suspense>
           <div className="mt-4 flex items-center justify-between">
-            <a href="/forgot-password" className="hover:text-orange-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
+            <a href="/forgot-password" className="hover:text-blue-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
               Forgot password?
             </a>
-            <a href="/signup" className="hover:text-orange-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
+            <a href="/signup" className="hover:text-blue-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
               Create account
             </a>
           </div>

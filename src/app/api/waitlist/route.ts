@@ -35,7 +35,7 @@ export async function POST(request: Request) {
         html: `
           <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#060d1a;color:#dde4f0;border-radius:12px;">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;">
-              <div style="width:28px;height:28px;background:linear-gradient(135deg,#ef4444,#fb923c);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:white;">A</div>
+              <div style="width:28px;height:28px;background:linear-gradient(135deg,#0066FF,#00FF00);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:white;">A</div>
               <span style="font-weight:700;color:white;">Addee — New Waitlist Signup</span>
             </div>
             <table style="width:100%;border-collapse:collapse;">
