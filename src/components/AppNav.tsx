@@ -42,8 +42,8 @@ export default async function AppNav({ active }: { active: string }) {
   const planStyle = PLAN_STYLES[displayPlan] ?? PLAN_STYLES.free
 
   return (
-    <nav className="border-b sticky top-0 z-50 backdrop-blur" style={{ borderColor: '#162040', background: 'rgba(6,13,26,0.88)' }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <nav className="border-b sticky top-0 z-50 backdrop-blur" style={{ borderColor: 'rgba(0,102,255,0.2)', background: 'rgba(6,13,26,0.95)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4 min-w-0">
           <a href="/home" className="flex items-center shrink-0">
             <Logo />
@@ -54,11 +54,14 @@ export default async function AppNav({ active }: { active: string }) {
               <a
                 key={link.href}
                 href={link.href}
-                className={
-                  active === link.href
-                    ? 'text-white text-sm px-3 py-1.5 rounded-lg transition-colors'
-                    : 'text-[#4a6080] hover:text-white text-sm px-3 py-1.5 rounded-lg transition-colors'
-                }
+                style={{
+                  color: active === link.href ? '#00FF00' : '#7a90b8',
+                  fontSize: '0.875rem',
+                  padding: '0.375rem 0.75rem',
+                  borderRadius: '0.5rem',
+                  transition: 'color 0.2s',
+                }}
+                className="hover:text-white"
               >
                 {link.label}
               </a>
