@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://addee.online'),
   alternates: { canonical: 'https://addee.online' },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
   openGraph: {
     title: 'Addee — AI Ad Creatives & Social Content Generator',
