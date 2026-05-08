@@ -553,13 +553,13 @@ ${markdownToHTML(currentContent)}
         {/* Client selector */}
         {clients.length > 0 && (
           <div>
-            <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#7a90b8' }}>
               Client <span className="normal-case font-normal">(optional)</span>
             </label>
             <select
               value={clientId}
               onChange={e => setClientId(e.target.value)}
-              className="w-full bg-[#12121a] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-violet-500 transition-colors"
+              className="w-full rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
             >
               <option value="">No client / general</option>
               {clients.map(c => (
@@ -571,7 +571,7 @@ ${markdownToHTML(currentContent)}
 
         {/* Prompt */}
         <div>
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#7a90b8' }}>
             Topic / Brief
           </label>
           <textarea
@@ -579,27 +579,27 @@ ${markdownToHTML(currentContent)}
             onChange={e => setPrompt(e.target.value)}
             rows={5}
             placeholder="e.g. Top 5 benefits of local SEO for small businesses in 2025..."
-            className="w-full bg-[#12121a] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors resize-none"
+            className="w-full rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors resize-none" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
           />
         </div>
 
         {/* SEO Keywords */}
         <div>
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5 flex items-center gap-1.5" style={{ color: '#7a90b8' }}>
             <Search className="w-3 h-3" /> SEO Keywords <span className="normal-case font-normal">(optional)</span>
           </label>
           <input
             value={keywords}
             onChange={e => setKeywords(e.target.value)}
             placeholder="e.g. local SEO, Google Business Profile, small business marketing"
-            className="w-full bg-[#12121a] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
+            className="w-full rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
           />
-          <p className="text-[#8888a8] text-xs mt-1">Comma-separated. Claude will naturally weave these into the post.</p>
+          <p className="text-xs mt-1" style={{ color: '#7a90b8' }}>Comma-separated. Claude will naturally weave these into the post.</p>
         </div>
 
         {/* Tone */}
         <div>
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-2">Tone</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#7a90b8' }}>Tone</label>
           <div className="flex flex-wrap gap-2">
             {TONES.map(t => (
               <button
@@ -609,8 +609,9 @@ ${markdownToHTML(currentContent)}
                   'px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors',
                   tone === t.value
                     ? 'bg-violet-600 border-violet-600 text-white'
-                    : 'bg-[#12121a] border-[#2a2a3d] text-[#8888a8] hover:border-violet-500 hover:text-white'
+                    : 'hover:border-violet-500 hover:text-white'
                 )}
+                style={tone !== t.value ? { background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#7a90b8' } : undefined}
               >
                 {t.label}
               </button>
@@ -620,7 +621,7 @@ ${markdownToHTML(currentContent)}
 
         {/* Length */}
         <div>
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-2">Length</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#7a90b8' }}>Length</label>
           <div className="flex gap-2">
             {LENGTHS.map(l => (
               <button
@@ -630,8 +631,9 @@ ${markdownToHTML(currentContent)}
                   'flex-1 py-2 rounded-lg text-xs font-semibold border transition-colors text-center',
                   length === l.value
                     ? 'bg-violet-600 border-violet-600 text-white'
-                    : 'bg-[#12121a] border-[#2a2a3d] text-[#8888a8] hover:border-violet-500 hover:text-white'
+                    : 'hover:border-violet-500 hover:text-white'
                 )}
+                style={length !== l.value ? { background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#7a90b8' } : undefined}
               >
                 <div>{l.label}</div>
                 <div className="font-normal opacity-70">{l.sub}</div>
@@ -642,7 +644,7 @@ ${markdownToHTML(currentContent)}
 
         {/* Enhancements */}
         <div>
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-2">Enhancements</label>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#7a90b8' }}>Enhancements</label>
           <div className="flex flex-col gap-2">
             <ToggleRow
               icon={<Image className="w-4 h-4" />}
