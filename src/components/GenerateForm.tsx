@@ -672,11 +672,11 @@ ${markdownToHTML(currentContent)}
 
         {/* AI Model */}
         <div>
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-1.5" style={{ color: '#7a90b8' }}>
             <Cpu className="w-3 h-3" /> AI Model
             {creditBalance !== null && !canUsePremiumByPlan && (
-              <span className="ml-auto font-normal normal-case text-[#555570]">
-                <span className={clsx(creditBalance >= 3 ? 'text-amber-400' : 'text-[#555570]')}>
+              <span className="ml-auto font-normal normal-case" style={{ color: '#7a90b8' }}>
+                <span className={clsx(creditBalance >= 3 ? 'text-amber-400' : '')}>
                   {creditBalance}
                 </span> credits
               </span>
@@ -698,27 +698,27 @@ ${markdownToHTML(currentContent)}
                     'flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all',
                     active
                       ? isPremium ? 'bg-amber-600/10 border-amber-500/50' : 'bg-violet-600/10 border-violet-500/50'
-                      : 'bg-[#12121a] border-[#2a2a3d] hover:border-[#3a3a4d]',
-                    locked && 'opacity-60'
+                      : ''
                   )}
+                  style={!active ? { background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' } : undefined}
                 >
-                  <div className={clsx('shrink-0', active ? (isPremium ? 'text-amber-400' : 'text-violet-400') : 'text-[#555570]')}>
+                  <div className={clsx('shrink-0', active ? (isPremium ? 'text-amber-400' : 'text-violet-400') : '')} style={!active ? { color: '#7a90b8' } : undefined}>
                     {isPremium ? <Sparkles className="w-4 h-4" /> : <Zap className="w-4 h-4" />}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className={clsx('text-xs font-semibold flex items-center gap-1.5', active ? 'text-white' : 'text-[#c8c8d8]')}>
+                    <div className={clsx('text-xs font-semibold flex items-center gap-1.5', active ? 'text-white' : '')} style={!active ? { color: '#dde4f0' } : undefined}>
                       {m.label}
-                      <span className={clsx('text-[10px] font-normal', active ? (isPremium ? 'text-amber-300' : 'text-violet-300') : 'text-[#555570]')}>
+                      <span className={clsx('text-[10px] font-normal', active ? (isPremium ? 'text-amber-300' : 'text-violet-300') : '')} style={!active ? { color: '#7a90b8' } : undefined}>
                         {m.sub}
                       </span>
                     </div>
-                    <div className="text-[11px] text-[#555570] truncate">{m.desc}</div>
+                    <div className="text-[11px] truncate" style={{ color: '#7a90b8' }}>{m.desc}</div>
                   </div>
                   <div className="shrink-0 text-right">
                     {locked ? (
-                      <div className="flex items-center gap-1 text-[#555570]">
+                      <div className="flex items-center gap-1 text-[10px]" style={{ color: '#7a90b8' }}>
                         <Lock className="w-3 h-3" />
-                        <span className="text-[10px]">Growth+</span>
+                        <span>Growth+</span>
                       </div>
                     ) : isPremium && !canUsePremiumByPlan ? (
                       <span className="text-[10px] text-amber-400 font-semibold">3 credits</span>
@@ -731,7 +731,7 @@ ${markdownToHTML(currentContent)}
             })}
           </div>
           {aiModel === 'premium' && !canUsePremiumByPlan && (
-            <p className="text-[#555570] text-[11px] mt-1.5 flex items-center gap-1">
+            <p className="text-[11px] mt-1.5 flex items-center gap-1" style={{ color: '#7a90b8' }}>
               <Sparkles className="w-3 h-3 text-amber-400" />
               3 credits will be deducted from your balance ({creditBalance ?? 0} remaining)
             </p>
@@ -739,8 +739,8 @@ ${markdownToHTML(currentContent)}
         </div>
 
         {/* URL / YouTube to Blog */}
-        <div className="border-t border-[#2a2a3d] pt-4">
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+        <div className="pt-4" style={{ borderTop: '1px solid rgba(0,102,255,0.2)' }}>
+          <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5 flex items-center gap-1.5" style={{ color: '#7a90b8' }}>
             <Link className="w-3 h-3" /> Or generate from URL
           </label>
           <div className="flex gap-2">
@@ -749,7 +749,7 @@ ${markdownToHTML(currentContent)}
                 value={sourceUrl}
                 onChange={e => setSourceUrl(e.target.value)}
                 placeholder="https://example.com/article or YouTube URL"
-                className="w-full bg-[#12121a] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors pr-8"
+                className="w-full rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors pr-8" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
               />
               {isYouTubeUrl(sourceUrl) && (
                 <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-red-400 text-xs font-bold">▶</span>
@@ -758,13 +758,13 @@ ${markdownToHTML(currentContent)}
             <button
               onClick={handleUrlToblog}
               disabled={urlLoading || !sourceUrl.trim()}
-              className="bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] disabled:opacity-40 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 shrink-0"
+              className="disabled:opacity-40 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 shrink-0" style={{ background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
             >
               {urlLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Link className="w-3.5 h-3.5" />}
               {urlLoading ? (isYouTubeUrl(sourceUrl) ? 'Extracting...' : 'Fetching...') : 'Generate'}
             </button>
           </div>
-          <p className="text-[#8888a8] text-xs mt-1">
+          <p className="text-xs mt-1" style={{ color: '#7a90b8' }}>
             {isYouTubeUrl(sourceUrl)
               ? <span className="text-red-400 font-semibold">▶ YouTube detected — will extract transcript and rewrite as a blog post</span>
               : 'Paste any article, blog post, webpage, or YouTube video URL.'}
@@ -801,22 +801,22 @@ ${markdownToHTML(currentContent)}
       {/* Right: Output */}
       <div className="min-h-[400px]">
         {!result && !loading && (
-          <div className="h-full min-h-[400px] bg-[#12121a] border border-[#2a2a3d] border-dashed rounded-2xl flex items-center justify-center">
+          <div className="h-full min-h-[400px] rounded-2xl flex items-center justify-center border-dashed" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.2)', border: '1px dashed' }}>
             <div className="text-center">
-              <FileText className="w-10 h-10 text-[#2a2a3d] mx-auto mb-3" />
-              <p className="text-[#8888a8] text-sm">Your blog post will appear here</p>
+              <FileText className="w-10 h-10 mx-auto mb-3" style={{ color: 'rgba(0,102,255,0.2)' }} />
+              <p className="text-sm" style={{ color: '#7a90b8' }}>Your blog post will appear here</p>
             </div>
           </div>
         )}
 
         {loading && (
-          <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl overflow-hidden min-h-[400px]">
+          <div className="rounded-2xl overflow-hidden min-h-[400px]" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}>
             {streamingContent ? (
               <>
-                <div className="flex items-center gap-2 px-5 py-3 border-b border-[#2a2a3d]">
+                <div className="flex items-center gap-2 px-5 py-3" style={{ borderBottom: '1px solid rgba(0,102,255,0.2)' }}>
                   <Loader2 className="w-3.5 h-3.5 text-violet-500 animate-spin" />
-                  <span className="text-[#8888a8] text-xs">Writing{includeImage ? ' (image will generate after)' : ''}…</span>
-                  <span className="ml-auto text-[#555570] text-xs">{streamingContent.split(/\s+/).filter(Boolean).length} words</span>
+                  <span className="text-xs" style={{ color: '#7a90b8' }}>Writing{includeImage ? ' (image will generate after)' : ''}…</span>
+                  <span className="ml-auto text-xs" style={{ color: '#7a90b8' }}>{streamingContent.split(/\s+/).filter(Boolean).length} words</span>
                 </div>
                 <div className="p-6 max-h-[700px] overflow-y-auto">
                   <BlogPreview content={streamingContent} />
@@ -827,7 +827,7 @@ ${markdownToHTML(currentContent)}
               <div className="h-full min-h-[400px] flex items-center justify-center">
                 <div className="text-center">
                   <Loader2 className="w-8 h-8 text-violet-500 mx-auto mb-3 animate-spin" />
-                  <p className="text-[#8888a8] text-sm">Starting generation…</p>
+                  <p className="text-sm" style={{ color: '#7a90b8' }}>Starting generation…</p>
                 </div>
               </div>
             )}
@@ -835,12 +835,12 @@ ${markdownToHTML(currentContent)}
         )}
 
         {result && (
-          <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}>
             {/* Toolbar */}
-            <div className="flex items-center justify-between px-5 py-3 border-b border-[#2a2a3d] flex-wrap gap-2">
+            <div className="flex items-center justify-between px-5 py-3 flex-wrap gap-2" style={{ borderBottom: '1px solid rgba(0,102,255,0.2)' }}>
               <div className="flex items-center gap-3">
                 <span className="text-white font-semibold text-sm truncate max-w-[200px]">{result.title}</span>
-                <span className="text-[#8888a8] text-xs bg-[#1a1a26] px-2 py-0.5 rounded-full">
+                <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(11,22,40,0.7)', color: '#7a90b8' }}>
                   {result.wordCount.toLocaleString()} words
                 </span>
               </div>
@@ -856,20 +856,26 @@ ${markdownToHTML(currentContent)}
                 </button>
                 <button
                   onClick={copyMarkdown}
-                  className="flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#1a1a26] hover:bg-[#2a2a3d] px-3 py-1.5 rounded-lg transition-colors"
+                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
+                  onMouseEnter={e => e.currentTarget.style.color = 'white'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#7a90b8'}
                 >
                   <Copy className="w-3.5 h-3.5" />
                   {copied ? 'Copied!' : 'Copy'}
                 </button>
                 <button
                   onClick={downloadMarkdown}
-                  className="flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#1a1a26] hover:bg-[#2a2a3d] px-3 py-1.5 rounded-lg transition-colors"
+                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
+                  onMouseEnter={e => e.currentTarget.style.color = 'white'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#7a90b8'}
                 >
                   <Download className="w-3.5 h-3.5" />.md
                 </button>
                 <button
                   onClick={downloadHTML}
-                  className="flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#1a1a26] hover:bg-[#2a2a3d] px-3 py-1.5 rounded-lg transition-colors"
+                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
+                  onMouseEnter={e => e.currentTarget.style.color = 'white'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#7a90b8'}
                 >
                   <Code className="w-3.5 h-3.5" />.html
                 </button>
@@ -877,15 +883,16 @@ ${markdownToHTML(currentContent)}
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-[#2a2a3d]">
+            <div className="flex" style={{ borderBottom: '1px solid rgba(0,102,255,0.2)' }}>
               <button
                 onClick={() => setActiveTab('preview')}
                 className={clsx(
                   'px-5 py-2.5 text-xs font-semibold transition-colors',
                   activeTab === 'preview'
                     ? 'text-white border-b-2 border-violet-500'
-                    : 'text-[#8888a8] hover:text-white'
+                    : 'hover:text-white'
                 )}
+                style={activeTab !== 'preview' ? { color: '#7a90b8' } : undefined}
               >
                 Preview
               </button>
@@ -895,8 +902,9 @@ ${markdownToHTML(currentContent)}
                   'px-5 py-2.5 text-xs font-semibold transition-colors flex items-center gap-1.5',
                   activeTab === 'edit'
                     ? 'text-white border-b-2 border-violet-500'
-                    : 'text-[#8888a8] hover:text-white'
+                    : 'hover:text-white'
                 )}
+                style={activeTab !== 'edit' ? { color: '#7a90b8' } : undefined}
               >
                 <Pencil className="w-3 h-3" /> Edit
               </button>
@@ -906,8 +914,9 @@ ${markdownToHTML(currentContent)}
                   'px-5 py-2.5 text-xs font-semibold transition-colors flex items-center gap-1.5',
                   activeTab === 'seo'
                     ? 'text-white border-b-2 border-violet-500'
-                    : 'text-[#8888a8] hover:text-white'
+                    : 'hover:text-white'
                 )}
+                style={activeTab !== 'seo' ? { color: '#7a90b8' } : undefined}
               >
                 <Search className="w-3 h-3" /> SEO Meta
               </button>
@@ -917,8 +926,9 @@ ${markdownToHTML(currentContent)}
                   'px-5 py-2.5 text-xs font-semibold transition-colors flex items-center gap-1.5',
                   activeTab === 'social'
                     ? 'text-white border-b-2 border-violet-500'
-                    : 'text-[#8888a8] hover:text-white'
+                    : 'hover:text-white'
                 )}
+                style={activeTab !== 'social' ? { color: '#7a90b8' } : undefined}
               >
                 <Share2 className="w-3 h-3" /> Social
               </button>
@@ -928,8 +938,9 @@ ${markdownToHTML(currentContent)}
                   'px-5 py-2.5 text-xs font-semibold transition-colors flex items-center gap-1.5',
                   activeTab === 'links'
                     ? 'text-white border-b-2 border-violet-500'
-                    : 'text-[#8888a8] hover:text-white'
+                    : 'hover:text-white'
                 )}
+                style={activeTab !== 'links' ? { color: '#7a90b8' } : undefined}
               >
                 <Link className="w-3 h-3" /> Links
               </button>
@@ -952,8 +963,8 @@ ${markdownToHTML(currentContent)}
                     </button>
                   </div>
                 ) : (
-                  <div className="mb-6 bg-[#0a0a0f] border border-dashed border-[#2a2a3d] rounded-xl p-4">
-                    <p className="text-[#555570] text-xs mb-2 flex items-center gap-1.5">
+                  <div className="mb-6 rounded-xl p-4 border border-dashed" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)' }}>
+                    <p className="text-xs mb-2 flex items-center gap-1.5" style={{ color: '#7a90b8' }}>
                       <Image className="w-3.5 h-3.5" /> Add a hero image from Unsplash (free)
                     </p>
                     <div className="flex gap-2">
@@ -962,12 +973,12 @@ ${markdownToHTML(currentContent)}
                         onChange={e => setUnsplashQuery(e.target.value)}
                         onKeyDown={e => e.key === 'Enter' && searchUnsplash()}
                         placeholder={result.title.split(' ').slice(0, 4).join(' ')}
-                        className="flex-1 bg-[#12121a] border border-[#2a2a3d] rounded-lg px-3 py-1.5 text-white text-xs placeholder-[#555570] focus:outline-none focus:border-violet-500"
+                        className="flex-1 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:border-violet-500" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
                       />
                       <button
                         onClick={() => searchUnsplash()}
                         disabled={unsplashLoading}
-                        className="bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] text-white text-xs px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5"
+                        className="text-white text-xs px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 disabled:opacity-50" style={{ background: 'rgba(11,22,40,0.7)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}
                       >
                         {unsplashLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Search className="w-3.5 h-3.5" />}
                         Search
@@ -995,8 +1006,8 @@ ${markdownToHTML(currentContent)}
             {activeTab === 'edit' && (
               <div className="p-4 flex flex-col gap-3">
                 {/* AI Rewrite */}
-                <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3 flex flex-col gap-2">
-                  <p className="text-[#8888a8] text-xs font-semibold flex items-center gap-1.5">
+                <div className="rounded-xl p-3 flex flex-col gap-2" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}>
+                  <p className="text-xs font-semibold flex items-center gap-1.5" style={{ color: '#7a90b8' }}>
                     <Sparkles className="w-3.5 h-3.5 text-violet-400" /> AI Rewrite
                   </p>
                   <div className="flex flex-wrap gap-1.5">
@@ -1016,8 +1027,9 @@ ${markdownToHTML(currentContent)}
                           'text-xs px-2.5 py-1 rounded-lg border transition-colors',
                           rewriteInstruction === opt.id
                             ? 'bg-violet-600/20 border-violet-500/40 text-violet-300'
-                            : 'bg-[#12121a] border-[#2a2a3d] text-[#8888a8] hover:text-white hover:border-[#3a3a4d]'
+                            : 'hover:text-white'
                         )}
+                        style={rewriteInstruction !== opt.id ? { background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid', color: '#7a90b8' } : undefined}
                       >
                         {opt.label}
                       </button>
@@ -1027,7 +1039,7 @@ ${markdownToHTML(currentContent)}
                     value={customInstruction}
                     onChange={e => setCustomInstruction(e.target.value)}
                     placeholder="Or type a custom instruction… (overrides selection)"
-                    className="w-full bg-[#12121a] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-xs placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
                   />
                   <button
                     onClick={handleRewrite}
@@ -1038,16 +1050,16 @@ ${markdownToHTML(currentContent)}
                     {rewriteLoading ? 'Rewriting…' : 'Rewrite'}
                   </button>
                 </div>
-                <p className="text-[#555570] text-xs">Edit markdown directly. Changes apply to Copy, Export, and WordPress publish.</p>
+                <p className="text-xs" style={{ color: '#7a90b8' }}>Edit markdown directly. Changes apply to Copy, Export, and WordPress publish.</p>
                 <textarea
                   value={editedContent}
                   onChange={e => setEditedContent(e.target.value)}
                   rows={24}
-                  className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl px-4 py-3 text-white text-xs font-mono leading-relaxed focus:outline-none focus:border-violet-500 transition-colors resize-none"
+                  className="w-full rounded-xl px-4 py-3 text-xs font-mono leading-relaxed focus:outline-none focus:border-violet-500 transition-colors resize-none" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid', color: '#dde4f0' }}
                   spellCheck={false}
                 />
                 <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="text-[#8888a8] text-xs">{editedContent.split(/\s+/).filter(Boolean).length.toLocaleString()} words</span>
+                  <span className="text-xs" style={{ color: '#7a90b8' }}>{editedContent.split(/\s+/).filter(Boolean).length.toLocaleString()} words</span>
                   <div className="flex items-center gap-2">
                     {result.postId && (
                       <>
@@ -1059,29 +1071,29 @@ ${markdownToHTML(currentContent)}
                           {savingVersion ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
                           Save version
                         </button>
-                        <span className="text-[#2a2a3d]">|</span>
+                        <span style={{ color: 'rgba(0,102,255,0.2)' }}>|</span>
                         <button
                           onClick={loadVersions}
-                          className="text-xs text-[#8888a8] hover:text-white transition-colors"
+                          className="text-xs hover:text-white transition-colors" style={{ color: '#7a90b8' }}
                         >
                           History
                         </button>
-                        <span className="text-[#2a2a3d]">|</span>
+                        <span style={{ color: 'rgba(0,102,255,0.2)' }}>|</span>
                       </>
                     )}
                     <button
                       onClick={() => { setEditedContent(result.content); }}
-                      className="text-[#8888a8] hover:text-white text-xs transition-colors"
+                      className="text-xs hover:text-white transition-colors" style={{ color: '#7a90b8' }}
                     >
                       Reset to original
                     </button>
                   </div>
                 </div>
                 {showVersions && versions.length > 0 && (
-                  <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3 space-y-2">
+                  <div className="rounded-xl p-3 space-y-2" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.2)', border: '1px solid' }}>
                     <div className="flex items-center justify-between">
-                      <p className="text-[#8888a8] text-xs font-semibold uppercase tracking-wider">Version History</p>
-                      <button onClick={() => setShowVersions(false)} className="text-[#555570] hover:text-white text-xs transition-colors">Close</button>
+                      <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#7a90b8' }}>Version History</p>
+                      <button onClick={() => setShowVersions(false)} className="text-xs hover:text-white transition-colors" style={{ color: '#7a90b8' }}>Close</button>
                     </div>
                     {versions.map(v => (
                       <div key={v.id} className="flex items-center justify-between gap-2">
