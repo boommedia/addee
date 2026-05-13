@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Design Studio — AdDee',
-  description: 'Create visual ad creatives with Canva templates and Adobe Firefly AI image generation.',
+  description: 'Create visual ad creatives with DALL-E 3 AI image generation and Canva templates.',
   robots: { index: false, follow: false },
 }
 
@@ -31,7 +31,7 @@ export default async function DesignPage({
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2" style={{ color: '#ca8a04' }}>Design Studio</h1>
           <p style={{ color: '#b8a870' }}>
-            Generate AI background images with Adobe Firefly · Design your ad in Canva · Export ready-to-publish creatives
+            Generate AI background images with DALL-E 3 · Design your ad in Canva · Adobe Express integration coming soon
           </p>
         </div>
 

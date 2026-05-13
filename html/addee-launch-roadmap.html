@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdDee — Beta Launch Roadmap</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0900;
+      color: #dde4f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 40px 24px 80px;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(202,138,4,0.25);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #ca8a04;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #84cc16; }
+    .header-meta { text-align: right; }
+    .header-meta .label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #7a6a40; }
+    .header-meta .value { font-size: 0.85rem; color: #b8a870; margin-top: 2px; }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ca8a04;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 1rem;
+      color: #b8a870;
+      margin-bottom: 48px;
+    }
+
+    /* Progress bar */
+    .progress-wrap { margin-bottom: 48px; }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #7a6a40;
+      margin-bottom: 8px;
+    }
+    .progress-label span:last-child { color: #ca8a04; }
+    .progress-bar {
+      height: 6px;
+      background: rgba(202,138,4,0.15);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ca8a04, #84cc16);
+      border-radius: 99px;
+      transition: width 0.5s ease;
+    }
+
+    /* Phase cards */
+    .phases { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+
+    .phase {
+      border-radius: 16px;
+      border: 2px solid rgba(202,138,4,0.25);
+      background: rgba(20,18,0,0.6);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .phase:hover { border-color: rgba(202,138,4,0.5); }
+    .phase.done { border-color: rgba(132,204,22,0.3); background: rgba(132,204,22,0.04); }
+    .phase.active { border-color: rgba(202,138,4,0.7); background: rgba(202,138,4,0.06); }
+    .phase.blocked { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.04); }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+    }
+
+    .phase-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+      flex-shrink: 0;
+      background: rgba(202,138,4,0.15);
+      color: #ca8a04;
+      border: 2px solid rgba(202,138,4,0.3);
+    }
+    .phase.done .phase-num {
+      background: rgba(132,204,22,0.15);
+      color: #84cc16;
+      border-color: rgba(132,204,22,0.35);
+    }
+    .phase.blocked .phase-num {
+      background: rgba(239,68,68,0.12);
+      color: #f87171;
+      border-color: rgba(239,68,68,0.3);
+    }
+
+    .phase-info { flex: 1; }
+    .phase-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #dde4f0;
+      margin-bottom: 3px;
+    }
+    .phase-desc { font-size: 0.85rem; color: #b8a870; }
+
+    .phase-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+    .badge-done    { background: rgba(132,204,22,0.15); color: #84cc16; border: 1px solid rgba(132,204,22,0.3); }
+    .badge-next    { background: rgba(202,138,4,0.15); color: #fbbf24; border: 1px solid rgba(202,138,4,0.35); }
+    .badge-blocked { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+    .badge-later   { background: rgba(100,100,100,0.12); color: #7a6a40; border: 1px solid rgba(100,100,100,0.2); }
+    .badge-owner   { font-size: 0.65rem; color: #7a6a40; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .phase-tasks {
+      border-top: 1px solid rgba(202,138,4,0.12);
+      padding: 0 24px 20px;
+    }
+    .phase-tasks ul { list-style: none; display: flex; flex-direction: column; gap: 8px; padding-top: 16px; }
+    .phase-tasks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: #b8a870;
+      line-height: 1.4;
+    }
+    .check {
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid rgba(202,138,4,0.35);
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .check.done {
+      background: rgba(132,204,22,0.2);
+      border-color: rgba(132,204,22,0.5);
+      color: #84cc16;
+      font-size: 0.6rem;
+    }
+    .task-owner {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: #7a6a40;
+      white-space: nowrap;
+      padding-left: 8px;
+    }
+
+    /* Add-on services table */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #dde4f0;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: #ca8a04; }
+
+    .addon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .addon-card {
+      border-radius: 12px;
+      border: 1px solid rgba(202,138,4,0.2);
+      background: rgba(20,18,0,0.5);
+      padding: 16px;
+    }
+    .addon-card h3 { font-size: 0.9rem; font-weight: 700; color: #dde4f0; margin-bottom: 5px; }
+    .addon-card p { font-size: 0.8rem; color: #b8a870; line-height: 1.45; }
+    .addon-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 2px 8px;
+      border-radius: 99px;
+      margin-bottom: 8px;
+    }
+    .tag-beta { background: rgba(202,138,4,0.15); color: #fbbf24; border: 1px solid rgba(202,138,4,0.3); }
+    .tag-v2   { background: rgba(100,100,100,0.15); color: #7a6a40; border: 1px solid rgba(100,100,100,0.2); }
+    .tag-research { background: rgba(132,204,22,0.1); color: #84cc16; border: 1px solid rgba(132,204,22,0.25); }
+
+    /* Pricing table */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 700px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 400px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+    .plan-card {
+      border-radius: 14px;
+      border: 1px solid rgba(202,138,4,0.22);
+      background: rgba(20,18,0,0.6);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .plan-card.highlight {
+      border-color: rgba(202,138,4,0.6);
+      background: rgba(202,138,4,0.07);
+    }
+    .plan-name { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #7a6a40; }
+    .plan-price { font-size: 1.9rem; font-weight: 900; color: #ca8a04; line-height: 1; }
+    .plan-price sup { font-size: 1rem; vertical-align: super; }
+    .plan-price sub { font-size: 0.75rem; font-weight: 400; color: #7a6a40; }
+    .plan-limits { font-size: 0.78rem; color: #b8a870; }
+    .plan-limits strong { color: #dde4f0; display: block; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .plan-features li { font-size: 0.75rem; color: #b8a870; display: flex; gap: 6px; align-items: flex-start; }
+    .plan-features li::before { content: '✓'; color: #84cc16; font-weight: 700; flex-shrink: 0; }
+
+    /* Notes */
+    .note {
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .note-gold { background: rgba(202,138,4,0.07); border: 1px solid rgba(202,138,4,0.2); color: #b8a870; }
+    .note-gold strong { color: #ca8a04; }
+    .note-red  { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.2); color: #f87171; }
+    .note-red strong { color: #fca5a5; }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(202,138,4,0.15);
+      font-size: 0.75rem;
+      color: #7a6a40;
+      text-align: center;
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; color: #111; }
+      .phase, .addon-card, .plan-card { border-color: #ddd !important; background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="logo">Ad<span>Dee</span></div>
+    </div>
+    <div class="header-meta">
+      <div class="label">Last updated</div>
+      <div class="value">May 13, 2026</div>
+      <div class="label" style="margin-top:6px">Status</div>
+      <div class="value">Pre-Beta</div>
+    </div>
+  </div>
+
+  <h1>Beta Launch Roadmap</h1>
+  <p class="subtitle">Recommended order of operations to reach paying beta users.</p>
+
+  <!-- Overall progress -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Overall Progress</span>
+      <span>Phase 1 of 5 complete</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 20%"></div>
+    </div>
+  </div>
+
+  <!-- Phase cards -->
+  <div class="phases">
+
+    <!-- Phase 1 — Done -->
+    <div class="phase done">
+      <div class="phase-header">
+        <div class="phase-num">✓</div>
+        <div class="phase-info">
+          <div class="phase-title">Phase 1 — Core App &amp; Color System</div>
+          <div class="phase-desc">App structure, Solar Gold design system, Design Studio, admin &amp; client dashboards</div>
+        </div>
+        <div class="phase-right">
+          <span class="badge badge-done">Complete</span>
+          <span class="badge-owner">Eric + Claude</span>
+        </div>
+      </div>
+      <div class="phase-tasks">
+        <ul>
+          <li><span class="check done">✓</span> Next.js 16 app scaffolded with Supabase auth</li>
+          <li><span class="check done">✓</span> Solar Gold color scheme applied across all pages &amp; sub-components</li>
+          <li><span class="check done">✓</span> Design Studio built (Canva deep-links + Adobe Firefly API)</li>
+          <li><span class="check done">✓</span> Admin dashboard &amp; client dashboards operational</li>
+          <li><span class="check done">✓</span> AppNav with all primary routes</li>
+          <li><span class="check done">✓</span> Client report page (AdDee branded, PDF print)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 2 — Active -->
+    <div class="phase active">
+      <div class="phase-header">
+        <div class="phase-num">2</div>
+        <div class="phase-info">
+          <div class="phase-title">Phase 2 — Fix Nav Stubs &amp; UX Polish</div>
+          <div class="phase-desc">Make every nav link land on a real page before beta users see the app</div>
+        </div>
+        <div class="phase-right">
+          <span class="badge badge-next">Up Next</span>
+          <span class="badge-owner">Claude</span>
+        </div>
+      </div>
+      <div class="phase-tasks">
+        <ul>
+          <li><span class="check"></span> Analytics page — placeholder with key metrics layout + "coming soon" sections</li>
+          <li><span class="check"></span> Tools page — placeholder with planned tool cards</li>
+          <li><span class="check"></span> Campaigns page — review current state, confirm functional or add placeholder</li>
+          <li><span class="check"></span> Connectors / integrations page — confirm nav route resolves</li>
+          <li><span class="check"></span> 404 and error pages branded with Solar Gold</li>
+          <li><span class="check"></span> Onboarding checklist steps link correctly</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 3 — Blocked on Eric action -->
+    <div class="phase blocked">
+      <div class="phase-header">
+        <div class="phase-num">3</div>
+        <div class="phase-info">
+          <div class="phase-title">Phase 3 — Adobe Firefly Credentials</div>
+          <div class="phase-desc">30-min Eric action: get API keys from Adobe → paste into Vercel env vars → Design Studio image gen goes live</div>
+        </div>
+        <div class="phase-right">
+          <span class="badge badge-blocked">Eric Action</span>
+          <span class="badge-owner">Eric only</span>
+        </div>
+      </div>
+      <div class="phase-tasks">
+        <ul>
+          <li><span class="check"></span> Go to console.adobe.io → Create new project</li>
+          <li><span class="check"></span> Add "Firefly API" to the project</li>
+          <li><span class="check"></span> Copy Client ID and Client Secret</li>
+          <li><span class="check"></span> Add <code style="background:rgba(239,68,68,0.15);color:#f87171;padding:1px 5px;border-radius:4px;font-size:0.8em">ADOBE_FIREFLY_CLIENT_ID</code> to Vercel Environment Variables</li>
+          <li><span class="check"></span> Add <code style="background:rgba(239,68,68,0.15);color:#f87171;padding:1px 5px;border-radius:4px;font-size:0.8em">ADOBE_FIREFLY_CLIENT_SECRET</code> to Vercel Environment Variables</li>
+          <li><span class="check"></span> Redeploy Vercel — Design Studio image generation activates automatically</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 4 — Stripe -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">4</div>
+        <div class="phase-info">
+          <div class="phase-title">Phase 4 — Stripe Checkout &amp; Subscription Gating</div>
+          <div class="phase-desc">Wire up plan selection → Stripe checkout → webhook → subscription table → feature gates</div>
+        </div>
+        <div class="phase-right">
+          <span class="badge badge-next">Next Build</span>
+          <span class="badge-owner">Claude + Eric</span>
+        </div>
+      </div>
+      <div class="phase-tasks">
+        <ul>
+          <li><span class="check"></span> Create Stripe products &amp; prices for Free / Starter / Growth / Agency tiers</li>
+          <li><span class="check"></span> Build /pricing page with plan cards and Stripe checkout buttons</li>
+          <li><span class="check"></span> Stripe webhook → update subscriptions table on payment events</li>
+          <li><span class="check"></span> Feature gates: enforce posts_limit, sites_limit per plan</li>
+          <li><span class="check"></span> Upgrade prompt when user hits their plan limit</li>
+          <li><span class="check"></span> Billing portal link in account menu (Stripe customer portal)</li>
+          <li><span class="check"></span> Add <code style="background:rgba(202,138,4,0.1);color:#fbbf24;padding:1px 5px;border-radius:4px;font-size:0.8em">STRIPE_SECRET_KEY</code>, <code style="background:rgba(202,138,4,0.1);color:#fbbf24;padding:1px 5px;border-radius:4px;font-size:0.8em">STRIPE_WEBHOOK_SECRET</code> to Vercel</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Phase 5 — Beta Launch -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">5</div>
+        <div class="phase-info">
+          <div class="phase-title">Phase 5 — Beta Launch</div>
+          <div class="phase-desc">Invite first 5–10 users, collect feedback, iterate before public launch</div>
+        </div>
+        <div class="phase-right">
+          <span class="badge badge-later">After Stripe</span>
+          <span class="badge-owner">Eric</span>
+        </div>
+      </div>
+      <div class="phase-tasks">
+        <ul>
+          <li><span class="check"></span> Set up beta waitlist / invite-only access</li>
+          <li><span class="check"></span> Onboarding email sequence (welcome → first AD → upgrade)</li>
+          <li><span class="check"></span> Invite 5–10 hand-picked beta users</li>
+          <li><span class="check"></span> Monitor usage via admin dashboard</li>
+          <li><span class="check"></span> Collect feedback — what's confusing, what's missing</li>
+          <li><span class="check"></span> Finalize pricing tiers based on real usage data</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /phases -->
+
+  <!-- Add-on services -->
+  <div class="section-title" style="margin-bottom:16px">Planned Add-On Services <span>— post-beta priority</span></div>
+
+  <div class="addon-grid">
+    <div class="addon-card">
+      <div class="addon-tag tag-beta">Beta Priority</div>
+      <h3>Scheduler / Auto-Publish</h3>
+      <p>Generate ads and queue them for specific dates. Publish directly to Instagram, LinkedIn, TikTok via connected accounts.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-beta">Beta Priority</div>
+      <h3>Bulk Generation</h3>
+      <p>Generate 10–25 ad variations at once for A/B testing across multiple platforms and formats in a single run.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-v2">V2</div>
+      <h3>Brand Voice Training</h3>
+      <p>Feed past ads and content to fine-tune the AI voice per brand. Improves output quality over time.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-beta">Beta Priority</div>
+      <h3>White-Label Client Reports</h3>
+      <p>Custom-branded PDF reports for agency clients. Client's logo, colors, and domain. Already partially built.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-v2">V2</div>
+      <h3>Performance Analytics</h3>
+      <p>Connect ad platform APIs (Meta, LinkedIn, Google) to pull CTR, ROAS, and impressions into the dashboard.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-research">Research</div>
+      <h3>Canva Connect API</h3>
+      <p>Upgrade from deep-links to real Canva API: auto-inject copy into templates. Needs Canva API credentials from developer.canva.com.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-v2">V2</div>
+      <h3>Video Scripts + Storyboards</h3>
+      <p>Full TikTok / Reels / YouTube Shorts scripts with hooks, CTAs, and beat-by-beat storyboard frames.</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-tag tag-v2">V2</div>
+      <h3>Hashtag &amp; Keyword Engine</h3>
+      <p>Auto-generate trending hashtags and SEO keywords for each ad based on platform, niche, and brand voice.</p>
+    </div>
+  </div>
+
+  <!-- Pricing model -->
+  <div class="section-title">Pricing Model <span>— draft (finalize after beta feedback)</span></div>
+  <div class="note note-gold" style="margin-bottom:20px">
+    <strong>Note:</strong> These are draft tiers. Do not finalize Stripe products until Phase 5 beta feedback confirms what users actually need and what they're willing to pay.
+  </div>
+
+  <div class="pricing-grid">
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><sup>$</sup>0<sub>/mo</sub></div>
+      <div class="plan-limits"><strong>2 ADs · 1 brand</strong>No credit card required</div>
+      <ul class="plan-features">
+        <li>3 copy variations per AD</li>
+        <li>All platforms</li>
+        <li>Canva deep-links</li>
+      </ul>
+    </div>
+    <div class="plan-card highlight">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price"><sup>$</sup>29<sub>/mo</sub></div>
+      <div class="plan-limits"><strong>25 ADs · 3 brands</strong>Best for solo creators</div>
+      <ul class="plan-features">
+        <li>Design Studio access</li>
+        <li>Client report PDF</li>
+        <li>A/B variant generation</li>
+        <li>Email support</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Growth</div>
+      <div class="plan-price"><sup>$</sup>79<sub>/mo</sub></div>
+      <div class="plan-limits"><strong>100 ADs · 10 brands</strong>Growing teams</div>
+      <ul class="plan-features">
+        <li>Everything in Starter</li>
+        <li>Bulk generation</li>
+        <li>Scheduler / queue</li>
+        <li>Priority support</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Agency</div>
+      <div class="plan-price"><sup>$</sup>199<sub>/mo</sub></div>
+      <div class="plan-limits"><strong>Unlimited · Unlimited</strong>Agencies &amp; resellers</div>
+      <ul class="plan-features">
+        <li>Everything in Growth</li>
+        <li>White-label reports</li>
+        <li>Team seats</li>
+        <li>API access</li>
+        <li>Dedicated support</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note note-red">
+    <strong>Blocker — Adobe Firefly:</strong> Design Studio image generation is code-complete and deployed, but inactive until <code style="background:rgba(239,68,68,0.12);padding:1px 5px;border-radius:3px">ADOBE_FIREFLY_CLIENT_ID</code> and <code style="background:rgba(239,68,68,0.12);padding:1px 5px;border-radius:3px">ADOBE_FIREFLY_CLIENT_SECRET</code> are added to Vercel. Eric needs to create a project at console.adobe.io and add the Firefly API.
+  </div>
+
+  <div class="note note-gold">
+    <strong>Stripe:</strong> The subscriptions table and plan data already exist in Supabase. Stripe checkout, webhooks, and the /pricing page need to be built in Phase 4 before beta users can upgrade.
+  </div>
+
+  <footer>
+    AdDee — Boom Media &nbsp;·&nbsp; addee.online &nbsp;·&nbsp; eric@boommedia.us &nbsp;·&nbsp; Updated May 2026
+  </footer>
+
+</div>
+</body>
+</html>

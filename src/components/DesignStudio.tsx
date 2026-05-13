@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Sparkles, Download, Copy, RefreshCw, ImageIcon, ExternalLink, CheckCircle } from 'lucide-react'
+import { Sparkles, Download, Copy, RefreshCw, ImageIcon, ExternalLink, CheckCircle, Map } from 'lucide-react'
 
 const PLATFORMS = [
   { id: 'instagram_post',  label: 'Instagram Post',  size: '1080×1080', icon: '📸', canvaUrl: 'https://www.canva.com/create/instagram-posts/' },
@@ -23,10 +23,12 @@ const STYLES = [
   { id: 'minimalist',      label: 'Minimal'      },
 ]
 
-type FireflyOutput = {
+type ImageOutput = {
   seed: number
-  image: { id: string; presignedUrl: string }
+  image: { id: string; url: string }
 }
+
+type AIProvider = 'dalle' | 'express'
 
 export default function DesignStudio({
   initialCopy = '',
@@ -41,7 +43,8 @@ export default function DesignStudio({
   const [copy, setCopy] = useState(initialCopy)
   const [imagePrompt, setImagePrompt] = useState(initialPrompt)
   const [style, setStyle] = useState('none')
-  const [images, setImages] = useState<FireflyOutput[]>([])
+  const [provider, setProvider] = useState<AIProvider>('dalle')
+  const [images, setImages] = useState<ImageOutput[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
@@ -53,7 +56,7 @@ export default function DesignStudio({
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch('/api/firefly/generate', {
+      const res = await fetch('/api/design/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: imagePrompt, platform, style }),
@@ -74,7 +77,11 @@ export default function DesignStudio({
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const isCredentialError = error?.includes('not configured') || error?.includes('credentials')
+  const aspectRatio = platform.includes('story') || platform === 'tiktok'
+    ? '9/16'
+    : platform === 'youtube' || platform === 'linkedin' || platform === 'google_display'
+    ? '16/9'
+    : '1/1'
 
   return (
     <div>
@@ -140,7 +147,7 @@ export default function DesignStudio({
             <div>
               <p className="text-white font-semibold text-sm mb-1">{selectedPlatform.label} — {selectedPlatform.size}</p>
               <p className="text-sm" style={{ color: '#b8a870' }}>
-                Open a platform-matched Canva template. Paste your copy above, then click to design.
+                Open a platform-matched Canva template. Paste your copy, then design and export.
               </p>
             </div>
             <a
@@ -154,107 +161,194 @@ export default function DesignStudio({
               Open in Canva
             </a>
             <p className="text-xs" style={{ color: '#7a6a40' }}>
-              Canva Connect API integration coming — will auto-inject copy into templates
+              Canva Connect API — auto-inject copy into templates (coming soon)
             </p>
           </div>
         </div>
 
-        {/* ── ADOBE FIREFLY PANEL ── */}
+        {/* ── AI IMAGE PANEL ── */}
         <div className="rounded-2xl border p-5 flex flex-col gap-4" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)' }}>
-          <div className="flex items-center justify-between">
+
+          {/* Panel header + provider tabs */}
+          <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white font-black text-xs" style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)' }}>A</div>
-              <h2 className="font-bold text-white">Adobe Firefly</h2>
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #ca8a04, #84cc16)' }}>
+                <Sparkles className="w-4 h-4 text-white" />
+              </div>
+              <h2 className="font-bold text-white">AI Image Generator</h2>
             </div>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ background: 'rgba(239,68,68,0.15)', color: '#f87171', border: '1px solid rgba(239,68,68,0.3)' }}>
-              AI Images
+            {/* Firefly roadmap badge */}
+            <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(202,138,4,0.08)', color: '#7a6a40', border: '1px solid rgba(202,138,4,0.2)' }}>
+              <Map className="w-3 h-3" /> Firefly on roadmap
             </span>
           </div>
 
-          {/* Prompt input */}
-          <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#b8a870' }}>Image Prompt</label>
-            <textarea
-              value={imagePrompt}
-              onChange={e => setImagePrompt(e.target.value)}
-              rows={3}
-              placeholder={`Describe the visual for your ${selectedPlatform.label} ad. E.g. "Confident professional woman at modern desk, bright natural light, clean minimal office background, product in foreground"`}
-              className="w-full rounded-lg px-3 py-2.5 text-sm text-white resize-none focus:outline-none"
-              style={{ background: '#0a0900', border: '1px solid #2a2200', color: '#dde4f0' }}
-            />
+          {/* Provider tabs */}
+          <div className="flex gap-2">
+            <button
+              onClick={() => { setProvider('dalle'); setImages([]); setError(null) }}
+              className="flex-1 py-2 rounded-lg text-xs font-bold border transition-all"
+              style={provider === 'dalle'
+                ? { background: 'rgba(202,138,4,0.15)', borderColor: '#ca8a04', color: '#fbbf24' }
+                : { background: 'rgba(20,18,0,0.6)', borderColor: '#2a2200', color: '#7a6a40' }}
+            >
+              DALL-E 3
+              <span className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(132,204,22,0.15)', color: '#84cc16' }}>
+                Live
+              </span>
+            </button>
+            <button
+              onClick={() => { setProvider('express'); setImages([]); setError(null) }}
+              className="flex-1 py-2 rounded-lg text-xs font-bold border transition-all"
+              style={provider === 'express'
+                ? { background: 'rgba(220,38,38,0.1)', borderColor: 'rgba(220,38,38,0.4)', color: '#f87171' }
+                : { background: 'rgba(20,18,0,0.6)', borderColor: '#2a2200', color: '#7a6a40' }}
+            >
+              Adobe Express
+              <span className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(239,68,68,0.12)', color: '#f87171' }}>
+                Review
+              </span>
+            </button>
           </div>
 
-          {/* Style chips */}
-          <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#b8a870' }}>Style</label>
-            <div className="flex flex-wrap gap-2">
-              {STYLES.map(s => (
-                <button
-                  key={s.id}
-                  onClick={() => setStyle(s.id)}
-                  className="px-3 py-1 rounded-lg text-xs font-medium border transition-all"
-                  style={{
-                    background: style === s.id ? 'rgba(239,68,68,0.15)' : 'rgba(20,18,0,0.6)',
-                    borderColor: style === s.id ? 'rgba(239,68,68,0.5)' : '#2a2200',
-                    color: style === s.id ? '#f87171' : '#b8a870',
-                  }}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* ── DALL-E 3 UI ── */}
+          {provider === 'dalle' && (
+            <>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#b8a870' }}>Image Prompt</label>
+                <textarea
+                  value={imagePrompt}
+                  onChange={e => setImagePrompt(e.target.value)}
+                  rows={3}
+                  placeholder={`Describe the visual for your ${selectedPlatform.label} ad. E.g. "Confident professional at modern desk, bright natural light, product in foreground"`}
+                  className="w-full rounded-lg px-3 py-2.5 text-sm resize-none focus:outline-none"
+                  style={{ background: '#0a0900', border: '1px solid #2a2200', color: '#dde4f0' }}
+                />
+              </div>
 
-          {/* Generate button */}
-          <button
-            onClick={generateImages}
-            disabled={loading || !imagePrompt.trim()}
-            className="w-full py-2.5 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2 transition-all disabled:opacity-40"
-            style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)', boxShadow: images.length ? 'none' : '0 4px 16px rgba(220,38,38,0.3)' }}
-          >
-            {loading ? (
-              <><RefreshCw className="w-4 h-4 animate-spin" /> Generating 4 images…</>
-            ) : (
-              <><Sparkles className="w-4 h-4" /> Generate 4 Images — {selectedPlatform.size}</>
-            )}
-          </button>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#b8a870' }}>Style</label>
+                <div className="flex flex-wrap gap-2">
+                  {STYLES.map(s => (
+                    <button
+                      key={s.id}
+                      onClick={() => setStyle(s.id)}
+                      className="px-3 py-1 rounded-lg text-xs font-medium border transition-all"
+                      style={{
+                        background: style === s.id ? 'rgba(202,138,4,0.15)' : 'rgba(20,18,0,0.6)',
+                        borderColor: style === s.id ? 'rgba(202,138,4,0.5)' : '#2a2200',
+                        color: style === s.id ? '#fbbf24' : '#b8a870',
+                      }}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          {/* Error */}
-          {error && (
-            <div className="rounded-lg px-3 py-2.5 text-sm" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}>
-              {isCredentialError ? (
-                <span>Add <code className="font-mono text-xs bg-red-900/30 px-1 py-0.5 rounded">ADOBE_FIREFLY_CLIENT_ID</code> and <code className="font-mono text-xs bg-red-900/30 px-1 py-0.5 rounded">ADOBE_FIREFLY_CLIENT_SECRET</code> to your Vercel environment variables to activate image generation.</span>
-              ) : error}
-            </div>
+              <button
+                onClick={generateImages}
+                disabled={loading || !imagePrompt.trim()}
+                className="w-full py-2.5 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2 transition-all disabled:opacity-40"
+                style={{ background: 'linear-gradient(135deg, #ca8a04, #84cc16)', boxShadow: images.length ? 'none' : '0 4px 16px rgba(202,138,4,0.3)' }}
+              >
+                {loading ? (
+                  <><RefreshCw className="w-4 h-4 animate-spin" /> Generating 2 images…</>
+                ) : (
+                  <><Sparkles className="w-4 h-4" /> Generate 2 Images — {selectedPlatform.size}</>
+                )}
+              </button>
+
+              {error && (
+                <div className="rounded-lg px-3 py-2.5 text-sm" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}>
+                  {error}
+                </div>
+              )}
+
+              {images.length > 0 ? (
+                <div className="grid grid-cols-2 gap-2">
+                  {images.map((img, i) => (
+                    <div
+                      key={img.image.id}
+                      className="relative group rounded-xl overflow-hidden"
+                      style={{ background: '#141200', aspectRatio }}
+                    >
+                      <img src={img.image.url} alt={`Generated variation ${i + 1}`} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.6)' }}>
+                        <a
+                          href={img.image.url}
+                          download={`dalle-${platform}-v${i + 1}.jpg`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-xs font-bold text-white px-3 py-1.5 rounded-lg"
+                          style={{ background: 'rgba(202,138,4,0.85)' }}
+                        >
+                          <Download className="w-3 h-3" /> Download
+                        </a>
+                      </div>
+                      <div className="absolute top-2 left-2 text-xs font-bold text-white px-1.5 py-0.5 rounded" style={{ background: 'rgba(0,0,0,0.6)' }}>
+                        V{i + 1}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : !loading && (
+                <div className="rounded-xl border border-dashed flex flex-col items-center justify-center py-10 gap-2" style={{ borderColor: '#2a2200' }}>
+                  <ImageIcon className="w-8 h-8" style={{ color: '#7a6a40' }} />
+                  <p className="text-sm" style={{ color: '#7a6a40' }}>AI-generated images will appear here</p>
+                  <p className="text-xs" style={{ color: '#7a6a40' }}>{selectedPlatform.size} · {selectedPlatform.label} format · 2 variations</p>
+                </div>
+              )}
+            </>
           )}
 
-          {/* Image results grid */}
-          {images.length > 0 ? (
-            <div className="grid grid-cols-2 gap-2">
-              {images.map((img, i) => (
-                <div key={img.seed ?? i} className="relative group rounded-xl overflow-hidden bg-[#141200]" style={{ aspectRatio: platform.includes('story') || platform === 'tiktok' ? '9/16' : platform === 'youtube' ? '16/9' : '1/1' }}>
-                  <img src={img.image.presignedUrl} alt={`Generated variation ${i + 1}`} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.6)' }}>
-                    <a
-                      href={img.image.presignedUrl}
-                      download={`firefly-${platform}-v${i + 1}.jpg`}
-                      className="flex items-center gap-1.5 text-xs font-bold text-white px-3 py-1.5 rounded-lg"
-                      style={{ background: 'rgba(220,38,38,0.85)' }}
-                    >
-                      <Download className="w-3 h-3" /> Download
-                    </a>
-                  </div>
-                  <div className="absolute top-2 left-2 text-xs font-bold text-white px-1.5 py-0.5 rounded" style={{ background: 'rgba(0,0,0,0.6)' }}>
-                    V{i + 1}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : !loading && (
-            <div className="rounded-xl border border-dashed flex flex-col items-center justify-center py-10 gap-2" style={{ borderColor: '#2a2200' }}>
-              <ImageIcon className="w-8 h-8" style={{ color: '#7a6a40' }} />
-              <p className="text-sm" style={{ color: '#7a6a40' }}>AI-generated images will appear here</p>
-              <p className="text-xs" style={{ color: '#7a6a40' }}>{selectedPlatform.size} · {selectedPlatform.label} format</p>
+          {/* ── ADOBE EXPRESS UI ── */}
+          {provider === 'express' && (
+            <div className="flex-1 flex flex-col items-center justify-center text-center gap-5 py-6">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-black text-2xl" style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)' }}>
+                Ae
+              </div>
+              <div>
+                <p className="font-bold text-white mb-1.5">Adobe Express Editor</p>
+                <p className="text-sm leading-relaxed mb-1" style={{ color: '#b8a870' }}>
+                  Embed Adobe Express directly in AdDee — pre-filled with your platform size, brand colors, and ad copy. Design and export without leaving the app.
+                </p>
+                <p className="text-xs" style={{ color: '#7a6a40' }}>
+                  Requires Adobe Express Embed SDK approval (pending review)
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2 w-full max-w-xs">
+                <a
+                  href="https://developer.adobe.com/express/embed-sdk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
+                  style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)' }}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Check API Access Status
+                </a>
+                <a
+                  href="https://new.express.adobe.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl text-sm font-medium border transition-all hover:opacity-80"
+                  style={{ background: 'transparent', borderColor: 'rgba(220,38,38,0.3)', color: '#f87171' }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Open Adobe Express manually
+                </a>
+              </div>
+
+              <div className="rounded-xl px-4 py-3 w-full text-left" style={{ background: 'rgba(220,38,38,0.06)', border: '1px solid rgba(220,38,38,0.15)' }}>
+                <p className="text-xs font-semibold mb-1" style={{ color: '#f87171' }}>What's coming with full integration:</p>
+                <ul className="text-xs space-y-1" style={{ color: '#b8a870' }}>
+                  <li>· Auto-fill platform canvas size ({selectedPlatform.size})</li>
+                  <li>· Inject brand colors and ad copy into templates</li>
+                  <li>· Export directly back to AdDee</li>
+                </ul>
+              </div>
             </div>
           )}
         </div>
@@ -266,7 +360,7 @@ export default function DesignStudio({
         <p className="text-xs" style={{ color: '#b8a870' }}>
           <strong style={{ color: '#ca8a04' }}>Workflow tip:</strong> Generate your ad copy on the{' '}
           <a href="/dashboard" className="underline hover:text-white transition-colors">Generate page</a>, then click{' '}
-          <strong style={{ color: '#dde4f0' }}>"Design in Studio"</strong> to send copy + platform directly here. Firefly generates background images; use Canva to add text and brand elements.
+          <strong style={{ color: '#dde4f0' }}>"Design in Studio"</strong> to send copy + platform directly here. Use DALL-E 3 to generate a background image, then open Canva to add text and brand elements.
         </p>
       </div>
     </div>
