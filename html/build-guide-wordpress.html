@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Boom Media — WordPress Publishing Guide</title>
 <style>
-:root{--bg:#0b0b12;--card:#111118;--card2:#18181f;--border:#1f1f2e;--primary:#7c3aed;--accent:#06b6d4;--green:#10b981;--yellow:#f59e0b;--red:#ef4444;--wp:#21759b;--text:#ddd8f0;--muted:#6868a0;--bright:#fff}
+:root{--bg:#0a0900;--card:#141200;--card2:#1a1600;--border:#2a2200;--primary:#ca8a04;--accent:#84cc16;--green:#84cc16;--yellow:#fbbf24;--red:#ef4444;--wp:#21759b;--text:#e8dfa0;--muted:#b8a870;--bright:#fff}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.7}
-header{background:linear-gradient(135deg,#0b0b12 0%,#0d1a2e 60%,#0b0b12 100%);border-bottom:1px solid var(--border);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden}
+header{background:linear-gradient(135deg,#0a0900 0%,#141200 60%,#0a0900 100%);border-bottom:1px solid var(--border);padding:52px 24px 44px;text-align:center;position:relative;overflow:hidden}
 header::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(33,117,155,.1) 0%,transparent 70%);pointer-events:none}
-header .badge{display:inline-block;background:rgba(33,117,155,.15);border:1px solid rgba(33,117,155,.35);color:#5bb3d4;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+header .badge{display:inline-block;background:rgba(33,117,155,.15);border:1px solid rgba(33,117,155,.35);color:#fbbf24;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
 header h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:var(--bright);letter-spacing:-1px;margin-bottom:10px}
-header h1 span{background:linear-gradient(90deg,#5bb3d4,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header h1 span{background:linear-gradient(90deg,#fbbf24,#ca8a04);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 header p{color:var(--muted);max-width:580px;margin:0 auto;font-size:.95rem}
-header .prereq{display:inline-block;margin-top:18px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);color:#a78bfa;font-size:.78rem;padding:6px 16px;border-radius:8px}
+header .prereq{display:inline-block;margin-top:18px;background:rgba(202,138,4,.1);border:1px solid rgba(202,138,4,.25);color:#fbbf24;font-size:.78rem;padding:6px 16px;border-radius:8px}
 
 .toc{background:var(--card);border-bottom:1px solid var(--border);padding:14px 24px;position:sticky;top:0;z-index:100;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
 .toc a{color:var(--muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;padding:5px 12px;border-radius:6px;border:1px solid var(--border);transition:all .15s}
@@ -23,7 +23,7 @@ header .prereq{display:inline-block;margin-top:18px;background:rgba(124,58,237,.
 main{max-width:900px;margin:0 auto;padding:40px 24px 80px}
 
 .phase{margin:48px 0 24px}
-.phase-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#5bb3d4;margin-bottom:6px}
+.phase-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fbbf24;margin-bottom:6px}
 .phase h2{font-size:1.5rem;font-weight:900;color:var(--bright);letter-spacing:-.5px}
 .phase p{color:var(--muted);font-size:.875rem;margin-top:6px;max-width:640px}
 
@@ -33,7 +33,7 @@ main{max-width:900px;margin:0 auto;padding:40px 24px 80px}
 .step-head h3{font-size:.95rem;font-weight:700;color:var(--bright);flex:1}
 .step-status{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(104,104,160,.12);color:var(--muted)}
 .step-status.required{background:rgba(239,68,68,.1);color:#fca5a5}
-.step-status.code{background:rgba(124,58,237,.1);color:#a78bfa}
+.step-status.code{background:rgba(202,138,4,.1);color:#fbbf24}
 .step-body{padding:22px}
 .step-body p{color:var(--muted);font-size:.875rem;margin-bottom:12px}
 .step-body p:last-child{margin-bottom:0}
@@ -61,7 +61,7 @@ code{background:rgba(33,117,155,.15);color:#7dd3fc;padding:2px 6px;border-radius
 .callout strong{color:var(--accent)}
 .callout.warn strong{color:var(--yellow)}
 .callout.tip strong{color:var(--green)}
-.callout.wp strong{color:#5bb3d4}
+.callout.wp strong{color:#fbbf24}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
 @media(max-width:640px){.two-col{grid-template-columns:1fr}}
@@ -75,7 +75,7 @@ code{background:rgba(33,117,155,.15);color:#7dd3fc;padding:2px 6px;border-radius
 .flow-arrow{color:var(--muted);padding:0 8px;font-size:1rem}
 
 footer{border-top:1px solid var(--border);padding:24px;text-align:center;color:var(--muted);font-size:.75rem}
-footer strong{color:#5bb3d4}
+footer strong{color:#fbbf24}
 </style>
 </head>
 <body>

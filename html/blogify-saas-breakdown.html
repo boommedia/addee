@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boom Media — Bloggy — AI Blog Generator</title>
+  <title>Boom Media — AdDee — AI Ad Creative Generator</title>
   <style>
     :root {
-      --primary: #6c47ff;
-      --primary-light: #8b6bff;
-      --primary-dark: #4f2de0;
-      --accent: #00d4aa;
-      --accent-light: #00f5c4;
-      --bg: #0a0a0f;
-      --bg-card: #12121a;
-      --bg-card2: #1a1a26;
-      --border: #2a2a3d;
-      --text: #e8e8f0;
-      --text-muted: #8888a8;
+      --primary: #ca8a04;
+      --primary-light: #fbbf24;
+      --primary-dark: #92400e;
+      --accent: #84cc16;
+      --accent-light: #a3e635;
+      --bg: #0a0900;
+      --bg-card: #141200;
+      --bg-card2: #1a1600;
+      --border: #2a2200;
+      --text: #e8dfa0;
+      --text-muted: #b8a870;
       --text-bright: #ffffff;
-      --success: #22c55e;
-      --warning: #f59e0b;
+      --success: #84cc16;
+      --warning: #fbbf24;
       --danger: #ef4444;
     }
 
@@ -34,7 +34,7 @@
 
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #0a0a0f 0%, #1a0f3a 50%, #0a1a2a 100%);
+      background: linear-gradient(135deg, #0a0900 0%, #1a1200 50%, #0a0e00 100%);
       border-bottom: 1px solid var(--border);
       padding: 80px 24px 64px;
       text-align: center;
@@ -49,13 +49,13 @@
       transform: translateX(-50%);
       width: 800px;
       height: 800px;
-      background: radial-gradient(circle, rgba(108,71,255,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(202,138,4,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(108,71,255,0.2);
-      border: 1px solid rgba(108,71,255,0.4);
+      background: rgba(202,138,4,0.2);
+      border: 1px solid rgba(202,138,4,0.4);
       color: var(--primary-light);
       font-size: 12px;
       font-weight: 600;
@@ -155,7 +155,7 @@
       padding: 28px;
     }
     .card:hover {
-      border-color: rgba(108,71,255,0.4);
+      border-color: rgba(202,138,4,0.4);
       transition: border-color 0.2s;
     }
 
@@ -173,14 +173,14 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .module-card:hover {
-      border-color: rgba(108,71,255,0.5);
+      border-color: rgba(202,138,4,0.5);
       transform: translateY(-2px);
     }
     .module-icon {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, rgba(108,71,255,0.2), rgba(0,212,170,0.1));
-      border: 1px solid rgba(108,71,255,0.3);
+      background: linear-gradient(135deg, rgba(202,138,4,0.2), rgba(132,204,22,0.1));
+      border: 1px solid rgba(202,138,4,0.3);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -224,7 +224,7 @@
     .tech-table th {
       text-align: left;
       padding: 14px 20px;
-      background: rgba(108,71,255,0.1);
+      background: rgba(202,138,4,0.1);
       color: var(--primary-light);
       font-size: 0.75rem;
       font-weight: 700;
@@ -239,14 +239,14 @@
       vertical-align: top;
     }
     .tech-table tr:last-child td { border-bottom: none; }
-    .tech-table tr:hover td { background: rgba(108,71,255,0.04); }
+    .tech-table tr:hover td { background: rgba(202,138,4,0.04); }
     .tech-table td:first-child { color: var(--text-muted); font-weight: 600; width: 140px; }
     .tech-table td:nth-child(2) { color: var(--text-bright); font-weight: 600; width: 200px; }
     .tech-table td:nth-child(3) { color: var(--text-muted); font-size: 0.825rem; }
     .tag {
       display: inline-block;
-      background: rgba(0,212,170,0.12);
-      border: 1px solid rgba(0,212,170,0.25);
+      background: rgba(132,204,22,0.12);
+      border: 1px solid rgba(132,204,22,0.25);
       color: var(--accent);
       font-size: 10px;
       font-weight: 700;
@@ -303,7 +303,7 @@
     }
     .timeline-content .duration {
       display: inline-block;
-      background: rgba(108,71,255,0.15);
+      background: rgba(202,138,4,0.15);
       color: var(--primary-light);
       font-size: 0.75rem;
       font-weight: 600;
@@ -325,7 +325,7 @@
     .cost-table th {
       text-align: left;
       padding: 12px 16px;
-      background: rgba(108,71,255,0.08);
+      background: rgba(202,138,4,0.08);
       color: var(--text-muted);
       font-size: 0.75rem;
       font-weight: 700;
@@ -339,9 +339,9 @@
       color: var(--text);
     }
     .cost-table tr:last-child td { border-bottom: none; }
-    .cost-table tr:hover td { background: rgba(108,71,255,0.03); }
+    .cost-table tr:hover td { background: rgba(202,138,4,0.03); }
     .cost-table .total-row td {
-      background: rgba(108,71,255,0.08);
+      background: rgba(202,138,4,0.08);
       color: var(--text-bright);
       font-weight: 700;
       border-top: 1px solid var(--border);
@@ -365,7 +365,7 @@
     }
     .scale-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(108,71,255,0.4);
+      border-color: rgba(202,138,4,0.4);
     }
     .scale-card .tier {
       font-size: 0.7rem;
@@ -414,7 +414,7 @@
     .pricing-card:hover { transform: translateY(-2px); }
     .pricing-card.featured {
       border-color: var(--primary);
-      background: linear-gradient(135deg, rgba(108,71,255,0.12), rgba(0,212,170,0.04));
+      background: linear-gradient(135deg, rgba(202,138,4,0.12), rgba(132,204,22,0.04));
       position: relative;
     }
     .pricing-card.featured::before {
@@ -477,7 +477,7 @@
       align-items: flex-start;
       transition: border-color 0.2s;
     }
-    .diff-card:hover { border-color: rgba(0,212,170,0.3); }
+    .diff-card:hover { border-color: rgba(132,204,22,0.3); }
     .diff-num {
       min-width: 36px;
       height: 36px;
@@ -514,8 +514,8 @@
     }
 
     .info-box {
-      background: rgba(0,212,170,0.06);
-      border: 1px solid rgba(0,212,170,0.2);
+      background: rgba(132,204,22,0.06);
+      border: 1px solid rgba(132,204,22,0.2);
       border-radius: 12px;
       padding: 20px 24px;
       margin-top: 24px;
@@ -533,8 +533,8 @@
 
     /* ── CTA ── */
     .cta-section {
-      background: linear-gradient(135deg, rgba(108,71,255,0.15), rgba(0,212,170,0.08));
-      border: 1px solid rgba(108,71,255,0.3);
+      background: linear-gradient(135deg, rgba(202,138,4,0.15), rgba(132,204,22,0.08));
+      border: 1px solid rgba(202,138,4,0.3);
       border-radius: 24px;
       padding: 64px 40px;
       text-align: center;
@@ -594,7 +594,7 @@
 <!-- ── HERO ── -->
 <div class="hero">
   <div class="hero-badge">Boom Media — Internal Client Tool</div>
-  <h1>AI Blog Generator<br><span>Bloggy for Boom Media Clients</span></h1>
+  <h1>AI Ad Creative Generator<br><span>AdDee for Boom Media Clients</span></h1>
   <p>An internal content production tool built for Boom Media — convert any client content source into SEO-optimized blog posts. No subscriptions, no affiliate engine, no public SaaS overhead.</p>
   <div class="hero-stats">
     <div class="hero-stat"><span class="num">40+</span><span class="label">Content Sources</span></div>
@@ -692,7 +692,7 @@
   <div class="section-sub">Focused scope for Boom Media v1 — no affiliate engine, no custom domains, no subscription billing. Just the content engine and publishing pipeline.</div>
 
   <div class="modules-grid">
-    <div class="module-card" style="border-color:rgba(108,71,255,0.4);">
+    <div class="module-card" style="border-color:rgba(202,138,4,0.4);">
       <div class="module-icon">📥</div>
       <h3>1. Content Ingestion Engine</h3>
       <ul>
@@ -946,7 +946,7 @@
       <div class="cost">~$60</div>
       <div class="cost-label">per month</div>
     </div>
-    <div class="scale-card" style="border-color:rgba(108,71,255,0.3);">
+    <div class="scale-card" style="border-color:rgba(202,138,4,0.3);">
       <div class="tier">Growing</div>
       <div class="users">20 clients</div>
       <div class="blogs">~500 blogs/mo</div>
@@ -954,7 +954,7 @@
       <div class="cost">~$115</div>
       <div class="cost-label">per month</div>
     </div>
-    <div class="scale-card" style="border-color:rgba(0,212,170,0.3);">
+    <div class="scale-card" style="border-color:rgba(132,204,22,0.3);">
       <div class="tier">Active</div>
       <div class="users">50 clients</div>
       <div class="blogs">~2,000 blogs/mo</div>
@@ -1055,7 +1055,7 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <p>Prepared for <strong>Boom Media</strong> · <strong>Bloggy by Boom Media</strong> · bloggy.online · April 2026</p>
+  <p>Prepared for <strong>Boom Media</strong> · <strong>AdDee by Boom Media</strong> · addee.online · April 2026</p>
   <p style="margin-top:6px;font-size:0.75rem;">Inspired by Blogify.ai · Built for internal client use · Anthropic API pricing as of April 2026.</p>
 </footer>
 

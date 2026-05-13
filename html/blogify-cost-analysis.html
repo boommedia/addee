@@ -3,43 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloggy — Cost & Profit Analysis</title>
+  <title>AdDee — Cost & Profit Analysis</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0a0a0f; color: #e8e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 40px 20px; line-height: 1.6; }
+    body { background: #0a0900; color: #e8dfa0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 40px 20px; line-height: 1.6; }
     .container { max-width: 960px; margin: 0 auto; }
 
     /* Header */
-    .header { margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid #2a2a3d; }
+    .header { margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid #2a2200; }
     .header h1 { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 6px; }
-    .header p { color: #8888a8; font-size: 14px; }
-    .badge { display: inline-block; background: #7c3aed22; border: 1px solid #7c3aed66; color: #a78bfa; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 3px 10px; border-radius: 999px; margin-left: 10px; vertical-align: middle; }
+    .header p { color: #b8a870; font-size: 14px; }
+    .badge { display: inline-block; background: #ca8a0422; border: 1px solid #ca8a0466; color: #fbbf24; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 3px 10px; border-radius: 999px; margin-left: 10px; vertical-align: middle; }
 
     /* Section */
     .section { margin-bottom: 48px; }
     .section-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-    .section-sub { font-size: 13px; color: #8888a8; margin-bottom: 18px; }
+    .section-sub { font-size: 13px; color: #b8a870; margin-bottom: 18px; }
 
     /* Table */
-    table { width: 100%; border-collapse: collapse; background: #12121a; border: 1px solid #2a2a3d; border-radius: 12px; overflow: hidden; font-size: 13px; }
-    th { background: #0d0d16; color: #8888a8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 10px 16px; text-align: left; border-bottom: 1px solid #2a2a3d; }
-    td { padding: 12px 16px; border-bottom: 1px solid #1a1a26; color: #c8c8d8; }
+    table { width: 100%; border-collapse: collapse; background: #141200; border: 1px solid #2a2200; border-radius: 12px; overflow: hidden; font-size: 13px; }
+    th { background: #0e0b00; color: #b8a870; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 10px 16px; text-align: left; border-bottom: 1px solid #2a2200; }
+    td { padding: 12px 16px; border-bottom: 1px solid #1a1600; color: #e8dfa0; }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #1a1a2644; }
+    tr:hover td { background: #1a160044; }
     .num { font-weight: 700; }
     .green { color: #34d399; }
-    .violet { color: #a78bfa; }
+    .violet { color: #fbbf24; }
     .amber { color: #fbbf24; }
     .red { color: #f87171; }
     .cyan { color: #22d3ee; }
-    .muted { color: #555570; }
+    .muted { color: #7a6a40; }
 
     /* Stat cards */
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 18px; }
-    .card { background: #12121a; border: 1px solid #2a2a3d; border-radius: 12px; padding: 16px 18px; }
-    .card-label { font-size: 11px; color: #8888a8; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+    .card { background: #141200; border: 1px solid #2a2200; border-radius: 12px; padding: 16px 18px; }
+    .card-label { font-size: 11px; color: #b8a870; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
     .card-value { font-size: 26px; font-weight: 900; color: #fff; }
-    .card-sub { font-size: 11px; color: #555570; margin-top: 2px; }
+    .card-sub { font-size: 11px; color: #7a6a40; margin-top: 2px; }
 
     /* Alert */
     .alert { border-radius: 12px; padding: 16px 20px; margin-bottom: 18px; display: flex; gap: 14px; align-items: flex-start; }
@@ -47,7 +47,7 @@
     .alert-info { background: #1e3a5f22; border: 1px solid #3b82f644; }
     .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
     .alert-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .alert-body { font-size: 12px; color: #8888a8; line-height: 1.6; }
+    .alert-body { font-size: 12px; color: #b8a870; line-height: 1.6; }
 
     /* Tag */
     .tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 999px; }
@@ -56,10 +56,10 @@
     .tag-amber { background: #78350f22; border: 1px solid #fbbf2444; color: #fbbf24; }
 
     /* Divider */
-    hr { border: none; border-top: 1px solid #2a2a3d; margin: 40px 0; }
+    hr { border: none; border-top: 1px solid #2a2200; margin: 40px 0; }
 
     /* Footer */
-    .footer { text-align: center; color: #3a3a5a; font-size: 12px; margin-top: 60px; padding-top: 24px; border-top: 1px solid #1a1a26; }
+    .footer { text-align: center; color: #5a4a20; font-size: 12px; margin-top: 60px; padding-top: 24px; border-top: 1px solid #1a1600; }
   </style>
 </head>
 <body>
@@ -67,7 +67,7 @@
 
   <!-- Header -->
   <div class="header">
-    <h1>Bloggy — Cost &amp; Profit Analysis <span class="badge">Confidential</span></h1>
+    <h1>AdDee — Cost &amp; Profit Analysis <span class="badge">Confidential</span></h1>
     <p>Full breakdown of operating costs vs revenue across all plans, credits, and add-ons. Last updated: April 2026.</p>
   </div>
 
@@ -429,7 +429,7 @@
           <td class="num amber">$0.04/image</td>
           <td class="muted">Linear with usage</td>
         </tr>
-        <tr style="border-top: 2px solid #2a2a3d">
+        <tr style="border-top: 2px solid #2a2200">
           <td><strong>Total Fixed</strong></td>
           <td></td>
           <td></td>
@@ -502,7 +502,7 @@
   </div>
 
   <div class="footer">
-    Bloggy by Boom Media · Confidential · April 2026 · eric@boommedia.us
+    AdDee by Boom Media · Confidential · April 2026 · eric@boommedia.us
   </div>
 
 </div>

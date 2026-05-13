@@ -3,32 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bloggy — Full Site SEO Audit · bloggy.online</title>
+<title>AdDee — Full Site SEO Audit · addee.online</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d0d14; color: #d0d0e0; font-size: 14px; line-height: 1.6; }
-  a { color: #7c72ff; text-decoration: none; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0900; color: #e8dfa0; font-size: 14px; line-height: 1.6; }
+  a { color: #fbbf24; text-decoration: none; }
   a:hover { text-decoration: underline; }
 
   /* Layout */
   .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 24px 80px; }
 
   /* Header */
-  .audit-header { border-bottom: 1px solid #2a2a40; padding-bottom: 32px; margin-bottom: 40px; }
+  .audit-header { border-bottom: 1px solid #2a2200; padding-bottom: 32px; margin-bottom: 40px; }
   .audit-header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-  .audit-header .meta { color: #6666a0; font-size: 13px; }
-  .audit-header .meta strong { color: #9090c0; }
+  .audit-header .meta { color: #7a6a40; font-size: 13px; }
+  .audit-header .meta strong { color: #b8a870; }
 
   /* Score bar */
   .score-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
-  .score-card { flex: 1; min-width: 140px; background: #14141f; border: 1px solid #2a2a40; border-radius: 12px; padding: 16px 20px; }
-  .score-card .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: #6666a0; margin-bottom: 8px; }
+  .score-card { flex: 1; min-width: 140px; background: #141200; border: 1px solid #2a2200; border-radius: 12px; padding: 16px 20px; }
+  .score-card .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: #7a6a40; margin-bottom: 8px; }
   .score-card .val { font-size: 28px; font-weight: 700; }
   .score-card.crit .val { color: #f87171; }
   .score-card.high .val { color: #fb923c; }
   .score-card.warn .val { color: #facc15; }
   .score-card.pass .val { color: #4ade80; }
-  .score-card.info .val { color: #818cf8; }
+  .score-card.info .val { color: #ca8a04; }
 
   /* Section */
   section { margin-bottom: 48px; }
@@ -40,95 +40,95 @@
   section h2 .dot.pass { background: #4ade80; }
 
   /* Issue card */
-  .issue { background: #14141f; border: 1px solid #2a2a40; border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+  .issue { background: #141200; border: 1px solid #2a2200; border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
   .issue.crit { border-left: 3px solid #f87171; }
   .issue.high { border-left: 3px solid #fb923c; }
   .issue.warn { border-left: 3px solid #facc15; }
   .issue.pass { border-left: 3px solid #4ade80; }
   .issue-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-  .issue-title { font-weight: 600; color: #e0e0f0; font-size: 14px; }
+  .issue-title { font-weight: 600; color: #f0dfa0; font-size: 14px; }
   .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
   .badge.crit { background: #f8717122; color: #f87171; border: 1px solid #f8717140; }
   .badge.high { background: #fb923c22; color: #fb923c; border: 1px solid #fb923c40; }
   .badge.warn { background: #facc1522; color: #facc15; border: 1px solid #facc1540; }
   .badge.pass { background: #4ade8022; color: #4ade80; border: 1px solid #4ade8040; }
-  .badge.info { background: #818cf822; color: #818cf8; border: 1px solid #818cf840; }
-  .issue-body { color: #8888a8; font-size: 13px; }
+  .badge.info { background: #ca8a0422; color: #ca8a04; border: 1px solid #ca8a0440; }
+  .issue-body { color: #b8a870; font-size: 13px; }
   .issue-body p { margin-bottom: 6px; }
   .issue-body p:last-child { margin-bottom: 0; }
-  .issue-fix { margin-top: 10px; padding: 10px 14px; background: #0a0a12; border: 1px solid #2a2a3a; border-radius: 8px; }
+  .issue-fix { margin-top: 10px; padding: 10px 14px; background: #0a0900; border: 1px solid #2a2200; border-radius: 8px; }
   .issue-fix .fix-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4ade80; margin-bottom: 4px; }
-  .issue-fix p { color: #9090c0; font-size: 12px; }
-  code { background: #1c1c2e; padding: 1px 5px; border-radius: 4px; font-family: 'Menlo', 'Consolas', monospace; font-size: 12px; color: #a5b4fc; }
-  pre { background: #0a0a12; border: 1px solid #2a2a3a; border-radius: 8px; padding: 14px; overflow-x: auto; margin-top: 8px; }
-  pre code { background: none; padding: 0; color: #a5b4fc; font-size: 12px; }
+  .issue-fix p { color: #b8a870; font-size: 12px; }
+  code { background: #1a1600; padding: 1px 5px; border-radius: 4px; font-family: 'Menlo', 'Consolas', monospace; font-size: 12px; color: #fbbf24; }
+  pre { background: #0a0900; border: 1px solid #2a2200; border-radius: 8px; padding: 14px; overflow-x: auto; margin-top: 8px; }
+  pre code { background: none; padding: 0; color: #fbbf24; font-size: 12px; }
 
   /* Page table */
-  .page-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #2a2a40; }
+  .page-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #2a2200; }
   table { width: 100%; border-collapse: collapse; }
-  thead th { background: #14141f; color: #6666a0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2a40; white-space: nowrap; }
-  tbody tr { border-bottom: 1px solid #1e1e2e; }
+  thead th { background: #141200; color: #7a6a40; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 10px 14px; text-align: left; border-bottom: 1px solid #2a2200; white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid #1a1600; }
   tbody tr:last-child { border-bottom: none; }
   tbody td { padding: 10px 14px; font-size: 12px; vertical-align: top; }
-  tbody tr:hover { background: #14141f; }
-  .page-path { font-family: 'Menlo', 'Consolas', monospace; color: #a5b4fc; font-size: 11px; }
+  tbody tr:hover { background: #141200; }
+  .page-path { font-family: 'Menlo', 'Consolas', monospace; color: #fbbf24; font-size: 11px; }
   .tag { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; border-radius: 4px; }
-  .tag.public { background: #818cf822; color: #818cf8; border: 1px solid #818cf840; }
-  .tag.app { background: #6666a022; color: #6666a0; border: 1px solid #6666a040; }
+  .tag.public { background: #ca8a0422; color: #ca8a04; border: 1px solid #ca8a0440; }
+  .tag.app { background: #7a6a4022; color: #7a6a40; border: 1px solid #7a6a4040; }
   .chk { font-size: 14px; }
   .chk.ok { color: #4ade80; }
   .chk.no { color: #f87171; }
   .chk.warn { color: #facc15; }
   .title-cell { max-width: 260px; }
-  .title-cell .rendered { color: #d0d0e0; font-size: 12px; }
-  .title-cell .raw { color: #6666a0; font-size: 10px; margin-top: 2px; }
+  .title-cell .rendered { color: #e8dfa0; font-size: 12px; }
+  .title-cell .raw { color: #7a6a40; font-size: 10px; margin-top: 2px; }
   .title-cell .len { font-size: 10px; }
   .title-cell .len.ok { color: #4ade80; }
   .title-cell .len.warn { color: #facc15; }
   .title-cell .len.bad { color: #f87171; }
-  .desc-cell { max-width: 300px; color: #8888a8; font-size: 11px; }
+  .desc-cell { max-width: 300px; color: #b8a870; font-size: 11px; }
   .desc-cell .len { font-size: 10px; margin-top: 2px; }
 
   /* Schema grid */
   .schema-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-  .schema-item { background: #14141f; border: 1px solid #2a2a40; border-radius: 10px; padding: 14px 16px; }
-  .schema-item .schema-type { font-size: 12px; font-weight: 700; color: #a5b4fc; margin-bottom: 4px; }
-  .schema-item .schema-where { font-size: 11px; color: #6666a0; }
+  .schema-item { background: #141200; border: 1px solid #2a2200; border-radius: 10px; padding: 14px 16px; }
+  .schema-item .schema-type { font-size: 12px; font-weight: 700; color: #fbbf24; margin-bottom: 4px; }
+  .schema-item .schema-where { font-size: 11px; color: #7a6a40; }
   .schema-item.missing { border-style: dashed; opacity: .6; }
   .schema-item.missing .schema-type { color: #f87171; }
 
   /* Action plan */
   .action-list { list-style: none; }
-  .action-list li { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #1e1e2e; }
+  .action-list li { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #1a1600; }
   .action-list li:last-child { border-bottom: none; }
   .action-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
   .action-num.p1 { background: #f8717122; color: #f87171; }
   .action-num.p2 { background: #fb923c22; color: #fb923c; }
   .action-num.p3 { background: #facc1522; color: #facc15; }
-  .action-body strong { display: block; color: #e0e0f0; font-size: 13px; margin-bottom: 3px; }
-  .action-body span { color: #6666a0; font-size: 12px; }
+  .action-body strong { display: block; color: #f0dfa0; font-size: 13px; margin-bottom: 3px; }
+  .action-body span { color: #7a6a40; font-size: 12px; }
 
   /* Global tags */
   .tag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-  .tag-item { background: #14141f; border: 1px solid #2a2a40; border-radius: 10px; padding: 14px 16px; }
-  .tag-item .tag-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6666a0; margin-bottom: 6px; }
-  .tag-item .tag-val { font-size: 12px; color: #d0d0e0; }
+  .tag-item { background: #141200; border: 1px solid #2a2200; border-radius: 10px; padding: 14px 16px; }
+  .tag-item .tag-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #7a6a40; margin-bottom: 6px; }
+  .tag-item .tag-val { font-size: 12px; color: #e8dfa0; }
   .tag-item .tag-val.ok::before { content: '✓ '; color: #4ade80; }
   .tag-item .tag-val.no::before { content: '✗ '; color: #f87171; }
 
   /* Divider */
-  hr { border: none; border-top: 1px solid #1e1e2e; margin: 40px 0; }
+  hr { border: none; border-top: 1px solid #1a1600; margin: 40px 0; }
 
   /* Top banner */
-  .top-bar { background: #0a0a10; border-bottom: 1px solid #2a2a40; padding: 10px 24px; font-size: 12px; color: #6666a0; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-  .top-bar strong { color: #9090c0; }
+  .top-bar { background: #0a0900; border-bottom: 1px solid #2a2200; padding: 10px 24px; font-size: 12px; color: #7a6a40; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .top-bar strong { color: #b8a870; }
 </style>
 </head>
 <body>
 
 <div class="top-bar">
-  <strong>Bloggy SEO Audit</strong>
-  <span>Site: <a href="https://bloggy.online" target="_blank">bloggy.online</a></span>
+  <strong>AdDee SEO Audit</strong>
+  <span>Site: <a href="https://addee.online" target="_blank">addee.online</a></span>
   <span>Audited: April 22, 2026</span>
   <span>Pages audited: 20</span>
   <span>Stack: Next.js App Router · Vercel</span>
@@ -138,7 +138,7 @@
 
   <!-- ── HEADER ── -->
   <div class="audit-header">
-    <h1>Full Site SEO Audit — bloggy.online</h1>
+    <h1>Full Site SEO Audit — addee.online</h1>
     <p class="meta">
       <strong>Public / indexable pages:</strong> 10 &nbsp;·&nbsp;
       <strong>App / noindex pages:</strong> 10 &nbsp;·&nbsp;
@@ -165,7 +165,7 @@
       </div>
       <div class="score-card info">
         <div class="label">SEO Score</div>
-        <div class="val">61<span style="font-size:16px;color:#6666a0">/100</span></div>
+        <div class="val">61<span style="font-size:16px;color:#7a6a40">/100</span></div>
       </div>
     </div>
   </div>
@@ -175,25 +175,25 @@
        SECTION 1 — CRITICAL ISSUES
   ═══════════════════════════════════════ -->
   <section>
-    <h2><span class="dot crit"></span> Critical Issues <span style="font-size:12px;font-weight:400;color:#6666a0;">(fix before next deploy)</span></h2>
+    <h2><span class="dot crit"></span> Critical Issues <span style="font-size:12px;font-weight:400;color:#7a6a40;">(fix before next deploy)</span></h2>
 
     <!-- C1 -->
     <div class="issue crit">
       <div class="issue-head">
-        <div class="issue-title">C1 — Title template duplication: every page renders "Bloggy | Bloggy" or "— Bloggy | Bloggy"</div>
+        <div class="issue-title">C1 — Title template duplication: every page renders "AdDee | AdDee" or "— AdDee | AdDee"</div>
         <span class="badge crit">Critical</span>
       </div>
       <div class="issue-body">
-        <p>The root <code>layout.tsx</code> sets <code>title.template = '%s | Bloggy'</code>. Every child page that exports a plain string title (e.g., <code>title: 'Sign In — Bloggy'</code>) has <strong>| Bloggy</strong> appended automatically, producing duplicates in the <code>&lt;title&gt;</code> tag.</p>
-        <p>Browser tab example: <strong>"Sign In — Bloggy | Bloggy"</strong> &nbsp;·&nbsp; <strong>"All Tools — Bloggy | Bloggy"</strong> &nbsp;·&nbsp; <strong>"Blog — AI Content Strategy &amp; Agency Growth | Bloggy | Bloggy"</strong></p>
+        <p>The root <code>layout.tsx</code> sets <code>title.template = '%s | AdDee'</code>. Every child page that exports a plain string title (e.g., <code>title: 'Sign In — AdDee'</code>) has <strong>| AdDee</strong> appended automatically, producing duplicates in the <code>&lt;title&gt;</code> tag.</p>
+        <p>Browser tab example: <strong>"Sign In — AdDee | AdDee"</strong> &nbsp;·&nbsp; <strong>"All Tools — AdDee | AdDee"</strong> &nbsp;·&nbsp; <strong>"Blog — AI Content Strategy &amp; Agency Growth | AdDee | AdDee"</strong></p>
         <p>Google sees these exact strings. Duplicate branding in the title tag wastes characters, looks unprofessional in SERPs, and can trigger deduplication where Google rewrites your title.</p>
         <p><strong>Affected public pages:</strong> /, /features, /blog, /support, /signup, /terms, /privacy &nbsp;·&nbsp; <strong>App pages (noindex, lower impact):</strong> /dashboard, /clients, /keywords, /autoblog, /calendar, /analytics, /settings, /billing, /tools, /help, /login</p>
       </div>
       <div class="issue-fix">
         <div class="fix-label">Fix — two clean options</div>
-        <p><strong>Option A (recommended):</strong> Strip "— Bloggy" / "| Bloggy" from every page-level title string. The template appends it automatically. Result: <code>'Sign In'</code> → <em>"Sign In | Bloggy"</em> ✓</p>
-        <p><strong>Option B:</strong> Wrap titles in <code>&#123; absolute: '...' &#125;</code> to bypass the template where you need full control: <code>title: &#123; absolute: 'Bloggy — AI Blog Automation for Agencies' &#125;</code></p>
-        <p><strong>For the homepage only:</strong> Use <code>absolute</code> so "Bloggy" leads the title rather than becoming "Bloggy — ... | Bloggy".</p>
+        <p><strong>Option A (recommended):</strong> Strip "— AdDee" / "| AdDee" from every page-level title string. The template appends it automatically. Result: <code>'Sign In'</code> → <em>"Sign In | AdDee"</em> ✓</p>
+        <p><strong>Option B:</strong> Wrap titles in <code>&#123; absolute: '...' &#125;</code> to bypass the template where you need full control: <code>title: &#123; absolute: 'AdDee — AI Blog Automation for Agencies' &#125;</code></p>
+        <p><strong>For the homepage only:</strong> Use <code>absolute</code> so "AdDee" leads the title rather than becoming "AdDee — ... | AdDee".</p>
       </div>
     </div>
 
@@ -219,7 +219,7 @@
         <span class="badge crit">Critical</span>
       </div>
       <div class="issue-body">
-        <p>There is no <code>src/app/sitemap.ts</code> and no <code>public/sitemap.xml</code>. Without a sitemap, Google relies entirely on links to find pages. Your 7 blog posts, /support, /features, and /signup are at risk of slow or incomplete indexing. A sitemap is especially important for a new site (bloggy.online is recently launched).</p>
+        <p>There is no <code>src/app/sitemap.ts</code> and no <code>public/sitemap.xml</code>. Without a sitemap, Google relies entirely on links to find pages. Your 7 blog posts, /support, /features, and /signup are at risk of slow or incomplete indexing. A sitemap is especially important for a new site (addee.online is recently launched).</p>
       </div>
       <div class="issue-fix">
         <div class="fix-label">Fix — create src/app/sitemap.ts</div>
@@ -238,7 +238,7 @@
       </div>
       <div class="issue-fix">
         <div class="fix-label">Fix — create src/app/robots.ts</div>
-        <p>Allow all public paths, disallow <code>/dashboard</code>, <code>/clients</code>, <code>/posts</code>, <code>/keywords</code>, <code>/autoblog</code>, <code>/calendar</code>, <code>/analytics</code>, <code>/settings</code>, <code>/billing</code>, <code>/api</code>. Point <code>Sitemap</code> to <code>https://bloggy.online/sitemap.xml</code>.</p>
+        <p>Allow all public paths, disallow <code>/dashboard</code>, <code>/clients</code>, <code>/posts</code>, <code>/keywords</code>, <code>/autoblog</code>, <code>/calendar</code>, <code>/analytics</code>, <code>/settings</code>, <code>/billing</code>, <code>/api</code>. Point <code>Sitemap</code> to <code>https://addee.online/sitemap.xml</code>.</p>
       </div>
     </div>
   </section>
@@ -333,7 +333,7 @@
         <span class="badge high">High</span>
       </div>
       <div class="issue-body">
-        <p>The signup page has metadata, OG tags, and a canonical URL — suggesting it is intentionally indexable, which is valid (conversion pages can rank). But it has no explicit <code>robots</code> directive, so it defaults to whatever Google decides. If your intent is to rank it for "Bloggy free trial" type searches, keep it indexable but confirm the decision. If not, add noindex.</p>
+        <p>The signup page has metadata, OG tags, and a canonical URL — suggesting it is intentionally indexable, which is valid (conversion pages can rank). But it has no explicit <code>robots</code> directive, so it defaults to whatever Google decides. If your intent is to rank it for "AdDee free trial" type searches, keep it indexable but confirm the decision. If not, add noindex.</p>
       </div>
       <div class="issue-fix">
         <div class="fix-label">Decision needed</div>
@@ -348,11 +348,11 @@
         <span class="badge high">High</span>
       </div>
       <div class="issue-body">
-        <p>The blog post <code>generateMetadata</code> returns a <code>twitter</code> object with card, title, description, and images — but it does NOT include a <code>site</code> handle (<code>@GetBloggy</code>). Without the handle, Twitter attribution is broken and the card may appear without brand linkage on X.</p>
+        <p>The blog post <code>generateMetadata</code> returns a <code>twitter</code> object with card, title, description, and images — but it does NOT include a <code>site</code> handle (<code>@GetAdDee</code>). Without the handle, Twitter attribution is broken and the card may appear without brand linkage on X.</p>
       </div>
       <div class="issue-fix">
         <div class="fix-label">Fix (1 line)</div>
-        <p>Add <code>site: '@GetBloggy'</code> to the <code>twitter</code> object returned by <code>generateMetadata</code> in <code>blog/[slug]/page.tsx</code>.</p>
+        <p>Add <code>site: '@GetAdDee'</code> to the <code>twitter</code> object returned by <code>generateMetadata</code> in <code>blog/[slug]/page.tsx</code>.</p>
       </div>
     </div>
   </section>
@@ -362,7 +362,7 @@
        SECTION 3 — WARNINGS
   ═══════════════════════════════════════ -->
   <section>
-    <h2><span class="dot warn"></span> Warnings <span style="font-size:12px;font-weight:400;color:#6666a0;">(fix in next sprint)</span></h2>
+    <h2><span class="dot warn"></span> Warnings <span style="font-size:12px;font-weight:400;color:#7a6a40;">(fix in next sprint)</span></h2>
 
     <div class="issue warn">
       <div class="issue-head">
@@ -371,8 +371,8 @@
       </div>
       <div class="issue-body">
         <p>Google truncates descriptions around 155–160 characters in SERPs. Text after that is cut with "…" and the call-to-action at the end of both descriptions is invisible in search results.</p>
-        <p><strong>/features:</strong> "Every Bloggy feature: AI blog generation from topics, URLs &amp; YouTube, one-click WordPress publish, AutoBlog scheduler, keyword research, social repurposing, rankings tracker, and more." (184 chars)</p>
-        <p><strong>/support:</strong> "Step-by-step guides, tutorials, and FAQs for Bloggy. Learn how to set up WordPress publishing, configure AutoBlog, track keyword rankings, and get the most from every feature." (177 chars)</p>
+        <p><strong>/features:</strong> "Every AdDee feature: AI blog generation from topics, URLs &amp; YouTube, one-click WordPress publish, AutoBlog scheduler, keyword research, social repurposing, rankings tracker, and more." (184 chars)</p>
+        <p><strong>/support:</strong> "Step-by-step guides, tutorials, and FAQs for AdDee. Learn how to set up WordPress publishing, configure AutoBlog, track keyword rankings, and get the most from every feature." (177 chars)</p>
       </div>
       <div class="issue-fix">
         <div class="fix-label">Fix</div>
@@ -418,7 +418,7 @@
       </div>
       <div class="issue-fix">
         <div class="fix-label">Fix</div>
-        <p>Add <code>openGraph: &#123; url: 'https://bloggy.online/terms' &#125;</code> to both pages when you add OG tags (fixes H5 and W4 together).</p>
+        <p>Add <code>openGraph: &#123; url: 'https://addee.online/terms' &#125;</code> to both pages when you add OG tags (fixes H5 and W4 together).</p>
       </div>
     </div>
 
@@ -428,7 +428,7 @@
         <span class="badge warn">Warning</span>
       </div>
       <div class="issue-body">
-        <p>Covered in H7 above. <code>site: '@GetBloggy'</code> missing from blog post Twitter card. One-line fix.</p>
+        <p>Covered in H7 above. <code>site: '@GetAdDee'</code> missing from blog post Twitter card. One-line fix.</p>
       </div>
     </div>
 
@@ -472,8 +472,8 @@
             <td class="page-path">/</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Bloggy — AI Blog Automation for Agencies</div>
-              <div class="raw">⚠ Use <code>absolute</code> to avoid "…| Bloggy" append</div>
+              <div class="rendered">AdDee — AI Blog Automation for Agencies</div>
+              <div class="raw">⚠ Use <code>absolute</code> to avoid "…| AdDee" append</div>
               <div class="len warn">41 chars (raw) · ~50 rendered</div>
             </td>
             <td class="desc-cell">
@@ -492,8 +492,8 @@
             <td class="page-path">/features</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Features — Bloggy AI Blog Automation | Bloggy</div>
-              <div class="raw">⚠ "Bloggy" appears twice</div>
+              <div class="rendered">Features — AdDee AI Blog Automation | AdDee</div>
+              <div class="raw">⚠ "AdDee" appears twice</div>
               <div class="len warn">45 chars rendered</div>
             </td>
             <td class="desc-cell">
@@ -512,8 +512,8 @@
             <td class="page-path">/blog</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Blog — AI Content Strategy &amp; Agency Growth | Bloggy | Bloggy</div>
-              <div class="raw">✗ "Bloggy" appears 3× — already ends in "| Bloggy"</div>
+              <div class="rendered">Blog — AI Content Strategy &amp; Agency Growth | AdDee | AdDee</div>
+              <div class="raw">✗ "AdDee" appears 3× — already ends in "| AdDee"</div>
               <div class="len bad">60 chars rendered</div>
             </td>
             <td class="desc-cell">
@@ -529,11 +529,11 @@
           </tr>
 
           <tr>
-            <td class="page-path">/blog/[slug]<br><span style="font-size:10px;color:#6666a0">×7 posts</span></td>
+            <td class="page-path">/blog/[slug]<br><span style="font-size:10px;color:#7a6a40">×7 posts</span></td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">AI Blog Automation for Agencies: Scale Client Content | Bloggy</div>
-              <div class="raw">✓ No brand duplication — metaTitle doesn't include Bloggy</div>
+              <div class="rendered">AI Blog Automation for Agencies: Scale Client Content | AdDee</div>
+              <div class="raw">✓ No brand duplication — metaTitle doesn't include AdDee</div>
               <div class="len ok">62 chars ✓</div>
             </td>
             <td class="desc-cell">
@@ -552,8 +552,8 @@
             <td class="page-path">/support</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Help Center &amp; Tutorials — Bloggy Support | Bloggy</div>
-              <div class="raw">⚠ "Bloggy" appears twice</div>
+              <div class="rendered">Help Center &amp; Tutorials — AdDee Support | AdDee</div>
+              <div class="raw">⚠ "AdDee" appears twice</div>
               <div class="len warn">50 chars rendered</div>
             </td>
             <td class="desc-cell">
@@ -572,8 +572,8 @@
             <td class="page-path">/signup</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Start Free — 7-Day Trial | Bloggy | Bloggy</div>
-              <div class="raw">✗ Already ends in "| Bloggy" + template appends again</div>
+              <div class="rendered">Start Free — 7-Day Trial | AdDee | AdDee</div>
+              <div class="raw">✗ Already ends in "| AdDee" + template appends again</div>
               <div class="len bad">42 chars rendered (dupe)</div>
             </td>
             <td class="desc-cell">
@@ -592,7 +592,7 @@
             <td class="page-path">/terms</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Terms of Service — Bloggy | Bloggy</div>
+              <div class="rendered">Terms of Service — AdDee | AdDee</div>
               <div class="raw">✗ Duplicate brand</div>
               <div class="len warn">34 chars rendered</div>
             </td>
@@ -612,7 +612,7 @@
             <td class="page-path">/privacy</td>
             <td><span class="tag public">Public</span></td>
             <td class="title-cell">
-              <div class="rendered">Privacy Policy — Bloggy | Bloggy</div>
+              <div class="rendered">Privacy Policy — AdDee | AdDee</div>
               <div class="raw">✗ Duplicate brand</div>
               <div class="len warn">32 chars rendered</div>
             </td>
@@ -632,7 +632,7 @@
             <td class="page-path">/login</td>
             <td><span class="tag app">App</span></td>
             <td class="title-cell">
-              <div class="rendered">Sign In — Bloggy | Bloggy</div>
+              <div class="rendered">Sign In — AdDee | AdDee</div>
               <div class="raw">✗ Duplicate (noindex — low impact)</div>
             </td>
             <td class="desc-cell">99 chars ✓</td>
@@ -648,7 +648,7 @@
             <td class="page-path">/dashboard</td>
             <td><span class="tag app">App</span></td>
             <td class="title-cell">
-              <div class="rendered">Generate — Bloggy | Bloggy</div>
+              <div class="rendered">Generate — AdDee | AdDee</div>
               <div class="raw">✗ Duplicate (noindex — low impact)</div>
             </td>
             <td class="desc-cell">111 chars ✓</td>
@@ -663,7 +663,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/clients</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Clients — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Clients — AdDee | AdDee</div></td>
             <td class="desc-cell">114 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -691,7 +691,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/keywords</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Keyword Research — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Keyword Research — AdDee | AdDee</div></td>
             <td class="desc-cell">116 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -704,7 +704,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/autoblog</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">AutoBlog Scheduler — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">AutoBlog Scheduler — AdDee | AdDee</div></td>
             <td class="desc-cell">103 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -717,7 +717,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/calendar</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Content Calendar — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Content Calendar — AdDee | AdDee</div></td>
             <td class="desc-cell">80 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -730,7 +730,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/analytics</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Analytics &amp; Rankings — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Analytics &amp; Rankings — AdDee | AdDee</div></td>
             <td class="desc-cell">97 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -743,7 +743,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/settings</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Settings — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Settings — AdDee | AdDee</div></td>
             <td class="desc-cell">99 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -756,7 +756,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/billing</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Billing &amp; Plans — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Billing &amp; Plans — AdDee | AdDee</div></td>
             <td class="desc-cell">120 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -769,7 +769,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/tools</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">All Tools — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">All Tools — AdDee | AdDee</div></td>
             <td class="desc-cell">161 chars ⚠</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -782,7 +782,7 @@
           <tr style="opacity:.6">
             <td class="page-path">/help</td>
             <td><span class="tag app">App</span></td>
-            <td class="title-cell"><div class="rendered">Help &amp; Tutorials — Bloggy | Bloggy</div></td>
+            <td class="title-cell"><div class="rendered">Help &amp; Tutorials — AdDee | AdDee</div></td>
             <td class="desc-cell">138 chars ✓</td>
             <td class="chk no">✗</td>
             <td class="chk no">✗</td>
@@ -795,7 +795,7 @@
         </tbody>
       </table>
     </div>
-    <p style="margin-top:10px;font-size:11px;color:#6666a0;">App pages (greyed rows) are all noindex — title duplication noted for hygiene but not a Google ranking factor. <strong>Focus fixes on the top 8 white rows (public pages).</strong></p>
+    <p style="margin-top:10px;font-size:11px;color:#7a6a40;">App pages (greyed rows) are all noindex — title duplication noted for hygiene but not a Google ranking factor. <strong>Focus fixes on the top 8 white rows (public pages).</strong></p>
   </section>
 
 
@@ -850,9 +850,9 @@
       </div>
     </div>
 
-    <div style="margin-top:20px;padding:16px 20px;background:#14141f;border:1px solid #2a2a40;border-radius:10px;">
-      <div style="font-size:12px;font-weight:600;color:#9090c0;margin-bottom:8px;">Schema Rating Note</div>
-      <p style="font-size:12px;color:#8888a8;">The 3 global schemas (SoftwareApplication, Organization, WebSite) injected in <code>layout.tsx</code> are <strong>on every single page</strong> — including noindex app pages. While harmless, best practice is to put global schema only on pages that benefit (homepage, landing pages). Google may also see multiple SoftwareApplication schema from the same URL across different pages as redundant. Consider moving these to the homepage <code>page.tsx</code> instead of the root layout.</p>
+    <div style="margin-top:20px;padding:16px 20px;background:#141200;border:1px solid #2a2200;border-radius:10px;">
+      <div style="font-size:12px;font-weight:600;color:#b8a870;margin-bottom:8px;">Schema Rating Note</div>
+      <p style="font-size:12px;color:#b8a870;">The 3 global schemas (SoftwareApplication, Organization, WebSite) injected in <code>layout.tsx</code> are <strong>on every single page</strong> — including noindex app pages. While harmless, best practice is to put global schema only on pages that benefit (homepage, landing pages). Google may also see multiple SoftwareApplication schema from the same URL across different pages as redundant. Consider moving these to the homepage <code>page.tsx</code> instead of the root layout.</p>
     </div>
   </section>
 
@@ -865,11 +865,11 @@
     <div class="tag-grid">
       <div class="tag-item">
         <div class="tag-name">Title Template</div>
-        <div class="tag-val ok">"%s | Bloggy" — set correctly</div>
+        <div class="tag-val ok">"%s | AdDee" — set correctly</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">Default Title</div>
-        <div class="tag-val ok">"Bloggy — AI Blog Automation for Agencies"</div>
+        <div class="tag-val ok">"AdDee — AI Blog Automation for Agencies"</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">Root Description</div>
@@ -877,15 +877,15 @@
       </div>
       <div class="tag-item">
         <div class="tag-name">metadataBase</div>
-        <div class="tag-val ok">https://bloggy.online</div>
+        <div class="tag-val ok">https://addee.online</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">Canonical (root)</div>
-        <div class="tag-val ok">https://bloggy.online</div>
+        <div class="tag-val ok">https://addee.online</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">OG Type</div>
-        <div class="tag-val ok">website · siteName: "Bloggy" · locale: en_US</div>
+        <div class="tag-val ok">website · siteName: "AdDee" · locale: en_US</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">OG Image</div>
@@ -893,11 +893,11 @@
       </div>
       <div class="tag-item">
         <div class="tag-name">Twitter Card</div>
-        <div class="tag-val ok">summary_large_image · @GetBloggy</div>
+        <div class="tag-val ok">summary_large_image · @GetAdDee</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">Favicon</div>
-        <div class="tag-val ok">bloggy-icon.png (icon + apple)</div>
+        <div class="tag-val ok">addee-icon.png (icon + apple)</div>
       </div>
       <div class="tag-item">
         <div class="tag-name">Google Analytics</div>
@@ -951,7 +951,7 @@
         <tbody>
           <tr>
             <td class="page-path" style="font-size:10px">ai-blog-content-for-agencies</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">AI Blog Automation for Agencies: Scale Client Content <span class="len ok" style="font-size:10px">(52 chars ✓)</span></td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">AI Blog Automation for Agencies: Scale Client Content <span class="len ok" style="font-size:10px">(52 chars ✓)</span></td>
             <td><span class="len ok">✓ 145 chars</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
@@ -959,7 +959,7 @@
           </tr>
           <tr>
             <td class="page-path" style="font-size:10px">wordpress-seo-blog-strategy-2025</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">WordPress SEO Blog Strategy 2025</td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">WordPress SEO Blog Strategy 2025</td>
             <td><span class="chk warn">⚠ Check</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
@@ -967,15 +967,15 @@
           </tr>
           <tr>
             <td class="page-path" style="font-size:10px">local-seo-blog-content-small-business</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">Local SEO Blog Content for Small Business</td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">Local SEO Blog Content for Small Business</td>
             <td><span class="chk warn">⚠ Check</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
             <td><span class="chk no">✗</span></td>
           </tr>
           <tr>
-            <td class="page-path" style="font-size:10px">blawgy-vs-rightblogger-vs-bloggy</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">Blawgy vs RightBlogger vs Bloggy — Comparison</td>
+            <td class="page-path" style="font-size:10px">blawgy-vs-rightblogger-vs-addee</td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">Blawgy vs RightBlogger vs AdDee — Comparison</td>
             <td><span class="chk warn">⚠ Check</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
@@ -983,7 +983,7 @@
           </tr>
           <tr>
             <td class="page-path" style="font-size:10px">how-to-automate-client-blog-content</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">How to Automate Client Blog Content</td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">How to Automate Client Blog Content</td>
             <td><span class="chk warn">⚠ Check</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
@@ -991,7 +991,7 @@
           </tr>
           <tr>
             <td class="page-path" style="font-size:10px">what-is-autoblogging-software</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">What Is Autoblogging Software?</td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">What Is Autoblogging Software?</td>
             <td><span class="chk warn">⚠ Check</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
@@ -999,7 +999,7 @@
           </tr>
           <tr>
             <td class="page-path" style="font-size:10px">agency-seo-content-roi</td>
-            <td style="font-size:12px;max-width:240px;color:#d0d0e0">Agency SEO Content ROI</td>
+            <td style="font-size:12px;max-width:240px;color:#e8dfa0">Agency SEO Content ROI</td>
             <td><span class="chk warn">⚠ Check</span></td>
             <td><span class="chk ok">✓ Unsplash</span></td>
             <td><span class="chk ok">✓ Article</span></td>
@@ -1008,7 +1008,7 @@
         </tbody>
       </table>
     </div>
-    <p style="margin-top:10px;font-size:11px;color:#6666a0;">All 7 posts use <code>generateStaticParams</code> — they are statically generated at build time ✓. All have Article JSON-LD, OG with publishedTime, and Twitter cards. Main gap: no <code>keywords</code> meta on any post.</p>
+    <p style="margin-top:10px;font-size:11px;color:#7a6a40;">All 7 posts use <code>generateStaticParams</code> — they are statically generated at build time ✓. All have Article JSON-LD, OG with publishedTime, and Twitter cards. Main gap: no <code>keywords</code> meta on any post.</p>
   </section>
 
 
@@ -1064,7 +1064,7 @@
         <span class="badge pass">Pass</span>
       </div>
       <div class="issue-body">
-        <p>Homepage, features, blog index, blog posts, support, and signup all have proper OG metadata (title, description, url, type, image 1200×630). Blog posts have OG with <code>publishedTime</code> and <code>authors</code> for article type. Twitter <code>summary_large_image</code> with @GetBloggy handle on root level.</p>
+        <p>Homepage, features, blog index, blog posts, support, and signup all have proper OG metadata (title, description, url, type, image 1200×630). Blog posts have OG with <code>publishedTime</code> and <code>authors</code> for article type. Twitter <code>summary_large_image</code> with @GetAdDee handle on root level.</p>
       </div>
     </div>
 
@@ -1074,7 +1074,7 @@
         <span class="badge pass">Pass</span>
       </div>
       <div class="issue-body">
-        <p>Every public page sets <code>alternates: &#123; canonical: 'https://bloggy.online/...' &#125;</code>. Blog posts use dynamic canonical per slug. This prevents duplicate content issues from Vercel preview URLs, query parameters, or trailing slashes.</p>
+        <p>Every public page sets <code>alternates: &#123; canonical: 'https://addee.online/...' &#125;</code>. Blog posts use dynamic canonical per slug. This prevents duplicate content issues from Vercel preview URLs, query parameters, or trailing slashes.</p>
       </div>
     </div>
 
@@ -1116,8 +1116,8 @@
       <li>
         <div class="action-num p1">2</div>
         <div class="action-body">
-          <strong>Fix title duplication — remove "— Bloggy" / "| Bloggy" from page-level title strings</strong>
-          <span>The template appends "| Bloggy" automatically. Affects every public page title in SERPs. ~20 min effort across all pages.</span>
+          <strong>Fix title duplication — remove "— AdDee" / "| AdDee" from page-level title strings</strong>
+          <span>The template appends "| AdDee" automatically. Affects every public page title in SERPs. ~20 min effort across all pages.</span>
         </div>
       </li>
       <li>
@@ -1144,7 +1144,7 @@
       <li>
         <div class="action-num p2">6</div>
         <div class="action-body">
-          <strong>Add Twitter site: '@GetBloggy' to blog post generateMetadata</strong>
+          <strong>Add Twitter site: '@GetAdDee' to blog post generateMetadata</strong>
           <span>1-line fix in blog/[slug]/page.tsx. Ensures all 7 posts show the Twitter handle in X card previews.</span>
         </div>
       </li>
@@ -1194,7 +1194,7 @@
   </section>
 
   <hr>
-  <p style="color:#3a3a55;font-size:11px;text-align:center;">Bloggy SEO Audit · Generated April 22, 2026 · bloggy.online · Built on Next.js App Router + Vercel</p>
+  <p style="color:#3a3a55;font-size:11px;text-align:center;">AdDee SEO Audit · Generated April 22, 2026 · addee.online · Built on Next.js App Router + Vercel</p>
 
 </div>
 </body>

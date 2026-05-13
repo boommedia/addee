@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloggy Discord Setup Guide</title>
+  <title>AdDee Discord Setup Guide</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0a0a0f;
-      color: #e8e8f0;
+      background: #0a0900;
+      color: #e8dfa0;
       line-height: 1.6;
     }
 
     /* ── Header ── */
     .header {
-      background: linear-gradient(135deg, #1a0a2e 0%, #0a0a0f 50%, #0a1a2e 100%);
-      border-bottom: 1px solid #2a2a3d;
+      background: linear-gradient(135deg, #1a1200 0%, #0a0900 50%, #0a0e00 100%);
+      border-bottom: 1px solid #2a2200;
       padding: 60px 40px;
       text-align: center;
       position: relative;
@@ -29,16 +29,16 @@
       top: -100px; left: 50%;
       transform: translateX(-50%);
       width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(88,28,235,0.15) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(202,138,4,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
     .header-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(88,28,235,0.15);
-      border: 1px solid rgba(139,92,246,0.3);
-      color: #a78bfa;
+      background: rgba(202,138,4,0.15);
+      border: 1px solid rgba(251,191,36,0.3);
+      color: #fbbf24;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
@@ -49,7 +49,7 @@
     }
     .header-badge span {
       width: 6px; height: 6px;
-      background: #7c3aed;
+      background: #ca8a04;
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
@@ -65,12 +65,12 @@
       margin-bottom: 12px;
     }
     .header h1 span {
-      background: linear-gradient(90deg, #a78bfa, #67e8f9);
+      background: linear-gradient(90deg, #fbbf24, #ca8a04);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .header p {
-      color: #8888a8;
+      color: #b8a870;
       font-size: 16px;
       max-width: 520px;
       margin: 0 auto 28px;
@@ -83,13 +83,13 @@
       flex-wrap: wrap;
     }
     .header-meta span {
-      color: #555570;
+      color: #7a6a40;
       font-size: 13px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .header-meta span strong { color: #8888a8; }
+    .header-meta span strong { color: #b8a870; }
 
     /* ── Layout ── */
     .container {
@@ -100,8 +100,8 @@
 
     /* ── Progress bar ── */
     .progress-bar {
-      background: #12121a;
-      border: 1px solid #2a2a3d;
+      background: #141200;
+      border: 1px solid #2a2200;
       border-radius: 16px;
       padding: 24px 32px;
       margin-bottom: 48px;
@@ -123,38 +123,38 @@
       left: 60%;
       width: 80%;
       height: 2px;
-      background: #2a2a3d;
+      background: #2a2200;
     }
     .progress-step:last-child::after { display: none; }
     .progress-step .dot {
       width: 28px; height: 28px;
       border-radius: 50%;
-      background: #1a1a26;
-      border: 2px solid #2a2a3d;
+      background: #1a1600;
+      border: 2px solid #2a2200;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
       font-weight: 700;
-      color: #555570;
+      color: #7a6a40;
       margin: 0 auto 6px;
       position: relative;
       z-index: 1;
       transition: all 0.2s;
     }
     .progress-step.done .dot {
-      background: #7c3aed;
-      border-color: #7c3aed;
+      background: #ca8a04;
+      border-color: #ca8a04;
       color: #fff;
     }
     .progress-step .label {
       font-size: 10px;
-      color: #555570;
+      color: #7a6a40;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .progress-step.done .label { color: #a78bfa; }
+    .progress-step.done .label { color: #fbbf24; }
 
     /* ── Section ── */
     .section {
@@ -169,7 +169,7 @@
     .step-number {
       width: 48px; height: 48px;
       border-radius: 14px;
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      background: linear-gradient(135deg, #ca8a04, #92400e);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -187,20 +187,20 @@
       margin-bottom: 4px;
     }
     .section-title p {
-      color: #8888a8;
+      color: #b8a870;
       font-size: 14px;
     }
 
     /* ── Cards ── */
     .card {
-      background: #12121a;
-      border: 1px solid #2a2a3d;
+      background: #141200;
+      border: 1px solid #2a2200;
       border-radius: 16px;
       padding: 24px;
       margin-bottom: 16px;
     }
     .card:hover {
-      border-color: rgba(139,92,246,0.2);
+      border-color: rgba(202,138,4,0.2);
     }
 
     /* ── Steps list ── */
@@ -215,14 +215,14 @@
       align-items: flex-start;
       gap: 14px;
       padding: 14px 18px;
-      background: #0a0a0f;
-      border: 1px solid #1a1a26;
+      background: #0a0900;
+      border: 1px solid #1a1600;
       border-radius: 12px;
       font-size: 14px;
-      color: #c8c8d8;
+      color: #e8dfa0;
       transition: border-color 0.2s;
     }
-    .steps-list li:hover { border-color: #2a2a3d; }
+    .steps-list li:hover { border-color: #2a2200; }
     .steps-list li .num {
       width: 22px; height: 22px;
       background: rgba(124,58,237,0.2);
@@ -233,7 +233,7 @@
       justify-content: center;
       font-size: 11px;
       font-weight: 700;
-      color: #a78bfa;
+      color: #fbbf24;
       flex-shrink: 0;
       margin-top: 1px;
     }
@@ -245,8 +245,8 @@
       gap: 12px;
     }
     .role-card {
-      background: #0a0a0f;
-      border: 1px solid #1a1a26;
+      background: #0a0900;
+      border: 1px solid #1a1600;
       border-radius: 12px;
       padding: 16px;
     }
@@ -257,7 +257,7 @@
     }
     .role-desc {
       font-size: 12px;
-      color: #555570;
+      color: #7a6a40;
     }
     .role-card.admin .role-name { color: #f87171; }
     .role-card.pro .role-name { color: #fbbf24; }
@@ -271,7 +271,7 @@
       line-height: 1.9;
     }
     .channel-tree .category {
-      color: #8888a8;
+      color: #b8a870;
       font-weight: 700;
       font-size: 11px;
       text-transform: uppercase;
@@ -280,12 +280,12 @@
     }
     .channel-tree .category:first-child { margin-top: 0; }
     .channel-tree .channel {
-      color: #c8c8d8;
+      color: #e8dfa0;
       padding-left: 20px;
     }
     .channel-tree .channel .icon { margin-right: 4px; }
     .channel-tree .note {
-      color: #555570;
+      color: #7a6a40;
       font-size: 11px;
       padding-left: 40px;
       font-style: italic;
@@ -296,18 +296,18 @@
 
     /* ── Message box ── */
     .message-box {
-      background: #0a0a0f;
-      border: 1px solid #2a2a3d;
-      border-left: 3px solid #7c3aed;
+      background: #0a0900;
+      border: 1px solid #2a2200;
+      border-left: 3px solid #ca8a04;
       border-radius: 0 12px 12px 0;
       padding: 20px 24px;
       font-size: 14px;
       line-height: 1.8;
-      color: #c8c8d8;
+      color: #e8dfa0;
       white-space: pre-wrap;
       font-family: 'Segoe UI', system-ui, sans-serif;
     }
-    .message-box a { color: #67e8f9; }
+    .message-box a { color: #fbbf24; }
 
     /* ── Bot card ── */
     .bot-card {
@@ -315,8 +315,8 @@
       align-items: flex-start;
       gap: 16px;
       padding: 20px;
-      background: #0a0a0f;
-      border: 1px solid #2a2a3d;
+      background: #0a0900;
+      border: 1px solid #2a2200;
       border-radius: 14px;
       margin-bottom: 12px;
     }
@@ -330,8 +330,8 @@
       flex-shrink: 0;
     }
     .bot-card h4 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .bot-card p { font-size: 13px; color: #8888a8; margin-bottom: 10px; }
-    .bot-card .bot-steps { font-size: 12px; color: #c8c8d8; padding-left: 14px; }
+    .bot-card p { font-size: 13px; color: #b8a870; margin-bottom: 10px; }
+    .bot-card .bot-steps { font-size: 12px; color: #e8dfa0; padding-left: 14px; }
     .bot-card .bot-steps li { margin-bottom: 4px; }
     .tag {
       display: inline-block;
@@ -351,13 +351,13 @@
       gap: 14px;
     }
     .tactic-card {
-      background: #0a0a0f;
-      border: 1px solid #1a1a26;
+      background: #0a0900;
+      border: 1px solid #1a1600;
       border-radius: 14px;
       padding: 20px;
       transition: border-color 0.2s;
     }
-    .tactic-card:hover { border-color: rgba(139,92,246,0.3); }
+    .tactic-card:hover { border-color: rgba(202,138,4,0.3); }
     .tactic-icon {
       font-size: 24px;
       margin-bottom: 10px;
@@ -371,7 +371,7 @@
     }
     .tactic-card p {
       font-size: 13px;
-      color: #8888a8;
+      color: #b8a870;
       line-height: 1.6;
     }
 
@@ -389,15 +389,15 @@
       align-items: center;
       gap: 10px;
       padding: 12px 16px;
-      background: #0a0a0f;
-      border: 1px solid #1a1a26;
+      background: #0a0900;
+      border: 1px solid #1a1600;
       border-radius: 10px;
       font-size: 13px;
-      color: #c8c8d8;
+      color: #e8dfa0;
     }
     .check-box {
       width: 18px; height: 18px;
-      border: 2px solid #2a2a3d;
+      border: 2px solid #2a2200;
       border-radius: 4px;
       flex-shrink: 0;
     }
@@ -405,14 +405,14 @@
     /* ── Divider ── */
     .divider {
       border: none;
-      border-top: 1px solid #1a1a26;
+      border-top: 1px solid #1a1600;
       margin: 48px 0;
     }
 
     /* ── Code ── */
     code {
       background: rgba(124,58,237,0.15);
-      color: #a78bfa;
+      color: #fbbf24;
       font-size: 12px;
       padding: 2px 7px;
       border-radius: 5px;
@@ -441,25 +441,25 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 8px;
-      color: #a78bfa;
+      color: #fbbf24;
     }
     .highlight.yellow h4 { color: #fbbf24; }
     .highlight.green h4 { color: #34d399; }
     .highlight p, .highlight li {
       font-size: 13px;
-      color: #c8c8d8;
+      color: #e8dfa0;
       line-height: 1.7;
     }
     .highlight ul { padding-left: 16px; }
 
     /* ── Footer ── */
     .footer {
-      border-top: 1px solid #1a1a26;
+      border-top: 1px solid #1a1600;
       padding: 40px;
       text-align: center;
     }
-    .footer p { color: #555570; font-size: 13px; }
-    .footer strong { color: #8888a8; }
+    .footer p { color: #7a6a40; font-size: 13px; }
+    .footer strong { color: #b8a870; }
 
     @media print {
       body { background: #fff; color: #000; }
@@ -481,7 +481,7 @@
 
 <!-- Header -->
 <div class="header">
-  <div class="header-badge"><span></span> Bloggy Internal Guide</div>
+  <div class="header-badge"><span></span> AdDee Internal Guide</div>
   <h1>Discord <span>Setup Guide</span></h1>
   <p>Build your support community and sales channel — step by step. Estimated time: 45–60 minutes.</p>
   <div class="header-meta">
@@ -520,16 +520,16 @@
       <ul class="steps-list">
         <li><div class="num">1</div>Open Discord → click the <strong>+</strong> icon in the left sidebar (Add a Server)</li>
         <li><div class="num">2</div>Select <strong>"Create My Own"</strong> → then <strong>"For a club or community"</strong></li>
-        <li><div class="num">3</div>Server name: <code>Bloggy Community</code></li>
-        <li><div class="num">4</div>Click the server icon area → upload the <strong>Bloggy logo</strong> (square PNG, at least 512×512)</li>
+        <li><div class="num">3</div>Server name: <code>AdDee Community</code></li>
+        <li><div class="num">4</div>Click the server icon area → upload the <strong>AdDee logo</strong> (square PNG, at least 512×512)</li>
         <li><div class="num">5</div>Click <strong>Create</strong></li>
-        <li><div class="num">6</div>Go to <strong>Server Settings → Overview</strong> → set Server Description: <em>"The official community for Bloggy — AI blog automation for agencies. Get support, share wins, and connect with other agency owners."</em></li>
+        <li><div class="num">6</div>Go to <strong>Server Settings → Overview</strong> → set Server Description: <em>"The official community for AdDee — AI blog automation for agencies. Get support, share wins, and connect with other agency owners."</em></li>
         <li><div class="num">7</div>Under <strong>Server Settings → Community</strong> → Enable Community features (gives you welcome screen, rules, announcements)</li>
       </ul>
     </div>
     <div class="highlight yellow">
       <h4>💡 Tip</h4>
-      <p>Go to <strong>Server Settings → Invites → Create Invite → Never Expires</strong> and save that link. You'll need it for the Bloggy website later.</p>
+      <p>Go to <strong>Server Settings → Invites → Create Invite → Never Expires</strong> and save that link. You'll need it for the AdDee website later.</p>
     </div>
   </div>
 
@@ -557,7 +557,7 @@
         </div>
         <div class="role-card pro">
           <div class="role-name">⭐ Pro Member</div>
-          <div class="role-desc">Color: Gold<br>Paying Bloggy subscribers. Gets access to exclusive Pro channels.</div>
+          <div class="role-desc">Color: Gold<br>Paying AdDee subscribers. Gets access to exclusive Pro channels.</div>
         </div>
         <div class="role-card free">
           <div class="role-name">🌱 Free Member</div>
@@ -589,35 +589,35 @@
     <div class="card">
       <div class="channel-tree">
         <div class="category">📢 WELCOME</div>
-        <div class="channel"><span class="icon">#</span> 👋 welcome &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— read-only, pinned intro message</em></div>
-        <div class="channel"><span class="icon">#</span> 📋 rules &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— read-only</em></div>
-        <div class="channel"><span class="icon">#</span> 🎉 changelog &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— announcements only</em></div>
-        <div class="channel"><span class="icon">#</span> 🗺️ roadmap &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— what's coming next</em></div>
+        <div class="channel"><span class="icon">#</span> 👋 welcome &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— read-only, pinned intro message</em></div>
+        <div class="channel"><span class="icon">#</span> 📋 rules &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— read-only</em></div>
+        <div class="channel"><span class="icon">#</span> 🎉 changelog &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— announcements only</em></div>
+        <div class="channel"><span class="icon">#</span> 🗺️ roadmap &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— what's coming next</em></div>
 
         <div class="category" style="margin-top:20px">💬 COMMUNITY</div>
         <div class="channel"><span class="icon">#</span> 💬 general</div>
-        <div class="channel"><span class="icon">#</span> 🏆 wins &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— members share results (your best sales tool)</em></div>
+        <div class="channel"><span class="icon">#</span> 🏆 wins &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— members share results (your best sales tool)</em></div>
         <div class="channel"><span class="icon">#</span> 💡 feature-requests</div>
-        <div class="channel"><span class="icon">#</span> 🔗 share-your-work &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— posts, blogs, client sites</em></div>
+        <div class="channel"><span class="icon">#</span> 🔗 share-your-work &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— posts, blogs, client sites</em></div>
 
         <div class="category" style="margin-top:20px">🆘 SUPPORT</div>
-        <div class="channel"><span class="icon">#</span> 🎫 get-help &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— main support channel</em></div>
+        <div class="channel"><span class="icon">#</span> 🎫 get-help &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— main support channel</em></div>
         <div class="channel"><span class="icon">#</span> 🔧 wordpress-help</div>
         <div class="channel"><span class="icon">#</span> 🤖 autoblog-help</div>
         <div class="channel"><span class="icon">#</span> 🐛 bug-reports</div>
 
         <div class="category" style="margin-top:20px">📚 TUTORIALS</div>
-        <div class="channel"><span class="icon">#</span> 🚀 start-here &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— pinned step-by-step onboarding</em></div>
+        <div class="channel"><span class="icon">#</span> 🚀 start-here &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— pinned step-by-step onboarding</em></div>
         <div class="channel"><span class="icon">#</span> 🔗 wordpress-setup</div>
         <div class="channel"><span class="icon">#</span> 🤖 autoblog-setup</div>
         <div class="channel"><span class="icon">#</span> 📊 client-reports</div>
-        <div class="channel"><span class="icon">#</span> ❓ faq &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— pinned common Q&A</em></div>
+        <div class="channel"><span class="icon">#</span> ❓ faq &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— pinned common Q&A</em></div>
 
         <div class="category" style="margin-top:20px">💎 PRO ONLY &nbsp;<span style="color:#fbbf24;font-size:11px">⚠️ role-gated — Pro Member only</span></div>
-        <div class="channel locked"><span class="icon">#</span> 🔒 pro-lounge &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— exclusive chat for paying members</em></div>
-        <div class="channel locked"><span class="icon">#</span> 💰 agency-strategies &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— pricing, client sales, packaging</em></div>
-        <div class="channel locked"><span class="icon">#</span> 🛠️ advanced-tips &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— power user features</em></div>
-        <div class="channel locked"><span class="icon">#</span> 🎯 seo-strategy &nbsp;&nbsp;&nbsp;<em style="color:#555570; font-size:12px">— keyword research, ranking tips</em></div>
+        <div class="channel locked"><span class="icon">#</span> 🔒 pro-lounge &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— exclusive chat for paying members</em></div>
+        <div class="channel locked"><span class="icon">#</span> 💰 agency-strategies &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— pricing, client sales, packaging</em></div>
+        <div class="channel locked"><span class="icon">#</span> 🛠️ advanced-tips &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— power user features</em></div>
+        <div class="channel locked"><span class="icon">#</span> 🎯 seo-strategy &nbsp;&nbsp;&nbsp;<em style="color:#7a6a40; font-size:12px">— keyword research, ranking tips</em></div>
       </div>
     </div>
   </div>
@@ -682,16 +682,16 @@
       </div>
     </div>
     <div class="card">
-      <p style="color:#8888a8; font-size:13px; margin-bottom:16px;">Post this in <strong>#welcome</strong>, then right-click the message → <strong>Pin Message</strong>. Also set it as the Welcome Screen message in Server Settings → Community → Welcome Screen.</p>
-      <div class="message-box">👋 <strong>Welcome to the Bloggy Community!</strong>
+      <p style="color:#b8a870; font-size:13px; margin-bottom:16px;">Post this in <strong>#welcome</strong>, then right-click the message → <strong>Pin Message</strong>. Also set it as the Welcome Screen message in Server Settings → Community → Welcome Screen.</p>
+      <div class="message-box">👋 <strong>Welcome to the AdDee Community!</strong>
 
-Bloggy is the AI blog automation platform built for digital marketing agencies. Generate, publish, and manage SEO blog posts for all your clients — from one dashboard.
+AdDee is the AI blog automation platform built for digital marketing agencies. Generate, publish, and manage SEO blog posts for all your clients — from one dashboard.
 
 ━━━━━━━━━━━━━━━━━━━━━
 
 🚀 <strong>GET STARTED</strong>
-→ Create your free account: https://bloggy.online/signup
-→ 🔥 Early Access Deal (50% off for 12 months): https://bloggy.online/#early-access
+→ Create your free account: https://addee.online/signup
+→ 🔥 Early Access Deal (50% off for 12 months): https://addee.online/#early-access
 
 📚 <strong>NEW HERE?</strong>
 → Read #start-here for the full onboarding walkthrough
@@ -736,8 +736,8 @@ React with ✅ below to confirm you've read the rules!</div>
         <h4>MEE6 <span class="tag free">Free</span></h4>
         <p>Handles welcome DMs, auto-moderation, reaction roles, and level/XP system. The most popular Discord bot.</p>
         <ol class="bot-steps">
-          <li>Go to <strong>mee6.xyz</strong> → click <strong>Add to Discord</strong> → select <strong>Bloggy Community</strong></li>
-          <li>Enable <strong>Welcome</strong> plugin → set DM message:<br><em>"Hey {user}, welcome to Bloggy! Head to #start-here to get going, and post in #get-help if you need anything. Claim your early access deal here: https://bloggy.online/#early-access 🚀"</em></li>
+          <li>Go to <strong>mee6.xyz</strong> → click <strong>Add to Discord</strong> → select <strong>AdDee Community</strong></li>
+          <li>Enable <strong>Welcome</strong> plugin → set DM message:<br><em>"Hey {user}, welcome to AdDee! Head to #start-here to get going, and post in #get-help if you need anything. Claim your early access deal here: https://addee.online/#early-access 🚀"</em></li>
           <li>Enable <strong>Reaction Roles</strong> → post a message in #welcome: <em>"React 🌱 to get your Free Member role"</em> → link 🌱 to the Free Member role</li>
           <li>Enable <strong>Moderator</strong> → turn on anti-spam and anti-links (prevents spam bots)</li>
           <li>Optional: enable <strong>Levels</strong> — members earn XP for chatting, creates engagement</li>
@@ -778,11 +778,11 @@ React with ✅ below to confirm you've read the rules!</div>
     </div>
 
     <div class="card" style="margin-bottom:14px;">
-      <h4 style="color:#a78bfa; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">#start-here — Pin this message</h4>
-      <div class="message-box">🚀 <strong>Getting Started with Bloggy — 5 Steps</strong>
+      <h4 style="color:#fbbf24; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">#start-here — Pin this message</h4>
+      <div class="message-box">🚀 <strong>Getting Started with AdDee — 5 Steps</strong>
 
 <strong>Step 1:</strong> Create your account
-→ https://bloggy.online/signup (free, no card needed)
+→ https://addee.online/signup (free, no card needed)
 
 <strong>Step 2:</strong> Add your first client
 → Go to Clients → Add Client → fill in name, industry, and WordPress URL if you have it
@@ -793,7 +793,7 @@ React with ✅ below to confirm you've read the rules!</div>
 
 <strong>Step 4:</strong> Connect WordPress (optional but recommended)
 → In WordPress: Users → Profile → scroll to Application Passwords → generate one
-→ In Bloggy: Edit client → WordPress section → paste URL, username, and password
+→ In AdDee: Edit client → WordPress section → paste URL, username, and password
 
 <strong>Step 5:</strong> Publish!
 → Click Publish → choose Draft or Live → done ✅
@@ -803,36 +803,36 @@ React with ✅ below to confirm you've read the rules!</div>
 💡 Next steps:
 → Set up Autoblog scheduler to run on autopilot
 → Generate client reports to share with your clients
-→ Upgrade your plan: https://bloggy.online/billing</div>
+→ Upgrade your plan: https://addee.online/billing</div>
     </div>
 
     <div class="card" style="margin-bottom:14px;">
-      <h4 style="color:#a78bfa; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">#faq — Pin this message</h4>
+      <h4 style="color:#fbbf24; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">#faq — Pin this message</h4>
       <div class="message-box"><strong>❓ Frequently Asked Questions</strong>
 
-<strong>Q: What AI powers Bloggy?</strong>
+<strong>Q: What AI powers AdDee?</strong>
 A: Claude Sonnet by Anthropic — one of the best models for long-form writing. DALL-E 3 for hero images.
 
 <strong>Q: How does WordPress publishing work?</strong>
-A: You add your WP site URL, username, and an Application Password (WP → Users → Profile → Application Passwords). Bloggy publishes directly including featured image, categories, tags, and SmartCrawl SEO fields.
+A: You add your WP site URL, username, and an Application Password (WP → Users → Profile → Application Passwords). AdDee publishes directly including featured image, categories, tags, and SmartCrawl SEO fields.
 
 <strong>Q: Can I edit posts before publishing?</strong>
 A: Yes — every post has a built-in markdown editor. Edit content, headings, anything before you push to WordPress.
 
 <strong>Q: What is Autoblog?</strong>
-A: You queue topics per client and set a publishing schedule (daily, weekly, etc.). Bloggy generates and publishes each post automatically. You just review the results.
+A: You queue topics per client and set a publishing schedule (daily, weekly, etc.). AdDee generates and publishes each post automatically. You just review the results.
 
 <strong>Q: How do client reports work?</strong>
 A: One click generates a shareable report per client showing posts this month, words written, live URLs, and keywords. Send it to clients as a proof-of-work.
 
 <strong>Q: How do agencies price blog content?</strong>
-A: Most charge $150–$400/mo per client for monthly blog posts. At $49/mo for 5 clients on Bloggy, your cost is under $10/client. The rest is margin.
+A: Most charge $150–$400/mo per client for monthly blog posts. At $49/mo for 5 clients on AdDee, your cost is under $10/client. The rest is margin.
 
 <strong>Q: Is there a free trial?</strong>
 A: Every account starts with 2 free posts and 2 client slots. No card required. Upgrade when you're ready.
 
 <strong>Q: What is the Early Access deal?</strong>
-A: 50% off your plan for 12 months. Limited to 20 spots. Code: EARLY50 → https://bloggy.online/#early-access</div>
+A: 50% off your plan for 12 months. Limited to 20 spots. Code: EARLY50 → https://addee.online/#early-access</div>
     </div>
   </div>
 
@@ -886,8 +886,8 @@ A: 50% off your plan for 12 months. Limited to 20 spots. Code: EARLY50 → https
       </div>
       <div class="tactic-card">
         <span class="tactic-icon">🔗</span>
-        <h4>Link from Bloggy App</h4>
-        <p>Add a Discord button inside the Bloggy dashboard and on the landing page. Every user who hits a problem should have one click to reach support.</p>
+        <h4>Link from AdDee App</h4>
+        <p>Add a Discord button inside the AdDee dashboard and on the landing page. Every user who hits a problem should have one click to reach support.</p>
       </div>
     </div>
 
@@ -939,7 +939,7 @@ A: 50% off your plan for 12 months. Limited to 20 spots. Code: EARLY50 → https
 
     <div class="highlight" style="margin-top:16px;">
       <h4>🚀 After Launch</h4>
-      <p>Share your invite link on: <strong>LinkedIn</strong> (agency owners post there), <strong>Twitter/X</strong> with a post about building in public, <strong>Facebook Groups</strong> (agency and marketing groups), and inside the <strong>Bloggy app itself</strong> (settings page + dashboard). The developer can add the Discord button to bloggy.online within minutes once you have the link.</p>
+      <p>Share your invite link on: <strong>LinkedIn</strong> (agency owners post there), <strong>Twitter/X</strong> with a post about building in public, <strong>Facebook Groups</strong> (agency and marketing groups), and inside the <strong>AdDee app itself</strong> (settings page + dashboard). The developer can add the Discord button to addee.online within minutes once you have the link.</p>
     </div>
   </div>
 
@@ -947,8 +947,8 @@ A: 50% off your plan for 12 months. Limited to 20 spots. Code: EARLY50 → https
 
 <!-- Footer -->
 <div class="footer">
-  <p>Bloggy Discord Setup Guide &nbsp;·&nbsp; <strong>Boom Media</strong> &nbsp;·&nbsp; bloggy.online</p>
-  <p style="margin-top:6px;">Once your server is ready, share the permanent invite link to get it added to the Bloggy website.</p>
+  <p>AdDee Discord Setup Guide &nbsp;·&nbsp; <strong>Boom Media</strong> &nbsp;·&nbsp; addee.online</p>
+  <p style="margin-top:6px;">Once your server is ready, share the permanent invite link to get it added to the AdDee website.</p>
 </div>
 
 </body>

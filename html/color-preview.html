@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdDee — Color Scheme Picker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #060d1a;
+      color: #dde4f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 40px 24px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #7a90b8;
+      font-size: 0.9rem;
+      margin-bottom: 48px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── CARD TEMPLATE ── */
+    .scheme {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .scheme-header {
+      padding: 28px 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .scheme-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .scheme-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .scheme-name {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .scheme-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .swatches {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .swatch {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+    .swatch-label {
+      font-size: 9px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-top: 3px;
+      font-family: monospace;
+    }
+    .swatch-group { display: flex; flex-direction: column; align-items: center; }
+    .mock-btn {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 8px;
+    }
+    .mock-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .scheme-body {
+      padding: 20px 24px 24px;
+      background: rgba(6,13,26,0.8);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .mock-nav {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .mock-link {
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 6px;
+      color: #7a90b8;
+      cursor: default;
+    }
+    .mock-link.active {
+      color: inherit;
+      font-weight: 600;
+    }
+    .mock-card {
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: rgba(11,22,40,0.6);
+      border: 1px solid;
+      margin-bottom: 10px;
+    }
+    .mock-card-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #dde4f0;
+      margin-bottom: 4px;
+    }
+    .mock-card-sub {
+      font-size: 0.72rem;
+      color: #7a90b8;
+    }
+    .mock-stat {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-top: 6px;
+    }
+    .pick-btn {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 12px;
+      letter-spacing: 0.3px;
+    }
+    .hex-list {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      font-family: monospace;
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+    .hex-list span { color: rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+
+<h1>AdDee — Color Scheme Options</h1>
+<p class="subtitle">Open this file in your browser · Pick a scheme · All HTML files will be updated to match</p>
+
+<div class="grid">
+
+  <!-- A: Cobalt Blue (Current App) -->
+  <div class="scheme" style="background:rgba(0,102,255,0.06); border-color:rgba(0,102,255,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#060d1a 0%,#071630 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#0066FF;">Option A</div>
+        <div class="scheme-name">Cobalt Blue <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Current App</span></div>
+        <div class="scheme-desc">Matches the live AdDee app exactly. Blue primary, lime green accent.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#0066FF;"></div><div class="swatch-label">#0066FF</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#00FF00;"></div><div class="swatch-label">#00FF00</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#dde4f0;"></div><div class="swatch-label">#dde4f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#7a90b8;"></div><div class="swatch-label">#7a90b8</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#060d1a;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#060d1a</div></div>
+        </div>
+        <span class="mock-btn" style="background:#0066FF;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(0,102,255,0.15);border:1px solid rgba(0,102,255,0.35);color:#60a5fa;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#00FF00;background:rgba(0,255,0,0.06);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(0,102,255,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#00FF00;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(0,102,255,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#0066FF;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#0066FF;">Choose Option A</button>
+      <div class="hex-list">Primary <span>#0066FF</span> · Accent <span>#00FF00</span> · Bg <span>#060d1a</span></div>
+    </div>
+  </div>
+
+  <!-- B: Royal Violet (Bloggy) -->
+  <div class="scheme" style="background:rgba(124,58,237,0.06); border-color:rgba(124,58,237,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#060610 0%,#130a2e 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#a78bfa;">Option B</div>
+        <div class="scheme-name">Royal Violet <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Boom Media DNA</span></div>
+        <div class="scheme-desc">Purple primary with cyan highlights. Deep, rich creative energy.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#7c3aed;"></div><div class="swatch-label">#7c3aed</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#06b6d4;"></div><div class="swatch-label">#06b6d4</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#e2e2f0;"></div><div class="swatch-label">#e2e2f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#7878a0;"></div><div class="swatch-label">#7878a0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#060610;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#060610</div></div>
+        </div>
+        <span class="mock-btn" style="background:#7c3aed;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.35);color:#a78bfa;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#a78bfa;background:rgba(124,58,237,0.08);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(124,58,237,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#06b6d4;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(124,58,237,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#a78bfa;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#7c3aed;">Choose Option B</button>
+      <div class="hex-list">Primary <span>#7c3aed</span> · Accent <span>#06b6d4</span> · Bg <span>#060610</span></div>
+    </div>
+  </div>
+
+  <!-- C: Emerald Teal (Servvee) -->
+  <div class="scheme" style="background:rgba(8,145,178,0.06); border-color:rgba(8,145,178,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#060d12 0%,#061822 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#22d3ee;">Option C</div>
+        <div class="scheme-name">Emerald Teal <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Servvee DNA</span></div>
+        <div class="scheme-desc">Ocean teal primary with warm amber accent. Clean, professional energy.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#0891b2;"></div><div class="swatch-label">#0891b2</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#f59e0b;"></div><div class="swatch-label">#f59e0b</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#dde4f0;"></div><div class="swatch-label">#dde4f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#7aa8b8;"></div><div class="swatch-label">#7aa8b8</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#060d12;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#060d12</div></div>
+        </div>
+        <span class="mock-btn" style="background:#0891b2;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(8,145,178,0.15);border:1px solid rgba(8,145,178,0.35);color:#22d3ee;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#f59e0b;background:rgba(245,158,11,0.08);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(8,145,178,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#f59e0b;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(8,145,178,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#22d3ee;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#0891b2;">Choose Option C</button>
+      <div class="hex-list">Primary <span>#0891b2</span> · Accent <span>#f59e0b</span> · Bg <span>#060d12</span></div>
+    </div>
+  </div>
+
+  <!-- D: Indigo Rose (Approvee) -->
+  <div class="scheme" style="background:rgba(79,70,229,0.06); border-color:rgba(79,70,229,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#08060f 0%,#120e28 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#818cf8;">Option D</div>
+        <div class="scheme-name">Indigo Rose <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Approvee DNA</span></div>
+        <div class="scheme-desc">Deep indigo with rose red accent. Premium, approval-workflow energy.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#4f46e5;"></div><div class="swatch-label">#4f46e5</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#f43f5e;"></div><div class="swatch-label">#f43f5e</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#dde4f0;"></div><div class="swatch-label">#dde4f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#9090c8;"></div><div class="swatch-label">#9090c8</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#08060f;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#08060f</div></div>
+        </div>
+        <span class="mock-btn" style="background:#4f46e5;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(79,70,229,0.15);border:1px solid rgba(79,70,229,0.35);color:#818cf8;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#818cf8;background:rgba(79,70,229,0.08);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(79,70,229,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#f43f5e;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(79,70,229,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#818cf8;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#4f46e5;">Choose Option D</button>
+      <div class="hex-list">Primary <span>#4f46e5</span> · Accent <span>#f43f5e</span> · Bg <span>#08060f</span></div>
+    </div>
+  </div>
+
+  <!-- E: Crimson Red -->
+  <div class="scheme" style="background:rgba(220,38,38,0.06); border-color:rgba(220,38,38,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#0f0608 0%,#1e0a0a 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#f87171;">Option E</div>
+        <div class="scheme-name">Crimson <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Bold Red</span></div>
+        <div class="scheme-desc">High-energy red primary with orange accent. Aggressive, conversion-focused.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#dc2626;"></div><div class="swatch-label">#dc2626</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#f97316;"></div><div class="swatch-label">#f97316</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#dde4f0;"></div><div class="swatch-label">#dde4f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#b89090;"></div><div class="swatch-label">#b89090</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#0f0608;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#0f0608</div></div>
+        </div>
+        <span class="mock-btn" style="background:#dc2626;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.35);color:#f87171;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#f87171;background:rgba(220,38,38,0.08);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(220,38,38,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#f97316;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(220,38,38,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#f87171;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#dc2626;">Choose Option E</button>
+      <div class="hex-list">Primary <span>#dc2626</span> · Accent <span>#f97316</span> · Bg <span>#0f0608</span></div>
+    </div>
+  </div>
+
+  <!-- F: Solar Gold -->
+  <div class="scheme" style="background:rgba(234,179,8,0.06); border-color:rgba(234,179,8,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#0a0900 0%,#1a1500 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#fbbf24;">Option F</div>
+        <div class="scheme-name">Solar Gold <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Bold Yellow</span></div>
+        <div class="scheme-desc">Rich gold primary with lime accent. Premium luxury meets performance marketing.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#ca8a04;"></div><div class="swatch-label">#ca8a04</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#84cc16;"></div><div class="swatch-label">#84cc16</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#dde4f0;"></div><div class="swatch-label">#dde4f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#b8a870;"></div><div class="swatch-label">#b8a870</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#0a0900;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#0a0900</div></div>
+        </div>
+        <span class="mock-btn" style="background:#ca8a04;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(234,179,8,0.15);border:1px solid rgba(234,179,8,0.35);color:#fbbf24;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#fbbf24;background:rgba(234,179,8,0.08);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(234,179,8,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#84cc16;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(234,179,8,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#fbbf24;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#ca8a04;">Choose Option F</button>
+      <div class="hex-list">Primary <span>#ca8a04</span> · Accent <span>#84cc16</span> · Bg <span>#0a0900</span></div>
+    </div>
+  </div>
+
+
+  <!-- G: Hot Pink -->
+  <div class="scheme" style="background:rgba(236,72,153,0.06); border-color:rgba(236,72,153,0.25);">
+    <div class="scheme-header" style="background:linear-gradient(135deg,#0f0610 0%,#1e0a1a 100%);">
+      <div class="scheme-header" style="background:transparent;padding:0;">
+        <div class="scheme-label" style="color:#f472b6;">Option G</div>
+        <div class="scheme-name">Hot Pink <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:400;">— Bold Pink</span></div>
+        <div class="scheme-desc">Vibrant pink primary with violet accent. Bold, modern, high-visibility creative energy.</div>
+        <div class="swatches">
+          <div class="swatch-group"><div class="swatch" style="background:#ec4899;"></div><div class="swatch-label">#ec4899</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#a855f7;"></div><div class="swatch-label">#a855f7</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#dde4f0;"></div><div class="swatch-label">#dde4f0</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#b890a8;"></div><div class="swatch-label">#b890a8</div></div>
+          <div class="swatch-group"><div class="swatch" style="background:#0f0610;border-color:rgba(255,255,255,0.2);"></div><div class="swatch-label">#0f0610</div></div>
+        </div>
+        <span class="mock-btn" style="background:#ec4899;">Generate AD</span>
+        <span class="mock-badge" style="background:rgba(236,72,153,0.15);border:1px solid rgba(236,72,153,0.35);color:#f472b6;">Starter · 8/10 ADs</span>
+      </div>
+    </div>
+    <div class="scheme-body">
+      <div class="mock-nav">
+        <span class="mock-link active" style="color:#f472b6;background:rgba(236,72,153,0.08);">Generate</span>
+        <span class="mock-link">Brands</span>
+        <span class="mock-link">Campaigns</span>
+      </div>
+      <div class="mock-card" style="border-color:rgba(236,72,153,0.3);">
+        <div class="mock-card-title">Campaign Performance</div>
+        <div class="mock-card-sub">Last 30 days</div>
+        <div class="mock-stat" style="color:#a855f7;">+24.6%</div>
+      </div>
+      <div class="mock-card" style="border-color:rgba(236,72,153,0.3);">
+        <div class="mock-card-title">Active Clients</div>
+        <div class="mock-card-sub">Across all brands</div>
+        <div class="mock-stat" style="color:#f472b6;">12</div>
+      </div>
+      <button class="pick-btn" style="background:#ec4899;">Choose Option G</button>
+      <div class="hex-list">Primary <span>#ec4899</span> · Accent <span>#a855f7</span> · Bg <span>#0f0610</span></div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;color:#7a90b8;font-size:0.8rem;margin-top:48px;">
+  Tell Claude which option you want (A–G) and all HTML files in this folder will be updated.
+</p>
+
+</body>
+</html>
