@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       const customer = await stripe.customers.create({ email: user.email, metadata: { supabase_user_id: user.id } })
       customerId = customer.id
     }
-    const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://bloggy.online').replace(/\/$/, '')
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://addee.online').replace(/\/$/, '')
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: 'subscription',
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     customerId = customer.id
   }
 
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://bloggy.online').replace(/\/$/, '')
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://addee.online').replace(/\/$/, '')
 
   try {
     const session = await stripe.checkout.sessions.create({
