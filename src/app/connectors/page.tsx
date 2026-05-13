@@ -121,7 +121,7 @@ export default async function ConnectorsPage() {
             </p>
             <ol className="space-y-2 text-sm" style={{ color: '#dde4f0' }}>
               {[
-                'Go to console.cloud.google.com → create a new project (e.g. "Bloggy Indexing")',
+                'Go to console.cloud.google.com → create a new project (e.g. "AdDee Indexing")',
                 'Enable the "Web Search Indexing API" in APIs & Services → Library',
                 'Go to IAM & Admin → Service Accounts → Create Service Account',
                 'After creating, open the account → Keys → Add Key → JSON → download the file',
@@ -135,8 +135,8 @@ export default async function ConnectorsPage() {
               ))}
             </ol>
             <div className="rounded-xl p-4 font-mono text-xs space-y-1" style={{ background: 'rgba(0,0,0,0.3)', borderColor: 'rgba(202,138,4,0.2)', border: '1px solid', color: '#dde4f0' }}>
-              <div><span className="text-violet-400">GOOGLE_SERVICE_ACCOUNT_EMAIL</span> = your-sa@your-project.iam.gserviceaccount.com</div>
-              <div><span className="text-violet-400">GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY</span> = -----BEGIN PRIVATE KEY-----\n...</div>
+              <div><span className="text-[#ca8a04]">GOOGLE_SERVICE_ACCOUNT_EMAIL</span> = your-sa@your-project.iam.gserviceaccount.com</div>
+              <div><span className="text-[#ca8a04]">GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY</span> = -----BEGIN PRIVATE KEY-----\n...</div>
             </div>
             <p className="text-xs" style={{ color: '#b8a870' }}>
               Tip: copy the <code style={{ color: '#b8a870' }}>private_key</code> value from the downloaded JSON file exactly as-is → Vercel handles the multi-line string correctly.
