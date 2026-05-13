@@ -1,7 +1,7 @@
 ﻿import AppNav from '@/components/AppNav'
 import Logo from '@/components/Logo'
 import { createClient } from '@/lib/supabase/server'
-import { ChevronRight, Sparkles, RefreshCw, Layers, Film, Copy, Lock } from 'lucide-react'
+import { ChevronRight, Sparkles, RefreshCw, Layers, Film, Copy, Lock, Palette } from 'lucide-react'
 import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
@@ -94,6 +94,7 @@ export default async function HomePage({
 
   const services = [
     { id: 'formats', icon: Sparkles, title: 'Choose Format & Platform', desc: 'Select platform (Instagram, TikTok, LinkedIn, Google Ads) and format (single image, carousel, video script)', href: '#generate', available: true },
+    { id: 'design', icon: Palette, title: 'Design Studio', desc: 'Generate AI background images with Adobe Firefly, then design your visual ad in Canva — ready to publish', href: '/design', available: true },
     { id: 'remix', icon: RefreshCw, title: 'Remix a Winning Ad', desc: 'Paste an existing high-converting ad and remix it for your brand', href: '#remix', available: true },
     { id: 'variants', icon: Layers, title: 'Generate A/B Variants', desc: 'Create conservative + aggressive versions to test what resonates', href: '#variants', available: true },
     { id: 'scripts', icon: Film, title: 'Video Scripts', desc: 'Generate TikTok, Reels, and YouTube Shorts scripts with hooks and CTAs', href: '#scripts', available: true },
@@ -103,9 +104,7 @@ export default async function HomePage({
   const addons = [
     { icon: Sparkles, title: 'Video Preview Mockups', desc: 'See how generated copy looks on video templates', comingSoon: true },
     { icon: Sparkles, title: 'Hashtag & Keyword Suggestions', desc: 'Auto-generate trending hashtags and keywords for each ad', comingSoon: true },
-    { icon: Sparkles, title: 'Image Brief Generation', desc: 'Get AI-generated image descriptions and design requirements', comingSoon: true },
     { icon: Film, title: 'Actual Video Generation', desc: 'Auto-create videos with voiceover and animations (Runway, Synthesia)', comingSoon: true },
-    { icon: Sparkles, title: 'AI Image Generation', desc: 'Generate custom images with DALL-E or Midjourney integration', comingSoon: true },
     { icon: Sparkles, title: 'Direct Platform Publishing', desc: 'Publish ADs directly to Instagram, TikTok, LinkedIn, Google Ads', comingSoon: true },
     { icon: Sparkles, title: 'Performance Analytics', desc: 'Track impressions, clicks, CTR, and ROI across platforms', comingSoon: true },
   ]

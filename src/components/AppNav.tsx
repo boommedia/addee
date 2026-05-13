@@ -6,12 +6,13 @@ import MobileNav from '@/components/MobileNav'
 import NavSearchButton from '@/components/NavSearchButton'
 
 const NAV_LINKS = [
-  { href: '/dashboard',  label: 'Generate'   },
-  { href: '/brands',     label: 'Brands'     },
-  { href: '/campaigns',  label: 'Campaigns'  },
-  { href: '/clients',    label: 'Clients'    },
-  { href: '/analytics',  label: 'Analytics'  },
-  { href: '/tools',      label: 'Tools'      },
+  { href: '/dashboard',  label: 'Generate'  },
+  { href: '/design',     label: 'Design'    },
+  { href: '/brands',     label: 'Brands'    },
+  { href: '/campaigns',  label: 'Campaigns' },
+  { href: '/clients',    label: 'Clients'   },
+  { href: '/analytics',  label: 'Analytics' },
+  { href: '/tools',      label: 'Tools'     },
 ]
 
 const PLAN_STYLES: Record<string, string> = {
