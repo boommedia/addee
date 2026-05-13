@@ -77,7 +77,7 @@ function LoginForm() {
           <div className="w-full border-t border-[#2a2a3d]"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-2 text-[#555570]" style={{ background: '#0b1628' }}>or continue with email</span>
+          <span className="px-2 text-[#555570]" style={{ background: '#141200' }}>or continue with email</span>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ function LoginForm() {
           type="email"
           required
           autoComplete="email"
-          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#0a0900', border: '1px solid #1a2d50' }}
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-yellow-600 transition-colors" style={{ background: '#0a0900', border: '1px solid #2a2200' }}
           placeholder="you@agency.com"
         />
       </div>
@@ -105,7 +105,7 @@ function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#0a0900', border: '1px solid #1a2d50' }}
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-yellow-600 transition-colors" style={{ background: '#0a0900', border: '1px solid #2a2200' }}
           placeholder="••••••••"
         />
       </div>
@@ -120,7 +120,7 @@ function LoginForm() {
         type="submit"
         disabled={loading}
         className="w-full disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90 mt-2"
-        style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}
+        style={{ background: '#ca8a04' }}
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
@@ -140,7 +140,7 @@ export default function LoginPage() {
           <p className="text-sm" style={{ color: '#b8a870' }}>Sign in to your account</p>
         </div>
 
-        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#1c1800' }}>
+        <div className="rounded-2xl p-8 border" style={{ background: '#141200', borderColor: '#1c1800' }}>
           <h1 className="text-white font-bold text-lg mb-6">Welcome back</h1>
           <Suspense>
             <LoginForm />

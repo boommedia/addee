@@ -49,7 +49,7 @@ export default function EarlyAccessSection() {
       <div className="max-w-5xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden border"
           style={soldOut
-            ? { background: '#0b1628', borderColor: '#1a2d50' }
+            ? { background: '#141200', borderColor: '#2a2200' }
             : { background: 'linear-gradient(135deg, rgba(202,138,4,0.5) 0%, rgba(10,9,0,0.95) 50%, rgba(15,30,50,0.9) 100%)', borderColor: 'rgba(202,138,4,0.35)' }
           }>
 
@@ -66,11 +66,11 @@ export default function EarlyAccessSection() {
           <div className="relative p-8 sm:p-10">
             {soldOut ? (
               <div className="text-center py-6">
-                <div className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#4a6080' }}>Early Access Closed</div>
-                <p className="text-sm" style={{ color: '#3a5070' }}>All 20 early access spots have been claimed. Join the waitlist to be notified when we open again.</p>
+                <div className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#7a6a40' }}>Early Access Closed</div>
+                <p className="text-sm" style={{ color: '#7a6a40' }}>All 20 early access spots have been claimed. Join the waitlist to be notified when we open again.</p>
                 <a href="#waitlist"
                   className="inline-flex items-center gap-2 mt-6 font-semibold px-6 py-3 rounded-xl transition-colors text-sm border"
-                  style={{ background: '#0b1628', borderColor: '#1a2d50', color: '#dde4f0' }}>
+                  style={{ background: '#141200', borderColor: '#2a2200', color: '#dde4f0' }}>
                   Join the Waitlist <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -97,14 +97,14 @@ export default function EarlyAccessSection() {
 
                   {/* Spot counter */}
                   <div className="rounded-xl p-4 mb-6 border"
-                    style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#1a2d50' }}>
+                    style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#2a2200' }}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2 text-sm">
                         <Users className="w-4 h-4" style={{ color: '#84cc16' }} />
                         <span className="text-white font-bold">{left} spots remaining</span>
-                        <span style={{ color: '#3a5070' }}>of {total}</span>
+                        <span style={{ color: '#7a6a40' }}>of {total}</span>
                       </div>
-                      <span className="text-xs" style={{ color: '#3a5070' }}>{used} claimed</span>
+                      <span className="text-xs" style={{ color: '#7a6a40' }}>{used} claimed</span>
                     </div>
                     <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: '#1c1800' }}>
                       <div
@@ -123,7 +123,7 @@ export default function EarlyAccessSection() {
                     <a
                       href={`/signup?coupon=${COUPON_ID}`}
                       className="flex items-center justify-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all hover:opacity-90 text-sm"
-                      style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)', boxShadow: '0 6px 24px rgba(202,138,4,0.3)' }}
+                      style={{ background: '#ca8a04', boxShadow: '0 6px 24px rgba(202,138,4,0.3)' }}
                     >
                       <Lock className="w-4 h-4" />
                       Claim Your Spot — {PROMO_CODE}
@@ -131,19 +131,19 @@ export default function EarlyAccessSection() {
                     <a
                       href={`/billing?coupon=${COUPON_ID}`}
                       className="flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-xl transition-colors text-sm border hover:text-white"
-                      style={{ background: 'rgba(10,9,0,0.8)', borderColor: '#1a2d50', color: '#b8a870' }}
+                      style={{ background: 'rgba(10,9,0,0.8)', borderColor: '#2a2200', color: '#b8a870' }}
                     >
                       Already have an account
                     </a>
                   </div>
 
-                  <p className="text-xs mt-3" style={{ color: '#3a5070' }}>
+                  <p className="text-xs mt-3" style={{ color: '#7a6a40' }}>
                     New to AdDee? Create your account above — discount applied automatically at checkout.
                   </p>
 
-                  <div className="mt-4 rounded-xl p-3 border" style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#1a2d50' }}>
-                    <p className="text-xs leading-relaxed" style={{ color: '#3a5070' }}>
-                      <strong style={{ color: '#4a6080' }}>Early access terms:</strong> The 50% discount is locked in for 12 months for the first {total} members only.
+                  <div className="mt-4 rounded-xl p-3 border" style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#2a2200' }}>
+                    <p className="text-xs leading-relaxed" style={{ color: '#7a6a40' }}>
+                      <strong style={{ color: '#7a6a40' }}>Early access terms:</strong> The 50% discount is locked in for 12 months for the first {total} members only.
                       If you cancel at any time, you permanently lose the early access rate —
                       reactivating will be charged at full price.
                     </p>
@@ -152,30 +152,30 @@ export default function EarlyAccessSection() {
 
                 {/* Right: Early access pricing table */}
                 <div className="lg:w-72 w-full shrink-0">
-                  <div className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: '#4a6080' }}>Early Access Pricing</div>
+                  <div className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: '#7a6a40' }}>Early Access Pricing</div>
                   <div className="space-y-2">
                     {EARLY_PRICES.map(p => {
                       const discounted = Math.round(p.original * (1 - discount / 100) * 100) / 100
                       return (
                         <div key={p.name} className="flex flex-col rounded-xl px-4 py-3 border"
-                          style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#1a2d50' }}>
+                          style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#2a2200' }}>
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <div className="text-white text-sm font-semibold">{p.name}</div>
-                              <div className="text-xs" style={{ color: '#3a5070' }}>{p.brands} brands · {p.ads} ADs/mo</div>
+                              <div className="text-xs" style={{ color: '#7a6a40' }}>{p.brands} brands · {p.ads} ADs/mo</div>
                             </div>
                             <div className="text-right">
                               <div className="font-black text-sm" style={{ color: '#34d399' }}>${discounted}/mo</div>
-                              <div className="text-xs line-through" style={{ color: '#3a5070' }}>${p.original}/mo</div>
+                              <div className="text-xs line-through" style={{ color: '#7a6a40' }}>${p.original}/mo</div>
                             </div>
                           </div>
-                          <div className="text-xs leading-relaxed" style={{ color: '#4a6080' }}>{p.description}</div>
+                          <div className="text-xs leading-relaxed" style={{ color: '#7a6a40' }}>{p.description}</div>
                         </div>
                       )
                     })}
                   </div>
-                  <p className="text-xs mt-3 text-center" style={{ color: '#3a5070' }}>50% off for 12 months · First {total} members only</p>
-                  <p className="text-xs mt-1 text-center" style={{ color: '#1a2d50' }}>Cancellation forfeits early access pricing permanently</p>
+                  <p className="text-xs mt-3 text-center" style={{ color: '#7a6a40' }}>50% off for 12 months · First {total} members only</p>
+                  <p className="text-xs mt-1 text-center" style={{ color: '#2a2200' }}>Cancellation forfeits early access pricing permanently</p>
                 </div>
               </div>
             )}

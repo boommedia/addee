@@ -209,7 +209,7 @@ function SignupForm() {
                   value={digit}
                   onChange={e => handleOtpChange(i, e.target.value)}
                   onKeyDown={e => handleOtpKeyDown(i, e)}
-                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#0a0900', border: '1px solid #1a2d50' }}
+                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-yellow-600 transition-colors" style={{ background: '#0a0900', border: '1px solid #2a2200' }}
                 />
               ))}
             </div>
@@ -225,7 +225,7 @@ function SignupForm() {
             type="submit"
             disabled={otpLoading || otp.join('').length < 8}
             className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}
+            style={{ background: '#ca8a04' }}
           >
             {otpLoading ? 'Verifying…' : 'Verify & continue'}
           </button>
@@ -244,8 +244,8 @@ function SignupForm() {
     )
   }
 
-  const inputClass = 'w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors'
-  const inputStyle = { background: '#0a0900', border: '1px solid #1a2d50' }
+  const inputClass = 'w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-yellow-600 transition-colors'
+  const inputStyle = { background: '#0a0900', border: '1px solid #2a2200' }
   const labelClass = 'block text-xs font-semibold uppercase tracking-wider mb-1.5'
 
   return (
@@ -270,7 +270,7 @@ function SignupForm() {
           <div className="w-full border-t" style={{ borderColor: '#1c1800' }}></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-2 text-[#555570]" style={{ background: '#0b1628' }}>or continue with email</span>
+          <span className="px-2 text-[#555570]" style={{ background: '#141200' }}>or continue with email</span>
         </div>
       </div>
 
@@ -378,7 +378,7 @@ function SignupForm() {
           </div>
           <div>
             <p className="text-emerald-300 text-xs font-semibold">Discount code applied: <span className="font-mono">{coupon}</span></p>
-            <p className="text-xs mt-0.5" style={{ color: '#3a5070' }}>Your discount will be applied when you upgrade to a paid plan.</p>
+            <p className="text-xs mt-0.5" style={{ color: '#7a6a40' }}>Your discount will be applied when you upgrade to a paid plan.</p>
           </div>
         </div>
       )}
@@ -391,7 +391,7 @@ function SignupForm() {
           </div>
           <div>
             <p className="text-blue-300 text-xs font-semibold">Free plan includes 10 ADs</p>
-            <p className="text-xs mt-0.5" style={{ color: '#3a5070' }}>No credit card required. Upgrade anytime for unlimited access.</p>
+            <p className="text-xs mt-0.5" style={{ color: '#7a6a40' }}>No credit card required. Upgrade anytime for unlimited access.</p>
           </div>
         </div>
       )}
@@ -404,7 +404,7 @@ function SignupForm() {
         type="submit"
         disabled={loading}
         className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
-        style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}
+        style={{ background: '#ca8a04' }}
       >
         {loading ? 'Creating account…' : 'Create free account'}
       </button>
@@ -430,7 +430,7 @@ export default function SignupPage() {
           <p className="text-sm" style={{ color: '#b8a870' }}>Start generating AI ad creatives for your brands</p>
         </div>
 
-        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#1c1800' }}>
+        <div className="rounded-2xl p-8 border" style={{ background: '#141200', borderColor: '#1c1800' }}>
           <h1 className="text-white font-bold text-lg mb-6">Create your free account</h1>
           <Suspense>
             <SignupForm />

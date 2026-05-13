@@ -136,7 +136,7 @@ export default async function HomePage({
             <div className="text-sm" style={{ color: '#b8a870' }}>Words generated</div>
           </div>
           <div className="rounded-lg p-4 border" style={{ background: 'rgba(132,204,22,0.1)', borderColor: 'rgba(132,204,22,0.3)' }}>
-            <div className="text-3xl font-bold" style={{ color: lastPost?.[0]?.title ? '#84cc16' : '#4a6080' }}>
+            <div className="text-3xl font-bold" style={{ color: lastPost?.[0]?.title ? '#84cc16' : '#7a6a40' }}>
               {lastPost?.[0]?.title ? '✓' : '—'}
             </div>
             <div className="text-sm" style={{ color: '#b8a870' }}>Last AD created</div>
@@ -160,7 +160,7 @@ export default async function HomePage({
                         <p style={{ color: '#b8a870' }} className="text-sm mt-1">{service.desc}</p>
                       </div>
                     </div>
-                    <ChevronRight className="flex-shrink-0 transition mt-1" style={{ color: '#4a6080' }} size={24} />
+                    <ChevronRight className="flex-shrink-0 transition mt-1" style={{ color: '#7a6a40' }} size={24} />
                   </div>
                 </div>
               </Link>

@@ -26,7 +26,7 @@ const FEATURES = [
   },
   {
     icon: <Lock className="w-5 h-5" />,
-    color: 'text-blue-300',
+    color: 'text-yellow-400',
     bg: 'bg-blue-500/15 border-blue-400/25',
     title: 'Brand Voice Training',
     desc: 'Upload brand guidelines, past ads, and tone examples. Every generated ad sounds like you — not a robot.',
@@ -54,7 +54,7 @@ const FEATURES = [
   },
   {
     icon: <Share2 className="w-5 h-5" />,
-    color: 'text-blue-300',
+    color: 'text-yellow-400',
     bg: 'bg-blue-500/15 border-blue-500/25',
     title: 'Client Approval Workflow',
     desc: 'Send any ad for client sign-off with one click. They approve or revise — no login required.',
@@ -107,7 +107,7 @@ const FAQS = [
 ]
 
 // Dark navy blue palette (like Bloggy's dark indigo, but in navy/blue tones with orange/red accents)
-// bg-base: #0a0900   card: #0b1628   border: #1c1800   muted: #2a3a5a
+// bg-base: #0a0900   card: #141200   border: #1c1800   muted: #2a3a5a
 // accent-primary: #ca8a04 (red)  accent-2: #84cc16 (orange)  accent-3: #f97316 (orange-600)
 
 export default function HomePage() {
@@ -118,7 +118,7 @@ export default function HomePage() {
       <div className="sticky top-0 z-50">
         {/* Early access bar */}
         <div style={{ background: 'rgba(132,204,22,0.12)', borderBottom: '1px solid rgba(132,204,22,0.25)' }}
-          className="py-2.5 text-center text-xs font-bold text-blue-300 tracking-wide">
+          className="py-2.5 text-center text-xs font-bold text-yellow-400 tracking-wide">
           <span className="inline-block w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse mr-2 align-middle" />
           AdDee Early Access — Founding pricing locked in forever · Get started free
         </div>
@@ -130,18 +130,18 @@ export default function HomePage() {
                 style={{ background: 'linear-gradient(135deg, #ca8a04, #84cc16)' }}>A</div>
               <span className="font-black text-white">AdDee</span>
               <span style={{ color: '#1c1800' }} className="mx-1 hidden sm:inline">·</span>
-              <span style={{ color: '#4a6080' }} className="text-xs hidden sm:inline">by Boom Media</span>
+              <span style={{ color: '#7a6a40' }} className="text-xs hidden sm:inline">by Boom Media</span>
             </div>
             <div className="flex items-center gap-2 sm:gap-3">
               {['#features:Features', '#roi:ROI', '#pricing:Pricing', '#faq:FAQ'].map(s => {
                 const [href, label] = s.split(':')
-                return <a key={href} href={href} style={{ color: '#4a6080' }}
+                return <a key={href} href={href} style={{ color: '#7a6a40' }}
                   className="hover:text-white text-sm transition-colors hidden sm:block">{label}</a>
               })}
-              <Link href="/login" style={{ color: '#4a6080' }} className="hover:text-white text-xs sm:text-sm transition-colors">Sign In</Link>
+              <Link href="/login" style={{ color: '#7a6a40' }} className="hover:text-white text-xs sm:text-sm transition-colors">Sign In</Link>
               <Link href="/login"
                 className="text-white text-xs sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-all hover:opacity-90"
-                style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}>
+                style={{ background: '#ca8a04' }}>
                 Start Free
               </Link>
             </div>
@@ -154,18 +154,18 @@ export default function HomePage() {
         {/* Big radial orange/red glow — same position as Bloggy's violet blob */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[650px] rounded-full blur-3xl"
-            style={{ background: 'radial-gradient(ellipse, rgba(239,68,68,0.18) 0%, rgba(132,204,22,0.08) 50%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(ellipse, rgba(202,138,4,0.18) 0%, rgba(132,204,22,0.08) 50%, transparent 70%)' }} />
           <div className="absolute top-32 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl"
             style={{ background: 'rgba(132,204,22,0.06)' }} />
           <div className="absolute top-10 right-1/4 w-[350px] h-[350px] rounded-full blur-3xl"
-            style={{ background: 'rgba(239,68,68,0.05)' }} />
+            style={{ background: 'rgba(202,138,4,0.05)' }} />
         </div>
 
         <div className="relative max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 text-blue-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 border"
-            style={{ background: 'rgba(132,204,22,0.12)', borderColor: 'rgba(132,204,22,0.3)' }}>
-            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-2 text-yellow-400 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 border"
+            style={{ background: 'rgba(202,138,4,0.12)', borderColor: 'rgba(202,138,4,0.3)' }}>
+            <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
             Early Access — Founding pricing locked in forever
           </div>
 
@@ -185,7 +185,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link href="/login"
               className="w-full sm:w-auto flex items-center justify-center gap-2 text-white font-bold px-6 py-3.5 sm:px-9 sm:py-4 rounded-xl transition-all hover:opacity-90 text-sm shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)', boxShadow: '0 8px 32px rgba(239,68,68,0.35)' }}>
+              style={{ background: '#ca8a04', boxShadow: '0 8px 32px rgba(202,138,4,0.35)' }}>
               Start Free — No Card Required
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -203,9 +203,9 @@ export default function HomePage() {
               ['One-Click Publish', 'Shipped with'],
             ].map(([val, label]) => (
               <div key={val} className="rounded-xl px-3 py-3 text-center border"
-                style={{ background: '#0b1628', borderColor: '#1a2d50' }}>
+                style={{ background: '#141200', borderColor: '#2a2200' }}>
                 <div className="text-white font-bold text-xs leading-tight">{val}</div>
-                <div className="text-xs mt-1" style={{ color: '#3a5070' }}>{label}</div>
+                <div className="text-xs mt-1" style={{ color: '#7a6a40' }}>{label}</div>
               </div>
             ))}
           </div>
@@ -213,14 +213,14 @@ export default function HomePage() {
       </section>
 
       {/* ── CASE STUDY ── */}
-      <section className="border-y px-6 py-14" style={{ borderColor: '#1c1800', background: '#080f1e' }}>
+      <section className="border-y px-6 py-14" style={{ borderColor: '#1c1800', background: '#0a0900' }}>
         <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-bold uppercase tracking-widest mb-10" style={{ color: '#3a5070' }}>Real Agency. Real Results.</p>
-          <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: 'rgba(239,68,68,0.25)' }}>
+          <p className="text-center text-xs font-bold uppercase tracking-widest mb-10" style={{ color: '#7a6a40' }}>Real Agency. Real Results.</p>
+          <div className="rounded-2xl p-8 border" style={{ background: '#141200', borderColor: 'rgba(202,138,4,0.25)' }}>
             <div className="flex flex-col lg:flex-row gap-10 items-start">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 text-blue-300 text-xs font-bold px-3 py-1.5 rounded-full mb-4 border"
-                  style={{ background: 'rgba(239,68,68,0.12)', borderColor: 'rgba(239,68,68,0.25)' }}>
+                <div className="inline-flex items-center gap-2 text-yellow-400 text-xs font-bold px-3 py-1.5 rounded-full mb-4 border"
+                  style={{ background: 'rgba(202,138,4,0.12)', borderColor: 'rgba(202,138,4,0.25)' }}>
                   Case Study
                 </div>
                 <h3 className="text-white text-xl sm:text-2xl font-black mb-3">Boom Media</h3>
@@ -241,7 +241,7 @@ export default function HomePage() {
                 ].map(({ label, value, color }) => (
                   <div key={label} className="rounded-xl p-4 text-center border" style={{ background: '#0a0900', borderColor: '#1c1800' }}>
                     <p className="text-xl sm:text-2xl font-black" style={{ color }}>{value}</p>
-                    <p className="text-xs mt-1" style={{ color: '#3a5070' }}>{label}</p>
+                    <p className="text-xs mt-1" style={{ color: '#7a6a40' }}>{label}</p>
                   </div>
                 ))}
               </div>
@@ -253,7 +253,7 @@ export default function HomePage() {
       {/* ── PAIN → SOLUTION ── */}
       <section className="border-b px-6 py-14" style={{ borderColor: '#1c1800', background: '#0a0900' }}>
         <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs font-bold uppercase tracking-widest mb-10" style={{ color: '#3a5070' }}>Sound familiar?</p>
+          <p className="text-center text-xs font-bold uppercase tracking-widest mb-10" style={{ color: '#7a6a40' }}>Sound familiar?</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {[
               { before: 'Paying $300–$800 per ad creative to freelance designers', after: 'Generate publish-ready ads for pennies with AI' },
@@ -261,7 +261,7 @@ export default function HomePage() {
               { before: '3–5 hours on ad copy, design, and publishing per campaign', after: '15 minutes from idea to live across all platforms' },
             ].map(({ before, after }) => (
               <div key={before} className="flex flex-col gap-3">
-                <div className="flex items-start gap-2.5 text-xs" style={{ color: '#4a6080' }}>
+                <div className="flex items-start gap-2.5 text-xs" style={{ color: '#7a6a40' }}>
                   <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5"
                     style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}>✕</span>
                   {before}
@@ -287,8 +287,8 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {FEATURES.map(({ icon, color, bg, title, desc }) => (
             <div key={title}
-              className="rounded-2xl p-6 border transition-all hover:scale-[1.02] border-[#1a2d50] hover:border-blue-500/40"
-              style={{ background: '#0b1628' }}>
+              className="rounded-2xl p-6 border transition-all hover:scale-[1.02] border-[#2a2200] hover:border-yellow-600/40"
+              style={{ background: '#141200' }}>
               <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${bg} ${color}`}>
                 {icon}
               </div>
@@ -320,26 +320,26 @@ export default function HomePage() {
               const profit = revenue - price
               const margin = Math.round((profit / revenue) * 100)
               return (
-                <div key={plan} className="rounded-2xl p-6 flex flex-col gap-4 border" style={{ background: '#0b1628', borderColor: '#1a2d50' }}>
+                <div key={plan} className="rounded-2xl p-6 flex flex-col gap-4 border" style={{ background: '#141200', borderColor: '#2a2200' }}>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: '#b8a870' }}>{plan}</p>
                     <p className="text-white font-black text-xl">${price}<span className="text-sm font-normal" style={{ color: '#b8a870' }}>/mo</span></p>
                   </div>
                   <div className="space-y-2 text-xs border-t pt-4" style={{ borderColor: '#1c1800' }}>
                     <div className="flex justify-between">
-                      <span style={{ color: '#3a5070' }}>Brand profiles</span>
+                      <span style={{ color: '#7a6a40' }}>Brand profiles</span>
                       <span className="text-white font-semibold">{brands}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span style={{ color: '#3a5070' }}>Ads/mo</span>
+                      <span style={{ color: '#7a6a40' }}>Ads/mo</span>
                       <span className="text-white font-semibold">{ads}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span style={{ color: '#3a5070' }}>You bill clients*</span>
+                      <span style={{ color: '#7a6a40' }}>You bill clients*</span>
                       <span className="font-semibold" style={{ color: '#84cc16' }}>${revenue.toLocaleString()}/mo</span>
                     </div>
                     <div className="flex justify-between">
-                      <span style={{ color: '#3a5070' }}>Your tool cost</span>
+                      <span style={{ color: '#7a6a40' }}>Your tool cost</span>
                       <span className="font-semibold" style={{ color: '#b8a870' }}>−${price}/mo</span>
                     </div>
                     <div className="flex justify-between pt-2 mt-2 border-t" style={{ borderColor: '#1c1800' }}>
@@ -349,13 +349,13 @@ export default function HomePage() {
                   </div>
                   <div className="rounded-lg px-3 py-2 text-center" style={{ background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)' }}>
                     <p className="text-xs font-black" style={{ color: '#34d399' }}>{margin}% margin</p>
-                    <p className="text-xs" style={{ color: '#3a5070' }}>${(price / brands).toFixed(2)}/brand/mo</p>
+                    <p className="text-xs" style={{ color: '#7a6a40' }}>${(price / brands).toFixed(2)}/brand/mo</p>
                   </div>
                 </div>
               )
             })}
           </div>
-          <p className="text-center text-xs mt-6" style={{ color: '#3a5070' }}>* Based on billing $300/brand/mo — many agencies charge $500–$1,500. Your margin only improves.</p>
+          <p className="text-center text-xs mt-6" style={{ color: '#7a6a40' }}>* Based on billing $300/brand/mo — many agencies charge $500–$1,500. Your margin only improves.</p>
         </div>
       </section>
 
@@ -371,18 +371,18 @@ export default function HomePage() {
             { step: '02', title: 'Generate ad creatives', desc: 'Enter a campaign brief or product. AdDee writes 3 variations per platform in your brand voice — with headlines, copy, and CTAs.', detail: 'AI writing · 3 variations · Every format' },
             { step: '03', title: 'Edit, approve, publish', desc: 'Review and refine in the built-in editor. Send for client approval. Then one-click publish to every platform at once.', detail: 'Approval workflows · Bulk publish · All platforms' },
           ].map(({ step, title, desc, detail }) => (
-            <div key={step} className="relative rounded-2xl p-7 border transition-colors" style={{ background: '#0b1628', borderColor: '#1a2d50' }}>
+            <div key={step} className="relative rounded-2xl p-7 border transition-colors" style={{ background: '#141200', borderColor: '#2a2200' }}>
               <div className="text-4xl sm:text-6xl font-black mb-4 leading-none" style={{ color: '#1c1800' }}>{step}</div>
               <h3 className="text-white font-bold text-base mb-2">{title}</h3>
               <p className="text-sm leading-relaxed mb-4" style={{ color: '#b8a870' }}>{desc}</p>
-              <p className="text-xs" style={{ color: '#3a5070' }}>{detail}</p>
+              <p className="text-xs" style={{ color: '#7a6a40' }}>{detail}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── PRICING ── */}
-      <section id="pricing" className="border-t px-6 py-20" style={{ borderColor: '#1c1800', background: '#080f1e' }}>
+      <section id="pricing" className="border-t px-6 py-20" style={{ borderColor: '#1c1800', background: '#0a0900' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#84cc16' }}>Pricing</div>
@@ -394,36 +394,36 @@ export default function HomePage() {
               <div key={plan.name}
                 className="rounded-2xl p-7 flex flex-col gap-5 border"
                 style={plan.featured
-                  ? { background: 'linear-gradient(145deg, #7f1d1d, #991b1b)', borderColor: '#ca8a04', boxShadow: '0 0 50px rgba(239,68,68,0.3)' }
-                  : { background: '#0b1628', borderColor: '#1a2d50' }
+                  ? { background: 'linear-gradient(145deg, #1a1200, #2a1e00)', borderColor: '#ca8a04', boxShadow: '0 0 50px rgba(202,138,4,0.3)' }
+                  : { background: '#141200', borderColor: '#2a2200' }
                 }>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: plan.featured ? 'rgba(254,202,202,0.8)' : '#b8a870' }}>{plan.name}</p>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: plan.featured ? 'rgba(254,240,150,0.9)' : '#b8a870' }}>{plan.name}</p>
                   <p className="font-black text-3xl text-white">${plan.price}
-                    <span className="text-base font-normal" style={{ color: plan.featured ? 'rgba(254,202,202,0.7)' : '#b8a870' }}>/mo</span>
+                    <span className="text-base font-normal" style={{ color: plan.featured ? 'rgba(254,240,150,0.7)' : '#b8a870' }}>/mo</span>
                   </p>
-                  <p className="text-xs mt-1" style={{ color: plan.featured ? 'rgba(254,202,202,0.7)' : '#3a5070' }}>{plan.brands} brands · {plan.ads} ads/mo</p>
+                  <p className="text-xs mt-1" style={{ color: plan.featured ? 'rgba(254,240,150,0.7)' : '#7a6a40' }}>{plan.brands} brands · {plan.ads} ads/mo</p>
                 </div>
                 <Link href="/login"
                   className="w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all"
                   style={plan.featured
-                    ? { background: 'white', color: '#0055FF' }
-                    : { border: '1px solid rgba(239,68,68,0.5)', color: '#84cc16', background: 'rgba(239,68,68,0.06)' }
+                    ? { background: 'white', color: '#ca8a04' }
+                    : { border: '1px solid rgba(202,138,4,0.5)', color: '#84cc16', background: 'rgba(202,138,4,0.06)' }
                   }>
                   Get Started
                 </Link>
                 <div className="space-y-2.5">
                   {plan.features.map((f) => (
                     <div key={f} className="flex gap-2 items-start">
-                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: plan.featured ? '#fca5a5' : '#84cc16' }} />
-                      <span className="text-xs" style={{ color: plan.featured ? 'rgba(254,202,202,0.9)' : '#b8a870' }}>{f}</span>
+                      <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: plan.featured ? '#fbbf24' : '#84cc16' }} />
+                      <span className="text-xs" style={{ color: plan.featured ? 'rgba(254,240,150,0.9)' : '#b8a870' }}>{f}</span>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-center text-xs mt-8" style={{ color: '#3a5070' }}>
+          <p className="text-center text-xs mt-8" style={{ color: '#7a6a40' }}>
             Every account starts with <span className="text-white font-semibold">10 free ads</span> and <span className="text-white font-semibold">2 brand slots</span>. No credit card required.
           </p>
         </div>
@@ -449,29 +449,29 @@ export default function HomePage() {
             { title: 'A/B Testing Automation', desc: 'Auto-generate and test 5 ad variations per platform.', status: 'soon' },
           ].map(({ title, desc, status }) => (
             <div key={title} className="rounded-2xl p-5 border" style={{
-              background: '#0b1628',
-              borderColor: status === 'shipped' ? 'rgba(52,211,153,0.25)' : status === 'progress' ? 'rgba(132,204,22,0.25)' : '#1a2d50',
+              background: '#141200',
+              borderColor: status === 'shipped' ? 'rgba(52,211,153,0.25)' : status === 'progress' ? 'rgba(132,204,22,0.25)' : '#2a2200',
             }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full" style={{
-                  background: status === 'shipped' ? '#34d399' : status === 'progress' ? '#84cc16' : '#3a5070',
+                  background: status === 'shipped' ? '#34d399' : status === 'progress' ? '#84cc16' : '#7a6a40',
                   animation: status === 'progress' ? 'pulse 2s infinite' : 'none',
                 }} />
                 <span className="text-xs font-bold uppercase tracking-wider" style={{
-                  color: status === 'shipped' ? '#34d399' : status === 'progress' ? '#84cc16' : '#3a5070',
+                  color: status === 'shipped' ? '#34d399' : status === 'progress' ? '#84cc16' : '#7a6a40',
                 }}>
                   {status === 'shipped' ? 'Shipped' : status === 'progress' ? 'In Progress' : 'Coming Soon'}
                 </span>
               </div>
               <h3 className="text-white font-bold text-sm mb-1">{title}</h3>
-              <p className="text-xs" style={{ color: '#4a6080' }}>{desc}</p>
+              <p className="text-xs" style={{ color: '#7a6a40' }}>{desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── INTEGRATIONS ── */}
-      <section className="border-t px-6 py-20" style={{ borderColor: '#1c1800', background: '#080f1e' }}>
+      <section className="border-t px-6 py-20" style={{ borderColor: '#1c1800', background: '#0a0900' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#84cc16' }}>Integrations</div>
@@ -480,15 +480,15 @@ export default function HomePage() {
           </div>
           <div className="space-y-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#3a5070' }}>Social & Ad Platforms — Live ✓</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#7a6a40' }}>Social & Ad Platforms — Live ✓</p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { name: 'Instagram', borderColor: 'rgba(236,72,153,0.3)', bg: 'rgba(236,72,153,0.06)', color: '#f9a8d4' },
                   { name: 'LinkedIn', borderColor: 'rgba(59,130,246,0.3)', bg: 'rgba(59,130,246,0.06)', color: '#93c5fd' },
-                  { name: 'TikTok', borderColor: '#1a2d50', bg: '#0b1628', color: '#dde4f0' },
+                  { name: 'TikTok', borderColor: '#2a2200', bg: '#141200', color: '#dde4f0' },
                   { name: 'Facebook', borderColor: 'rgba(59,130,246,0.3)', bg: 'rgba(59,130,246,0.06)', color: '#93c5fd' },
-                  { name: 'Twitter/X', borderColor: '#1a2d50', bg: '#0b1628', color: '#dde4f0' },
-                  { name: 'Pinterest', borderColor: 'rgba(239,68,68,0.3)', bg: 'rgba(239,68,68,0.06)', color: '#fca5a5' },
+                  { name: 'Twitter/X', borderColor: '#2a2200', bg: '#141200', color: '#dde4f0' },
+                  { name: 'Pinterest', borderColor: 'rgba(202,138,4,0.3)', bg: 'rgba(202,138,4,0.06)', color: '#fbbf24' },
                   { name: 'Google Ads', borderColor: 'rgba(251,191,36,0.3)', bg: 'rgba(251,191,36,0.06)', color: '#fde68a' },
                   { name: 'Meta Ads', borderColor: 'rgba(59,130,246,0.3)', bg: 'rgba(59,130,246,0.06)', color: '#93c5fd' },
                 ].map((p) => (
@@ -499,11 +499,11 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#3a5070' }}>Coming Soon — Q2 2026</p>
+              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#7a6a40' }}>Coming Soon — Q2 2026</p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {['Bluesky', 'Threads', 'Mastodon', 'Mailchimp'].map((name) => (
-                  <div key={name} className="rounded-xl p-3 text-center border opacity-40" style={{ background: '#0b1628', borderColor: '#1c1800' }}>
-                    <p className="font-semibold text-sm" style={{ color: '#3a5070' }}>{name}</p>
+                  <div key={name} className="rounded-xl p-3 text-center border opacity-40" style={{ background: '#141200', borderColor: '#1c1800' }}>
+                    <p className="font-semibold text-sm" style={{ color: '#7a6a40' }}>{name}</p>
                   </div>
                 ))}
               </div>
@@ -536,23 +536,23 @@ export default function HomePage() {
         {/* Bottom glow */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-3xl"
-            style={{ background: 'radial-gradient(ellipse, rgba(239,68,68,0.16) 0%, rgba(132,204,22,0.06) 50%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(ellipse, rgba(202,138,4,0.16) 0%, rgba(132,204,22,0.06) 50%, transparent 70%)' }} />
         </div>
         <div className="relative max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">Ready to dominate ads?</h2>
           <p className="mb-8 text-sm" style={{ color: '#b8a870' }}>Start free. 10 ads included. Set up your first brand in 30 seconds.</p>
           <Link href="/login"
             className="inline-flex items-center gap-2 text-white font-bold px-8 py-4 rounded-xl transition-all hover:opacity-90 text-base"
-            style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)', boxShadow: '0 8px 40px rgba(239,68,68,0.4)' }}>
+            style={{ background: '#ca8a04', boxShadow: '0 8px 40px rgba(202,138,4,0.4)' }}>
             Get Started Free
             <ArrowRight className="w-5 h-5" />
           </Link>
-          <p className="text-xs mt-4" style={{ color: '#3a5070' }}>No credit card required · Cancel anytime</p>
+          <p className="text-xs mt-4" style={{ color: '#7a6a40' }}>No credit card required · Cancel anytime</p>
         </div>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="px-6 py-12 border-t" style={{ borderColor: '#1c1800', background: '#080f1e' }}>
+      <footer className="px-6 py-12 border-t" style={{ borderColor: '#1c1800', background: '#0a0900' }}>
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-10">
             <div>
@@ -561,24 +561,24 @@ export default function HomePage() {
                   style={{ background: 'linear-gradient(135deg, #ca8a04, #84cc16)' }}>A</div>
                 <span className="font-black text-white">AdDee</span>
               </div>
-              <p className="text-xs" style={{ color: '#3a5070' }}>AI ad creatives for agencies. Built by Boom Media.</p>
+              <p className="text-xs" style={{ color: '#7a6a40' }}>AI ad creatives for agencies. Built by Boom Media.</p>
             </div>
             <div className="flex gap-12 text-sm">
               <div className="space-y-2">
                 <p className="font-bold text-white text-xs uppercase tracking-wider">Product</p>
                 {[['#features', 'Features'], ['#pricing', 'Pricing'], ['#roadmap', 'Roadmap']].map(([href, label]) => (
-                  <a key={href} href={href} className="block text-xs hover:text-white transition" style={{ color: '#3a5070' }}>{label}</a>
+                  <a key={href} href={href} className="block text-xs hover:text-white transition" style={{ color: '#7a6a40' }}>{label}</a>
                 ))}
               </div>
               <div className="space-y-2">
                 <p className="font-bold text-white text-xs uppercase tracking-wider">Company</p>
                 {[['mailto:eric@boommedia.us', 'Contact'], ['/privacy', 'Privacy'], ['/terms', 'Terms']].map(([href, label]) => (
-                  <a key={href} href={href} className="block text-xs hover:text-white transition" style={{ color: '#3a5070' }}>{label}</a>
+                  <a key={href} href={href} className="block text-xs hover:text-white transition" style={{ color: '#7a6a40' }}>{label}</a>
                 ))}
               </div>
             </div>
           </div>
-          <div className="pt-8 text-center text-xs border-t" style={{ borderColor: '#1c1800', color: '#3a5070' }}>
+          <div className="pt-8 text-center text-xs border-t" style={{ borderColor: '#1c1800', color: '#7a6a40' }}>
             © 2026 AdDee by Boom Media. All rights reserved.
           </div>
         </div>
