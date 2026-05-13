@@ -45,7 +45,7 @@ export default function SendApprovalMiniButton({
     <button
       onClick={send}
       disabled={sending}
-      className="flex items-center gap-1 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-500 disabled:opacity-50 px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap"
+      className="flex items-center gap-1 text-xs font-semibold text-white bg-[#ca8a04] hover:bg-[#fbbf24] disabled:opacity-50 px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap"
     >
       {sending ? <Loader2 className="w-3 h-3 animate-spin" /> : <Send className="w-3 h-3" />}
       {sending ? '…' : 'Send Approval'}

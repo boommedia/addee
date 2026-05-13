@@ -273,26 +273,26 @@ export default function IntegrationsPanel({
     <div className="space-y-6">
       {/* Health Summary */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-[#12121a] border border-[#2a2a3d] rounded-lg px-4 py-3">
+        <div className="bg-[#141200] border border-[#2a2200] rounded-lg px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="text-[#555570] text-xs font-medium">Active</span>
+            <span className="text-[#7a6a40] text-xs font-medium">Active</span>
           </div>
           <div className="mt-1 text-2xl font-bold text-white">{activeCount}</div>
         </div>
 
-        <div className="bg-[#12121a] border border-[#2a2a3d] rounded-lg px-4 py-3">
+        <div className="bg-[#141200] border border-[#2a2200] rounded-lg px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-orange-400" />
-            <span className="text-[#555570] text-xs font-medium">Expiring</span>
+            <span className="text-[#7a6a40] text-xs font-medium">Expiring</span>
           </div>
           <div className="mt-1 text-2xl font-bold text-white">{expiringCount}</div>
         </div>
 
-        <div className="bg-[#12121a] border border-[#2a2a3d] rounded-lg px-4 py-3">
+        <div className="bg-[#141200] border border-[#2a2200] rounded-lg px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-red-400" />
-            <span className="text-[#555570] text-xs font-medium">Expired</span>
+            <span className="text-[#7a6a40] text-xs font-medium">Expired</span>
           </div>
           <div className="mt-1 text-2xl font-bold text-white">{expiredCount}</div>
         </div>
@@ -310,7 +310,7 @@ export default function IntegrationsPanel({
         {PLATFORMS.map(platform => {
           const connection = getConnectionStatus(platform.id)
           const isConnected = !!connection
-          let statusColor = 'text-[#555570] bg-[#1a1a26] border-[#2a2a3d]'
+          let statusColor = 'text-[#7a6a40] bg-[#1c1800] border-[#2a2200]'
           let statusText = 'Not connected'
 
           if (isConnected && !isBlogPlatform(platform.id)) {
@@ -333,7 +333,7 @@ export default function IntegrationsPanel({
           return (
             <div
               key={platform.id}
-              className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-4 flex flex-col"
+              className="bg-[#141200] border border-[#2a2200] rounded-2xl p-4 flex flex-col"
             >
               {/* Header */}
               <div className="flex items-start gap-3 mb-4">
@@ -345,7 +345,7 @@ export default function IntegrationsPanel({
                 <div className="flex-1 min-w-0">
                   <h3 className="text-white text-sm font-semibold">{platform.label}</h3>
                   {isConnected && !isBlogPlatform(platform.id) && (
-                    <p className="text-[#555570] text-xs mt-0.5 truncate">
+                    <p className="text-[#7a6a40] text-xs mt-0.5 truncate">
                       {(connection as any).platform_account_name || 'Connected'}
                     </p>
                   )}
@@ -356,7 +356,7 @@ export default function IntegrationsPanel({
               {!isBlogPlatform(platform.id) && (
                 <div className={`mb-4 px-2.5 py-1.5 rounded-lg border text-xs font-medium text-center ${
                   platform.status === 'coming_soon'
-                    ? 'text-[#555570] bg-[#1a1a26] border-[#2a2a3d]'
+                    ? 'text-[#7a6a40] bg-[#1c1800] border-[#2a2200]'
                     : statusColor
                 }`}>
                   {platform.status === 'coming_soon'
@@ -372,14 +372,14 @@ export default function IntegrationsPanel({
                 {platform.status === 'coming_soon' ? (
                   <button
                     disabled
-                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#555570] bg-[#1a1a26] border border-[#2a2a3d] px-3 py-2 rounded-lg"
+                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#7a6a40] bg-[#1c1800] border border-[#2a2200] px-3 py-2 rounded-lg"
                   >
                     Coming Soon
                   </button>
                 ) : isWordPress(platform.id) ? (
                   <a
                     href={`/clients/${clientId}?tab=settings`}
-                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-violet-400 bg-violet-500/10 hover:bg-violet-500/20 border border-violet-500/20 px-3 py-2 rounded-lg transition-colors"
+                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#ca8a04] bg-[rgba(202,138,4,0.1)] hover:bg-[rgba(202,138,4,0.2)] border border-[rgba(202,138,4,0.2)] px-3 py-2 rounded-lg transition-colors"
                   >
                     <Link2 className="w-3 h-3" />
                     Configure
@@ -387,7 +387,7 @@ export default function IntegrationsPanel({
                 ) : isBlogPlatform(platform.id) ? (
                   <a
                     href="/settings?tab=integrations"
-                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-violet-400 bg-violet-500/10 hover:bg-violet-500/20 border border-violet-500/20 px-3 py-2 rounded-lg transition-colors"
+                    className="flex-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#ca8a04] bg-[rgba(202,138,4,0.1)] hover:bg-[rgba(202,138,4,0.2)] border border-[rgba(202,138,4,0.2)] px-3 py-2 rounded-lg transition-colors"
                   >
                     <Link2 className="w-3 h-3" />
                     Set up
@@ -426,18 +426,18 @@ export default function IntegrationsPanel({
       </div>
 
       {/* Webhooks & Zapier */}
-      <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-[#2a2a3d] flex items-center gap-2">
+      <div className="bg-[#141200] border border-[#2a2200] rounded-2xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-[#2a2200] flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-400" />
           <h2 className="text-white font-semibold text-sm">Webhooks & Zapier</h2>
         </div>
         <div className="px-5 py-4 space-y-3">
-          <p className="text-[#8888a8] text-sm">
-            Send HTTP POST events to any URL when posts are created or published. Works with <strong className="text-[#c8c8d8]">Zapier</strong>, Make, n8n, Slack, or any custom endpoint.
+          <p className="text-[#b8a870] text-sm">
+            Send HTTP POST events to any URL when posts are created or published. Works with <strong className="text-[#dde4f0]">Zapier</strong>, Make, n8n, Slack, or any custom endpoint.
           </p>
           <a
             href={`/clients/${clientId}#webhooks`}
-            className="inline-flex items-center gap-2 bg-[#1a1a26] hover:bg-[#2a2a3d] border border-[#2a2a3d] text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
+            className="inline-flex items-center gap-2 bg-[#1c1800] hover:bg-[#2a2200] border border-[#2a2200] text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
           >
             <Zap className="w-4 h-4" />
             Configure Webhooks

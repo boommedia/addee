@@ -34,37 +34,37 @@ export default function DirectInviteForm() {
   }
 
   return (
-    <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-5">
+    <div className="bg-[#141200] border border-[#2a2200] rounded-2xl p-5">
       <div className="flex items-center gap-2 mb-4">
-        <UserPlus className="w-4 h-4 text-violet-400" />
+        <UserPlus className="w-4 h-4 text-[#ca8a04]" />
         <h2 className="text-white font-bold text-sm">Send Platform Invite</h2>
       </div>
       <form onSubmit={handleSend} className="flex items-end gap-3 flex-wrap">
         <div className="flex-1 min-w-[200px]">
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wide mb-1.5">Email *</label>
+          <label className="block text-[#b8a870] text-xs font-semibold uppercase tracking-wide mb-1.5">Email *</label>
           <input
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
             placeholder="user@example.com"
-            className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
+            className="w-full bg-[#0a0900] border border-[#2a2200] rounded-lg px-3 py-2 text-sm text-white placeholder-[#7a6a40] focus:outline-none focus:border-[#ca8a04] transition-colors"
           />
         </div>
         <div className="flex-1 min-w-[160px]">
-          <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wide mb-1.5">Agency Name</label>
+          <label className="block text-[#b8a870] text-xs font-semibold uppercase tracking-wide mb-1.5">Agency Name</label>
           <input
             type="text"
             value={agencyName}
             onChange={e => setAgencyName(e.target.value)}
             placeholder="Optional"
-            className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
+            className="w-full bg-[#0a0900] border border-[#2a2200] rounded-lg px-3 py-2 text-sm text-white placeholder-[#7a6a40] focus:outline-none focus:border-[#ca8a04] transition-colors"
           />
         </div>
         <button
           type="submit"
           disabled={loading || !email.trim()}
-          className="flex items-center gap-2 text-sm font-semibold text-white bg-violet-600 hover:bg-violet-500 disabled:opacity-50 px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+          className="flex items-center gap-2 text-sm font-semibold text-white bg-[#ca8a04] hover:bg-[#fbbf24] disabled:opacity-50 px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Mail className="w-4 h-4" />}
           Send Invite

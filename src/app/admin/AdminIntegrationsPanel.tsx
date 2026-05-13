@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useCallback } from 'react'
 import { Loader2, ExternalLink, Trash2 } from 'lucide-react'
@@ -249,7 +249,7 @@ export default function AdminIntegrationsPanel({ clients }: Props) {
         <select
           value={selectedClientId}
           onChange={e => setSelectedClientId(e.target.value)}
-          className="bg-[#12121a] border border-[#2a2a3d] text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-violet-500"
+          className="bg-[#141200] border border-[#2a2200] text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#ca8a04]"
         >
           {clients.map(client => (
             <option key={client.id} value={client.id}>
@@ -262,26 +262,26 @@ export default function AdminIntegrationsPanel({ clients }: Props) {
       {/* Health Summary */}
       {!loading && (
         <div className="grid grid-cols-3 gap-3">
-          <div className="bg-[#12121a] border border-[#2a2a3d] rounded-lg px-4 py-3">
+          <div className="bg-[#141200] border border-[#2a2200] rounded-lg px-4 py-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span className="text-[#555570] text-xs font-medium">Active</span>
+              <span className="text-[#7a6a40] text-xs font-medium">Active</span>
             </div>
             <div className="mt-1 text-2xl font-bold text-white">{activeCount}</div>
           </div>
 
-          <div className="bg-[#12121a] border border-[#2a2a3d] rounded-lg px-4 py-3">
+          <div className="bg-[#141200] border border-[#2a2200] rounded-lg px-4 py-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-orange-400" />
-              <span className="text-[#555570] text-xs font-medium">Expiring</span>
+              <span className="text-[#7a6a40] text-xs font-medium">Expiring</span>
             </div>
             <div className="mt-1 text-2xl font-bold text-white">{expiringCount}</div>
           </div>
 
-          <div className="bg-[#12121a] border border-[#2a2a3d] rounded-lg px-4 py-3">
+          <div className="bg-[#141200] border border-[#2a2200] rounded-lg px-4 py-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-red-400" />
-              <span className="text-[#555570] text-xs font-medium">Expired</span>
+              <span className="text-[#7a6a40] text-xs font-medium">Expired</span>
             </div>
             <div className="mt-1 text-2xl font-bold text-white">{expiredCount}</div>
           </div>
@@ -291,14 +291,14 @@ export default function AdminIntegrationsPanel({ clients }: Props) {
       {/* Platform Cards Grid */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="w-6 h-6 text-violet-400 animate-spin" />
+          <Loader2 className="w-6 h-6 text-[#ca8a04] animate-spin" />
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {PLATFORMS.map(platform => {
             const connection = getConnectionStatus(platform.id)
             const isConnected = !!connection
-            let statusColor = 'text-[#555570] bg-[#1a1a26] border-[#2a2a3d]'
+            let statusColor = 'text-[#7a6a40] bg-[#1c1800] border-[#2a2200]'
             let statusText = 'Not connected'
 
             if (isConnected) {
@@ -321,7 +321,7 @@ export default function AdminIntegrationsPanel({ clients }: Props) {
             return (
               <div
                 key={platform.id}
-                className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-4 flex flex-col"
+                className="bg-[#141200] border border-[#2a2200] rounded-2xl p-4 flex flex-col"
               >
                 {/* Header */}
                 <div className="flex items-start gap-3 mb-4">
@@ -333,7 +333,7 @@ export default function AdminIntegrationsPanel({ clients }: Props) {
                   <div className="flex-1 min-w-0">
                     <h3 className="text-white text-sm font-semibold">{platform.label}</h3>
                     {isConnected && (
-                      <p className="text-[#555570] text-xs mt-0.5 truncate">
+                      <p className="text-[#7a6a40] text-xs mt-0.5 truncate">
                         {(connection as any).name || 'Connected'}
                       </p>
                     )}

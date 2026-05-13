@@ -14,7 +14,7 @@ export default function CopyShareLink({ clientId }: { clientId: string }) {
     <button
       onClick={copy}
       title="Copy shareable report link"
-      className="flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#12121a] hover:bg-[#1a1a26] border border-[#2a2a3d] px-3 py-1.5 rounded-lg transition-colors"
+      className="flex items-center gap-1.5 text-xs text-[#b8a870] hover:text-white bg-[#141200] hover:bg-[#1c1800] border border-[#2a2200] px-3 py-1.5 rounded-lg transition-colors"
     >
       {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Link2 className="w-3.5 h-3.5" />}
       {copied ? 'Copied!' : 'Share'}

@@ -21,8 +21,8 @@ type Client = {
   target_keywords: string | null
 }
 
-const input = 'w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors'
-const label = 'block text-[#8888a8] text-xs font-semibold uppercase tracking-wide mb-1.5'
+const input = 'w-full bg-[#0a0900] border border-[#2a2200] rounded-lg px-3 py-2 text-sm text-white placeholder-[#7a6a40] focus:outline-none focus:border-[#ca8a04] transition-colors'
+const label = 'block text-[#b8a870] text-xs font-semibold uppercase tracking-wide mb-1.5'
 
 export default function ClientSettingsForm({ client }: { client: Client }) {
   const router = useRouter()
@@ -50,7 +50,7 @@ export default function ClientSettingsForm({ client }: { client: Client }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Basic Info */}
-      <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+      <div className="bg-[#141200] border border-[#2a2200] rounded-2xl p-6">
         <h2 className="text-white font-bold text-sm mb-5">Basic Info</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -73,7 +73,7 @@ export default function ClientSettingsForm({ client }: { client: Client }) {
       </div>
 
       {/* Brand & Voice */}
-      <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+      <div className="bg-[#141200] border border-[#2a2200] rounded-2xl p-6">
         <h2 className="text-white font-bold text-sm mb-5">Brand & Voice</h2>
         <div className="space-y-4">
           <div>
@@ -98,9 +98,9 @@ export default function ClientSettingsForm({ client }: { client: Client }) {
             <div>
               <label className={label}>Primary Color</label>
               <div className="flex gap-3 items-center">
-                <input type="color" name="primary_color" defaultValue={client.primary_color ?? '#6d28d9'}
-                  className="w-10 h-9 rounded-lg border border-[#2a2a3d] bg-[#0a0900] cursor-pointer p-0.5" />
-                <span className="text-[#555570] text-xs">{client.primary_color ?? '#6d28d9'}</span>
+                <input type="color" name="primary_color" defaultValue={client.primary_color ?? '#ca8a04'}
+                  className="w-10 h-9 rounded-lg border border-[#2a2200] bg-[#0a0900] cursor-pointer p-0.5" />
+                <span className="text-[#7a6a40] text-xs">{client.primary_color ?? '#ca8a04'}</span>
               </div>
             </div>
           </div>
@@ -108,9 +108,9 @@ export default function ClientSettingsForm({ client }: { client: Client }) {
       </div>
 
       {/* WordPress */}
-      <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6">
+      <div className="bg-[#141200] border border-[#2a2200] rounded-2xl p-6">
         <h2 className="text-white font-bold text-sm mb-1">WordPress Connection</h2>
-        <p className="text-[#555570] text-xs mb-5">Used for one-click publishing directly to this client's WordPress site.</p>
+        <p className="text-[#7a6a40] text-xs mb-5">Used for one-click publishing directly to this client's WordPress site.</p>
         <div className="space-y-4">
           <div>
             <label className={label}>WordPress Site URL</label>
@@ -138,7 +138,7 @@ export default function ClientSettingsForm({ client }: { client: Client }) {
           </span>
         )}
         <button type="submit" disabled={isPending}
-          className="flex items-center gap-2 text-sm font-semibold text-white bg-violet-600 hover:bg-violet-500 disabled:opacity-60 px-5 py-2.5 rounded-xl transition-colors">
+          className="flex items-center gap-2 text-sm font-semibold text-white bg-[#ca8a04] hover:bg-[#fbbf24] disabled:opacity-60 px-5 py-2.5 rounded-xl transition-colors">
           {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           {isPending ? 'Saving…' : 'Save Changes'}
         </button>

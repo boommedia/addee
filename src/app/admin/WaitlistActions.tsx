@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -66,7 +66,7 @@ export default function WaitlistActions({
           onClick={handleInvite}
           disabled={inviteLoading}
           title="Send invite email"
-          className="flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 bg-violet-600/10 hover:bg-violet-600/20 border border-violet-500/20 px-2.5 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+          className="flex items-center gap-1 text-xs text-[#ca8a04] hover:text-[#fbbf24] bg-[#ca8a04]/10 hover:bg-[#ca8a04]/20 border border-[#ca8a04]/20 px-2.5 py-1.5 rounded-lg transition-colors disabled:opacity-50"
         >
           {inviteLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Mail className="w-3 h-3" />}
           Invite

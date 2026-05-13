@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { Mail, Loader2, CheckCircle } from 'lucide-react'
@@ -38,7 +38,7 @@ export default function InviteButton({ email, agencyName }: { email: string; age
     <button
       onClick={handleSend}
       disabled={loading}
-      className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 bg-violet-600/10 hover:bg-violet-600/20 border border-violet-500/20 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
+      className="flex items-center gap-1.5 text-xs text-[#ca8a04] hover:text-[#fbbf24] bg-[#ca8a04]/10 hover:bg-[#ca8a04]/20 border border-[#ca8a04]/20 px-3 py-1.5 rounded-lg transition-colors disabled:opacity-50"
     >
       {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Mail className="w-3.5 h-3.5" />}
       {error ?? 'Send Invite'}
