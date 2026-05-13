@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Client Dashboard — AdDee</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0900; color: #dde4f0; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+  a { text-decoration: none; color: inherit; }
+
+  /* AppNav */
+  .nav { border-bottom: 1px solid #2a2200; background: #141200; }
+  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-left { display: flex; align-items: center; gap: 24px; }
+  .logo { background: linear-gradient(135deg, #ca8a04, #fbbf24); color: white; font-weight: 900; font-size: 13px; padding: 6px 10px; border-radius: 8px; letter-spacing: -0.5px; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link { font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 6px; color: #b8a870; cursor: pointer; }
+  .nav-link.active { background: rgba(202,138,4,0.1); color: #ca8a04; }
+  .nav-link:hover { color: #dde4f0; }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+  .btn-sm { font-size: 12px; padding: 6px 12px; border-radius: 8px; cursor: pointer; border: 1px solid; }
+  .btn-ghost { background: transparent; border-color: #2a2200; color: #b8a870; }
+  .btn-gold { background: #ca8a04; border-color: #ca8a04; color: white; font-weight: 600; }
+
+  /* Main */
+  .main { max-width: 1152px; margin: 0 auto; padding: 40px 24px; }
+
+  /* Header row */
+  .header-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+  .back-link { display: flex; align-items: center; gap: 6px; color: #b8a870; font-size: 13px; cursor: pointer; }
+  .back-link:hover { color: #dde4f0; }
+  .header-actions { display: flex; align-items: center; gap: 8px; }
+
+  /* Client identity card */
+  .client-card { background: #141200; border: 1px solid #2a2200; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .client-identity { display: flex; align-items: center; gap: 16px; }
+  .client-avatar { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 24px; color: white; flex-shrink: 0; }
+  .client-name { font-size: 20px; font-weight: 700; color: white; }
+  .client-meta { display: flex; align-items: center; gap: 12px; margin-top: 4px; flex-wrap: wrap; }
+  .client-industry { color: #b8a870; font-size: 13px; }
+  .client-website { display: flex; align-items: center; gap: 4px; color: #7a6a40; font-size: 12px; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid; }
+  .badge-wp-ok { background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.2); color: #34d399; }
+  .badge-wp-no { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); color: #fbbf24; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid #2a2200; margin-bottom: 24px; }
+  .tab { padding: 10px 16px; font-size: 12px; font-weight: 600; color: #b8a870; cursor: pointer; border-bottom: 2px solid transparent; display: flex; align-items: center; gap: 6px; }
+  .tab.active { color: #dde4f0; border-bottom-color: #ca8a04; }
+  .tab:hover { color: #dde4f0; }
+
+  /* Stats grid */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: #141200; border: 1px solid #2a2200; border-radius: 12px; padding: 12px 16px; }
+  .stat-label { color: #b8a870; font-size: 11px; margin-bottom: 4px; }
+  .stat-value { font-size: 28px; font-weight: 900; line-height: 1; }
+  .stat-sub { color: #7a6a40; font-size: 11px; margin-top: 2px; }
+
+  /* Chart card */
+  .chart-card { background: #141200; border: 1px solid #2a2200; border-radius: 16px; padding: 20px; margin-bottom: 24px; }
+  .chart-label { color: #b8a870; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 2px; height: 80px; }
+  .bar { flex: 1; border-radius: 2px 2px 0 0; transition: background 0.15s; cursor: pointer; }
+  .bar:hover { background: #ca8a04 !important; }
+  .chart-dates { display: flex; justify-content: space-between; margin-top: 4px; }
+  .chart-date { color: #7a6a40; font-size: 11px; }
+
+  /* Recent posts section */
+  .section-card { background: #141200; border: 1px solid #2a2200; border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid #2a2200; }
+  .section-title { color: white; font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  .view-all { color: #ca8a04; font-size: 12px; cursor: pointer; }
+  .view-all:hover { color: #fbbf24; }
+
+  .post-row { display: flex; align-items: center; gap: 16px; padding: 12px 20px; border-bottom: 1px solid #2a2200; }
+  .post-row:last-child { border-bottom: none; }
+  .post-info { flex: 1; min-width: 0; }
+  .post-title { color: white; font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+  .post-title:hover { color: #fbbf24; }
+  .post-meta { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+  .post-words { color: #7a6a40; font-size: 11px; }
+  .post-tone { color: #7a6a40; font-size: 11px; text-transform: capitalize; }
+  .post-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .status-live { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid; background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.2); color: #34d399; }
+  .status-draft { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid; background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); color: #fbbf24; }
+  .status-local { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid; background: #1c1800; border-color: #2a2200; color: #7a6a40; }
+  .status-approved { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid; background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.2); color: #34d399; }
+  .status-awaiting { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid; background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); color: #fbbf24; }
+  .btn-edit { font-size: 11px; color: #ca8a04; background: rgba(202,138,4,0.1); border: 1px solid rgba(202,138,4,0.2); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
+  .post-date { color: #7a6a40; font-size: 11px; flex-shrink: 0; }
+
+  /* Client info card */
+  .info-card { background: #141200; border: 1px solid #2a2200; border-radius: 16px; padding: 20px; }
+  .info-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .info-label { color: #b8a870; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  .info-edit { color: #ca8a04; font-size: 12px; cursor: pointer; }
+  .info-field { margin-bottom: 12px; }
+  .info-field-label { color: #7a6a40; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .info-field-value { color: #b8a870; font-size: 13px; margin-top: 2px; line-height: 1.5; }
+
+  /* Generate button in post section */
+  .btn-generate { display: inline-block; font-size: 12px; color: white; background: #ca8a04; padding: 6px 16px; border-radius: 8px; cursor: pointer; margin-top: 12px; font-weight: 600; }
+
+  @media (max-width: 700px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AppNav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <div class="logo">AdDee</div>
+      <div class="nav-links">
+        <div class="nav-link">Dashboard</div>
+        <div class="nav-link active">Brands</div>
+        <div class="nav-link">Posts</div>
+        <div class="nav-link">Campaigns</div>
+        <div class="nav-link">Billing</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="btn-sm btn-ghost">⚙ Settings</div>
+    </div>
+  </div>
+</nav>
+
+<!-- Main -->
+<main class="main">
+
+  <!-- Header row -->
+  <div class="header-row">
+    <div class="back-link">← Back to Brands</div>
+    <div class="header-actions">
+      <div class="btn-sm btn-ghost">📊 Report</div>
+      <div class="btn-sm btn-ghost">🔗 Share Link</div>
+      <div class="btn-sm btn-gold">+ Generate AD</div>
+    </div>
+  </div>
+
+  <!-- Client identity -->
+  <div class="client-card">
+    <div class="client-identity">
+      <div class="client-avatar" style="background: linear-gradient(135deg,#ca8a04,#84cc16);">N</div>
+      <div>
+        <div class="client-name">NovaTech Solutions</div>
+        <div class="client-meta">
+          <span class="client-industry">SaaS / B2B Technology</span>
+          <span class="client-website">🌐 novatech.io</span>
+          <span class="badge badge-wp-ok">📶 WP Connected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active">Overview</div>
+    <div class="tab">ADs (24)</div>
+    <div class="tab">Media Library</div>
+    <div class="tab">🔗 Integrations</div>
+    <div class="tab">Settings</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Total ADs</div>
+      <div class="stat-value" style="color:#ca8a04;">24</div>
+      <div class="stat-sub">7 this month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Published</div>
+      <div class="stat-value" style="color:#34d399;">18</div>
+      <div class="stat-sub">3 drafts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Words Written</div>
+      <div class="stat-value" style="color:#22d3ee;">6.2k</div>
+      <div class="stat-sub">all time</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Last AD</div>
+      <div class="stat-value" style="color:#fbbf24;">May 12</div>
+      <div class="stat-sub">2026</div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-card">
+    <div class="chart-label">ADs generated — last 30 days</div>
+    <div class="bar-chart" id="mainChart"></div>
+    <div class="chart-dates">
+      <span class="chart-date">Apr 12</span>
+      <span class="chart-date">May 12</span>
+    </div>
+  </div>
+
+  <!-- Recent ADs -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">📄 Recent ADs</div>
+      <div class="view-all">View all →</div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-info">
+        <div class="post-title">Summer Campaign — Instagram Carousel (3 variants)</div>
+        <div class="post-meta">
+          <span class="post-words">312 words</span>
+          <span class="post-tone">professional</span>
+        </div>
+      </div>
+      <div class="post-actions">
+        <span class="status-approved">✓ Approved</span>
+        <span class="status-live">● Live</span>
+        <span class="post-date">May 12</span>
+        <div class="btn-edit">Edit →</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-info">
+        <div class="post-title">Product Launch — TikTok Video Script</div>
+        <div class="post-meta">
+          <span class="post-words">284 words</span>
+          <span class="post-tone">energetic</span>
+        </div>
+      </div>
+      <div class="post-actions">
+        <span class="status-awaiting">Awaiting</span>
+        <span class="status-draft">○ Draft</span>
+        <span class="post-date">May 11</span>
+        <div class="btn-edit">Edit →</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-info">
+        <div class="post-title">LinkedIn Thought Leadership — B2B Awareness</div>
+        <div class="post-meta">
+          <span class="post-words">195 words</span>
+          <span class="post-tone">authoritative</span>
+        </div>
+      </div>
+      <div class="post-actions">
+        <span class="status-live">● Live</span>
+        <span class="post-date">May 10</span>
+        <div class="btn-edit">Edit →</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-info">
+        <div class="post-title">Google Ads — Search Headlines A/B Test (10 variants)</div>
+        <div class="post-meta">
+          <span class="post-words">158 words</span>
+          <span class="post-tone">direct</span>
+        </div>
+      </div>
+      <div class="post-actions">
+        <span class="status-local">Local</span>
+        <span class="post-date">May 9</span>
+        <div class="btn-edit">Edit →</div>
+      </div>
+    </div>
+
+    <div class="post-row">
+      <div class="post-info">
+        <div class="post-title">Retargeting Campaign — Facebook Carousel</div>
+        <div class="post-meta">
+          <span class="post-words">267 words</span>
+          <span class="post-tone">conversational</span>
+        </div>
+      </div>
+      <div class="post-actions">
+        <span class="status-approved">✓ Approved</span>
+        <span class="status-live">● Live</span>
+        <span class="post-date">May 8</span>
+        <div class="btn-edit">Edit →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client info snapshot -->
+  <div class="info-card">
+    <div class="info-header">
+      <div class="info-label">Brand Info</div>
+      <div class="info-edit">Edit →</div>
+    </div>
+    <div class="info-field">
+      <div class="info-field-label">Contact</div>
+      <div class="info-field-value">marketing@novatech.io</div>
+    </div>
+    <div class="info-field">
+      <div class="info-field-label">Brand Voice</div>
+      <div class="info-field-value">Professional, forward-thinking, and data-driven. We communicate complex solutions clearly to B2B decision makers. Tone is confident but approachable, avoiding jargon while demonstrating deep technical expertise.</div>
+    </div>
+    <div class="info-field">
+      <div class="info-field-label">Target Keywords</div>
+      <div class="info-field-value">SaaS platform, enterprise software, workflow automation, B2B productivity, cloud solutions</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function generateBars(containerId, maxVal, color) {
+    const el = document.getElementById(containerId)
+    const vals = Array.from({length:30}, () => Math.floor(Math.random() * maxVal))
+    const max = Math.max(...vals, 1)
+    vals.forEach(v => {
+      const bar = document.createElement('div')
+      bar.className = 'bar'
+      bar.style.height = Math.max((v/max)*100, 3) + '%'
+      bar.style.background = color
+      el.appendChild(bar)
+    })
+  }
+  generateBars('mainChart', 5, 'rgba(202,138,4,0.55)')
+</script>
+</body>
+</html>
