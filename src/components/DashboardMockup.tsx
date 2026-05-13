@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -23,7 +23,7 @@ function DashboardView() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 space-y-3">
-          <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4">
+          <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-4">
             <div className="text-[#555570] text-xs mb-2">Topic / Prompt</div>
             <div className="text-[#c8c8d8] text-sm">10 Local SEO Strategies for Small Businesses in 2025</div>
           </div>
@@ -33,7 +33,7 @@ function DashboardView() {
               { label: 'Tone', val: 'Professional', color: 'text-cyan-400' },
               { label: 'Length', val: 'Long (~2000w)', color: 'text-emerald-400' },
             ].map(({ label, val, color }) => (
-              <div key={label} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg p-2.5">
+              <div key={label} className="bg-[#0a0900] border border-[#2a2a3d] rounded-lg p-2.5">
                 <div className="text-[#555570] text-xs">{label}</div>
                 <div className={`${color} text-xs font-semibold mt-0.5`}>{val}</div>
               </div>
@@ -48,7 +48,7 @@ function DashboardView() {
             { title: 'Signs Your Roof Needs Replacement', status: 'Draft', color: 'text-yellow-400 border-yellow-500/20 bg-yellow-500/10' },
             { title: 'Metal Roofing vs Asphalt Shingles', status: 'Live', color: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/10' },
           ].map(({ title, status, color }) => (
-            <div key={title} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg p-2.5 flex items-center justify-between gap-2">
+            <div key={title} className="bg-[#0a0900] border border-[#2a2a3d] rounded-lg p-2.5 flex items-center justify-between gap-2">
               <div className="text-[#c8c8d8] text-xs truncate">{title}</div>
               <span className={`text-xs border px-1.5 py-0.5 rounded-full shrink-0 ${color}`}>{status}</span>
             </div>
@@ -72,7 +72,7 @@ function PostsView() {
           <div className="bg-violet-600 rounded-lg px-3 py-1.5 text-xs text-white font-semibold">+ Generate</div>
         </div>
       </div>
-      <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl overflow-hidden">
+      <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl overflow-hidden">
         <div className="grid grid-cols-[1fr_80px_70px_80px] gap-2 px-4 py-2 border-b border-[#2a2a3d]">
           {['Title', 'Client', 'Words', 'Status'].map(h => (
             <div key={h} className="text-[#555570] text-[10px] font-semibold uppercase tracking-wider">{h}</div>
@@ -116,7 +116,7 @@ function ClientsView() {
         ].map(({ name, industry, posts, limit, wp, color, words }) => {
           const pct = (posts / limit) * 100
           return (
-            <div key={name} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3 hover:border-violet-500/30 transition-colors">
+            <div key={name} className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3 hover:border-violet-500/30 transition-colors">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-black shrink-0" style={{ background: color }}>{name[0]}</div>
                 <div className="min-w-0">
@@ -157,7 +157,7 @@ function AutoblogView() {
         <span className="text-emerald-400 text-xs bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full font-semibold">● Running</span>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3">
+        <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3">
           <div className="flex items-center justify-between mb-3">
             <div className="text-[#c8c8d8] text-xs font-bold">Acme Roofing</div>
             <div className="text-violet-400 text-[10px] bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded-full">4/week</div>
@@ -177,7 +177,7 @@ function AutoblogView() {
             ))}
           </div>
         </div>
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3">
+        <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3">
           <div className="flex items-center justify-between mb-3">
             <div className="text-[#c8c8d8] text-xs font-bold">Bay Dental</div>
             <div className="text-cyan-400 text-[10px] bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded-full">2/week</div>
@@ -198,7 +198,7 @@ function AutoblogView() {
           </div>
         </div>
       </div>
-      <div className="mt-3 bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3 flex items-center justify-between">
+      <div className="mt-3 bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3 flex items-center justify-between">
         <div className="text-[#8888a8] text-xs">Next publish: <span className="text-white font-semibold">Tomorrow at 9:00 AM</span></div>
         <div className="text-cyan-400 text-xs">View calendar →</div>
       </div>
@@ -216,7 +216,7 @@ function KeywordsView() {
         </div>
         <div className="bg-[#1a1a26] border border-[#2a2a3d] rounded-lg px-3 py-1.5 text-xs text-[#8888a8]">Acme Roofing ▾</div>
       </div>
-      <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl overflow-hidden mb-3">
+      <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl overflow-hidden mb-3">
         <div className="grid grid-cols-[1fr_60px_60px_80px] gap-2 px-4 py-2 border-b border-[#2a2a3d]">
           {['Keyword', 'Rank', 'Change', 'Volume'].map(h => (
             <div key={h} className="text-[#555570] text-[10px] font-semibold uppercase tracking-wider">{h}</div>
@@ -245,7 +245,7 @@ function KeywordsView() {
           { label: 'Avg. Position', val: '8.8', color: 'text-cyan-400' },
           { label: 'Keywords Tracked', val: '5', color: 'text-violet-400' },
         ].map(({ label, val, color }) => (
-          <div key={label} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg p-2.5 text-center">
+          <div key={label} className="bg-[#0a0900] border border-[#2a2a3d] rounded-lg p-2.5 text-center">
             <div className={`${color} text-sm font-black`}>{val}</div>
             <div className="text-[#555570] text-[10px] mt-0.5">{label}</div>
           </div>
@@ -264,7 +264,7 @@ function SettingsView() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="space-y-3">
-          <div className="bg-[#0a0a0f] border border-violet-500/20 rounded-xl p-3">
+          <div className="bg-[#0a0900] border border-violet-500/20 rounded-xl p-3">
             <div className="flex items-center justify-between mb-2">
               <div className="text-[#8888a8] text-[10px] font-semibold uppercase tracking-wider">Current Plan</div>
               <span className="text-violet-400 text-[10px] bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded-full font-bold">Agency</span>
@@ -279,7 +279,7 @@ function SettingsView() {
             </div>
             <div className="mt-3 bg-violet-600/20 border border-violet-500/20 rounded-lg py-1.5 text-center text-violet-400 text-[10px] font-semibold">Upgrade to Agency Max →</div>
           </div>
-          <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3">
+          <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3">
             <div className="text-[#8888a8] text-[10px] font-semibold uppercase tracking-wider mb-2">Usage This Month</div>
             <div className="space-y-2">
               {[
@@ -303,7 +303,7 @@ function SettingsView() {
           </div>
         </div>
         <div className="space-y-3">
-          <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3">
+          <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3">
             <div className="text-[#8888a8] text-[10px] font-semibold uppercase tracking-wider mb-3">Profile</div>
             <div className="space-y-2">
               {[
@@ -318,7 +318,7 @@ function SettingsView() {
               ))}
             </div>
           </div>
-          <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-3">
+          <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-3">
             <div className="text-[#8888a8] text-[10px] font-semibold uppercase tracking-wider mb-2">Billing</div>
             <div className="flex items-center justify-between">
               <div>

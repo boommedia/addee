@@ -1,4 +1,4 @@
-import { cookies } from 'next/headers'
+﻿import { cookies } from 'next/headers'
 import { createHmac } from 'crypto'
 import Logo from '@/components/Logo'
 
@@ -18,7 +18,7 @@ async function isAuthenticated(): Promise<boolean> {
 
 function PasswordGate({ error }: { error: boolean }) {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#0a0900] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <Logo className="h-9 mx-auto mb-4" />
@@ -37,7 +37,7 @@ function PasswordGate({ error }: { error: boolean }) {
                 name="password"
                 autoFocus
                 autoComplete="current-password"
-                className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
+                className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
                 placeholder="Enter access password"
               />
             </div>
@@ -73,7 +73,7 @@ function InvestorContent() {
   const thBase = 'px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-widest text-[#8888a8] bg-[#0d0d16] border-b border-[#2a2a3d]'
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       <div className="max-w-5xl mx-auto px-4 py-12">
 
         {/* Header */}

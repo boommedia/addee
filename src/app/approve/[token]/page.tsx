@@ -1,4 +1,4 @@
-import { createAdminClient } from '@/lib/supabase/admin'
+﻿import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound } from 'next/navigation'
 import BlogPreview from '@/components/BlogPreview'
 import ApprovalActions from './ApprovalActions'
@@ -18,7 +18,7 @@ export default async function ApprovalPage({ params }: { params: Promise<{ token
   const clientName = (Array.isArray(post.clients) ? post.clients[0] : post.clients as { name: string } | null)?.name ?? null
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       {/* Header */}
       <header className="border-b border-[#2a2a3d] px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">

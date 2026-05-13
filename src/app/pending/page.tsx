@@ -1,4 +1,4 @@
-import Logo from '@/components/Logo'
+﻿import Logo from '@/components/Logo'
 import { createClient } from '@/lib/supabase/server'
 import { logout } from '@/app/auth/actions'
 import { redirect } from 'next/navigation'
@@ -30,7 +30,7 @@ export default async function PendingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0] flex items-center justify-center px-4">
       <div className="max-w-md text-center">
         <div className="mb-8">
           <Logo className="h-12 mx-auto mb-6" />

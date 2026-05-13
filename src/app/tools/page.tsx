@@ -1,4 +1,4 @@
-import AppNav from '@/components/AppNav'
+﻿import AppNav from '@/components/AppNav'
 
 export const metadata = {
   title: 'All Tools — Bloggy',
@@ -243,7 +243,7 @@ const STATUS_LABELS = { live: 'Live', beta: 'Beta', soon: 'Coming Soon' }
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       <AppNav active="/tools" />
 
       <main className="max-w-5xl mx-auto px-6 py-10">

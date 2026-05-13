@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { CheckCircle, MessageSquare, Loader2, ThumbsUp, RefreshCw, Image as ImageIcon, Wand2 } from 'lucide-react'
@@ -168,7 +168,7 @@ export default function ApprovalActions({ token, postId, initialStatus, initialF
             onChange={e => setFeedback(e.target.value)}
             placeholder="e.g. Please make the intro shorter and add more detail about our services in section 2…"
             rows={4}
-            className="w-full bg-[#0a0a0f] border border-[#2a2a3d] focus:border-violet-500 rounded-xl px-4 py-3 text-[#e8e8f0] text-sm leading-relaxed focus:outline-none transition-colors resize-none"
+            className="w-full bg-[#0a0900] border border-[#2a2a3d] focus:border-violet-500 rounded-xl px-4 py-3 text-[#e8e8f0] text-sm leading-relaxed focus:outline-none transition-colors resize-none"
             autoFocus
           />
           <div className="flex gap-3">

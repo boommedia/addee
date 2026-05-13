@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
@@ -21,7 +21,7 @@ type Client = {
   target_keywords: string | null
 }
 
-const input = 'w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors'
+const input = 'w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors'
 const label = 'block text-[#8888a8] text-xs font-semibold uppercase tracking-wide mb-1.5'
 
 export default function ClientSettingsForm({ client }: { client: Client }) {
@@ -99,7 +99,7 @@ export default function ClientSettingsForm({ client }: { client: Client }) {
               <label className={label}>Primary Color</label>
               <div className="flex gap-3 items-center">
                 <input type="color" name="primary_color" defaultValue={client.primary_color ?? '#6d28d9'}
-                  className="w-10 h-9 rounded-lg border border-[#2a2a3d] bg-[#0a0a0f] cursor-pointer p-0.5" />
+                  className="w-10 h-9 rounded-lg border border-[#2a2a3d] bg-[#0a0900] cursor-pointer p-0.5" />
                 <span className="text-[#555570] text-xs">{client.primary_color ?? '#6d28d9'}</span>
               </div>
             </div>

@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 export const dynamic = 'force-dynamic'
 
 const PLAN_STYLES: Record<string, string> = {
-  starter:    'bg-blue-500/15 border-blue-500/30 text-blue-400',
+  starter:    'bg-yellow-600/15 border-yellow-600/30 text-yellow-400',
   growth:     'bg-violet-500/15 border-violet-500/30 text-violet-400',
   agency:     'bg-cyan-500/15 border-cyan-500/30 text-cyan-400',
   agency_max: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400',
@@ -277,8 +277,8 @@ function BillingPage() {
   const usagePct = sub ? Math.min((postsUsed / sub.posts_limit) * 100, 100) : 0
 
   return (
-    <div className="min-h-screen" style={{ background: '#060d1a', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
-      <nav className="sticky top-0 z-50 backdrop-blur" style={{ background: 'rgba(6,13,26,0.8)', borderColor: 'rgba(0,102,255,0.2)', borderBottom: '1px solid' }}>
+    <div className="min-h-screen" style={{ background: '#0a0900', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+      <nav className="sticky top-0 z-50 backdrop-blur" style={{ background: 'rgba(10,9,0,0.8)', borderColor: 'rgba(202,138,4,0.2)', borderBottom: '1px solid' }}>
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <a href="/dashboard"><Logo /></a>
@@ -287,9 +287,9 @@ function BillingPage() {
                 <a key={link.href} href={link.href}
                   className={'text-sm px-3 py-1.5 rounded-lg transition-colors'}
                   style={link.href === '/billing'
-                    ? { color: 'white', background: 'rgba(0,102,255,0.2)' }
-                    : { color: '#7a90b8' }}
-                  onMouseEnter={(e) => { if (link.href !== '/billing') e.currentTarget.style.background = 'rgba(0,102,255,0.1)' }}
+                    ? { color: 'white', background: 'rgba(202,138,4,0.2)' }
+                    : { color: '#b8a870' }}
+                  onMouseEnter={(e) => { if (link.href !== '/billing') e.currentTarget.style.background = 'rgba(202,138,4,0.1)' }}
                   onMouseLeave={(e) => { if (link.href !== '/billing') e.currentTarget.style.background = 'transparent' }}>
                   {link.label}
                 </a>
@@ -302,16 +302,16 @@ function BillingPage() {
                 {(isActive ? sub.plan : 'free').replace('_', ' ')}
               </span>
             )}
-            {userEmail && <span className="text-xs hidden md:block" style={{ color: '#7a90b8' }}>{userEmail}</span>}
-            <button onClick={handleSignOut} className="text-xs transition-colors" style={{ color: '#7a90b8' }} onMouseEnter={(e) => e.currentTarget.style.color = 'white'} onMouseLeave={(e) => e.currentTarget.style.color = '#7a90b8'}>Sign out</button>
+            {userEmail && <span className="text-xs hidden md:block" style={{ color: '#b8a870' }}>{userEmail}</span>}
+            <button onClick={handleSignOut} className="text-xs transition-colors" style={{ color: '#b8a870' }} onMouseEnter={(e) => e.currentTarget.style.color = 'white'} onMouseLeave={(e) => e.currentTarget.style.color = '#b8a870'}>Sign out</button>
           </div>
         </div>
       </nav>
 
       <main className="max-w-5xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold mb-1" style={{ color: '#00FF00' }}>Billing</h1>
-          <p className="text-sm" style={{ color: '#7a90b8' }}>Manage your plan and usage.</p>
+          <h1 className="text-2xl font-bold mb-1" style={{ color: '#84cc16' }}>Billing</h1>
+          <p className="text-sm" style={{ color: '#b8a870' }}>Manage your plan and usage.</p>
         </div>
 
         {loading ? (
@@ -322,7 +322,7 @@ function BillingPage() {
           <>
             {/* Current plan + usage */}
             {isActive && sub && (
-              <div className="rounded-2xl p-6 mb-8" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+              <div className="rounded-2xl p-6 mb-8" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                 <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
@@ -338,7 +338,7 @@ function BillingPage() {
                       </p>
                     )}
                     {sub.current_period_end && (
-                      <p className="text-xs" style={{ color: '#7a90b8' }}>
+                      <p className="text-xs" style={{ color: '#b8a870' }}>
                         Renews {new Date(sub.current_period_end).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                       </p>
                     )}
@@ -347,9 +347,9 @@ function BillingPage() {
                     onClick={handlePortal}
                     disabled={portalLoading}
                     className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg transition-colors"
-                    style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = 'white'; e.currentTarget.style.background = 'rgba(0,102,255,0.15)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#7a90b8'; e.currentTarget.style.background = 'rgba(11,22,40,0.6)' }}
+                    style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = 'white'; e.currentTarget.style.background = 'rgba(202,138,4,0.15)' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#b8a870'; e.currentTarget.style.background = 'rgba(20,18,0,0.6)' }}
                   >
                     {portalLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ExternalLink className="w-3.5 h-3.5" />}
                     Manage subscription
@@ -358,8 +358,8 @@ function BillingPage() {
                 <div className="space-y-4">
                   <UsageBar label="Posts this month" used={postsUsed} limit={sub.posts_limit} unit="posts" />
                   <UsageBar label="Client sites" used={sitesUsed} limit={sub.sites_limit} unit="sites" />
-                  <div className="flex items-center justify-between pt-1" style={{ borderTopColor: 'rgba(0,102,255,0.2)', borderTop: '1px solid' }}>
-                    <span className="text-xs" style={{ color: '#7a90b8' }}>Words written this month</span>
+                  <div className="flex items-center justify-between pt-1" style={{ borderTopColor: 'rgba(202,138,4,0.2)', borderTop: '1px solid' }}>
+                    <span className="text-xs" style={{ color: '#b8a870' }}>Words written this month</span>
                     <span className="text-xs font-semibold" style={{ color: '#dde4f0' }}>{wordsThisMonth.toLocaleString()}</span>
                   </div>
                   {usagePct >= 90 && (
@@ -398,9 +398,9 @@ function BillingPage() {
                     placeholder="Have a promo code?"
                     className={`text-sm px-3 py-2 rounded-lg focus:outline-none w-52 transition-colors ${couponError ? '' : ''}`}
                     style={{
-                      background: 'rgba(11,22,40,0.6)',
+                      background: 'rgba(20,18,0,0.6)',
                       color: '#dde4f0',
-                      borderColor: couponError ? '#ef4444' : 'rgba(0,102,255,0.3)',
+                      borderColor: couponError ? '#ef4444' : 'rgba(202,138,4,0.3)',
                       border: '1px solid'
                     }}
                   />
@@ -408,7 +408,7 @@ function BillingPage() {
                     onClick={() => applyPromo(promoCode)}
                     disabled={!promoCode || couponLoading}
                     className="text-xs px-3 py-2 rounded-lg transition-colors disabled:opacity-40 flex items-center gap-1.5"
-                    style={{ color: 'white', background: '#0066FF' }}
+                    style={{ color: 'white', background: '#ca8a04' }}
                   >
                     {couponLoading && <Loader2 className="w-3 h-3 animate-spin" />}
                     Apply
@@ -422,22 +422,22 @@ function BillingPage() {
             <div className="mb-4 flex items-start justify-between flex-wrap gap-4">
               <div>
                 <h2 className="font-bold text-lg mb-1" style={{ color: '#dde4f0' }}>Base Plans</h2>
-                <p className="text-sm" style={{ color: '#7a90b8' }}>Choose a plan to get started. Add-ons can be added to any paid plan.</p>
+                <p className="text-sm" style={{ color: '#b8a870' }}>Choose a plan to get started. Add-ons can be added to any paid plan.</p>
               </div>
               {/* Annual toggle */}
               <div className="flex items-center gap-3">
-                <div className="flex rounded-lg overflow-hidden text-xs font-semibold" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                <div className="flex rounded-lg overflow-hidden text-xs font-semibold" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                   <button
                     onClick={() => setBillingInterval('monthly')}
                     className={`px-3 py-2 transition-colors`}
-                    style={billingInterval === 'monthly' ? { background: 'rgba(0,102,255,0.3)', color: 'white' } : { color: '#7a90b8' }}
+                    style={billingInterval === 'monthly' ? { background: 'rgba(202,138,4,0.3)', color: 'white' } : { color: '#b8a870' }}
                   >
                     Monthly
                   </button>
                   <button
                     onClick={() => setBillingInterval('annual')}
                     className={`px-3 py-2 transition-colors flex items-center gap-1.5`}
-                    style={billingInterval === 'annual' ? { background: 'rgba(16,185,129,0.2)', color: '#10b981' } : { color: '#7a90b8' }}
+                    style={billingInterval === 'annual' ? { background: 'rgba(16,185,129,0.2)', color: '#10b981' } : { color: '#b8a870' }}
                   >
                     Annual
                     <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full">
@@ -456,7 +456,7 @@ function BillingPage() {
                     className={`relative rounded-2xl p-6 flex flex-col gap-4`}
                     style={plan.featured
                       ? { background: 'linear-gradient(to bottom, rgba(124,58,202,0.2), rgba(124,58,202,0.05))', borderColor: '#7c3aca', border: '2px solid' }
-                      : { background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+                      : { background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
                   >
                     {plan.featured && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-violet-600 text-white text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full">
@@ -464,7 +464,7 @@ function BillingPage() {
                       </div>
                     )}
                     <div>
-                      <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#7a90b8' }}>{plan.name}</div>
+                      <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: '#b8a870' }}>{plan.name}</div>
                       {(() => {
                         const displayPrice = billingInterval === 'annual' ? (plan as any).annualMonthlyPrice ?? plan.price : plan.price
                         const finalPrice = promoApplied && couponDetails ? discountedPrice(displayPrice) : displayPrice
@@ -474,16 +474,16 @@ function BillingPage() {
                               <span className={`text-3xl font-black`} style={{ color: promoApplied && couponDetails ? '#10b981' : '#dde4f0' }}>
                                 ${finalPrice % 1 === 0 ? finalPrice : finalPrice.toFixed(2)}
                               </span>
-                              <span className="text-sm mb-1" style={{ color: '#7a90b8' }}>/mo</span>
+                              <span className="text-sm mb-1" style={{ color: '#b8a870' }}>/mo</span>
                             </div>
                             {billingInterval === 'annual' && (
                               <p className="text-emerald-400 text-xs mt-0.5">
-                                ${((plan as any).annualMonthlyPrice ?? plan.price) * 12}/yr <span className="text-[#7a90b8] line-through">${plan.price * 12}</span>
+                                ${((plan as any).annualMonthlyPrice ?? plan.price) * 12}/yr <span className="text-[#b8a870] line-through">${plan.price * 12}</span>
                               </p>
                             )}
                             {promoApplied && couponDetails && (
                               <div className="flex items-center gap-1.5 mt-0.5">
-                                <span className="text-[#7a90b8] text-xs line-through">${displayPrice}</span>
+                                <span className="text-[#b8a870] text-xs line-through">${displayPrice}</span>
                                 <span className="text-emerald-400 text-xs font-semibold">
                                   {couponDetails.percent_off ? `${couponDetails.percent_off}% off` : `$${(couponDetails.amount_off! / 100).toFixed(2)} off`}
                                 </span>
@@ -493,7 +493,7 @@ function BillingPage() {
                         )
                       })()}
                     </div>
-                    <div className="text-xs space-y-1 pt-4" style={{ color: '#7a90b8', borderTopColor: 'rgba(0,102,255,0.2)', borderTop: '1px solid' }}>
+                    <div className="text-xs space-y-1 pt-4" style={{ color: '#b8a870', borderTopColor: 'rgba(202,138,4,0.2)', borderTop: '1px solid' }}>
                       <div className="font-semibold" style={{ color: '#dde4f0' }}>{plan.posts === 9999 ? 'Unlimited' : plan.posts} posts/mo</div>
                       <div>Up to {plan.sitesDisplay || plan.sites} client sites</div>
                     </div>
@@ -516,7 +516,7 @@ function BillingPage() {
                         className={`w-full flex items-center justify-center gap-2 text-xs font-bold py-2.5 rounded-lg transition-colors`}
                         style={plan.featured
                           ? { background: '#7c3aca', color: 'white' }
-                          : { background: 'rgba(11,22,40,0.6)', color: 'white', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+                          : { background: 'rgba(20,18,0,0.6)', color: 'white', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
                       >
                         {changePlanLoading === plan.key ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
                         {(PLANS.findIndex(p => p.key === plan.key) > PLANS.findIndex(p => p.key === sub?.plan)) ? 'Upgrade' : 'Downgrade'}
@@ -528,7 +528,7 @@ function BillingPage() {
                         className={`w-full flex items-center justify-center gap-2 text-xs font-bold py-2.5 rounded-lg transition-colors`}
                         style={plan.featured
                           ? { background: '#7c3aca', color: 'white' }
-                          : { background: 'rgba(11,22,40,0.6)', color: 'white', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+                          : { background: 'rgba(20,18,0,0.6)', color: 'white', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
                       >
                         {checkoutLoading === plan.key ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
                         Subscribe
@@ -546,12 +546,12 @@ function BillingPage() {
                   <h2 className="font-bold text-lg mb-1 flex items-center gap-2" style={{ color: '#dde4f0' }}>
                     <Zap className="w-5 h-5 text-amber-400" /> Power Credits
                   </h2>
-                  <p className="text-sm" style={{ color: '#7a90b8' }}>Pay-as-you-go credits for premium features — Claude Opus 4.7, extra posts beyond your plan limit, and advanced tools.</p>
+                  <p className="text-sm" style={{ color: '#b8a870' }}>Pay-as-you-go credits for premium features — Claude Opus 4.7, extra posts beyond your plan limit, and advanced tools.</p>
                 </div>
-                <div className="flex items-center gap-2 rounded-xl px-4 py-2" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(217,119,6,0.2)', border: '1px solid' }}>
+                <div className="flex items-center gap-2 rounded-xl px-4 py-2" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(217,119,6,0.2)', border: '1px solid' }}>
                   <Zap className="w-4 h-4 text-amber-400" />
                   <span className="font-bold text-lg" style={{ color: '#dde4f0' }}>{creditBalance}</span>
-                  <span className="text-sm" style={{ color: '#7a90b8' }}>credits remaining</span>
+                  <span className="text-sm" style={{ color: '#b8a870' }}>credits remaining</span>
                 </div>
               </div>
 
@@ -567,7 +567,7 @@ function BillingPage() {
                   { id: 'credits_50',  credits: 50,  price: '$29', label: 'Power Pack',    badge: 'Best value',  desc: 'Most popular. ~16 Opus generations or mix any premium features.' },
                   { id: 'credits_150', credits: 150, price: '$69', label: 'Agency Pack',   badge: 'Max savings', desc: '50 Opus generations. For agencies running premium quality at scale.' },
                 ] as const).map(pack => (
-                  <div key={pack.id} className="rounded-xl p-5 flex flex-col gap-3 transition-colors" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  <div key={pack.id} className="rounded-xl p-5 flex flex-col gap-3 transition-colors" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="font-bold text-sm mb-0.5" style={{ color: '#dde4f0' }}>{pack.label}</div>
@@ -577,15 +577,15 @@ function BillingPage() {
                       </div>
                       <div className="text-right">
                         <div className="font-black text-lg" style={{ color: '#dde4f0' }}>{pack.price}</div>
-                        <div className="text-xs" style={{ color: '#7a90b8' }}>one-time</div>
+                        <div className="text-xs" style={{ color: '#b8a870' }}>one-time</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4 text-amber-400 shrink-0" />
                       <span className="text-amber-300 font-bold text-xl">{pack.credits}</span>
-                      <span className="text-sm" style={{ color: '#7a90b8' }}>credits</span>
+                      <span className="text-sm" style={{ color: '#b8a870' }}>credits</span>
                     </div>
-                    <p className="text-xs leading-relaxed flex-1" style={{ color: '#7a90b8' }}>{pack.desc}</p>
+                    <p className="text-xs leading-relaxed flex-1" style={{ color: '#b8a870' }}>{pack.desc}</p>
                     <button
                       onClick={() => handleBuyCredits(pack.id)}
                       disabled={buyCreditsLoading === pack.id}
@@ -598,8 +598,8 @@ function BillingPage() {
                 ))}
               </div>
 
-              <div className="rounded-xl p-4 mb-2" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
-                <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#7a90b8' }}>Credit costs per feature</div>
+              <div className="rounded-xl p-4 mb-2" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
+                <div className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#b8a870' }}>Credit costs per feature</div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {([
                     { label: 'Opus 4.7 generation', cost: 3, color: 'text-amber-400' },
@@ -609,7 +609,7 @@ function BillingPage() {
                   ]).map(item => (
                     <div key={item.label} className="flex flex-col gap-1">
                       <span className={`text-lg font-black ${item.color}`}>{item.cost}c</span>
-                      <span className="text-xs" style={{ color: '#7a90b8' }}>{item.label}</span>
+                      <span className="text-xs" style={{ color: '#b8a870' }}>{item.label}</span>
                     </div>
                   ))}
                 </div>
@@ -620,10 +620,10 @@ function BillingPage() {
             <div className="mt-12">
               <div className="flex items-end justify-between flex-wrap gap-3 mb-6">
                 <div>
-                  <h2 className="font-bold text-lg mb-1" style={{ color: '#00FF00' }}>Power-up Add-ons</h2>
-                  <p className="text-sm" style={{ color: '#7a90b8' }}>Optional bolt-ons for any paid plan — priced separately, cancel anytime.</p>
+                  <h2 className="font-bold text-lg mb-1" style={{ color: '#84cc16' }}>Power-up Add-ons</h2>
+                  <p className="text-sm" style={{ color: '#b8a870' }}>Optional bolt-ons for any paid plan — priced separately, cancel anytime.</p>
                 </div>
-                <span className="text-xs" style={{ color: '#7a90b8' }}>10 add-ons in development</span>
+                <span className="text-xs" style={{ color: '#b8a870' }}>10 add-ons in development</span>
               </div>
 
               {/* Featured: Social Media Autopilot — NEW */}
@@ -637,7 +637,7 @@ function BillingPage() {
                       <span className="font-bold text-sm" style={{ color: '#dde4f0' }}>Social Media Autopilot</span>
                       <span className="text-[10px] font-black uppercase tracking-widest bg-pink-600 text-white px-2 py-0.5 rounded-full">New</span>
                     </div>
-                    <p className="text-xs" style={{ color: '#7a90b8' }}>Publish blog posts directly to Google Business Profile, LinkedIn, Medium, and Dev.to — one click after generating.</p>
+                    <p className="text-xs" style={{ color: '#b8a870' }}>Publish blog posts directly to Google Business Profile, LinkedIn, Medium, and Dev.to — one click after generating.</p>
                     <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
                       {['Google Biz', 'LinkedIn', 'Medium', 'Dev.to'].map(p => (
                         <span key={p} className="text-[9px] font-bold text-pink-300 bg-pink-500/10 border border-pink-500/20 px-1.5 py-0.5 rounded-full">{p}</span>
@@ -647,8 +647,8 @@ function BillingPage() {
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
                   <div className="text-right">
-                    <div className="font-black text-2xl" style={{ color: '#dde4f0' }}>$15<span className="text-sm font-normal" style={{ color: '#7a90b8' }}>/mo</span></div>
-                    <div className="text-xs" style={{ color: '#7a90b8' }}>per workspace</div>
+                    <div className="font-black text-2xl" style={{ color: '#dde4f0' }}>$15<span className="text-sm font-normal" style={{ color: '#b8a870' }}>/mo</span></div>
+                    <div className="text-xs" style={{ color: '#b8a870' }}>per workspace</div>
                   </div>
                   <button
                     onClick={async () => {
@@ -680,13 +680,13 @@ function BillingPage() {
                       <span className="font-bold text-sm" style={{ color: '#dde4f0' }}>Rankings History Pro</span>
                       <span className="text-[10px] font-black uppercase tracking-widest bg-violet-600 text-white px-2 py-0.5 rounded-full">Available Now</span>
                     </div>
-                    <p className="text-xs" style={{ color: '#7a90b8' }}>Weekly automated rank tracking, historical trend charts, movement alerts, and exportable PDF reports for every client keyword.</p>
+                    <p className="text-xs" style={{ color: '#b8a870' }}>Weekly automated rank tracking, historical trend charts, movement alerts, and exportable PDF reports for every client keyword.</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
                   <div className="text-right">
-                    <div className="font-black text-2xl" style={{ color: '#dde4f0' }}>$8<span className="text-sm font-normal" style={{ color: '#7a90b8' }}>/mo</span></div>
-                    <div className="text-xs" style={{ color: '#7a90b8' }}>per workspace</div>
+                    <div className="font-black text-2xl" style={{ color: '#dde4f0' }}>$8<span className="text-sm font-normal" style={{ color: '#b8a870' }}>/mo</span></div>
+                    <div className="text-xs" style={{ color: '#b8a870' }}>per workspace</div>
                   </div>
                   <button
                     onClick={async () => {
@@ -717,13 +717,13 @@ function BillingPage() {
                   { icon: <UserCheck className="w-4 h-4 text-purple-400" />, bg: 'bg-purple-600/10 border-purple-500/20', name: 'Client Approval Workflow', sub: 'Review before publish', price: '$15', badge: 'Agency fave', desc: 'Email drafts to clients for sign-off. WordPress publish fires only after they approve.', eta: 'Q4 2026' },
                   { icon: <BarChart className="w-4 h-4 text-red-400" />, bg: 'bg-red-600/10 border-red-500/20', name: 'Search Console Sync', sub: 'Google GSC integration', price: '$8', badge: null, desc: 'Pull real impressions, clicks, and CTR per post. Surface which pages need rewrites to convert.', eta: 'Q1 2027' },
                 ].map(addon => (
-                  <div key={addon.name} className="rounded-xl p-4 flex flex-col gap-3 opacity-80 hover:opacity-100 transition-opacity" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  <div key={addon.name} className="rounded-xl p-4 flex flex-col gap-3 opacity-80 hover:opacity-100 transition-opacity" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                     <div className="flex items-start justify-between gap-2">
                       <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${addon.bg}`}>
                         {addon.icon}
                       </div>
                       <div className="flex flex-col items-end gap-1">
-                        <span className="font-black text-sm" style={{ color: '#dde4f0' }}>{addon.price}<span className="text-xs font-normal" style={{ color: '#7a90b8' }}>/mo</span></span>
+                        <span className="font-black text-sm" style={{ color: '#dde4f0' }}>{addon.price}<span className="text-xs font-normal" style={{ color: '#b8a870' }}>/mo</span></span>
                         {addon.badge && (
                           <span className="text-[9px] font-bold uppercase tracking-wider text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-1.5 py-0.5 rounded-full">{addon.badge}</span>
                         )}
@@ -731,21 +731,21 @@ function BillingPage() {
                     </div>
                     <div>
                       <div className="font-bold text-xs mb-0.5" style={{ color: '#dde4f0' }}>{addon.name}</div>
-                      <div className="text-xs mb-1" style={{ color: '#7a90b8' }}>{addon.sub}</div>
-                      <p className="text-xs leading-relaxed" style={{ color: '#7a90b8' }}>{addon.desc}</p>
+                      <div className="text-xs mb-1" style={{ color: '#b8a870' }}>{addon.sub}</div>
+                      <p className="text-xs leading-relaxed" style={{ color: '#b8a870' }}>{addon.desc}</p>
                     </div>
-                    <div className="flex items-center justify-between mt-auto pt-2" style={{ borderTopColor: 'rgba(0,102,255,0.2)', borderTop: '1px solid' }}>
-                      <span className="text-xs flex items-center gap-1" style={{ color: '#7a90b8' }}>
+                    <div className="flex items-center justify-between mt-auto pt-2" style={{ borderTopColor: 'rgba(202,138,4,0.2)', borderTop: '1px solid' }}>
+                      <span className="text-xs flex items-center gap-1" style={{ color: '#b8a870' }}>
                         <Lock className="w-2.5 h-2.5" /> Shipping {addon.eta}
                       </span>
-                      <span className="text-xs px-2 py-0.5 rounded-full" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>Coming Soon</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>Coming Soon</span>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* All Add-ons Bundle */}
-              <div className="mt-8 bg-gradient-to-br from-emerald-950/50 via-cyan-950/30 to-transparent border border-emerald-500/40 rounded-2xl p-6 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom right, rgba(5,46,22,0.5), rgba(0,102,255,0.1))' }}>
+              <div className="mt-8 bg-gradient-to-br from-emerald-950/50 via-cyan-950/30 to-transparent border border-emerald-500/40 rounded-2xl p-6 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom right, rgba(5,46,22,0.5), rgba(202,138,4,0.1))' }}>
                 <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl -z-0"></div>
                 <div className="relative z-10">
                   <div className="flex items-start justify-between mb-4">
@@ -754,11 +754,11 @@ function BillingPage() {
                         <span className="font-bold text-lg" style={{ color: '#dde4f0' }}>All Add-ons Bundle</span>
                         <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-600 text-white px-2 py-0.5 rounded-full">Best Value</span>
                       </div>
-                      <p className="text-sm" style={{ color: '#7a90b8' }}>Get all 10 add-ons for one low price. Social Media Autopilot, Rankings History Pro, White-label Portal, and more — everything together.</p>
+                      <p className="text-sm" style={{ color: '#b8a870' }}>Get all 10 add-ons for one low price. Social Media Autopilot, Rankings History Pro, White-label Portal, and more — everything together.</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <div className="font-black text-3xl" style={{ color: '#dde4f0' }}>$65<span className="text-sm font-normal" style={{ color: '#7a90b8' }}>/mo</span></div>
-                      <div className="text-xs mt-1" style={{ color: '#7a90b8' }}>Unlocks all current + future add-ons</div>
+                      <div className="font-black text-3xl" style={{ color: '#dde4f0' }}>$65<span className="text-sm font-normal" style={{ color: '#b8a870' }}>/mo</span></div>
+                      <div className="text-xs mt-1" style={{ color: '#b8a870' }}>Unlocks all current + future add-ons</div>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
@@ -781,7 +781,7 @@ function BillingPage() {
                 </div>
               </div>
 
-              <p className="text-xs text-center mt-5" style={{ color: '#7a90b8' }}>Early access members will be notified and get launch pricing on every add-on.</p>
+              <p className="text-xs text-center mt-5" style={{ color: '#b8a870' }}>Early access members will be notified and get launch pricing on every add-on.</p>
             </div>
 
             {/* Referral program */}
@@ -793,14 +793,14 @@ function BillingPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-sm" style={{ color: '#dde4f0' }}>Refer a Friend — Earn Credits</h3>
-                    <p className="text-xs" style={{ color: '#7a90b8' }}>Get 10 credits for every user who signs up with your link and subscribes.</p>
+                    <p className="text-xs" style={{ color: '#b8a870' }}>Get 10 credits for every user who signs up with your link and subscribes.</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 mb-4">
                   <input
                     readOnly
                     value={referralUrl}
-                    className="flex-1 rounded-xl px-3 py-2.5 text-xs font-mono focus:outline-none" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
+                    className="flex-1 rounded-xl px-3 py-2.5 text-xs font-mono focus:outline-none" style={{ background: 'rgba(10,9,0,0.8)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid', color: '#dde4f0' }}
                   />
                   <button
                     onClick={() => {
@@ -815,17 +815,17 @@ function BillingPage() {
                   </button>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
-                  <div className="rounded-xl p-3 text-center" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  <div className="rounded-xl p-3 text-center" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                     <div className="text-2xl font-black text-emerald-400">{referralCount}</div>
-                    <div className="text-xs" style={{ color: '#7a90b8' }}>Referrals</div>
+                    <div className="text-xs" style={{ color: '#b8a870' }}>Referrals</div>
                   </div>
-                  <div className="rounded-xl p-3 text-center" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  <div className="rounded-xl p-3 text-center" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                     <div className="text-2xl font-black text-amber-400">{referralCredits}</div>
-                    <div className="text-xs" style={{ color: '#7a90b8' }}>Credits Earned</div>
+                    <div className="text-xs" style={{ color: '#b8a870' }}>Credits Earned</div>
                   </div>
-                  <div className="rounded-xl p-3 text-center" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  <div className="rounded-xl p-3 text-center" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                     <div className="text-lg font-black font-mono" style={{ color: '#dde4f0' }}>{referralCode}</div>
-                    <div className="text-xs" style={{ color: '#7a90b8' }}>Your code</div>
+                    <div className="text-xs" style={{ color: '#b8a870' }}>Your code</div>
                   </div>
                 </div>
               </div>
@@ -839,7 +839,7 @@ function BillingPage() {
 
 export default function BillingPageWrapper() {
   return (
-    <Suspense fallback={<div className="min-h-screen" style={{ background: '#060d1a' }} />}>
+    <Suspense fallback={<div className="min-h-screen" style={{ background: '#0a0900' }} />}>
       <BillingPage />
     </Suspense>
   )
@@ -851,10 +851,10 @@ function UsageBar({ label, used, limit, unit }: { label: string; used: number; l
   return (
     <div>
       <div className="flex items-center justify-between mb-1.5">
-        <span className="text-xs" style={{ color: '#7a90b8' }}>{label}</span>
+        <span className="text-xs" style={{ color: '#b8a870' }}>{label}</span>
         <span className="text-xs font-semibold" style={{ color: '#dde4f0' }}>{used} / {limit} {unit}</span>
       </div>
-      <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: 'rgba(0,102,255,0.15)' }}>
+      <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: 'rgba(202,138,4,0.15)' }}>
         <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
       </div>
     </div>

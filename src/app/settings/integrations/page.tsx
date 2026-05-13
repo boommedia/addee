@@ -1,4 +1,4 @@
-import AppNav from '@/components/AppNav'
+﻿import AppNav from '@/components/AppNav'
 import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import { Trash2, Plus } from 'lucide-react'
@@ -30,7 +30,7 @@ export default async function IntegrationsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       <AppNav active="/settings" />
       <main className="max-w-2xl mx-auto px-6 py-10">
         <div className="mb-8">

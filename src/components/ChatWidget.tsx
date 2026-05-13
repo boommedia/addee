@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { MessageCircle, X, Send, Loader2, ChevronDown, ArrowUpRight } from 'lucide-react'
@@ -249,7 +249,7 @@ export default function ChatWidget() {
       >
         {open ? <ChevronDown className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
         {unread && !open && (
-          <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-[#0a0a0f]" />
+          <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-[#0a0900]" />
         )}
       </button>
     </>

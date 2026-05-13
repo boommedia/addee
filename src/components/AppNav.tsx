@@ -15,11 +15,11 @@ const NAV_LINKS = [
 ]
 
 const PLAN_STYLES: Record<string, string> = {
-  starter:    'bg-blue-500/15 border-blue-500/30 text-blue-400',
+  starter:    'bg-yellow-600/15 border-yellow-600/30 text-yellow-400',
   growth:     'bg-violet-500/15 border-violet-500/30 text-violet-400',
   agency:     'bg-cyan-500/15 border-cyan-500/30 text-cyan-400',
   agency_max: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400',
-  free:       'bg-[rgba(11,22,40,0.6)] border-[rgba(0,102,255,0.3)] text-[#7a90b8]',
+  free:       'bg-[rgba(20,18,0,0.6)] border-[rgba(202,138,4,0.3)] text-[#b8a870]',
 }
 
 export default async function AppNav({ active }: { active: string }) {
@@ -42,7 +42,7 @@ export default async function AppNav({ active }: { active: string }) {
   const planStyle = PLAN_STYLES[displayPlan] ?? PLAN_STYLES.free
 
   return (
-    <nav className="border-b sticky top-0 z-50 backdrop-blur" style={{ borderColor: 'rgba(0,102,255,0.2)', background: 'rgba(6,13,26,0.95)' }}>
+    <nav className="border-b sticky top-0 z-50 backdrop-blur" style={{ borderColor: 'rgba(202,138,4,0.2)', background: 'rgba(10,9,0,0.95)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4 min-w-0">
           <a href="/home" className="flex items-center shrink-0">
@@ -55,7 +55,7 @@ export default async function AppNav({ active }: { active: string }) {
                 key={link.href}
                 href={link.href}
                 style={{
-                  color: active === link.href ? '#00FF00' : '#7a90b8',
+                  color: active === link.href ? '#84cc16' : '#b8a870',
                   fontSize: '0.875rem',
                   padding: '0.375rem 0.75rem',
                   borderRadius: '0.5rem',

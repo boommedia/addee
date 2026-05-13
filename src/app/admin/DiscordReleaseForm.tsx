@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { Send, Plus, X, MessageSquare } from 'lucide-react'
@@ -63,7 +63,7 @@ export default function DiscordReleaseForm() {
               value={version}
               onChange={e => setVersion(e.target.value)}
               placeholder="e.g. v1.3"
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500"
+              className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500"
             />
           </div>
           <div>
@@ -72,7 +72,7 @@ export default function DiscordReleaseForm() {
               value={title}
               onChange={e => setTitle(e.target.value)}
               placeholder="e.g. WordPress Publishing"
-              className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500"
+              className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500"
             />
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function DiscordReleaseForm() {
                   value={f}
                   onChange={e => updateFeature(i, e.target.value)}
                   placeholder={`Feature ${i + 1}`}
-                  className="flex-1 bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500"
+                  className="flex-1 bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500"
                 />
                 {features.length > 1 && (
                   <button type="button" onClick={() => removeFeature(i)} className="text-[#555570] hover:text-red-400 transition-colors">
@@ -112,13 +112,13 @@ export default function DiscordReleaseForm() {
             onChange={e => setNotes(e.target.value)}
             placeholder="Any extra context, breaking changes, or upgrade notes..."
             rows={3}
-            className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500 resize-none"
+            className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm placeholder-[#3a3a5a] focus:outline-none focus:border-violet-500 resize-none"
           />
         </div>
 
         {/* Preview */}
         {(version || title || features.some(f => f.trim())) && (
-          <div className="bg-[#0a0a0f] border border-violet-500/20 rounded-xl p-4">
+          <div className="bg-[#0a0900] border border-violet-500/20 rounded-xl p-4">
             <p className="text-[#555570] text-xs font-semibold uppercase tracking-wider mb-2">Preview</p>
             <div className="border-l-4 border-violet-500 pl-3">
               <p className="text-white font-bold text-sm">🎉 Bloggy {version} — {title}</p>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useMemo, useRef, useEffect } from 'react'
 import {
@@ -26,7 +26,7 @@ type AdminUser = {
 }
 
 const PLAN_COLORS: Record<string, string> = {
-  starter:    'bg-blue-500/15 border-blue-500/30 text-blue-400',
+  starter:    'bg-yellow-600/15 border-yellow-600/30 text-yellow-400',
   growth:     'bg-violet-500/15 border-violet-500/30 text-violet-400',
   agency:     'bg-cyan-500/15 border-cyan-500/30 text-cyan-400',
   agency_max: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400',
@@ -234,7 +234,7 @@ function ProfileDrawer({ user, onClose, onDone }: {
                       value={newPlan}
                       onChange={e => setNewPlan(e.target.value)}
                       autoFocus
-                      className="flex-1 bg-[#0a0a0f] border border-violet-500/40 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none"
+                      className="flex-1 bg-[#0a0900] border border-violet-500/40 rounded-lg px-2.5 py-1.5 text-white text-xs focus:outline-none"
                     >
                       {PLANS.map(p => <option key={p} value={p}>{p.replace('_', ' ')}</option>)}
                     </select>

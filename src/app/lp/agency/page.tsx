@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { Check, Zap, Globe, Clock, Users, ArrowRight, Star } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -44,10 +44,10 @@ const FAQS = [
 
 export default function AgencyLandingPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]" style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]" style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
 
       {/* Minimal header */}
-      <header className="border-b border-[#2a2a3d]/60 bg-[#0a0a0f]/90 backdrop-blur sticky top-0 z-50">
+      <header className="border-b border-[#2a2a3d]/60 bg-[#0a0900]/90 backdrop-blur sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 font-bold text-white text-lg tracking-tight">
             <span className="w-2 h-2 rounded-full bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.8)]" />

@@ -1,4 +1,4 @@
-import Logo from '@/components/Logo'
+﻿import Logo from '@/components/Logo'
 import { ArrowRight, Check, Zap, Globe, BarChart2, Image, Calendar, Star, Share2, Link, Search, Users, FileText, Clock, Layers, ChevronRight, Play, UserCheck, CheckCircle } from 'lucide-react'
 import type { Metadata } from 'next'
 
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
 
 export default function FeaturesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]" style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]" style={{ fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
 
       {/* Nav */}
-      <nav className="border-b border-[#2a2a3d]/60 bg-[#0a0a0f]/80 backdrop-blur sticky top-0 z-50">
+      <nav className="border-b border-[#2a2a3d]/60 bg-[#0a0900]/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <a href="/" className="flex items-center gap-2">
@@ -605,13 +605,13 @@ function MockGenerateUI() {
       <div className="p-5">
         <div className="mb-3">
           <div className="text-[#555570] text-xs mb-1.5">Topic / Brief</div>
-          <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-[#c8c8d8] text-xs">
+          <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-[#c8c8d8] text-xs">
             Top 7 reasons local businesses need Google Business Profile in 2025
           </div>
         </div>
         <div className="flex gap-2 mb-3">
           {['Professional', 'Conversational', 'Educational'].map((t, i) => (
-            <div key={t} className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${i === 0 ? 'bg-violet-600 border-violet-600 text-white' : 'bg-[#0a0a0f] border-[#2a2a3d] text-[#555570]'}`}>{t}</div>
+            <div key={t} className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${i === 0 ? 'bg-violet-600 border-violet-600 text-white' : 'bg-[#0a0900] border-[#2a2a3d] text-[#555570]'}`}>{t}</div>
           ))}
         </div>
         <div className="bg-violet-600 rounded-lg py-2 text-center text-white text-xs font-semibold mb-4">Generate Blog Post</div>
@@ -655,7 +655,7 @@ function MockYouTubeUI() {
             <div className="text-[#555570] text-xs">Paste a video URL</div>
           </div>
         </div>
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-[#c8c8d8] text-xs mb-3 flex items-center gap-2">
+        <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-[#c8c8d8] text-xs mb-3 flex items-center gap-2">
           <Play className="w-3.5 h-3.5 text-red-400 shrink-0" />
           youtube.com/watch?v=dQw4w9WgXcQ
         </div>
@@ -696,7 +696,7 @@ function MockUrlUI() {
       <div className="p-5">
         <div className="text-[#555570] text-xs mb-1.5">Source URL</div>
         <div className="flex gap-2 mb-4">
-          <div className="flex-1 bg-[#0a0a0f] border border-cyan-500/30 rounded-lg px-3 py-2 text-[#c8c8d8] text-xs truncate">
+          <div className="flex-1 bg-[#0a0900] border border-cyan-500/30 rounded-lg px-3 py-2 text-[#c8c8d8] text-xs truncate">
             moz.com/blog/local-seo-guide-2025
           </div>
           <div className="bg-cyan-600/20 border border-cyan-500/30 rounded-lg px-3 py-2 text-cyan-400 text-xs font-semibold">
@@ -738,7 +738,7 @@ function MockSeoUI() {
       </div>
       <div className="p-5 space-y-4">
         {/* Gauge */}
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4 flex flex-col items-center">
+        <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-4 flex flex-col items-center">
           <svg viewBox="0 0 140 82" width="160" height="94">
             <circle cx="70" cy="70" r={R} fill="none" stroke="#1a1a26" strokeWidth="12"
               strokeDasharray={`${HALF} ${HALF}`} strokeDashoffset={`${HALF}`} strokeLinecap="round" />
@@ -786,7 +786,7 @@ function MockPublishUI() {
         <span className="text-[#555570] text-xs ml-2">WordPress Publish</span>
       </div>
       <div className="p-5 space-y-4">
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4">
+        <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-4">
           <div className="text-[#8888a8] text-xs mb-2">Publishing to</div>
           <div className="flex items-center gap-2 mb-3">
             <Globe className="w-4 h-4 text-blue-400" />
@@ -833,7 +833,7 @@ function MockAutoblogUI() {
             return (
               <div key={d} className="flex flex-col items-center gap-1">
                 <span className="text-[#555570] text-xs">{d}</span>
-                <div className={`w-full aspect-square rounded-lg text-xs flex items-center justify-center font-bold ${post?.status === 'published' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-400' : post?.status === 'queued' ? 'bg-violet-500/20 border border-violet-500/30 text-violet-400' : 'bg-[#0a0a0f] border border-[#2a2a3d] text-[#2a2a3d]'}`}>
+                <div className={`w-full aspect-square rounded-lg text-xs flex items-center justify-center font-bold ${post?.status === 'published' ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-400' : post?.status === 'queued' ? 'bg-violet-500/20 border border-violet-500/30 text-violet-400' : 'bg-[#0a0900] border border-[#2a2a3d] text-[#2a2a3d]'}`}>
                   {post ? '✓' : '·'}
                 </div>
               </div>
@@ -842,7 +842,7 @@ function MockAutoblogUI() {
         </div>
         <div className="space-y-2">
           {posts.map(p => (
-            <div key={p.title} className="flex items-center gap-3 bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2">
+            <div key={p.title} className="flex items-center gap-3 bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2">
               <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${p.status === 'published' ? 'bg-emerald-400' : 'bg-violet-400'}`} />
               <span className="text-[#c8c8d8] text-xs flex-1 truncate">{p.title}</span>
               <span className={`text-xs ${p.status === 'published' ? 'text-emerald-400' : 'text-[#555570]'}`}>
@@ -867,10 +867,10 @@ function MockSocialUI() {
       <div className="p-5">
         <div className="flex gap-2 mb-4">
           {['LinkedIn', 'X / Twitter', 'Facebook'].map((p, i) => (
-            <div key={p} className={`flex-1 py-1.5 rounded-lg text-xs font-semibold text-center border ${i === 0 ? 'bg-violet-600 border-violet-600 text-white' : 'bg-[#0a0a0f] border-[#2a2a3d] text-[#555570]'}`}>{p}</div>
+            <div key={p} className={`flex-1 py-1.5 rounded-lg text-xs font-semibold text-center border ${i === 0 ? 'bg-violet-600 border-violet-600 text-white' : 'bg-[#0a0900] border-[#2a2a3d] text-[#555570]'}`}>{p}</div>
           ))}
         </div>
-        <div className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4 space-y-2 mb-3">
+        <div className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-4 space-y-2 mb-3">
           <div className="text-white text-xs font-semibold">🔑 7 reasons your clients are losing customers without local SEO.</div>
           <div className="h-2 bg-white/5 rounded w-full" />
           <div className="h-2 bg-white/5 rounded w-5/6" />

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -30,16 +30,16 @@ export default function WhiteLabelSettings({
   }
 
   return (
-    <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+    <div className="rounded-2xl p-6" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
       <div className="flex items-center justify-between mb-1">
         <h2 className="font-bold text-base" style={{ color: '#dde4f0' }}>White Label</h2>
         {!isPlanEligible && (
-          <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
             Agency Max
           </span>
         )}
       </div>
-      <p className="text-sm mb-5 leading-relaxed" style={{ color: '#7a90b8' }}>
+      <p className="text-sm mb-5 leading-relaxed" style={{ color: '#b8a870' }}>
         Replace "Bloggy" in your dashboard with your own agency name. Your team sees your brand, not ours.
       </p>
 
@@ -54,16 +54,16 @@ export default function WhiteLabelSettings({
       ) : (
         <div className="space-y-3">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#7a90b8' }}>
+            <label className="block text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#b8a870' }}>
               Custom Agency Name
             </label>
             <input
               value={name}
               onChange={e => setName(e.target.value)}
               placeholder="e.g. Boom Media Content Suite"
-              className="w-full rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
+              className="w-full rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(10,9,0,0.8)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid', color: '#dde4f0' }}
             />
-            <p className="text-xs mt-1" style={{ color: '#7a90b8' }}>Leave blank to restore the default "Bloggy" name.</p>
+            <p className="text-xs mt-1" style={{ color: '#b8a870' }}>Leave blank to restore the default "Bloggy" name.</p>
           </div>
           {error && <p className="text-red-400 text-xs">{error}</p>}
           <button

@@ -21,18 +21,18 @@ export default async function BrandsPage() {
     .order('created_at', { ascending: false })
 
   return (
-    <div className="min-h-screen p-8" style={{ background: '#060d1a', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+    <div className="min-h-screen p-8" style={{ background: '#0a0900', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
       <AppNav active="/brands" />
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold" style={{ color: '#00FF00' }}>Your Brands</h1>
-            <p className="mt-2" style={{ color: '#7a90b8' }}>Manage your brand profiles and voice guidelines</p>
+            <h1 className="text-3xl font-bold" style={{ color: '#84cc16' }}>Your Brands</h1>
+            <p className="mt-2" style={{ color: '#b8a870' }}>Manage your brand profiles and voice guidelines</p>
           </div>
           <Link
             href="/brands/new"
             className="px-6 py-3 rounded-lg transition hover:opacity-90"
-            style={{ background: '#0066FF', color: 'white' }}
+            style={{ background: '#ca8a04', color: 'white' }}
           >
             New Brand
           </Link>
@@ -45,7 +45,7 @@ export default async function BrandsPage() {
                 key={brand.id}
                 href={`/brands/${brand.id}`}
                 className="block p-6 rounded-lg border transition hover:border-blue-400"
-                style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)' }}
+                style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)' }}
               >
                 <div className="flex items-center gap-4 mb-4">
                   {brand.logo_url && (
@@ -57,18 +57,18 @@ export default async function BrandsPage() {
                   )}
                   <h2 className="text-xl font-semibold flex-1" style={{ color: '#dde4f0' }}>{brand.name}</h2>
                 </div>
-                <p className="text-sm" style={{ color: '#7a90b8' }}>{brand.industry}</p>
-                <p className="text-sm mt-3 font-medium" style={{ color: '#0066FF' }}>Tone: {brand.tone_examples ? '✓ Configured' : 'Not set'}</p>
+                <p className="text-sm" style={{ color: '#b8a870' }}>{brand.industry}</p>
+                <p className="text-sm mt-3 font-medium" style={{ color: '#ca8a04' }}>Tone: {brand.tone_examples ? '✓ Configured' : 'Not set'}</p>
               </Link>
             ))}
           </div>
         ) : (
           <div className="text-center py-16">
-            <p className="mb-4" style={{ color: '#7a90b8' }}>No brands yet. Create your first brand profile!</p>
+            <p className="mb-4" style={{ color: '#b8a870' }}>No brands yet. Create your first brand profile!</p>
             <Link
               href="/brands/new"
               className="inline-block px-6 py-3 rounded-lg transition hover:opacity-90"
-              style={{ background: '#0066FF', color: 'white' }}
+              style={{ background: '#ca8a04', color: 'white' }}
             >
               Create Brand
             </Link>

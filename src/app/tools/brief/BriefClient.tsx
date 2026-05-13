@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { Loader2, Copy, CheckCircle, ChevronDown, ChevronUp, Zap, Target, Search, BookOpen, ArrowRight } from 'lucide-react'
@@ -253,7 +253,7 @@ export default function BriefClient({ clients }: { clients: Client[] }) {
                 <Section label="Alternative Headlines" icon={<Zap className="w-3.5 h-3.5 text-violet-400" />}>
                   <div className="space-y-1.5">
                     {brief.altHeadlines.map((h, i) => (
-                      <div key={i} className="flex items-center justify-between gap-2 bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2">
+                      <div key={i} className="flex items-center justify-between gap-2 bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2">
                         <span className="text-white text-sm">{h}</span>
                         <button onClick={() => copy(h, `alt-${i}`)} className="text-[#555570] hover:text-white shrink-0">
                           {copiedId === `alt-${i}` ? <CheckCircle className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -304,7 +304,7 @@ export default function BriefClient({ clients }: { clients: Client[] }) {
                 {expandedOutline && (
                   <div className="space-y-2">
                     {brief.outline.map((section, i) => (
-                      <div key={i} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg p-3">
+                      <div key={i} className="bg-[#0a0900] border border-[#2a2a3d] rounded-lg p-3">
                         <div className="flex items-center justify-between gap-2 mb-1">
                           <span className="text-white text-sm font-semibold font-mono">{section.heading}</span>
                           <span className="text-[#555570] text-xs shrink-0">~{section.wordTarget}w</span>
@@ -394,9 +394,9 @@ function MetaField({ label, value, limit, onCopy, copied, textarea }: {
         </div>
       </div>
       {textarea ? (
-        <textarea readOnly value={value} rows={3} className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm resize-none focus:outline-none" />
+        <textarea readOnly value={value} rows={3} className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm resize-none focus:outline-none" />
       ) : (
-        <input readOnly value={value} className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm focus:outline-none" />
+        <input readOnly value={value} className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-white text-sm focus:outline-none" />
       )}
     </div>
   )

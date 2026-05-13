@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { Loader2, Copy, Share2, CheckCircle } from 'lucide-react'
@@ -143,7 +143,7 @@ export default function RepurposeClient() {
                 readOnly
                 value={results[activePlatform]}
                 rows={22}
-                className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl px-4 py-3 text-white text-sm leading-relaxed focus:outline-none resize-none"
+                className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-xl px-4 py-3 text-white text-sm leading-relaxed focus:outline-none resize-none"
               />
               <p className="text-[#555570] text-xs mt-2">Click another platform above to generate more — all results are cached until you paste new content.</p>
             </div>

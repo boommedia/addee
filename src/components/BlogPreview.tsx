@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 type ChartData = {
   title: string
@@ -70,7 +70,7 @@ export default function BlogPreview({ content }: Props) {
             </thead>
             <tbody>
               {body.map((row, ri) => (
-                <tr key={ri} className={ri % 2 === 0 ? 'bg-[#0a0a0f]' : 'bg-[#0f0f16]'}>
+                <tr key={ri} className={ri % 2 === 0 ? 'bg-[#0a0900]' : 'bg-[#0f0f16]'}>
                   {parseRow(row).map((cell, ci) => (
                     <td key={ci} className="px-3 py-2 text-[#c8c8d8] border border-[#2a2a3d]"
                       dangerouslySetInnerHTML={{ __html: inlineFormat(cell) }}

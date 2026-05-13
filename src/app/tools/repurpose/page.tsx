@@ -1,4 +1,4 @@
-import AppNav from '@/components/AppNav'
+﻿import AppNav from '@/components/AppNav'
 import { Share2 } from 'lucide-react'
 import RepurposeClient from './RepurposeClient'
 
@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function RepurposePage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       <AppNav active="/tools" />
       <main className="max-w-6xl mx-auto px-6 py-10">
         <div className="mb-8">

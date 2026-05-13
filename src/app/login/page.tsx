@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -91,7 +91,7 @@ function LoginForm() {
           type="email"
           required
           autoComplete="email"
-          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#0a0900', border: '1px solid #1a2d50' }}
           placeholder="you@agency.com"
         />
       </div>
@@ -105,7 +105,7 @@ function LoginForm() {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
+          className="w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#0a0900', border: '1px solid #1a2d50' }}
           placeholder="••••••••"
         />
       </div>
@@ -120,7 +120,7 @@ function LoginForm() {
         type="submit"
         disabled={loading}
         className="w-full disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90 mt-2"
-        style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}
+        style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}
       >
         {loading ? 'Signing in…' : 'Sign in'}
       </button>
@@ -131,25 +131,25 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#060d1a' }}>
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#0a0900' }}>
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center mb-3">
             <Logo />
           </div>
-          <p className="text-sm" style={{ color: '#7a90b8' }}>Sign in to your account</p>
+          <p className="text-sm" style={{ color: '#b8a870' }}>Sign in to your account</p>
         </div>
 
-        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#162040' }}>
+        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#1c1800' }}>
           <h1 className="text-white font-bold text-lg mb-6">Welcome back</h1>
           <Suspense>
             <LoginForm />
           </Suspense>
           <div className="mt-4 flex items-center justify-between">
-            <a href="/forgot-password" className="hover:text-blue-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
+            <a href="/forgot-password" className="hover:text-blue-400 text-xs transition-colors" style={{ color: '#b8a870' }}>
               Forgot password?
             </a>
-            <a href="/signup" className="hover:text-blue-400 text-xs transition-colors" style={{ color: '#7a90b8' }}>
+            <a href="/signup" className="hover:text-blue-400 text-xs transition-colors" style={{ color: '#b8a870' }}>
               Create account
             </a>
           </div>

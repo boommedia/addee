@@ -1,4 +1,4 @@
-import AppNav from '@/components/AppNav'
+﻿import AppNav from '@/components/AppNav'
 import HelpAccordion from '@/components/HelpAccordion'
 import { HelpCircle } from 'lucide-react'
 
@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function HelpPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       <AppNav active="/help" />
 
       <main className="max-w-3xl mx-auto px-6 py-10">

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { UserPlus, Mail, CheckCircle, Clock, Trash2, Loader2, Users } from 'lucide-react'
@@ -57,21 +57,21 @@ export default function TeamSettings({
   return (
     <div className="flex flex-col gap-6">
       {/* Team section */}
-      <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+      <div className="rounded-2xl p-6" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
         <div className="flex items-center gap-2 mb-5">
           <Users className="w-4 h-4 text-violet-400" />
           <h2 className="font-semibold text-sm" style={{ color: '#dde4f0' }}>Team Members</h2>
         </div>
 
         {/* Owner row */}
-        <div className="flex items-center justify-between py-3" style={{ borderBottomColor: 'rgba(0,102,255,0.2)', borderBottom: '1px solid' }}>
+        <div className="flex items-center justify-between py-3" style={{ borderBottomColor: 'rgba(202,138,4,0.2)', borderBottom: '1px solid' }}>
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded-full bg-violet-600/30 flex items-center justify-center text-violet-300 text-xs font-bold">
               {ownerEmail[0]?.toUpperCase()}
             </div>
             <div>
               <div className="text-sm" style={{ color: '#dde4f0' }}>{ownerEmail}</div>
-              <div className="text-xs" style={{ color: '#7a90b8' }}>Owner</div>
+              <div className="text-xs" style={{ color: '#b8a870' }}>Owner</div>
             </div>
           </div>
           <span className="text-xs bg-violet-600/20 text-violet-300 border border-violet-500/30 px-2 py-0.5 rounded-full">Owner</span>
@@ -79,12 +79,12 @@ export default function TeamSettings({
 
         {/* Active members */}
         {members.map(m => (
-          <div key={m.id} className="flex items-center justify-between py-3" style={{ borderBottomColor: 'rgba(0,102,255,0.2)', borderBottom: '1px solid' }}>
+          <div key={m.id} className="flex items-center justify-between py-3" style={{ borderBottomColor: 'rgba(202,138,4,0.2)', borderBottom: '1px solid' }}>
             <div className="flex items-center gap-3">
               <div className="w-7 h-7 rounded-full bg-cyan-600/30 flex items-center justify-center text-cyan-300 text-xs font-bold">M</div>
               <div>
                 <div className="text-sm text-xs font-mono opacity-60" style={{ color: '#dde4f0' }}>{m.member_user_id.slice(0, 8)}…</div>
-                <div className="text-xs capitalize" style={{ color: '#7a90b8' }}>{m.role}</div>
+                <div className="text-xs capitalize" style={{ color: '#b8a870' }}>{m.role}</div>
               </div>
             </div>
             <span className="text-xs bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full">Active</span>
@@ -93,21 +93,21 @@ export default function TeamSettings({
 
         {/* Pending invitations */}
         {pending.map(inv => (
-          <div key={inv.id} className="flex items-center justify-between py-3" style={{ borderBottomColor: 'rgba(0,102,255,0.2)', borderBottom: '1px solid' }}>
+          <div key={inv.id} className="flex items-center justify-between py-3" style={{ borderBottomColor: 'rgba(202,138,4,0.2)', borderBottom: '1px solid' }}>
             <div className="flex items-center gap-3">
-              <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(0,102,255,0.1)' }}>
-                <Clock className="w-3.5 h-3.5" style={{ color: '#7a90b8' }} />
+              <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(202,138,4,0.1)' }}>
+                <Clock className="w-3.5 h-3.5" style={{ color: '#b8a870' }} />
               </div>
               <div>
                 <div className="text-sm" style={{ color: '#dde4f0' }}>{inv.email}</div>
-                <div className="text-xs" style={{ color: '#7a90b8' }}>Invite pending</div>
+                <div className="text-xs" style={{ color: '#b8a870' }}>Invite pending</div>
               </div>
             </div>
             <button
               onClick={() => handleRevoke(inv.id)}
               disabled={revoking === inv.id}
               className="transition-colors"
-              style={{ color: '#7a90b8' }}
+              style={{ color: '#b8a870' }}
               title="Revoke invite"
             >
               {revoking === inv.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
@@ -116,17 +116,17 @@ export default function TeamSettings({
         ))}
 
         {members.length === 0 && pending.length === 0 && (
-          <p className="text-xs py-3" style={{ color: '#7a90b8' }}>No team members yet. Invite someone below.</p>
+          <p className="text-xs py-3" style={{ color: '#b8a870' }}>No team members yet. Invite someone below.</p>
         )}
       </div>
 
       {/* Invite form */}
-      <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+      <div className="rounded-2xl p-6" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
         <div className="flex items-center gap-2 mb-4">
           <UserPlus className="w-4 h-4 text-violet-400" />
           <h2 className="font-semibold text-sm" style={{ color: '#dde4f0' }}>Invite Team Member</h2>
         </div>
-        <p className="text-xs mb-4" style={{ color: '#7a90b8' }}>They'll receive an email with a link to join your Bloggy workspace. Team members can create and manage posts and clients.</p>
+        <p className="text-xs mb-4" style={{ color: '#b8a870' }}>They'll receive an email with a link to join your Bloggy workspace. Team members can create and manage posts and clients.</p>
 
         <div className="flex gap-2">
           <input
@@ -135,7 +135,7 @@ export default function TeamSettings({
             onChange={e => setEmail(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleInvite()}
             placeholder="colleague@agency.com"
-            className="flex-1 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid', color: '#dde4f0' }}
+            className="flex-1 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-violet-500 transition-colors" style={{ background: 'rgba(10,9,0,0.8)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid', color: '#dde4f0' }}
           />
           <button
             onClick={handleInvite}
@@ -159,13 +159,13 @@ export default function TeamSettings({
 
       {/* Accepted history */}
       {accepted.length > 0 && (
-        <div className="rounded-2xl p-6" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+        <div className="rounded-2xl p-6" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
           <h2 className="font-semibold text-sm mb-4" style={{ color: '#dde4f0' }}>Accepted Invites</h2>
           <div className="flex flex-col gap-2">
             {accepted.map(inv => (
               <div key={inv.id} className="flex items-center justify-between text-sm">
                 <span style={{ color: '#dde4f0' }}>{inv.email}</span>
-                <span className="text-xs" style={{ color: '#7a90b8' }}>
+                <span className="text-xs" style={{ color: '#b8a870' }}>
                   Joined {new Date(inv.accepted_at!).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </span>
               </div>

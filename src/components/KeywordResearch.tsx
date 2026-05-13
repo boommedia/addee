@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import {
@@ -693,7 +693,7 @@ export default function KeywordResearch({ clients }: { clients: Client[] }) {
     { key: 'lists', label: 'Saved Lists', icon: <Bookmark className="w-3.5 h-3.5" />, count: lists.length },
   ] as const
 
-  const inputClass = 'w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors'
+  const inputClass = 'w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors'
 
   return (
     <div className="space-y-6">
@@ -746,7 +746,7 @@ export default function KeywordResearch({ clients }: { clients: Client[] }) {
                 <div className="flex items-center gap-3">
                   <BarChart2 className="w-4 h-4 text-violet-400" />
                   <span className="text-white font-semibold text-sm">{keywords.length} keywords</span>
-                  <span className="text-[#8888a8] text-xs bg-[#0a0a0f] border border-[#2a2a3d] px-2 py-0.5 rounded-full">{niche}{location ? ` · ${location}` : ''}</span>
+                  <span className="text-[#8888a8] text-xs bg-[#0a0900] border border-[#2a2a3d] px-2 py-0.5 rounded-full">{niche}{location ? ` · ${location}` : ''}</span>
                   {saveSuccess && <span className="text-emerald-400 text-xs font-semibold">Saved!</span>}
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -811,7 +811,7 @@ export default function KeywordResearch({ clients }: { clients: Client[] }) {
           <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-6 space-y-4">
             <div>
               <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5">Paste Keywords (one per line, max 50)</label>
-              <textarea value={bulkInput} onChange={e => setBulkInput(e.target.value)} rows={8} placeholder={"emergency plumber\nhow to fix a leaky faucet\nbest plumber near me\n..."} className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors font-mono resize-none" />
+              <textarea value={bulkInput} onChange={e => setBulkInput(e.target.value)} rows={8} placeholder={"emergency plumber\nhow to fix a leaky faucet\nbest plumber near me\n..."} className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors font-mono resize-none" />
               <div className="flex justify-end mt-1">
                 <span className="text-[#555570] text-xs">{bulkInput.split('\n').filter(l => l.trim()).length} / 50 keywords</span>
               </div>
@@ -897,7 +897,7 @@ export default function KeywordResearch({ clients }: { clients: Client[] }) {
                 <div className="flex items-center gap-3">
                   <Globe className="w-4 h-4 text-orange-400" />
                   <span className="text-white font-semibold text-sm">{compResults.length} keyword gaps found</span>
-                  <span className="text-[#8888a8] text-xs bg-[#0a0a0f] border border-[#2a2a3d] px-2 py-0.5 rounded-full">{competitorDomain}</span>
+                  <span className="text-[#8888a8] text-xs bg-[#0a0900] border border-[#2a2a3d] px-2 py-0.5 rounded-full">{competitorDomain}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <button onClick={() => exportCsv(compResults, `gap-${competitorDomain}.csv`)} className="flex items-center gap-1.5 text-xs text-[#8888a8] hover:text-white bg-[#1a1a26] border border-[#2a2a3d] px-3 py-1.5 rounded-lg transition-colors">
@@ -1054,7 +1054,7 @@ export default function KeywordResearch({ clients }: { clients: Client[] }) {
             <div className="space-y-4">
               <div>
                 <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5">Destination</label>
-                <select value={saveListId} onChange={e => setSaveListId(e.target.value)} className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-violet-500 transition-colors">
+                <select value={saveListId} onChange={e => setSaveListId(e.target.value)} className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-violet-500 transition-colors">
                   <option value="new">+ Create new list</option>
                   {lists.map(l => <option key={l.id} value={l.id}>{l.name} ({l.keywords.length} keywords)</option>)}
                 </select>
@@ -1063,7 +1063,7 @@ export default function KeywordResearch({ clients }: { clients: Client[] }) {
                 <div>
                   <label className="block text-[#8888a8] text-xs font-semibold uppercase tracking-wider mb-1.5">List Name *</label>
                   <input value={newListName} onChange={e => setNewListName(e.target.value)} placeholder="e.g. Plumbing Sydney — High Intent" autoFocus
-                    className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors" />
+                    className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors" />
                 </div>
               )}
               <div className="flex gap-3 pt-1">

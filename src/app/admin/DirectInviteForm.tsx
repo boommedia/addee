@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { Mail, Loader2, CheckCircle, UserPlus } from 'lucide-react'
@@ -48,7 +48,7 @@ export default function DirectInviteForm() {
             onChange={e => setEmail(e.target.value)}
             required
             placeholder="user@example.com"
-            className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
+            className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
           />
         </div>
         <div className="flex-1 min-w-[160px]">
@@ -58,7 +58,7 @@ export default function DirectInviteForm() {
             value={agencyName}
             onChange={e => setAgencyName(e.target.value)}
             placeholder="Optional"
-            className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
+            className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2 text-sm text-white placeholder-[#555570] focus:outline-none focus:border-violet-500 transition-colors"
           />
         </div>
         <button

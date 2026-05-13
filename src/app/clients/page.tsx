@@ -70,7 +70,7 @@ export default async function ClientsPage() {
 
   return (
 
-    <div className="min-h-screen" style={{ background: '#060d1a', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+    <div className="min-h-screen" style={{ background: '#0a0900', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
 
       <AppNav active="/clients" />
 
@@ -80,9 +80,9 @@ export default async function ClientsPage() {
 
           <div>
 
-            <h1 className="text-2xl font-bold mb-1" style={{ color: '#00FF00' }}>Clients</h1>
+            <h1 className="text-2xl font-bold mb-1" style={{ color: '#84cc16' }}>Clients</h1>
 
-            <p className="text-sm" style={{ color: '#7a90b8' }}>Manage client profiles and brand voice settings.</p>
+            <p className="text-sm" style={{ color: '#b8a870' }}>Manage client profiles and brand voice settings.</p>
 
           </div>
 

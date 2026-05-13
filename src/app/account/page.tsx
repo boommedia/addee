@@ -6,7 +6,7 @@ import { FileText, Globe, TrendingUp, Zap, ExternalLink, Calendar } from 'lucide
 export const dynamic = 'force-dynamic'
 
 const PLAN_STYLES: Record<string, { badge: string; card: string }> = {
-  starter:    { badge: 'bg-blue-500/15 border-blue-500/30 text-blue-400',    card: 'from-blue-600/10 to-transparent border-blue-500/20' },
+  starter:    { badge: 'bg-yellow-600/15 border-yellow-600/30 text-yellow-400',    card: 'from-blue-600/10 to-transparent border-blue-500/20' },
   growth:     { badge: 'bg-violet-500/15 border-violet-500/30 text-violet-400', card: 'from-violet-600/10 to-transparent border-violet-500/20' },
   agency:     { badge: 'bg-cyan-500/15 border-cyan-500/30 text-cyan-400',    card: 'from-cyan-600/10 to-transparent border-cyan-500/20' },
   agency_max: { badge: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400', card: 'from-emerald-600/10 to-transparent border-emerald-500/20' },
@@ -19,7 +19,7 @@ function UsageBar({ label, used, limit, unit }: { label: string; used: number; l
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <span className="text-sm" style={{ color: '#7a90b8' }}>{label}</span>
+        <span className="text-sm" style={{ color: '#b8a870' }}>{label}</span>
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold" style={{ color: '#dde4f0' }}>{used} / {limit}</span>
           <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${
@@ -31,7 +31,7 @@ function UsageBar({ label, used, limit, unit }: { label: string; used: number; l
           </span>
         </div>
       </div>
-      <div className="w-full h-2.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,102,255,0.15)' }}>
+      <div className="w-full h-2.5 rounded-full overflow-hidden" style={{ background: 'rgba(202,138,4,0.15)' }}>
         <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
@@ -83,24 +83,24 @@ export default async function AccountPage() {
     : null
 
   return (
-    <div className="min-h-screen" style={{ background: '#060d1a', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+    <div className="min-h-screen" style={{ background: '#0a0900', color: '#dde4f0', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
       <AppNav active="/account" />
 
       <main className="max-w-5xl mx-auto px-6 py-10">
         {/* Header */}
         <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
           <div>
-            <h1 className="text-2xl font-bold mb-1" style={{ color: '#00FF00' }}>My Account</h1>
-            <p className="text-sm" style={{ color: '#7a90b8' }}>{user.email}</p>
+            <h1 className="text-2xl font-bold mb-1" style={{ color: '#84cc16' }}>My Account</h1>
+            <p className="text-sm" style={{ color: '#b8a870' }}>{user.email}</p>
           </div>
           <div className="flex items-center gap-3">
             <a href="/billing"
-              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg transition-colors" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
               <ExternalLink className="w-3.5 h-3.5" />
               Manage subscription
             </a>
             <a href="/dashboard"
-              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg transition-colors" style={{ color: 'white', background: '#0066FF' }}>
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg transition-colors" style={{ color: 'white', background: '#ca8a04' }}>
               <Zap className="w-3.5 h-3.5" />
               Generate post
             </a>
@@ -119,7 +119,7 @@ export default async function AccountPage() {
               </span>
             </div>
             {renewDate && (
-              <div className="flex items-center gap-1.5 text-xs" style={{ color: '#7a90b8' }}>
+              <div className="flex items-center gap-1.5 text-xs" style={{ color: '#b8a870' }}>
                 <Calendar className="w-3.5 h-3.5" />
                 Renews {renewDate}
               </div>
@@ -146,14 +146,14 @@ export default async function AccountPage() {
               label: 'Words this month',
               value: wordsThisMonth >= 1000 ? `${(wordsThisMonth / 1000).toFixed(1)}k` : wordsThisMonth.toString(),
               sub: wordsLastMonth > 0 ? `${(wordsLastMonth / 1000).toFixed(1)}k last month` : 'First month',
-              color: 'text-[#7a90b8]',
+              color: 'text-[#b8a870]',
             },
             {
               icon: <Globe className="w-4 h-4 text-emerald-400" />,
               label: 'Client sites',
               value: (sitesUsed ?? 0).toString(),
               sub: `of ${sitesLimit} allowed`,
-              color: 'text-[#7a90b8]',
+              color: 'text-[#b8a870]',
             },
             {
               icon: <Zap className="w-4 h-4 text-yellow-400" />,
@@ -163,8 +163,8 @@ export default async function AccountPage() {
               color: postsUsed / postsLimit >= 0.9 ? 'text-red-400' : 'text-[#8888a8]',
             },
           ].map((stat, i) => (
-            <div key={i} className="rounded-xl p-4" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
-              <div className="flex items-center gap-2 mb-2">{stat.icon}<span className="text-xs" style={{ color: '#7a90b8' }}>{stat.label}</span></div>
+            <div key={i} className="rounded-xl p-4" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
+              <div className="flex items-center gap-2 mb-2">{stat.icon}<span className="text-xs" style={{ color: '#b8a870' }}>{stat.label}</span></div>
               <div className="text-2xl font-bold mb-1" style={{ color: '#dde4f0' }}>{stat.value}</div>
               <div className={`text-xs ${stat.color}`}>{stat.sub}</div>
             </div>
@@ -172,14 +172,14 @@ export default async function AccountPage() {
         </div>
 
         {/* Recent posts */}
-        <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
-          <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottomColor: 'rgba(0,102,255,0.2)', borderBottom: '1px solid' }}>
+        <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
+          <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottomColor: 'rgba(202,138,4,0.2)', borderBottom: '1px solid' }}>
             <h2 className="font-semibold text-sm" style={{ color: '#dde4f0' }}>Recent Posts</h2>
-            <a href="/posts" className="text-xs transition-colors" style={{ color: '#0066FF' }}>View all →</a>
+            <a href="/posts" className="text-xs transition-colors" style={{ color: '#ca8a04' }}>View all →</a>
           </div>
-          <div style={{ borderColor: 'rgba(0,102,255,0.2)' }} className="divide-y">
+          <div style={{ borderColor: 'rgba(202,138,4,0.2)' }} className="divide-y">
             {recentPosts?.length === 0 && (
-              <div className="px-5 py-10 text-center text-sm" style={{ color: '#7a90b8' }}>No posts yet — <a href="/dashboard" className="transition-colors" style={{ color: '#0066FF' }}>generate your first one</a></div>
+              <div className="px-5 py-10 text-center text-sm" style={{ color: '#b8a870' }}>No posts yet — <a href="/dashboard" className="transition-colors" style={{ color: '#ca8a04' }}>generate your first one</a></div>
             )}
             {recentPosts?.map(post => {
               const client = Array.isArray(post.clients) ? post.clients[0] : post.clients
@@ -190,9 +190,9 @@ export default async function AccountPage() {
                       {post.title}
                     </a>
                     <div className="flex items-center gap-3 mt-0.5">
-                      {client && <span className="text-xs" style={{ color: '#7a90b8' }}>{client.name}</span>}
-                      {post.word_count && <span className="text-xs" style={{ color: '#7a90b8' }}>{post.word_count.toLocaleString()} words</span>}
-                      <span className="text-xs" style={{ color: '#7a90b8' }}>
+                      {client && <span className="text-xs" style={{ color: '#b8a870' }}>{client.name}</span>}
+                      {post.word_count && <span className="text-xs" style={{ color: '#b8a870' }}>{post.word_count.toLocaleString()} words</span>}
+                      <span className="text-xs" style={{ color: '#b8a870' }}>
                         {new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                       </span>
                     </div>
@@ -204,7 +204,7 @@ export default async function AccountPage() {
                         {post.wp_status === 'publish' ? 'Live' : 'Draft'}
                       </a>
                     ) : (
-                      <span className="text-xs px-2 py-0.5 rounded-full border" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)' }}>Not published</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full border" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)' }}>Not published</span>
                     )}
                   </div>
                 </div>

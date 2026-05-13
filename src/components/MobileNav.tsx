@@ -23,7 +23,7 @@ export default function MobileNav({ active, links, signOutAction }: Props) {
       </button>
 
       {open && (
-        <div className="absolute top-14 left-0 right-0 bg-[#0a0a0f] border-b border-[#2a2a3d] z-40 shadow-xl">
+        <div className="absolute top-14 left-0 right-0 bg-[#0a0900] border-b border-[#2a2a3d] z-40 shadow-xl">
           <div className="px-4 py-3 space-y-1">
             {links.map(link => (
               <a

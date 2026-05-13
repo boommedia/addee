@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { Pencil, Trash2, Globe, Building2, FileText, BarChart2, Wifi, Link2, Check, LayoutGrid, List } from 'lucide-react'
@@ -57,14 +57,14 @@ function CopyReportLink({ clientId }: { clientId: string }) {
       onClick={copy}
       title="Copy shareable report link"
       className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors"
-      style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+      style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
       onMouseEnter={(e) => {
         e.currentTarget.style.color = '#dde4f0'
-        e.currentTarget.style.background = 'rgba(0,102,255,0.15)'
+        e.currentTarget.style.background = 'rgba(202,138,4,0.15)'
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.color = '#7a90b8'
-        e.currentTarget.style.background = 'rgba(11,22,40,0.6)'
+        e.currentTarget.style.color = '#b8a870'
+        e.currentTarget.style.background = 'rgba(20,18,0,0.6)'
       }}
     >
       {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Link2 className="w-3 h-3" />}
@@ -75,7 +75,7 @@ function CopyReportLink({ clientId }: { clientId: string }) {
 
 function ClientAvatar({ client }: { client: Client }) {
   if (client.logo_url) {
-    return <img src={client.logo_url} alt={client.name} className="w-10 h-10 rounded-xl object-contain bg-white/5 shrink-0 p-0.5" style={{ borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }} />
+    return <img src={client.logo_url} alt={client.name} className="w-10 h-10 rounded-xl object-contain bg-white/5 shrink-0 p-0.5" style={{ borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }} />
   }
   return (
     <div
@@ -94,12 +94,12 @@ function PostUsageBar({ used, limit }: { used: number; limit: number }) {
   return (
     <div className="mt-2.5 mb-0.5">
       <div className="flex items-center justify-between mb-1">
-        <span className="text-xs" style={{ color: '#7a90b8' }}>Posts this month</span>
-        <span className={`text-xs font-semibold ${pct >= 100 ? 'text-red-400' : pct >= 80 ? 'text-yellow-400' : ''}`} style={{ color: pct >= 100 ? undefined : pct >= 80 ? undefined : '#7a90b8' }}>
+        <span className="text-xs" style={{ color: '#b8a870' }}>Posts this month</span>
+        <span className={`text-xs font-semibold ${pct >= 100 ? 'text-red-400' : pct >= 80 ? 'text-yellow-400' : ''}`} style={{ color: pct >= 100 ? undefined : pct >= 80 ? undefined : '#b8a870' }}>
           {used}/{limit} · {left} left
         </span>
       </div>
-      <div className="h-1 rounded-full overflow-hidden" style={{ background: 'rgba(0,102,255,0.15)' }}>
+      <div className="h-1 rounded-full overflow-hidden" style={{ background: 'rgba(202,138,4,0.15)' }}>
         <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
@@ -127,10 +127,10 @@ export default function ClientList({
 
   if (clients.length === 0) {
     return (
-      <div className="border-dashed rounded-2xl py-20 text-center" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)' }}>
-        <Building2 className="w-10 h-10 mx-auto mb-3" style={{ color: 'rgba(0,102,255,0.3)' }} />
-        <p className="text-sm" style={{ color: '#7a90b8' }}>No clients yet</p>
-        <p className="text-xs mt-1 opacity-60" style={{ color: '#7a90b8' }}>Add your first client to get started</p>
+      <div className="border-dashed rounded-2xl py-20 text-center" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)' }}>
+        <Building2 className="w-10 h-10 mx-auto mb-3" style={{ color: 'rgba(202,138,4,0.3)' }} />
+        <p className="text-sm" style={{ color: '#b8a870' }}>No clients yet</p>
+        <p className="text-xs mt-1 opacity-60" style={{ color: '#b8a870' }}>Add your first client to get started</p>
       </div>
     )
   }
@@ -139,11 +139,11 @@ export default function ClientList({
     <div>
       {/* View toggle */}
       <div className="flex justify-end mb-4">
-        <div className="flex gap-1 rounded-lg p-1" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+        <div className="flex gap-1 rounded-lg p-1" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
           <button
             onClick={() => setView('grid')}
             className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'text-white' : ''}`}
-            style={view === 'grid' ? { background: 'rgba(0,102,255,0.3)' } : { color: '#7a90b8' }}
+            style={view === 'grid' ? { background: 'rgba(202,138,4,0.3)' } : { color: '#b8a870' }}
             title="Grid view"
           >
             <LayoutGrid className="w-4 h-4" />
@@ -151,7 +151,7 @@ export default function ClientList({
           <button
             onClick={() => setView('list')}
             className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'text-white' : ''}`}
-            style={view === 'list' ? { background: 'rgba(0,102,255,0.3)' } : { color: '#7a90b8' }}
+            style={view === 'list' ? { background: 'rgba(202,138,4,0.3)' } : { color: '#b8a870' }}
             title="List view"
           >
             <List className="w-4 h-4" />
@@ -166,7 +166,7 @@ export default function ClientList({
             <div
               key={client.id}
               className="rounded-2xl p-4 flex flex-col transition-colors"
-              style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+              style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
             >
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div className="flex items-center gap-3 min-w-0">
@@ -174,19 +174,19 @@ export default function ClientList({
                   <div className="min-w-0">
                     <a href={`/clients/${client.id}`} className="font-bold text-sm leading-tight truncate block transition-colors" style={{ color: '#dde4f0' }}>{client.name}</a>
                     <div className="flex items-center gap-2 mt-0.5">
-                      {client.industry && <span className="text-xs" style={{ color: '#7a90b8' }}>{client.industry}</span>}
+                      {client.industry && <span className="text-xs" style={{ color: '#b8a870' }}>{client.industry}</span>}
                       <WpHealthBadge hasWp={!!(client.wp_url && client.wp_username && client.wp_app_password)} />
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-0.5 shrink-0">
                   <ClientForm client={client} trigger={
-                    <button className="p-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8' }}>
+                    <button className="p-1.5 rounded-lg transition-colors" style={{ color: '#b8a870' }}>
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
                   } />
                   <button onClick={() => handleDelete(client.id, client.name)} disabled={deletingId === client.id}
-                    className="p-1.5 rounded-lg transition-colors disabled:opacity-40" style={{ color: '#7a90b8' }}>
+                    className="p-1.5 rounded-lg transition-colors disabled:opacity-40" style={{ color: '#b8a870' }}>
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -194,7 +194,7 @@ export default function ClientList({
 
               {client.website && (
                 <a href={client.website} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs transition-colors truncate mb-1" style={{ color: '#7a90b8' }}>
+                  className="flex items-center gap-1.5 text-xs transition-colors truncate mb-1" style={{ color: '#b8a870' }}>
                   <Globe className="w-3 h-3 shrink-0" />
                   <span className="truncate">{client.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
                 </a>
@@ -202,18 +202,18 @@ export default function ClientList({
 
               <PostUsageBar used={postCountByClient[client.id] ?? 0} limit={perClientLimit} />
 
-              <div className="flex items-center gap-1.5 pt-3 mt-auto" style={{ borderTopColor: 'rgba(0,102,255,0.2)', borderTop: '1px solid' }}>
+              <div className="flex items-center gap-1.5 pt-3 mt-auto" style={{ borderTopColor: 'rgba(202,138,4,0.2)', borderTop: '1px solid' }}>
                 <a href={`/clients/${client.id}`}
-                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#0066FF', background: 'rgba(0,102,255,0.1)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#ca8a04', background: 'rgba(202,138,4,0.1)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                   Manage
                 </a>
                 <a href={`/clients/${client.id}/report`}
-                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                   <BarChart2 className="w-3 h-3" /> Report
                 </a>
                 <CopyReportLink clientId={client.id} />
                 <a href={`/dashboard?client=${client.id}`}
-                  className="ml-auto flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap" style={{ color: 'white', background: '#0066FF' }}>
+                  className="ml-auto flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap" style={{ color: 'white', background: '#ca8a04' }}>
                   Generate →
                 </a>
               </div>
@@ -229,7 +229,7 @@ export default function ClientList({
             <div
               key={client.id}
               className="rounded-xl px-4 py-3 flex items-center gap-4 transition-colors"
-              style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}
+              style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}
             >
               <ClientAvatar client={client} />
 
@@ -239,10 +239,10 @@ export default function ClientList({
                   <WpHealthBadge hasWp={!!(client.wp_url && client.wp_username && client.wp_app_password)} />
                 </div>
                 <div className="flex items-center gap-3 mt-0.5">
-                  {client.industry && <span className="text-xs" style={{ color: '#7a90b8' }}>{client.industry}</span>}
+                  {client.industry && <span className="text-xs" style={{ color: '#b8a870' }}>{client.industry}</span>}
                   {client.website && (
                     <a href={client.website} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-xs transition-colors truncate max-w-[200px]" style={{ color: '#7a90b8' }}>
+                      className="flex items-center gap-1 text-xs transition-colors truncate max-w-[200px]" style={{ color: '#b8a870' }}>
                       <Globe className="w-3 h-3 shrink-0" />
                       <span className="truncate">{client.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
                     </a>
@@ -266,25 +266,25 @@ export default function ClientList({
 
               <div className="flex items-center gap-1.5 shrink-0">
                 <a href={`/posts?client=${client.id}`}
-                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                   <FileText className="w-3 h-3" /> Posts
                 </a>
                 <a href={`/clients/${client.id}/report`}
-                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8', background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.3)', border: '1px solid' }}>
+                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors" style={{ color: '#b8a870', background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.3)', border: '1px solid' }}>
                   <BarChart2 className="w-3 h-3" /> Report
                 </a>
                 <CopyReportLink clientId={client.id} />
                 <ClientForm client={client} trigger={
-                  <button className="p-1.5 rounded-lg transition-colors" style={{ color: '#7a90b8' }}>
+                  <button className="p-1.5 rounded-lg transition-colors" style={{ color: '#b8a870' }}>
                     <Pencil className="w-3.5 h-3.5" />
                   </button>
                 } />
                 <button onClick={() => handleDelete(client.id, client.name)} disabled={deletingId === client.id}
-                  className="p-1.5 rounded-lg transition-colors disabled:opacity-40" style={{ color: '#7a90b8' }}>
+                  className="p-1.5 rounded-lg transition-colors disabled:opacity-40" style={{ color: '#b8a870' }}>
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
                 <a href={`/dashboard?client=${client.id}`}
-                  className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap" style={{ color: 'white', background: '#0066FF' }}>
+                  className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap" style={{ color: 'white', background: '#ca8a04' }}>
                   Generate →
                 </a>
               </div>

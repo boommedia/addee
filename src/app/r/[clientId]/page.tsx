@@ -1,4 +1,4 @@
-import { createAdminClient } from '@/lib/supabase/admin'
+﻿import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound } from 'next/navigation'
 import { Globe, ExternalLink, FileText, BarChart2 } from 'lucide-react'
 import Logo from '@/components/Logo'
@@ -29,8 +29,8 @@ export default async function PublicReportPage({ params }: { params: Promise<{ c
   const month = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
-      <nav className="border-b border-[#2a2a3d] bg-[#0a0a0f]/80 backdrop-blur">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
+      <nav className="border-b border-[#2a2a3d] bg-[#0a0900]/80 backdrop-blur">
         <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
           <Logo />
           <span className="text-[#555570] text-xs">Content Report</span>

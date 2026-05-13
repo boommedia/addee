@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -32,7 +32,7 @@ export default function WelcomePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] to-[#12121a] flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-[#0a0900] to-[#12121a] flex items-center justify-center">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 mb-4">
             <Logo className="h-8" />
@@ -47,7 +47,7 @@ export default function WelcomePage() {
   const firstName = fullName.split(' ')[0]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] to-[#12121a] flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0900] to-[#12121a] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-2xl">
         {/* Header */}
         <div className="text-center mb-12">

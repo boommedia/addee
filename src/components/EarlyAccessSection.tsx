@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { ArrowRight, Lock, Zap, Users } from 'lucide-react'
@@ -45,21 +45,21 @@ export default function EarlyAccessSection() {
   const discount = coupon.percent_off ?? 50
 
   return (
-    <section id="early-access" className="px-6 py-14 border-t" style={{ borderColor: '#162040' }}>
+    <section id="early-access" className="px-6 py-14 border-t" style={{ borderColor: '#1c1800' }}>
       <div className="max-w-5xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden border"
           style={soldOut
             ? { background: '#0b1628', borderColor: '#1a2d50' }
-            : { background: 'linear-gradient(135deg, rgba(0,102,255,0.5) 0%, rgba(11,22,40,0.95) 50%, rgba(15,30,50,0.9) 100%)', borderColor: 'rgba(0,102,255,0.35)' }
+            : { background: 'linear-gradient(135deg, rgba(202,138,4,0.5) 0%, rgba(10,9,0,0.95) 50%, rgba(15,30,50,0.9) 100%)', borderColor: 'rgba(202,138,4,0.35)' }
           }>
 
           {/* Glow */}
           {!soldOut && (
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full blur-3xl"
-                style={{ background: 'rgba(0,102,255,0.12)' }} />
+                style={{ background: 'rgba(202,138,4,0.12)' }} />
               <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full blur-3xl"
-                style={{ background: 'rgba(0,255,0,0.08)' }} />
+                style={{ background: 'rgba(132,204,22,0.08)' }} />
             </div>
           )}
 
@@ -79,41 +79,41 @@ export default function EarlyAccessSection() {
                 {/* Left: Offer details */}
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 border"
-                    style={{ background: 'rgba(0,255,0,0.15)', borderColor: 'rgba(0,255,0,0.3)', color: '#00FF00' }}>
+                    style={{ background: 'rgba(132,204,22,0.15)', borderColor: 'rgba(132,204,22,0.3)', color: '#84cc16' }}>
                     <Zap className="w-3 h-3" />
                     Limited Early Access — {left} of {total} spots left
                   </div>
 
                   <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
                     {discount}% off for 1 year.<br />
-                    <span style={{ backgroundImage: 'linear-gradient(90deg, #0066FF, #00FF00)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    <span style={{ backgroundImage: 'linear-gradient(90deg, #ca8a04, #84cc16)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                       Founding member pricing.
                     </span>
                   </h2>
 
-                  <p className="text-sm leading-relaxed mb-6" style={{ color: '#7a90b8' }}>
+                  <p className="text-sm leading-relaxed mb-6" style={{ color: '#b8a870' }}>
                     We're opening AdDee to a small group of agencies before public launch. The first {total} members lock in {discount}% off for 12 months — saving hundreds compared to full price. Once these spots are gone, pricing returns to normal.
                   </p>
 
                   {/* Spot counter */}
                   <div className="rounded-xl p-4 mb-6 border"
-                    style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
+                    style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#1a2d50' }}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2 text-sm">
-                        <Users className="w-4 h-4" style={{ color: '#00FF00' }} />
+                        <Users className="w-4 h-4" style={{ color: '#84cc16' }} />
                         <span className="text-white font-bold">{left} spots remaining</span>
                         <span style={{ color: '#3a5070' }}>of {total}</span>
                       </div>
                       <span className="text-xs" style={{ color: '#3a5070' }}>{used} claimed</span>
                     </div>
-                    <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: '#162040' }}>
+                    <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: '#1c1800' }}>
                       <div
                         className="h-full rounded-full transition-all"
-                        style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #0066FF, #00FF00)' }}
+                        style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #ca8a04, #84cc16)' }}
                       />
                     </div>
                     {left <= 5 && (
-                      <p className="text-xs font-semibold mt-2" style={{ color: '#00FF00' }}>
+                      <p className="text-xs font-semibold mt-2" style={{ color: '#84cc16' }}>
                         Only {left} left — don't miss out
                       </p>
                     )}
@@ -123,7 +123,7 @@ export default function EarlyAccessSection() {
                     <a
                       href={`/signup?coupon=${COUPON_ID}`}
                       className="flex items-center justify-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-all hover:opacity-90 text-sm"
-                      style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)', boxShadow: '0 6px 24px rgba(0,102,255,0.3)' }}
+                      style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)', boxShadow: '0 6px 24px rgba(202,138,4,0.3)' }}
                     >
                       <Lock className="w-4 h-4" />
                       Claim Your Spot — {PROMO_CODE}
@@ -131,7 +131,7 @@ export default function EarlyAccessSection() {
                     <a
                       href={`/billing?coupon=${COUPON_ID}`}
                       className="flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-xl transition-colors text-sm border hover:text-white"
-                      style={{ background: 'rgba(11,22,40,0.8)', borderColor: '#1a2d50', color: '#7a90b8' }}
+                      style={{ background: 'rgba(10,9,0,0.8)', borderColor: '#1a2d50', color: '#b8a870' }}
                     >
                       Already have an account
                     </a>
@@ -141,7 +141,7 @@ export default function EarlyAccessSection() {
                     New to AdDee? Create your account above — discount applied automatically at checkout.
                   </p>
 
-                  <div className="mt-4 rounded-xl p-3 border" style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
+                  <div className="mt-4 rounded-xl p-3 border" style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#1a2d50' }}>
                     <p className="text-xs leading-relaxed" style={{ color: '#3a5070' }}>
                       <strong style={{ color: '#4a6080' }}>Early access terms:</strong> The 50% discount is locked in for 12 months for the first {total} members only.
                       If you cancel at any time, you permanently lose the early access rate —
@@ -158,7 +158,7 @@ export default function EarlyAccessSection() {
                       const discounted = Math.round(p.original * (1 - discount / 100) * 100) / 100
                       return (
                         <div key={p.name} className="flex flex-col rounded-xl px-4 py-3 border"
-                          style={{ background: 'rgba(6,13,26,0.7)', borderColor: '#1a2d50' }}>
+                          style={{ background: 'rgba(10,9,0,0.7)', borderColor: '#1a2d50' }}>
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <div className="text-white text-sm font-semibold">{p.name}</div>

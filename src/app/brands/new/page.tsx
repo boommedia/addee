@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -16,7 +16,7 @@ export default function NewBrandPage() {
     brand_voice: '',
     tone_examples: '',
     visual_style: '',
-    colors: '#0066FF',
+    colors: '#ca8a04',
   })
   const [loading, setLoading] = useState(false)
 

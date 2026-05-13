@@ -1,4 +1,4 @@
-import AppNav from '@/components/AppNav'
+﻿import AppNav from '@/components/AppNav'
 import { createClient } from '@/lib/supabase/server'
 import { Globe } from 'lucide-react'
 import UrlToBlogClient from './UrlToBlogClient'
@@ -17,7 +17,7 @@ export default async function UrlToBlogPage() {
     : { data: [] }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
       <AppNav active="/tools" />
       <main className="max-w-6xl mx-auto px-6 py-10">
         <div className="mb-8">

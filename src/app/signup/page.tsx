@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -182,7 +182,7 @@ function SignupForm() {
     return (
       <div>
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 border" style={{ background: 'rgba(0,102,255,0.15)', borderColor: 'rgba(0,102,255,0.3)' }}>
+          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 border" style={{ background: 'rgba(202,138,4,0.15)', borderColor: 'rgba(202,138,4,0.3)' }}>
             <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
@@ -209,7 +209,7 @@ function SignupForm() {
                   value={digit}
                   onChange={e => handleOtpChange(i, e.target.value)}
                   onKeyDown={e => handleOtpKeyDown(i, e)}
-                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#060d1a', border: '1px solid #1a2d50' }}
+                  className="w-11 h-14 rounded-xl text-white text-xl font-bold text-center focus:outline-none focus:border-blue-500 transition-colors" style={{ background: '#0a0900', border: '1px solid #1a2d50' }}
                 />
               ))}
             </div>
@@ -225,7 +225,7 @@ function SignupForm() {
             type="submit"
             disabled={otpLoading || otp.join('').length < 8}
             className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}
+            style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}
           >
             {otpLoading ? 'Verifying…' : 'Verify & continue'}
           </button>
@@ -245,7 +245,7 @@ function SignupForm() {
   }
 
   const inputClass = 'w-full rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors'
-  const inputStyle = { background: '#060d1a', border: '1px solid #1a2d50' }
+  const inputStyle = { background: '#0a0900', border: '1px solid #1a2d50' }
   const labelClass = 'block text-xs font-semibold uppercase tracking-wider mb-1.5'
 
   return (
@@ -267,7 +267,7 @@ function SignupForm() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t" style={{ borderColor: '#162040' }}></div>
+          <div className="w-full border-t" style={{ borderColor: '#1c1800' }}></div>
         </div>
         <div className="relative flex justify-center text-xs">
           <span className="px-2 text-[#555570]" style={{ background: '#0b1628' }}>or continue with email</span>
@@ -276,7 +276,7 @@ function SignupForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass} style={{ color: '#7a90b8' }}>Full Name *</label>
+          <label className={labelClass} style={{ color: '#b8a870' }}>Full Name *</label>
           <input
             type="text"
             required
@@ -289,7 +289,7 @@ function SignupForm() {
           />
         </div>
         <div>
-          <label className={labelClass} style={{ color: '#7a90b8' }}>Agency Name *</label>
+          <label className={labelClass} style={{ color: '#b8a870' }}>Agency Name *</label>
           <input
             type="text"
             required
@@ -304,7 +304,7 @@ function SignupForm() {
       </div>
 
       <div>
-        <label className={labelClass} style={{ color: '#7a90b8' }}>Agency Website *</label>
+        <label className={labelClass} style={{ color: '#b8a870' }}>Agency Website *</label>
         <div className="relative">
           <input
             type="text"
@@ -314,7 +314,7 @@ function SignupForm() {
             onBlur={() => checkUrl(agencyUrl)}
             autoComplete="url"
             className={`${inputClass} pr-10`}
-            style={{ ...inputStyle, ...(urlStatus === 'valid' ? { borderColor: '#10b981' } : urlStatus === 'invalid' ? { borderColor: '#0066FF' } : {}) }}
+            style={{ ...inputStyle, ...(urlStatus === 'valid' ? { borderColor: '#10b981' } : urlStatus === 'invalid' ? { borderColor: '#ca8a04' } : {}) }}
             placeholder="https://youragency.com"
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -328,7 +328,7 @@ function SignupForm() {
       </div>
 
       <div>
-        <label className={labelClass} style={{ color: '#7a90b8' }}>Work Email *</label>
+        <label className={labelClass} style={{ color: '#b8a870' }}>Work Email *</label>
         <input
           type="email"
           required
@@ -343,7 +343,7 @@ function SignupForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass} style={{ color: '#7a90b8' }}>Password *</label>
+          <label className={labelClass} style={{ color: '#b8a870' }}>Password *</label>
           <input
             type="password"
             required
@@ -356,7 +356,7 @@ function SignupForm() {
           />
         </div>
         <div>
-          <label className={labelClass} style={{ color: '#7a90b8' }}>Confirm Password *</label>
+          <label className={labelClass} style={{ color: '#b8a870' }}>Confirm Password *</label>
           <input
             type="password"
             required
@@ -385,8 +385,8 @@ function SignupForm() {
 
       {/* Free plan callout */}
       {!coupon && (
-        <div className="rounded-xl px-4 py-3 flex items-start gap-3 border" style={{ background: 'rgba(0,102,255,0.08)', borderColor: 'rgba(0,102,255,0.2)' }}>
-          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: 'rgba(0,102,255,0.15)', borderColor: 'rgba(0,102,255,0.3)' }}>
+        <div className="rounded-xl px-4 py-3 flex items-start gap-3 border" style={{ background: 'rgba(202,138,4,0.08)', borderColor: 'rgba(202,138,4,0.2)' }}>
+          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: 'rgba(202,138,4,0.15)', borderColor: 'rgba(202,138,4,0.3)' }}>
             <span className="text-blue-400 text-xs font-bold">✓</span>
           </div>
           <div>
@@ -404,7 +404,7 @@ function SignupForm() {
         type="submit"
         disabled={loading}
         className="w-full disabled:opacity-50 text-white font-semibold rounded-lg py-2.5 text-sm transition-all hover:opacity-90"
-        style={{ background: 'linear-gradient(135deg, #0066FF, #0055FF)' }}
+        style={{ background: 'linear-gradient(135deg, #ca8a04, #0055FF)' }}
       >
         {loading ? 'Creating account…' : 'Create free account'}
       </button>
@@ -421,22 +421,22 @@ function SignupForm() {
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-10" style={{ background: '#060d1a' }}>
+    <div className="min-h-screen flex items-center justify-center px-4 py-10" style={{ background: '#0a0900' }}>
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center mb-3">
             <Logo />
           </div>
-          <p className="text-sm" style={{ color: '#7a90b8' }}>Start generating AI ad creatives for your brands</p>
+          <p className="text-sm" style={{ color: '#b8a870' }}>Start generating AI ad creatives for your brands</p>
         </div>
 
-        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#162040' }}>
+        <div className="rounded-2xl p-8 border" style={{ background: '#0b1628', borderColor: '#1c1800' }}>
           <h1 className="text-white font-bold text-lg mb-6">Create your free account</h1>
           <Suspense>
             <SignupForm />
           </Suspense>
           <div className="mt-5 text-center">
-            <span className="text-xs" style={{ color: '#7a90b8' }}>Already have an account? </span>
+            <span className="text-xs" style={{ color: '#b8a870' }}>Already have an account? </span>
             <a href="/login" className="text-blue-400 hover:text-blue-300 text-xs transition-colors">Sign in</a>
           </div>
         </div>

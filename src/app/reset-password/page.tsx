@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
@@ -49,7 +49,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#0a0900] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-3">
@@ -84,7 +84,7 @@ export default function ResetPasswordPage() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     autoComplete="new-password"
-                    className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
                     placeholder="Min. 8 characters"
                   />
                 </div>
@@ -98,7 +98,7 @@ export default function ResetPasswordPage() {
                     value={confirm}
                     onChange={e => setConfirm(e.target.value)}
                     autoComplete="new-password"
-                    className="w-full bg-[#0a0a0f] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-[#0a0900] border border-[#2a2a3d] rounded-lg px-3 py-2.5 text-white text-sm placeholder-[#8888a8] focus:outline-none focus:border-violet-500 transition-colors"
                     placeholder="Repeat password"
                   />
                 </div>

@@ -1,4 +1,4 @@
-import Logo from '@/components/Logo'
+﻿import Logo from '@/components/Logo'
 import HelpAccordion from '@/components/HelpAccordion'
 import SupportFaq from './SupportFaq'
 import {
@@ -74,10 +74,10 @@ const QUICK_LINKS = [
 
 export default function SupportPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
 
       {/* Nav */}
-      <nav className="border-b border-[#2a2a3d]/60 bg-[#0a0a0f]/90 backdrop-blur sticky top-0 z-50">
+      <nav className="border-b border-[#2a2a3d]/60 bg-[#0a0900]/90 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <a href="/" className="flex items-center gap-2">

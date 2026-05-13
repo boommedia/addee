@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+﻿import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import { Globe, ExternalLink, FileText, BarChart2, CheckCircle } from 'lucide-react'
 import PrintButton from './PrintButton'
@@ -53,14 +53,14 @@ export default async function ClientReportPage({ params }: { params: Promise<{ i
   const monthLabel = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0] print:bg-white print:text-gray-900">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0] print:bg-white print:text-gray-900">
       {/* Nav bar — hidden on print */}
       <div className="print:hidden">
         <AppNav active="/clients" />
       </div>
 
       {/* Print bar — hidden on print */}
-      <div className="print:hidden flex items-center justify-between px-8 py-3 border-b border-[#2a2a3d] bg-[#0a0a0f]">
+      <div className="print:hidden flex items-center justify-between px-8 py-3 border-b border-[#2a2a3d] bg-[#0a0900]">
         <a href="/clients" className="text-sm text-[#8888a8] hover:text-white transition-colors">← Back to Clients</a>
         <PrintButton />
       </div>
@@ -140,7 +140,7 @@ export default async function ClientReportPage({ params }: { params: Promise<{ i
                 </thead>
                 <tbody>
                   {monthPosts.map((p, i) => (
-                    <tr key={p.id} className={`border-b border-[#2a2a3d] last:border-0 print:border-gray-100 ${i % 2 === 0 ? 'bg-[#0a0a0f] print:bg-white' : 'bg-[#12121a] print:bg-gray-50'}`}>
+                    <tr key={p.id} className={`border-b border-[#2a2a3d] last:border-0 print:border-gray-100 ${i % 2 === 0 ? 'bg-[#0a0900] print:bg-white' : 'bg-[#12121a] print:bg-gray-50'}`}>
                       <td className="px-4 py-3">
                         <div className="font-medium text-[#e8e8f0] leading-snug print:text-gray-900">{p.title}</div>
                         {(p as any).seo_meta?.focusKeyword && (

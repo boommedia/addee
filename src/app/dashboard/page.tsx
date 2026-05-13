@@ -111,35 +111,35 @@ export default async function HomePage({
   ]
 
   return (
-    <div className="min-h-screen text-[#dde4f0]" style={{ background: '#060d1a', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
+    <div className="min-h-screen text-[#dde4f0]" style={{ background: '#0a0900', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
       <AppNav active="/dashboard" />
 
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold mb-2" style={{ color: '#00FF00' }}>Generate Your First AD</h1>
-          <p className="text-lg" style={{ color: '#7a90b8' }}>Pick a format and let AdDee create 3 platform-ready variations in your brand voice</p>
+          <h1 className="text-4xl font-bold mb-2" style={{ color: '#84cc16' }}>Generate Your First AD</h1>
+          <p className="text-lg" style={{ color: '#b8a870' }}>Pick a format and let AdDee create 3 platform-ready variations in your brand voice</p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-4 gap-4 mb-12">
-          <div className="rounded-lg p-4 border" style={{ background: 'rgba(0,102,255,0.1)', borderColor: 'rgba(0,102,255,0.3)' }}>
-            <div className="text-3xl font-bold" style={{ color: '#0066FF' }}>{postsThisMonth ?? 0}/{sub?.posts_limit ?? 2}</div>
-            <div className="text-sm" style={{ color: '#7a90b8' }}>ADs this month</div>
+          <div className="rounded-lg p-4 border" style={{ background: 'rgba(202,138,4,0.1)', borderColor: 'rgba(202,138,4,0.3)' }}>
+            <div className="text-3xl font-bold" style={{ color: '#ca8a04' }}>{postsThisMonth ?? 0}/{sub?.posts_limit ?? 2}</div>
+            <div className="text-sm" style={{ color: '#b8a870' }}>ADs this month</div>
           </div>
-          <div className="rounded-lg p-4 border" style={{ background: 'rgba(0,255,0,0.1)', borderColor: 'rgba(0,255,0,0.3)' }}>
-            <div className="text-3xl font-bold" style={{ color: '#00FF00' }}>{clients?.length ?? 0}</div>
-            <div className="text-sm" style={{ color: '#7a90b8' }}>Brands</div>
+          <div className="rounded-lg p-4 border" style={{ background: 'rgba(132,204,22,0.1)', borderColor: 'rgba(132,204,22,0.3)' }}>
+            <div className="text-3xl font-bold" style={{ color: '#84cc16' }}>{clients?.length ?? 0}</div>
+            <div className="text-sm" style={{ color: '#b8a870' }}>Brands</div>
           </div>
-          <div className="rounded-lg p-4 border" style={{ background: 'rgba(0,102,255,0.1)', borderColor: 'rgba(0,102,255,0.3)' }}>
-            <div className="text-3xl font-bold" style={{ color: '#0066FF' }}>{wordsThisMonth}</div>
-            <div className="text-sm" style={{ color: '#7a90b8' }}>Words generated</div>
+          <div className="rounded-lg p-4 border" style={{ background: 'rgba(202,138,4,0.1)', borderColor: 'rgba(202,138,4,0.3)' }}>
+            <div className="text-3xl font-bold" style={{ color: '#ca8a04' }}>{wordsThisMonth}</div>
+            <div className="text-sm" style={{ color: '#b8a870' }}>Words generated</div>
           </div>
-          <div className="rounded-lg p-4 border" style={{ background: 'rgba(0,255,0,0.1)', borderColor: 'rgba(0,255,0,0.3)' }}>
-            <div className="text-3xl font-bold" style={{ color: lastPost?.[0]?.title ? '#00FF00' : '#4a6080' }}>
+          <div className="rounded-lg p-4 border" style={{ background: 'rgba(132,204,22,0.1)', borderColor: 'rgba(132,204,22,0.3)' }}>
+            <div className="text-3xl font-bold" style={{ color: lastPost?.[0]?.title ? '#84cc16' : '#4a6080' }}>
               {lastPost?.[0]?.title ? '✓' : '—'}
             </div>
-            <div className="text-sm" style={{ color: '#7a90b8' }}>Last AD created</div>
+            <div className="text-sm" style={{ color: '#b8a870' }}>Last AD created</div>
           </div>
         </div>
 
@@ -149,15 +149,15 @@ export default async function HomePage({
           <div className="space-y-3">
             {services.map((service) => (
               <Link key={service.id} href={service.href} className="block group">
-                <div className="rounded-lg p-5 border-2 hover:border-blue-400 transition" style={{ background: 'rgba(11,22,40,0.6)', borderColor: 'rgba(0,102,255,0.5)' }}>
+                <div className="rounded-lg p-5 border-2 hover:border-blue-400 transition" style={{ background: 'rgba(20,18,0,0.6)', borderColor: 'rgba(202,138,4,0.5)' }}>
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-4 flex-1">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0066FF, #00FF00)' }}>
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #ca8a04, #84cc16)' }}>
                         <service.icon className="text-white" size={24} />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg" style={{ color: '#00FF00' }}>{service.title}</h3>
-                        <p style={{ color: '#7a90b8' }} className="text-sm mt-1">{service.desc}</p>
+                        <h3 className="font-bold text-lg" style={{ color: '#84cc16' }}>{service.title}</h3>
+                        <p style={{ color: '#b8a870' }} className="text-sm mt-1">{service.desc}</p>
                       </div>
                     </div>
                     <ChevronRight className="flex-shrink-0 transition mt-1" style={{ color: '#4a6080' }} size={24} />
@@ -173,17 +173,17 @@ export default async function HomePage({
           <h2 className="text-2xl font-bold mb-6" style={{ color: '#dde4f0' }}>Coming Soon</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {addons.map((addon, i) => (
-              <div key={i} className="rounded-lg p-5 border relative" style={{ background: 'rgba(42,58,90,0.3)', borderColor: 'rgba(0,102,255,0.25)' }}>
-                <div className="absolute top-3 right-3 text-xs font-semibold px-2 py-1 rounded" style={{ background: 'rgba(0,255,0,0.2)', color: '#00FF00' }}>
+              <div key={i} className="rounded-lg p-5 border relative" style={{ background: 'rgba(42,58,90,0.3)', borderColor: 'rgba(202,138,4,0.25)' }}>
+                <div className="absolute top-3 right-3 text-xs font-semibold px-2 py-1 rounded" style={{ background: 'rgba(132,204,22,0.2)', color: '#84cc16' }}>
                   Coming Soon
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center opacity-50" style={{ background: 'linear-gradient(135deg, #0066FF, #00FF00)' }}>
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center opacity-50" style={{ background: 'linear-gradient(135deg, #ca8a04, #84cc16)' }}>
                     <addon.icon className="text-white" size={20} />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-white">{addon.title}</h3>
-                    <p style={{ color: '#7a90b8' }} className="text-sm mt-1">{addon.desc}</p>
+                    <p style={{ color: '#b8a870' }} className="text-sm mt-1">{addon.desc}</p>
                   </div>
                 </div>
               </div>

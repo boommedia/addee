@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { CheckCircle, XCircle, Clock, Loader2 } from 'lucide-react'
@@ -50,7 +50,7 @@ export default function AutoblogApprovalDashboard({
           </button>
 
           {expandedId === item.id && (
-            <div className="px-5 py-4 border-t border-[#2a2a3d] bg-[#0a0a0f]/60 space-y-4">
+            <div className="px-5 py-4 border-t border-[#2a2a3d] bg-[#0a0900]/60 space-y-4">
               {item.post_title && (
                 <div>
                   <div className="text-xs text-[#8888a8] font-medium uppercase tracking-wide mb-2">Post Title</div>

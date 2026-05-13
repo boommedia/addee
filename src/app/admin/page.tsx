@@ -1,4 +1,4 @@
-import Logo from '@/components/Logo'
+﻿import Logo from '@/components/Logo'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { logout } from '@/app/auth/actions'
@@ -366,8 +366,8 @@ export default async function AdminPage({
   ]
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-[#e8e8f0]">
-      <nav className="border-b border-[#2a2a3d] bg-[#0a0a0f]/80 backdrop-blur sticky top-0 z-50">
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e8f0]">
+      <nav className="border-b border-[#2a2a3d] bg-[#0a0900]/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
@@ -460,7 +460,7 @@ export default async function AdminPage({
                   const count = planCounts[p] ?? 0
                   const rev = count * PLAN_PRICE[p]
                   return (
-                    <div key={p} className="bg-[#0a0a0f] border border-[#2a2a3d] rounded-xl p-4">
+                    <div key={p} className="bg-[#0a0900] border border-[#2a2a3d] rounded-xl p-4">
                       <div className="text-[#8888a8] text-xs capitalize mb-1">{p.replace('_', ' ')}</div>
                       <div className="text-white text-2xl font-black">{count}</div>
                       <div className="text-emerald-400 text-xs font-semibold mt-0.5">${rev}/mo</div>

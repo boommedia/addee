@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+﻿import { createClient } from '@/lib/supabase/server'
 import { createClient as createServiceClient } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
 import { CheckCircle, XCircle } from 'lucide-react'
@@ -65,7 +65,7 @@ export default async function JoinPage({
   }, { onConflict: 'owner_user_id,member_user_id' })
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#0a0900] flex items-center justify-center px-6">
       <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-10 max-w-md w-full text-center">
         <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
           <CheckCircle className="w-6 h-6 text-emerald-400" />
@@ -85,7 +85,7 @@ export default async function JoinPage({
 
 function JoinError({ message }: { message: string }) {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#0a0900] flex items-center justify-center px-6">
       <div className="bg-[#12121a] border border-[#2a2a3d] rounded-2xl p-10 max-w-md w-full text-center">
         <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
           <XCircle className="w-6 h-6 text-red-400" />

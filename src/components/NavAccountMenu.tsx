@@ -38,9 +38,9 @@ export default function NavAccountMenu({ email, planLabel, planStyle, postsLeft,
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-52 rounded-xl shadow-xl z-50 overflow-hidden border" style={{ background: 'rgba(11,22,40,0.8)', borderColor: 'rgba(0,102,255,0.3)' }}>
-          <div className="px-3 py-2.5 border-b" style={{ borderColor: 'rgba(0,102,255,0.2)' }}>
-            <p className="text-[#7a90b8] text-xs truncate">{email}</p>
+        <div className="absolute right-0 top-full mt-2 w-52 rounded-xl shadow-xl z-50 overflow-hidden border" style={{ background: 'rgba(10,9,0,0.8)', borderColor: 'rgba(202,138,4,0.3)' }}>
+          <div className="px-3 py-2.5 border-b" style={{ borderColor: 'rgba(202,138,4,0.2)' }}>
+            <p className="text-[#b8a870] text-xs truncate">{email}</p>
           </div>
           <div className="py-1">
             {[
@@ -54,18 +54,18 @@ export default function NavAccountMenu({ email, planLabel, planStyle, postsLeft,
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2.5 px-3 py-2 text-sm text-[#dde4f0] hover:text-white hover:bg-[rgba(0,102,255,0.1)] transition-colors"
+                className="flex items-center gap-2.5 px-3 py-2 text-sm text-[#dde4f0] hover:text-white hover:bg-[rgba(202,138,4,0.1)] transition-colors"
               >
-                <span className="text-[#7a90b8]">{icon}</span>
+                <span className="text-[#b8a870]">{icon}</span>
                 {label}
               </a>
             ))}
           </div>
-          <div className="border-t py-1" style={{ borderColor: 'rgba(0,102,255,0.2)' }}>
+          <div className="border-t py-1" style={{ borderColor: 'rgba(202,138,4,0.2)' }}>
             <form action={signOutAction}>
               <button
                 type="submit"
-                className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#7a90b8] hover:text-red-400 hover:bg-[rgba(0,102,255,0.1)] transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#b8a870] hover:text-red-400 hover:bg-[rgba(202,138,4,0.1)] transition-colors"
               >
                 <LogOut className="w-3.5 h-3.5" /> Sign out
               </button>
